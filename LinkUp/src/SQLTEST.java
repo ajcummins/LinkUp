@@ -10,6 +10,7 @@ public class SQLTEST {
 				//kfelton testing 1 2 3
 		System.out.println("CHECK MMOORE TEST");
 		System.out.println("CHECK KFELTON TEST");
+		System.out.println("CHECK ACUMMINS TEST");
 	}
 
 }
