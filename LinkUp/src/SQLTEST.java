@@ -8,15 +8,15 @@ public class SQLTEST {
         java.sql.Connection con = null;
         java.sql.PreparedStatement stmt = null;
         String user = "ajcummins";
-        String pass = "linkup";
+        String pass = "root";
         try {
             con = DriverManager.getConnection("jdbc:mysql://172.31.5.42:3306/linkup", user, pass);
-            stmt = con.prepareStatement("INSERT INTO 'linkup'.'account_registration'(user_id,first_name,last_name) VALUES (?,?,?)");
+            stmt = con.prepareStatement("INSERT INTO linkup.account_registration(user_id,first_name,last_name) VALUES (?,?,?)");
             stmt.setString(1, "999");
             stmt.setString(2, "Clyde");
             stmt.setString(3, "Evans");
             stmt.executeUpdate();
-            con.commit();
+            //con.commit();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
