@@ -45,7 +45,7 @@ public class User
 		
         try 
         {   
-        	stmt = con.prepareStatement("SELECT MAX(user_id) FROM account_registration");
+        	stmt = con.prepareStatement("SELECT MAX(user_id) FROM linkup.user");
             stmt.executeQuery();
             ResultSet result = stmt.getResultSet();
             result.next();
@@ -61,7 +61,7 @@ public class User
         try
         {
         	//using con create an entry into the appropriate table to add a user
-        	stmt = con.prepareStatement("INSERT INTO linkup.account_registration(user_id,first_name"
+        	stmt = con.prepareStatement("INSERT INTO linkup.user(user_id,first_name"
         			+ ",last_name,email,birth_date,username,security_question,security_answer,password) VALUES (?,?,?,?,?,?,?,?,?)");
             stmt.setString(1, ""+ userID);
             stmt.setString(2, inFName);
@@ -72,6 +72,8 @@ public class User
             stmt.setString(7, inSecQ);
             stmt.setString(8, inSecA);
             stmt.setString(9, inPass);
+            
+            stmt.executeUpdate();
         }
         catch (Exception e) 
         {
