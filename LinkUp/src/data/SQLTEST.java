@@ -18,19 +18,22 @@ public class SQLTEST {
             stmt.setString(1, "999");
             stmt.setString(2, "Clyde");
             stmt.setString(3, "Evans");
+            stmt.executeUpdate()
             */
             
             /*Further utilizing the SQLTEST to test SQL statments
-             * Statement for getting max user_id
-            stmt = con.prepareStatement("SELECT MAX(user_id) FROM account_registration");
+            // Statement for getting max user_id
+            stmt = con.prepareStatement("SELECT MAX(user_id) FROM user");
             stmt.executeQuery();
             ResultSet result = stmt.getResultSet();
             result.next();
             int max = result.getInt(1);
             System.out.println("Max is : " + max);
             System.out.println("So we need : " + (max+1));
-            con.commit();
             */
+            //con.commit();
+            
+            
             
         } catch (Exception e) {
             e.printStackTrace();

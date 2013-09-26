@@ -50,7 +50,7 @@ public class LinkUp {
 		curUser.createUser(fName, lName, username, password,
 				secQ, secA, email, mon, day, year);
 		
-		
+		ourCon.stopConnection();
 	}
 
 }
