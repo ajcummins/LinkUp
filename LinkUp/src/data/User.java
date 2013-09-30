@@ -94,11 +94,9 @@ public class User
 	
 		
 	// Getters for the variables
-	public int getUserID(String inUser, String inPass)
+	public int getUserID()
 	{
-		//Using Login info get userID
-		
-		return 0;
+		return userID;
 	}
 	public String getUsername()
 	{
@@ -128,6 +126,11 @@ public class User
 	
 	
 	// Setters for the variables
+	public void setUserID(String inUser, String inPass)
+	{
+		//Using Login info get userID
+		
+	}
 	public void setUsername(String inUser)
 	{
 		//Using con create a statement and update the user's Username via userID

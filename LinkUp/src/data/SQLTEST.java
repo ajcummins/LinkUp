@@ -18,7 +18,7 @@ public class SQLTEST {
             stmt.setString(1, "999");
             stmt.setString(2, "Clyde");
             stmt.setString(3, "Evans");
-            stmt.executeUpdate()
+            stmt.executeUpdate();
             */
             
             /*Further utilizing the SQLTEST to test SQL statments
