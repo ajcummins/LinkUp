@@ -7,7 +7,7 @@ package edu.ycp.cs481.linkup.persistence;
  */
 public class Database {
 	// Can change this to a "real" database eventually
-	private static IDatabase theDatabase = new FakeDatabase();
+	private static IDatabase theDatabase = new MysqlDatabase();
 	
 	
 	

@@ -13,7 +13,7 @@ public class MysqlDatabase implements IDatabase {
 	private static final String DB_USERNAME = "ajcummins";
 	private static final String DB_PASSWORD = "root";
 	
-	public MysqlDatabase() throws PersistenceException {
+	public MysqlDatabase() {
 	}
 	
 	@Override
