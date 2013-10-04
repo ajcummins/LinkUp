@@ -24,8 +24,8 @@ public class Main {
 
 		// If your app isn't packaged into a WAR, you can do this instead
 		WebAppContext altHandler = new WebAppContext();
-		altHandler.setResourceBase("../UI/war");
-		altHandler.setDescriptor("../UI/war/WEB-INF/web.xml");
+		altHandler.setResourceBase("../../UI/UI/war");
+		altHandler.setDescriptor("../../UI/UI/war/WEB-INF/web.xml");
 		altHandler.setContextPath("/");
 		altHandler.setParentLoaderPriority(true);
 
