@@ -152,6 +152,8 @@ public class MysqlDatabase implements IDatabase {
 		}
 		
 		
+		
+		//-----------------------------------------------------------------//
 		//generic update statements for different types of variables
 		
 		//update statement for an integer

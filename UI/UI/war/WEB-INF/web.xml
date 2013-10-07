@@ -11,11 +11,19 @@
 		<servlet-name>UserProfile</servlet-name>
 		<servlet-class>edu.ycp.cs481.linkup.ui.servlet.UserProfileServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>CreateUser</servlet-name>
+		<servlet-class>edu.ycp.cs481.linkup.ui.servlet.CreateUser</servlet-class>
+	</servlet>
 
 	<!-- Servlet-mapping -->
 	<servlet-mapping>
 		<servlet-name>UserProfile</servlet-name>
 		<url-pattern>/profile/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CreateUser</servlet-name>
+		<url-pattern>/createUser/*</url-pattern>
 	</servlet-mapping>
 
 	<!-- Use the /index servlet as the welcome file -->
