@@ -13,7 +13,7 @@
 	</servlet>
 	<servlet>
 		<servlet-name>CreateUser</servlet-name>
-		<servlet-class>edu.ycp.cs481.linkup.ui.servlet.CreateUser</servlet-class>
+		<servlet-class>edu.ycp.cs481.linkup.ui.servlet.CreateUserServlet</servlet-class>
 	</servlet>
 
 	<!-- Servlet-mapping -->
