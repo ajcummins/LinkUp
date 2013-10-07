@@ -1,6 +1,7 @@
 package edu.ycp.cs481.linkup.persistence;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -117,7 +118,6 @@ public class MysqlDatabase implements IDatabase {
 		private java.sql.Connection con;
 		@Override
 		public void add_user_looking_for(LookingFor inlooking) throws PersistenceException {
-			//determine next available userID
 			java.sql.PreparedStatement stmt = null;
 			
 	        try
@@ -150,6 +150,93 @@ public class MysqlDatabase implements IDatabase {
 	        }
 			
 		}
+		
+		
+		//generic update statements for different types of variables
+		
+		//update statement for an integer
+		public void update_table_int(String inTableName, int inUserID, String inFieldName, int inValue){
+			java.sql.PreparedStatement stmt = null;
+			try
+	        {
+	        	//using con create an entry into the appropriate table to add a user's looking for information
+	        	stmt = con.prepareStatement("UPDATE linkup." + inTableName 
+	        										+ "SET " + inFieldName + " = ?"
+	        										+ "WHERE user_id = ?");
+	            stmt.setInt(1, inValue);
+	            stmt.setInt(2, inUserID);
+	            stmt.executeUpdate();
+	        }
+	        catch (Exception e) 
+	        {
+	            e.printStackTrace();
+	        }
+	        finally
+	        {
+	        	if (stmt != null) {
+	                try {
+	                   stmt.close();
+	                } catch (SQLException ex) {
+	                }
+	            }
+	        }
+		}
+		
+		//update statement for a string
+				public void update_table_string(String inTableName, int inUserID, String inFieldName, String inValue){
+					java.sql.PreparedStatement stmt = null;
+					try
+			        {
+			        	//using con create an entry into the appropriate table to add a user's looking for information
+			        	stmt = con.prepareStatement("UPDATE linkup." + inTableName 
+			        										+ "SET " + inFieldName + " = ?"
+			        										+ "WHERE user_id = ?");
+			            stmt.setString(1, inValue);
+			            stmt.setInt(2, inUserID);
+			            stmt.executeUpdate();
+			        }
+			        catch (Exception e) 
+			        {
+			            e.printStackTrace();
+			        }
+			        finally
+			        {
+			        	if (stmt != null) {
+			                try {
+			                   stmt.close();
+			                } catch (SQLException ex) {
+			                }
+			            }
+			        }
+				}
+				
+		    //update statement for a date
+			public void update_table_string(String inTableName, int inUserID, String inFieldName, Date inValue){
+				java.sql.PreparedStatement stmt = null;
+				try
+		        {
+		        	//using con create an entry into the appropriate table to add a user's looking for information
+		        	stmt = con.prepareStatement("UPDATE linkup." + inTableName 
+		        										+ "SET " + inFieldName + " = ?"
+		        										+ "WHERE user_id = ?");
+		            stmt.setDate(1, inValue);
+		            stmt.setInt(2, inUserID);
+		            stmt.executeUpdate();
+		        }
+		        catch (Exception e) 
+		        {
+		            e.printStackTrace();
+		        }
+		        finally
+		        {
+		        	if (stmt != null) {
+		                try {
+		                   stmt.close();
+		                } catch (SQLException ex) {
+		                }
+		            }
+		        }
+			}
 
 	
 
