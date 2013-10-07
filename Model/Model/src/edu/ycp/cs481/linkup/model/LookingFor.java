@@ -102,5 +102,5 @@ public class LookingFor {
 		return seriousness_weight;
 	}
 	
-	
+	//comment 
 }
