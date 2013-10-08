@@ -27,7 +27,7 @@ public class Looking_For {
         {
         	//using con create an entry into the appropriate table to add a user's looking for information
         	stmt = con.prepareStatement("INSERT INTO linkup.looking_for(user_id,age"
-        			+ ",age_weight,sex,religion,religion_weight,seriousness,seriousness_weight) VALUES (?,?,?,?,?,?,?,?)");
+        			+ ",age_weight,gender,religion,religion_weight,seriousness,seriousness_weight) VALUES (?,?,?,?,?,?,?,?)");
             stmt.setInt(1, userid);
             stmt.setInt(2, age);
             stmt.setInt(3, age_weight);
@@ -67,7 +67,7 @@ public class Looking_For {
         {
         	//using con create an entry into the appropriate table to add a user's looking for information
         	stmt = con.prepareStatement("UPDATE linkup.looking_for"
-        									+"SET (age = ?, age_weight = ?, sex = ?, religion = ?,"
+        									+"SET (age = ?, age_weight = ?, gender = ?, religion = ?,"
         									+ "religion_weight = ?, seriousness = ?, seriousness_weight = ?)"
         									+ "WHERE user_id = ?;");
         									//+ "WHERE user_id = '" + userid);

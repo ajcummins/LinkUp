@@ -38,10 +38,10 @@ public class Looking_for_testing {
 		
 		//enter sex you are looking for
 		System.out.println("Please enter the sex you are looking for (M = 1 and F = 2)");
-		int sex = -1;
-		while(sex < 1 || sex > 2){
-			sex = in.nextInt();
-			if(sex < 1 || sex > 2){
+		int gender = -1;
+		while(gender < 1 || gender > 2){
+			gender = in.nextInt();
+			if(gender < 1 || gender > 2){
 				System.out.println("The sex must be M or F.");
 			}
 		}
@@ -80,12 +80,12 @@ public class Looking_for_testing {
 		}
 		
 		//adding user looking for method
-		//matching.add_user_looking_for(userid, age, age_weight, sex,
-		//		religion, religion_weight, seriousness, seriousness_weight);
+		matching.add_user_looking_for(userid, age, age_weight, gender,
+				religion, religion_weight, seriousness, seriousness_weight);
 		
 		//updating user looking for method
-		matching.update_user_looking_for(userid, age, age_weight, sex,
-				religion, religion_weight, seriousness, seriousness_weight);
+		//matching.update_user_looking_for(userid, age, age_weight, sex,
+				//religion, religion_weight, seriousness, seriousness_weight);
 
 	}
 		

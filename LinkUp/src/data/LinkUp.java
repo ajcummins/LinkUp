@@ -16,10 +16,14 @@ public class LinkUp {
 		java.sql.Connection con = ourCon.createConnection("ajcummins", "root");
 		
 		User curUser = new User(con);
+		Looking_for_testing looking_for = new Looking_for_testing();
+		Profile_testing profile = new Profile_testing();
 		
 		//Hard-code the Input of User data to make sure it works...
 		
 		Scanner in = new Scanner(System.in);
+		
+		System.out.println("Welcome to LinkUp!!! \n");
 		
 		System.out.println("Please Input Your First Name");
 		String fName = in.next();
@@ -53,6 +57,14 @@ public class LinkUp {
 				secQ, secA, email, mon, day, year);
 		
 		ourCon.stopConnection();
+		
+		System.out.println("Lets create your profile.\n");
+		
+		profile.main(null);
+		
+		System.out.println("Now lets determine what kind of person you are looking for!\n");
+		
+		looking_for.main(null);
 	}
 
 }
