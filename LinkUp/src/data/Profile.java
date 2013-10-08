@@ -11,7 +11,7 @@ public class Profile {
 		String likes, dislikes, sex;
 	}
 
-
+	//test
 
 		
 		public String getLikes(){
