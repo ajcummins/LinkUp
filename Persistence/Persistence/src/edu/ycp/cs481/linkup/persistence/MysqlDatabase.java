@@ -13,6 +13,7 @@ public class MysqlDatabase implements IDatabase {
 
 	
 	// FIXME: add a Java Swing Window that when initiating the website it asks for credentials to the database.
+	//if else, boolean
 	private static final String DB_USERNAME = "ajcummins";
 	private static final String DB_PASSWORD = "root";
 	
