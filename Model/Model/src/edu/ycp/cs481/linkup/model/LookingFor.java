@@ -3,7 +3,7 @@ package edu.ycp.cs481.linkup.model;
 public class LookingFor {
 
 	
-	private String inUser;
+	//private String inUser;
 	private int userid;
 	
 	private int age;
