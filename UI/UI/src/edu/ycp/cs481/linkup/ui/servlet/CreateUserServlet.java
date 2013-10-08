@@ -34,6 +34,7 @@ public class CreateUserServlet extends HttpServlet {
 		}
 		else
 		{
+			System.out.println("USER: " + user + " PASS: " + pass);
 			User tempUser = new User();
 			tempUser.setUsername(user);
 			tempUser.setPassword(pass);
