@@ -15,6 +15,10 @@
 		<servlet-name>CreateUser</servlet-name>
 		<servlet-class>edu.ycp.cs481.linkup.ui.servlet.CreateUserServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>Index</servlet-name>
+		<servlet-class>edu.ycp.cs481.linkup.ui.servlet.IndexServlet</servlet-class>
+	</servlet>
 
 	<!-- Servlet-mapping -->
 	<servlet-mapping>
@@ -25,6 +29,10 @@
 		<servlet-name>CreateUser</servlet-name>
 		<url-pattern>/createUser/*</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Index</servlet-name>
+		<url-pattern>/index/*</url-pattern>
+	</servlet-mapping>
 
 	<!-- Use the /index servlet as the welcome file -->
 	<!--
@@ -32,5 +40,9 @@
 		<welcome-file>/index</welcome-file>
 	</welcome-file-list>
 	-->
+	
+	<welcome-file-list>
+		<welcome-file>/index</welcome-file>
+	</welcome-file-list>
 
 </web-app>
