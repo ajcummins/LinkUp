@@ -10,7 +10,7 @@ public class FakeDatabase implements IDatabase {
 	public UserProfile loadUserProfile(int profileId) {
 		// FIXME: this is fake, really should access the databases
 		UserProfile profile = new UserProfile();
-		profile.setName("Whatever");
+		profile.setUsername("Whatever"); //changed to get rid of error
 		return profile;
 	}
 
