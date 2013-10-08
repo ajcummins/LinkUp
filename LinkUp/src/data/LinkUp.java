@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 // I imagine this will be our main
 
+
+//added comment
 public class LinkUp {
 
 	public static void main(String[] args) throws Exception {
