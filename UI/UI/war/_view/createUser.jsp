@@ -1,5 +1,7 @@
 <!doctype html>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 	<head>
 		<title>Create user</title>
@@ -31,6 +33,14 @@
 					<td><input name="submit" type="submit" /></td>
 				</tr>
 			</table>
+			
+			<c:if test="${! empty error}">
+				<b>Error: ${error}</b>
+			</c:if>
+			
+			<c:if test="${! empty info}">
+				<p>${info}</p>
+			</c:if> 
 				
 		</form>
 		

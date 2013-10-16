@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import edu.ycp.cs481.linkup.controller.CreateUserController;
 import edu.ycp.cs481.linkup.model.User;
+import edu.ycp.cs481.linkup.persistence.DuplicateUserException;
 import edu.ycp.cs481.linkup.persistence.PersistenceException;
 
 
@@ -31,6 +32,7 @@ public class CreateUserServlet extends HttpServlet {
 		if(user == null || pass == null)
 		{
 			//Some type of error
+			throw new ServletException("Username and/or password are null");
 		}
 		else
 		{
@@ -41,11 +43,17 @@ public class CreateUserServlet extends HttpServlet {
 			CreateUserController controller = new CreateUserController();
 			try {
 				controller.createUser(tempUser);
+				req.setAttribute("info", "Successfully created user!");
+				
+				// redirect
+			} catch (DuplicateUserException e) {
+				// User already exists
+				req.setAttribute("error", "User " + user + " already exists");
 			} catch (PersistenceException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				throw new ServletException("Error communicating with database", e);
 			}
 			
+			req.getRequestDispatcher("/_view/createUser.jsp").forward(req, resp);
 		}
 	}
 }
