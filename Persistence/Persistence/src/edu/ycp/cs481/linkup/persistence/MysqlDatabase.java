@@ -12,17 +12,19 @@ import edu.ycp.cs481.linkup.model.UserProfile;
 public class MysqlDatabase implements IDatabase {
 
 	
-	// FIXME: add a Java Swing Window that when initiating the website it asks for credentials to the database.
+	
 	//if else, boolean
-	private static final String DB_USERNAME = "ajcummins";
-	private static final String DB_PASSWORD = "root";
+	private static String DB_USERNAME = "ajcummins";
+	private static String DB_PASSWORD = "root";
 	
 	public MysqlDatabase() {
 	}
 	
 	@Override
 	public UserProfile loadUserProfile(int profileId) throws PersistenceException {
-		// TODO Auto-generated method stub
+		
+		// SET DB_USERNAME/PASSWORD
+		this.setDatabaseCredentials();
 		
 		try {
 			SQLconnection sqlConn = new SQLconnection();
@@ -112,13 +114,13 @@ public class MysqlDatabase implements IDatabase {
 	    	stmt = conn.prepareStatement("INSERT INTO linkup.user(user_id,first_name"
 	    			+ ",last_name,email,birth_date,username,security_question,security_answer,password) VALUES (?,?,?,?,?,?,?,?,?)");
 	        stmt.setString(1, ""+ userID);
-	        stmt.setString(2, "fName"+ userID);
-	        stmt.setString(3, "lName"+ userID);
-	        stmt.setString(4, "email"+ userID);
-	        stmt.setString(5, ""+userID+"-"+userID+"-"+userID);
+	        stmt.setString(2, ""+ inUser.getFirstName());
+	        stmt.setString(3, ""+ inUser.getLastName());
+	        stmt.setString(4, ""+ inUser.getEmail());
+	        stmt.setString(5, ""+ inUser.getDOB());
 	        stmt.setString(6, ""+ inUser.getUsername());
-	        stmt.setString(7, ""+ userID);
-	        stmt.setString(8, "Sec_Answer"+ userID);
+	        stmt.setString(7, ""+ inUser.getSecQues());
+	        stmt.setString(8, ""+ inUser.getSecAns());
 	        stmt.setString(9, ""+ inUser.getPassword());
 	        
 	        stmt.executeUpdate();
@@ -254,6 +256,14 @@ public class MysqlDatabase implements IDatabase {
 		                }
 		            }
 		        }
+			}
+			
+			public void setDatabaseCredentials()
+			{
+				//FIXME : use a javaswing window to retrieve the Database Username and Password from the user 
+				//
+				//DB_USERNAME = "";
+				//DB_PASSWORD = "";
 			}
 
 	
