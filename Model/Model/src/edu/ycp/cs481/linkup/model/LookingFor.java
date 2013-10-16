@@ -101,6 +101,16 @@ public class LookingFor {
 	{
 		return seriousness_weight;
 	}
+
+	public int getAgeLow() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int getAgeHigh() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 	//comment 
 }
