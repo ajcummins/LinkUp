@@ -8,9 +8,13 @@ public class SQLconnection {
 	private java.sql.Connection con = null;
     private java.sql.PreparedStatement stmt = null;
 	
-	public SQLconnection() throws Exception
+	public SQLconnection() throws SQLException
 	{
-		Class.forName("com.mysql.jdbc.Driver");
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (Exception e) {
+			throw new SQLException("Error loading MySQL driver", e);
+		}
 	}
 	
 	// Creates and returns a connection to the LinkUp Database requiring a user and pass to the database
