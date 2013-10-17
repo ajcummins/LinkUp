@@ -133,6 +133,7 @@ public class MysqlDatabase implements IDatabase {
 	//---------------------------------------------------------------------//
 	//this is looking for insert statement for first time adding
 	//Database connection
+	//Checking for added java.sql.Connection con
 		private java.sql.Connection con;
 		@Override
 		public void add_user_looking_for(LookingFor inlooking) throws PersistenceException {
