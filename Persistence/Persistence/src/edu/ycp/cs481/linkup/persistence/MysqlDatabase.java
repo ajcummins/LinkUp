@@ -266,6 +266,8 @@ public class MysqlDatabase implements IDatabase {
 				//
 				//DB_USERNAME = "";
 				//DB_PASSWORD = "";
+				dialogSecurity.main(null);
+				
 			}
 
 	

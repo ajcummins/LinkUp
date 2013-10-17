@@ -21,7 +21,16 @@ public class dialogSecurity {
 		//System.out.println(username);  // test to see if stores user input
 		//System.out.println(password);
 		
-		DBaccess(username, password);
+		boolean access = DBaccess(username, password);
+		
+		if(access == false){
+			JOptionPane.showMessageDialog(null, "ACCESS DENIED!"); // if not correct, terminates
+			//for(int i = 1; i < 4; i++){  //NEED TO WORK ON LOOP (ex: max 3 tries)
+				//main(null);
+			//}
+			System.exit(0);
+		}
+	
 		
 
 	} 
@@ -29,14 +38,13 @@ public class dialogSecurity {
 	static boolean DBaccess(String username, String password) {
 		if(username == "kfelton" && password == "linkup"){
 			return true;
-		}
-		if(username == "ajcummins" && password == "root"){
+		}else if(username == "ajcummins" && password == "root"){
 			return true;
-		}
-		if(username == "mmoore" && password == "linkup"){
+		}else if(username == "mmoore" && password == "linkup"){
 			return true;
+		}else{
+			return false;
 		}
-		return false;
 	}
 
 }
