@@ -7,6 +7,11 @@ import org.eclipse.jetty.webapp.WebAppContext;
 
 public class Main {
 	public static void main(String[] args) throws Exception {
+		
+		/*
+		 * TEST for MMOORE
+		 */
+		
 		// Create an embedded Jetty server on port 8080
 		Server server = new Server(new QueuedThreadPool(20));
 		
