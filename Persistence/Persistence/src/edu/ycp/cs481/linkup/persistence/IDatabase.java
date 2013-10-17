@@ -29,6 +29,10 @@ public interface IDatabase {
 	public void createUser(User inUser) throws PersistenceException;
 
 	public void add_user_looking_for(LookingFor inLooking) throws PersistenceException;
+	
+	public void add_profile_info(UserProfile inProfile) throws PersistenceException;
+
+
 
 
 }

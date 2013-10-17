@@ -270,6 +270,55 @@ public class MysqlDatabase implements IDatabase {
 				
 			}
 
+			/*public void add_profile_info(int userid, String username, String location, String gender, int age, String religion, String books,
+					String movies, String music, String basic_info, String likes, String dislikes, String looking_for) throws Exception
+			{*/
+				
+		
+		        		
+			
+
+			@Override
+			public void add_profile_info(UserProfile inProfile)
+					throws PersistenceException {
+				//determine next available userID
+				java.sql.PreparedStatement stmt = null;
+				
+		        try
+		        {
+		        	//using con create an entry into the appropriate table to add a user's looking for information
+		        	stmt = con.prepareStatement("INSERT INTO linkup.profile_info(user_id,username, location, gender, religion"
+		        			+ ",books, movies, music, basic_info, likes, dislikes, looking_for) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+		            stmt.setInt(1, inProfile.getUserid());
+		            stmt.setString(2, inProfile.getUsername());
+		            stmt.setString(3, inProfile.getLocation());
+		            stmt.setString(4, inProfile.getGender());
+		            stmt.setString(5, inProfile.getReligion());
+		            stmt.setString(6, inProfile.getBooks());
+		            stmt.setString(7, inProfile.getMovies());
+		            stmt.setString(8, inProfile.getMusic());
+		            stmt.setString(9, inProfile.getBasic_Info());
+		            stmt.setString(10, inProfile.getLikes());
+		            stmt.setString(11, inProfile.getDislikes());
+		            stmt.setString(12, inProfile.getLooking_For());
+		            stmt.executeUpdate();
+		        }
+		        catch (Exception e) 
+		        {
+		            e.printStackTrace();
+		        }
+		        finally
+		        {
+		        	if (stmt != null) {
+		                try {
+		                   stmt.close();
+		                } catch (SQLException ex) {
+		                }
+		            }
+		        }
+				// TODO Auto-generated method stub
+				
+			}
 	
 
 }
