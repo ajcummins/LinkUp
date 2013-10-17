@@ -44,14 +44,16 @@ public class CreateUserServlet extends HttpServlet {
 		{
 			//Some type of error
 			req.setAttribute("error", "You have remaining Empty Fields");
-			throw new ServletException("You have remaining Empty Fields");
+			//throw new ServletException("You have remaining Empty Fields");
+			req.getRequestDispatcher("/_view/createUser.jsp").forward(req, resp);
 		}
 		else if(pass != confirmPass)
 		{
 			req.setAttribute("password","");
 			req.setAttribute("confirm_password","");
 			req.setAttribute("error", "Your Passwords do not match");
-			throw new ServletException("Your Passwords do not match");
+			//throw new ServletException("Your Passwords do not match");
+			req.getRequestDispatcher("/_view/createUser.jsp").forward(req, resp);
 		}
 		else
 		{
