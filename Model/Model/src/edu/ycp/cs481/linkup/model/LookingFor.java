@@ -6,8 +6,8 @@ public class LookingFor {
 	//private String inUser;
 	private int userid;
 	
-	private int age;
-	private int age_weight;
+	private int ageLow;
+	private int ageHigh;
 	
 	private int gender;
 	
@@ -27,14 +27,14 @@ public class LookingFor {
 		userid = inUserid;
 	}
 	
-	public void setAge(int inAge)
+	public void setAgeLow(int inAgeLow)
 	{
-		age = inAge;
+		ageLow = inAgeLow;
 	}
 	
-	public void setAge_Weight(int inAgeWeight)
+	public void setAgeHigh(int inAgeHigh)
 	{
-		age_weight = inAgeWeight;
+		ageHigh = inAgeHigh;
 	}
 	
 	public void setGender(int inGender)
@@ -67,14 +67,14 @@ public class LookingFor {
 		return userid;
 	}
 	
-	public int getAge()
+	public int getAgeLow()
 	{
-		return age;
+		return ageLow;
 	}
 	
-	public int getAge_Weight()
+	public int getAgeHigh()
 	{
-		return age_weight;
+		return ageHigh;
 	}
 	
 	public int getGender()
@@ -102,15 +102,7 @@ public class LookingFor {
 		return seriousness_weight;
 	}
 
-	public int getAgeLow() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public int getAgeHigh() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	
 	
 	//comment 
 }

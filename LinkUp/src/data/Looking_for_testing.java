@@ -11,7 +11,8 @@ public class Looking_for_testing {
 		// We'll have to figure out a better way of doing this in the future
 		java.sql.Connection con = ourCon.createConnection("ajcummins", "root");
 		
-		Looking_For matching = new Looking_For(con);
+		Looking_For looking = new Looking_For(con);
+		Matching matching = new Matching(con);
 		
 		//Hard-code the Input of User data to make sure it works...
 		
@@ -22,18 +23,19 @@ public class Looking_for_testing {
 		int userid = in.nextInt();
 		
 		//enter looking age
-		System.out.println("Please enter the age you are looking for");
-		int age = in.nextInt();
+		System.out.println("Please enter the lowest age you are looking for");
+		int age_low = in.nextInt();
 		
 		//enter age weight
-		System.out.println("Please enter age weight (1-10)");
-		int age_weight = -1;
-		while(age_weight < 0 || age_weight > 10){
-			age_weight = in.nextInt();
-			if(age_weight < 0 || age_weight > 10){
-				System.out.println("The weight must be between 1 and 10.");
+		System.out.println("Please enter highest age you are looking for");
+			int age_high = in.nextInt();
+			while(age_high <= age_low){
+				if(age_high <= age_low){
+					System.out.println("highest age must be greater than lowest age.");
+				}
+				age_high = in.nextInt();
+				
 			}
-		}
 		
 		
 		//enter sex you are looking for
@@ -80,13 +82,13 @@ public class Looking_for_testing {
 		}
 		
 		//adding user looking for method
-		matching.add_user_looking_for(userid, age, age_weight, gender,
+		looking.add_user_looking_for(userid, age_low, age_high, gender,
 				religion, religion_weight, seriousness, seriousness_weight);
 		
-		//updating user looking for method
-		//matching.update_user_looking_for(userid, age, age_weight, sex,
-				//religion, religion_weight, seriousness, seriousness_weight);
-
+		
+		System.out.println("Checking for a match....\n");
+		String match_user = matching.find_match(userid, age_low, age_high, gender);
+		System.out.printf("Congradulations a good match would be: %s", match_user);
 	}
 		
 

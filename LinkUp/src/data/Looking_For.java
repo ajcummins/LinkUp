@@ -16,7 +16,7 @@ public class Looking_For {
 	}
 	
 	//method add looking for information for a user who has not specified what they are looking for yet
-	public void add_user_looking_for(int userid, int age, int age_weight, int sex,
+	public void add_user_looking_for(int userid, int age_low, int age_high, int gender,
 			String religion, int religion_weight, int seriousness, int seriousness_weight) throws Exception
 	{
 		
@@ -26,12 +26,12 @@ public class Looking_For {
         try
         {
         	//using con create an entry into the appropriate table to add a user's looking for information
-        	stmt = con.prepareStatement("INSERT INTO linkup.looking_for(user_id,age"
-        			+ ",age_weight,gender,religion,religion_weight,seriousness,seriousness_weight) VALUES (?,?,?,?,?,?,?,?)");
+        	stmt = con.prepareStatement("INSERT INTO linkup.looking_for(user_id,age_low"
+        			+ ",age_high,gender,religion,religion_weight,seriousness,seriousness_weight) VALUES (?,?,?,?,?,?,?,?)");
             stmt.setInt(1, userid);
-            stmt.setInt(2, age);
-            stmt.setInt(3, age_weight);
-            stmt.setInt(4, sex);
+            stmt.setInt(2, age_low);
+            stmt.setInt(3, age_high);
+            stmt.setInt(4, gender);
             stmt.setString(5, religion);
             stmt.setInt(6, religion_weight);
             stmt.setInt(7, seriousness);
