@@ -18,13 +18,14 @@ public class MysqlDatabase implements IDatabase {
 	private static String DB_PASSWORD = "root";
 	
 	public MysqlDatabase() {
+		this.setDatabaseCredentials();
 	}
 	
 	@Override
 	public UserProfile loadUserProfile(int profileId) throws PersistenceException {
 		
 		// SET DB_USERNAME/PASSWORD
-		this.setDatabaseCredentials();
+		
 		
 		try {
 			SQLconnection sqlConn = new SQLconnection();
