@@ -21,7 +21,7 @@
 	</servlet>
 	<servlet>
 		<servlet-name>LookingFor</servlet-name>
-		<ervlet-class>edu.ycp.cs481.linkup.ui.servlet.LookingForServlet</servlet-class>
+		<servlet-class>edu.ycp.cs481.linkup.ui.servlet.LookingForServlet</servlet-class>
 	</servlet>
 
 	<!-- Servlet-mapping -->
