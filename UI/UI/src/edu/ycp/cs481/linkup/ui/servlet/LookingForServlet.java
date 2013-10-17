@@ -25,6 +25,7 @@ public class LookingForServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		// TODO: get looking for information, use a controller to create new user account, forward to view
+		int userid = Integer.parseInt(req.getParameter("user_id"));
 		int ageLow = Integer.parseInt(req.getParameter("age_low"));
 		int ageHigh = Integer.parseInt(req.getParameter("age_high"));
 		int gender = Integer.parseInt(req.getParameter("gender"));
@@ -49,6 +50,7 @@ public class LookingForServlet extends HttpServlet{
 					+ "\nseriousness: " + seriousness
 					+ "\nseriousness weight: " + seriousnessWeight);
 			LookingFor tempLooking = new LookingFor();
+			tempLooking.setUserid(userid);
 			tempLooking.setAgeLow(ageLow);
 			tempLooking.setAgeHigh(ageHigh);
 			tempLooking.setGender(gender);
