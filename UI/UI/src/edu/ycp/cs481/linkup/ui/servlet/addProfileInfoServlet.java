@@ -20,7 +20,7 @@ public class addProfileInfoServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		req.getRequestDispatcher("/_view/profileInfo.jsp").forward(req, resp);
+		req.getRequestDispatcher("/_view/SetUpProfileInfo.jsp").forward(req, resp);
 	}
 	
 	@Override
@@ -77,7 +77,7 @@ public class addProfileInfoServlet extends HttpServlet{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			req.getRequestDispatcher("/_view/SetUpProfileInfo.jsp").forward(req, resp);
+			//req.getRequestDispatcher("/_view/SetUpProfileInfo.jsp").forward(req, resp);
 		
 	}
 }

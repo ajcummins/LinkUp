@@ -7,10 +7,10 @@
 	<!-- Context parameters -->
 
 	<!-- Servlets -->
-	<servlet>
+	<!--<servlet>
 		<servlet-name>UserProfile</servlet-name>
 		<servlet-class>edu.ycp.cs481.linkup.ui.servlet.UserProfileServlet</servlet-class>
-	</servlet>
+	</servlet> -->
 	<servlet>
 		<servlet-name>CreateUser</servlet-name>
 		<servlet-class>edu.ycp.cs481.linkup.ui.servlet.CreateUserServlet</servlet-class>
@@ -24,15 +24,15 @@
 		<servlet-class>edu.ycp.cs481.linkup.ui.servlet.LookingForServlet</servlet-class>
 	</servlet>
 	<servlet>
-		<servlet-name>UserProfile</servlet-name>
-		<servlet-class>edu.ycp.cs481.linkup.ui.servlet.addProfileInfoServelet</servlet-class>
+		<servlet-name>NewUserProfile</servlet-name>
+		<servlet-class>edu.ycp.cs481.linkup.ui.servlet.addProfileInfoServlet</servlet-class>
 	</servlet>
 
 	<!-- Servlet-mapping -->
-	<servlet-mapping>
+	<!--<servlet-mapping>
 		<servlet-name>UserProfile</servlet-name>
 		<url-pattern>/profile/*</url-pattern>
-	</servlet-mapping>
+	</servlet-mapping>-->
 	<servlet-mapping>
 		<servlet-name>CreateUser</servlet-name>
 		<url-pattern>/createUser/*</url-pattern>
@@ -46,7 +46,7 @@
 		<url-pattern>/lookingFor/*</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>UserProfile</servlet-name>
+		<servlet-name>NewUserProfile</servlet-name>
 		<url-pattern>/SetUpProfileInfo/*</url-pattern>
 	</servlet-mapping>
 
