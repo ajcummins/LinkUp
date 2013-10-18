@@ -1,14 +1,18 @@
 <!doctype html>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 	<head>
-		<title>Create user</title>
+		<title>Looking For</title>
 	</head>
 	
 	<body>
 		<p> What are you looking for in a Match? </p>
 		
 		<form action="/lookingFor" method="POST">
+		<fieldset>
+		<legend> Let's Find A Match </legend>
 			<table>
 				<tr>
 					<td>
@@ -32,8 +36,8 @@
 					</td>
 					<td>
 						<select>
-						  <option value="1" name="gender" type="int" size="20">Male</option>
-						  <option value="2" name="gender" type="int" size="20">Female</option>
+						  <option gender="1" value = "1" size="20">Male</option>
+						  <option gender="2" value = "2" size="20">Female</option>
 						</select>
 					</td>
 				</tr>
@@ -107,7 +111,16 @@
 					<td><input name="submit" type="submit" /></td>
 				</tr>
 			</table>
-				
+			</fieldset>
+			
+			<c:if test="${! empty error}">
+				<b>Error: ${error}</b>
+			</c:if>
+			
+			<c:if test="${! empty info}">
+				<p>${info}</p>
+			</c:if> 
+			
 		</form>
 		
 	</body>

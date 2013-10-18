@@ -8,8 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.ycp.cs481.linkup.controller.CreateUserController;
 import edu.ycp.cs481.linkup.controller.LookingForController;
 import edu.ycp.cs481.linkup.model.LookingFor;
+import edu.ycp.cs481.linkup.persistence.DuplicateUserException;
 import edu.ycp.cs481.linkup.persistence.PersistenceException;
 
 public class LookingForServlet extends HttpServlet{
@@ -21,24 +23,38 @@ public class LookingForServlet extends HttpServlet{
 		req.getRequestDispatcher("/_view/lookingFor.jsp").forward(req, resp);
 	}
 	
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		int userid = -1;
+		int ageLow = -1;
+		int ageHigh = -1;
+		//int gender = -1;
+		int religionWeight = -1;
+		int seriousness = -1;
+		int seriousnessWeight = -1;
+		
 		// TODO: get looking for information, use a controller to create new user account, forward to view
-		int userid = Integer.parseInt(req.getParameter("user_id"));
-		int ageLow = Integer.parseInt(req.getParameter("age_low"));
-		int ageHigh = Integer.parseInt(req.getParameter("age_high"));
-		int gender = Integer.parseInt(req.getParameter("gender"));
+		userid = Integer.parseInt(req.getParameter("user_id"));
+		ageLow = Integer.parseInt(req.getParameter("age_low"));
+		ageHigh = Integer.parseInt(req.getParameter("age_high"));
+		//gender = Integer.parseInt(req.getParameter("gender"));
+		String gender = req.getParameter("gender");
+		System.out.printf("\ngender: %d", gender);
 		String religion = req.getParameter("religion");
-		int religionWeight = Integer.parseInt(req.getParameter("religion_weight"));
-		int seriousness = Integer.parseInt(req.getParameter("seriousness"));
-		int seriousnessWeight = Integer.parseInt(req.getParameter("seriousness_weight"));
+		religionWeight = Integer.parseInt(req.getParameter("religion_weight"));
+		seriousness = Integer.parseInt(req.getParameter("seriousness"));
+		seriousnessWeight = Integer.parseInt(req.getParameter("seriousness_weight"));
 		
 		
 		// Check if null 
-		if(ageLow < 0 || ageHigh < 0)
+		if(ageLow >= ageHigh || ageLow < 0 || ageHigh < 0 || userid < 0 || religion == null)//gender < 0 ||
 		{
 			//Some type of error
+			req.setAttribute("error", "You have remaining Empty Fields");
+			//throw new ServletException("You have remaining Empty Fields");
+			req.getRequestDispatcher("/_view/lookinFor.jsp").forward(req, resp);
 		}
 		else
 		{
@@ -53,7 +69,7 @@ public class LookingForServlet extends HttpServlet{
 			tempLooking.setUserid(userid);
 			tempLooking.setAgeLow(ageLow);
 			tempLooking.setAgeHigh(ageHigh);
-			tempLooking.setGender(gender);
+			//tempLooking.setGender(gender);
 			tempLooking.setReligion(religion);
 			tempLooking.setReligionWeight(religionWeight);
 			tempLooking.setseriousness(seriousness);
@@ -62,10 +78,14 @@ public class LookingForServlet extends HttpServlet{
 			LookingForController controller = new LookingForController();
 			try {
 				controller.LookingFor(tempLooking);
+				//req.setAttribute("info", "Successfully created user!");
 			} catch (PersistenceException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				throw new ServletException("Error communicating with database", e);
 			}
+
+			req.getRequestDispatcher("/_view/lookingFor.jsp").forward(req, resp);
 			
 		}
 	}
