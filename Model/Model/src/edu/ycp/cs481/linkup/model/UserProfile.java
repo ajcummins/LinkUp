@@ -12,8 +12,8 @@ public class UserProfile {
 	private String inUser;
 	private int userid;
 	private String username;
-	private String location;
-	private String gender;
+	private int location;
+	private int gender;
 	private int age;
 	private String religion;
 	private String books;
@@ -22,7 +22,7 @@ public class UserProfile {
 	private String basic_info;
 	private String likes;
 	private String dislikes;
-	private String looking_for;
+	private int looking_for;
 	
 	
 	
@@ -36,27 +36,27 @@ public class UserProfile {
 		username = inUsername;
 	}
 	
-	public void setAge_Weight(String inLocation)
+	public void setLocation(int inLocation)
 	{
 		location = inLocation;
 	}
 	
-	public void setGender(String inGender)
+	public void setGender(int inGender)
 	{
 		gender = inGender;
 	}
 	
-	public void setReligion(int inAge)
+	public void setAge(int inAge)
 	{
 		age = inAge;
 	}
 	
-	public void setReligionWeight(String inReligion)
+	public void setReligion(String inReligion)
 	{
 		religion = inReligion;
 	}
 	
-	public void setseriousness(String inBooks)
+	public void setBooks(String inBooks)
 	{
 		books = inBooks;
 	}
@@ -81,7 +81,7 @@ public class UserProfile {
 	{
 		dislikes = inDislikes;
 	}
-	public void setLooking_For(String inLooking_For)
+	public void setLooking_For(int inLooking_For)
 	{
 		looking_for = inLooking_For;
 	}
@@ -97,12 +97,12 @@ public class UserProfile {
 		return username;
 	}
 	
-	public String getLocation()
+	public int getLocation()
 	{
 		return location;
 	}
 	
-	public String getGender()
+	public int getGender()
 	{
 		return gender;
 	}
@@ -142,7 +142,7 @@ public class UserProfile {
 	{
 		return dislikes;
 	}
-	public String getLooking_For()
+	public int getLooking_For()
 	{
 		return looking_for;
 	}

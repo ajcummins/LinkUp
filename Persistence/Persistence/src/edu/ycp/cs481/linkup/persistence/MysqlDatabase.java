@@ -291,8 +291,8 @@ public class MysqlDatabase implements IDatabase {
 		        			+ ",books, movies, music, basic_info, likes, dislikes, looking_for) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
 		            stmt.setInt(1, inProfile.getUserid());
 		            stmt.setString(2, inProfile.getUsername());
-		            stmt.setString(3, inProfile.getLocation());
-		            stmt.setString(4, inProfile.getGender());
+		            stmt.setInt(3, inProfile.getLocation());
+		            stmt.setInt(4, inProfile.getGender());
 		            stmt.setString(5, inProfile.getReligion());
 		            stmt.setString(6, inProfile.getBooks());
 		            stmt.setString(7, inProfile.getMovies());
@@ -300,7 +300,7 @@ public class MysqlDatabase implements IDatabase {
 		            stmt.setString(9, inProfile.getBasic_Info());
 		            stmt.setString(10, inProfile.getLikes());
 		            stmt.setString(11, inProfile.getDislikes());
-		            stmt.setString(12, inProfile.getLooking_For());
+		            stmt.setInt(12, inProfile.getLooking_For());
 		            stmt.executeUpdate();
 		        }
 		        catch (Exception e) 
