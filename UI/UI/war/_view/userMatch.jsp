@@ -9,12 +9,42 @@
 	
 	<body>		
 		<form action="/userMatch" method="POST">
+		
 		<fieldset>
+		
+		<br><br>
+		<table>
+				<tr>
+					<td>
+						Age Range:
+					</td>
+					<td>
+						<input name="age_low" type="int" size="20" /> - <input name="age_high" type="int" size="20" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Gender:
+					</td>
+					<td>
+						<select name="gender">
+						  <option name="gender" value = "1" size="20">Male</option>
+						  <option name="gender" value = "2" size="20">Female</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+				<td><input name="submit" value="Find Match" type="submit" /></td>
+				</tr>
+			</table>
+			<br>
+			<br>
+		
 		<legend> Condulations!!!! </legend>
 			<input type="hidden" name="userid">
 			<table>
 				<tr>
-					Your Perfect Match: Everyone!
+					Your Perfect Match: ${match}
 				</tr>
 				<tr>
 					<td></td>
