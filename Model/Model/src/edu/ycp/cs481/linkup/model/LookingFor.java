@@ -32,7 +32,6 @@ public class LookingFor {
 	public void setUserid(int inUserid)
 	{
 		this.userid = inUserid;
-		//userid = inUserid;
 	}
 	
 	public void setAgeLow(int inAgeLow)

@@ -47,7 +47,7 @@ public class LookingForServlet extends HttpServlet{
 		
 		
 		// Check if null 
-		if(ageLow >= ageHigh || ageLow < 0 || ageHigh < 0 || userid < 0 || religion == null)//gender < 0 ||
+		if(ageLow >= ageHigh || ageLow < 0 || ageHigh < 0 || userid < 0 || religion == null)
 		{
 			//Some type of error
 			req.setAttribute("error", "You have remaining Empty Fields");
