@@ -27,10 +27,10 @@
 		<servlet-name>NewUserProfile</servlet-name>
 		<servlet-class>edu.ycp.cs481.linkup.ui.servlet.addProfileInfoServlet</servlet-class>
 	</servlet>
-	<!--<servlet>
+	<servlet>
 		<servlet-name>Match</servlet-name>
 		<servlet-class>edu.ycp.cs481.linkup.ui.servlet.MatchServlet</servlet-class>
-	</servlet>-->
+	</servlet>
 
 
 	<!-- Servlet-mapping -->
@@ -54,10 +54,10 @@
 		<servlet-name>NewUserProfile</servlet-name>
 		<url-pattern>/SetUpProfileInfo/*</url-pattern>
 	</servlet-mapping>
-	<!--<servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>Match</servlet-name>
 		<url-pattern>/userMatch/*</url-pattern>
-	</servlet-mapping> -->
+	</servlet-mapping> 
 
 	<!-- Use the /index servlet as the welcome file -->
 	<!--

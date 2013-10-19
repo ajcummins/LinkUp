@@ -86,7 +86,7 @@ public class LookingForServlet extends HttpServlet{
 				throw new ServletException("Error communicating with database", e);
 			}
 
-			req.getRequestDispatcher("/_view/createUser.jsp").forward(req, resp);
+			req.getRequestDispatcher("/_view/userMatch.jsp").forward(req, resp);
 			
 		}
 	}

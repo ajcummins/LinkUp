@@ -7,15 +7,13 @@
 		<title>User Match</title>
 	</head>
 	
-	<body>
-		<p> Condulation! </p>
-		
+	<body>		
 		<form action="/userMatch" method="POST">
 		<fieldset>
-		<legend> Your Perfect Match is </legend>
+		<legend> Condulations!!!! </legend>
 			<table>
 				<tr>
-					Everyone!
+					Your Perfect Match: Everyone!
 				</tr>
 			</table>
 			</fieldset>

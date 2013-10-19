@@ -141,8 +141,18 @@ public class MysqlDatabase implements IDatabase {
 		@Override
 		public void add_user_looking_for(LookingFor inlooking) throws PersistenceException {
 			java.sql.PreparedStatement stmt = null;
+			System.out.println("userid" + inlooking.getUserid()
+					+ "\nage low: " + inlooking.getAgeLow() 
+					+ "\nage high: " + inlooking.getAgeHigh()
+					+ "\ngender: " + inlooking.getGender()
+					+ "\nreligion: " + inlooking.getReligion()
+					+ "\nreligion weight: " + inlooking.getReligionWeight()
+					+ "\nseriousness: " + inlooking.getseriousness()
+					+ "\nseriousness weight: " + inlooking.getseriousnessWeight());
 	        try
 	        {
+	        	SQLconnection sqlConn = new SQLconnection();
+				Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
 	        	//using con create an entry into the appropriate table to add a user's looking for information
 	        	stmt = con.prepareStatement("INSERT INTO linkup.looking_for(user_id,age_low"
 	        			+ ",age_high,gender,religion,religion_weight,seriousness,seriousness_weight) VALUES (?,?,?,?,?,?,?,?)");
@@ -162,12 +172,7 @@ public class MysqlDatabase implements IDatabase {
 	        }
 	        finally
 	        {
-	        	if (stmt != null) {
-	                try {
-	                   stmt.close();
-	                } catch (SQLException ex) {
-	                }
-	            }
+	        	DBUtil.closeQuietly(stmt);
 	        }
 			
 		}
