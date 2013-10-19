@@ -6,7 +6,7 @@
 	</head>
 	
 	<body>
-		<p>User name: ${UserProfile.name}</p>
+		<p>User name: ${UserProfile.username}</p>
 	</body>
 
 </html>
