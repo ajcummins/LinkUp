@@ -16,21 +16,10 @@
 		<table>
 				<tr>
 					<td>
-						Age Range:
+						User ID:
 					</td>
 					<td>
-						<input name="age_low" type="int" size="20" /> - <input name="age_high" type="int" size="20" />
-					</td>
-				</tr>
-				<tr>
-					<td>
-						Gender:
-					</td>
-					<td>
-						<select name="gender">
-						  <option name="gender" value = "1" size="20">Male</option>
-						  <option name="gender" value = "2" size="20">Female</option>
-						</select>
+						<input name="user_id" type="int" size="20" />
 					</td>
 				</tr>
 				<tr>
