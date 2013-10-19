@@ -73,8 +73,10 @@ public class LookingForServlet extends HttpServlet{
 			tempLooking.setseriousness(seriousness);
 			tempLooking.setseriousnessWeight(seriousnessWeight);
 			
+
 			LookingForController controller = new LookingForController();
 			try {
+				req.getRequestDispatcher("/_view/userMatch.jsp").forward(req, resp);
 				controller.LookingFor(tempLooking);
 				//req.setAttribute("info", "Successfully created user!");
 			} catch (PersistenceException e) {
@@ -83,7 +85,7 @@ public class LookingForServlet extends HttpServlet{
 				throw new ServletException("Error communicating with database", e);
 			}
 
-			req.getRequestDispatcher("/_view/lookingFor.jsp").forward(req, resp);
+			req.getRequestDispatcher("/_view/createUser.jsp").forward(req, resp);
 			
 		}
 	}
