@@ -12,13 +12,14 @@ public class MatchServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		req.setAttribute("input", "fred");
 		req.getRequestDispatcher("/_view/userMatch.jsp").forward(req, resp);
 	}
 	
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-			req.getRequestDispatcher("/_view/SetUpProfileInfor.jsp").forward(req, resp);
+			req.getRequestDispatcher("/_view/SetUpProfileInfo.jsp").forward(req, resp);
 		}
 }
 

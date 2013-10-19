@@ -13,7 +13,11 @@
 		<legend> Condulations!!!! </legend>
 			<table>
 				<tr>
-					Your Perfect Match: Everyone!
+					Your Perfect Match: Everyone! <input name="soulMate" size="20" />
+				</tr>
+				<tr>
+					<td></td>
+					<td><input name="submit" value="profile" type="submit" /></td>
 				</tr>
 			</table>
 			</fieldset>

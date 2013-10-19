@@ -339,7 +339,9 @@ public class MysqlDatabase implements IDatabase {
 				
 				 try 
 			        {   
-			        	stmt = con.prepareStatement("SELECT user_id FROM linkup.profile_info WHERE gender = " + inMatching.getGender() +" AND age BETWEEN "+ inMatching.getAgeLow() +" AND " + inMatching.getAgeHigh());
+					 SQLconnection sqlConn = new SQLconnection();
+					 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);	
+					 stmt = con.prepareStatement("SELECT user_id FROM linkup.profile_info WHERE gender = " + inMatching.getGender() +" AND age BETWEEN "+ inMatching.getAgeLow() +" AND " + inMatching.getAgeHigh());
 			            stmt.executeQuery();
 			            ResultSet result = stmt.getResultSet();
 			            result.next();
