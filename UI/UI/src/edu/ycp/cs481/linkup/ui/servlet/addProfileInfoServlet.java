@@ -28,11 +28,11 @@ public class addProfileInfoServlet extends HttpServlet{
 			throws ServletException, IOException {
 		// TODO: get profile info 
 		
-		int user_id = Integer.parseInt(req.getParameter("user_id"));
+		String user_id = req.getParameter("user_id"); //convert to int later
 		String username = req.getParameter("username");
-		int location = Integer.parseInt(req.getParameter("location"));
-		int gender = Integer.parseInt(req.getParameter("gender"));
-		int age = Integer.parseInt(req.getParameter("age"));
+		String location = req.getParameter("location");  //convert to int later
+		String gender = req.getParameter("gender");    //convert to int later
+		String age = req.getParameter("age");				//convert to int later
 		String religion = req.getParameter("religion");
 		String books = req.getParameter("books");
 		String movies = req.getParameter("movies");
@@ -40,9 +40,9 @@ public class addProfileInfoServlet extends HttpServlet{
 		String basic_info = req.getParameter("basic_info");
 		String likes = req.getParameter("likes");
 		String dislikes = req.getParameter("dislikes");
-		int looking_for = Integer.parseInt(req.getParameter("looking_for"));
+		String looking_for = req.getParameter("looking_for");
 		
-	
+		//testing to see if gets info
 		System.out.println("user id: " + user_id 
 					+ "\nusername: " + username
 					+ "\nlocation: " + location
@@ -56,6 +56,7 @@ public class addProfileInfoServlet extends HttpServlet{
 					+ "\nlikes: " + likes
 					+ "\ndislikes: " + dislikes
 					+ "\nlooking for: " + looking_for);
+		
 			UserProfile tempProfileInfo = new UserProfile();
 			tempProfileInfo.setUserid(user_id);
 			tempProfileInfo.setUsername(username);
@@ -77,8 +78,13 @@ public class addProfileInfoServlet extends HttpServlet{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			//req.getRequestDispatcher("/_view/SetUpProfileInfo.jsp").forward(req, resp);
+			req.getRequestDispatcher("/_view/SetUpProfileInfo.jsp").forward(req, resp);
 		
+			
+			
+			
+			
+			
 	}
 }
 

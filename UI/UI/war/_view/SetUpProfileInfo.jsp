@@ -8,14 +8,14 @@
 	<body>
 		<p> <font face = "Impact" size ="18" >Set up your Profile!  </font></p>
 		
-		<form action="/Location" method="POST">
+		<form action="/SetUpProfileInfo" method="POST">
 			<table>
 				<tr>
 					<td>
 						Location:
 					</td>
 					<td>
-						<select>
+						<select name="location">
 						  <option value="1" name="location" type="int" size="20">PA</option>
 						  <option value="2" name="location" type="int" size="20">DE</option>
 						  <option value="2" name="location" type="int" size="20">MD</option>
@@ -28,7 +28,7 @@
 						Gender:
 					</td>
 					<td>
-						<select>
+						<select name = "gender">
 						  <option value="1" name="gender" type="int" size="20">Male</option>
 						  <option value="2" name="gender" type="int" size="20">Female</option>
 						</select>
@@ -103,7 +103,7 @@
 						What are you looking for?
 					</td>
 					<td>
-						<select>
+						<select name = "looking_for">
 						  <option value="1" name="looking_for" type="int" size="20">Relationship</option>
 						  <option value="2" name="looking_for" type="int" size="20">Friendship</option>
 						  <option value="3" name="looking_for" type="int" size="20">Cuddle Buddy</option>

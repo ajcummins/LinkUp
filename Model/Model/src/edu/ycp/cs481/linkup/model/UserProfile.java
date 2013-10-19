@@ -26,9 +26,10 @@ public class UserProfile {
 	
 	
 	
-	public void setUserid(int inUserid)
+	public void setUserid(String inUserid)
 	{
-		userid = inUserid;
+		userid = Integer.parseInt(inUserid);
+		//userid = inUseid;
 	}
 	
 	public void setUsername(String inUsername)
@@ -36,19 +37,22 @@ public class UserProfile {
 		username = inUsername;
 	}
 	
-	public void setLocation(int inLocation)
+	public void setLocation(String inLocation)
 	{
-		location = inLocation;
+		//location = inLocation;
+		location = Integer.parseInt(inLocation);
 	}
 	
-	public void setGender(int inGender)
+	public void setGender(String inGender)
 	{
-		gender = inGender;
+		//gender = inGender;
+		gender = Integer.parseInt(inGender);
 	}
 	
-	public void setAge(int inAge)
+	public void setAge(String inAge)
 	{
-		age = inAge;
+		//age = inAge;
+		age = Integer.parseInt(inAge);
 	}
 	
 	public void setReligion(String inReligion)
@@ -81,9 +85,10 @@ public class UserProfile {
 	{
 		dislikes = inDislikes;
 	}
-	public void setLooking_For(int inLooking_For)
+	public void setLooking_For(String inLooking_For)
 	{
-		looking_for = inLooking_For;
+		//looking_for = inLooking_For;
+		looking_for = Integer.parseInt(inLooking_For);
 	}
 	
 	
