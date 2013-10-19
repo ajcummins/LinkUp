@@ -28,11 +28,11 @@ public class addProfileInfoServlet extends HttpServlet{
 			throws ServletException, IOException {
 		// TODO: get profile info 
 		
-		String user_id = req.getParameter("user_id"); //convert to int later
+		int user_id = Integer.parseInt(req.getParameter("user_id")); //convert to int later
 		String username = req.getParameter("username");
-		String location = req.getParameter("location");  //convert to int later
-		String gender = req.getParameter("gender");    //convert to int later
-		String age = req.getParameter("age");				//convert to int later
+		int location = Integer.parseInt(req.getParameter("location"));  //convert to int later
+		int gender = Integer.parseInt(req.getParameter("gender"));    //convert to int later
+		int age = Integer.parseInt(req.getParameter("age"));				//convert to int later
 		String religion = req.getParameter("religion");
 		String books = req.getParameter("books");
 		String movies = req.getParameter("movies");
@@ -40,7 +40,7 @@ public class addProfileInfoServlet extends HttpServlet{
 		String basic_info = req.getParameter("basic_info");
 		String likes = req.getParameter("likes");
 		String dislikes = req.getParameter("dislikes");
-		String looking_for = req.getParameter("looking_for");
+		int looking_for = Integer.parseInt(req.getParameter("looking_for"));
 		
 		//testing to see if gets info
 		System.out.println("user id: " + user_id 
@@ -57,8 +57,9 @@ public class addProfileInfoServlet extends HttpServlet{
 					+ "\ndislikes: " + dislikes
 					+ "\nlooking for: " + looking_for);
 		
-			UserProfile tempProfileInfo = new UserProfile();
-			tempProfileInfo.setUserid(user_id);
+			UserProfile tempProfileInfo = new UserProfile(user_id, username, location, gender, age, religion, books, movies, music, basic_info, likes, dislikes, looking_for);
+			
+			/*tempProfileInfo.setUserid(user_id);
 			tempProfileInfo.setUsername(username);
 			tempProfileInfo.setLocation(location);
 			tempProfileInfo.setGender(gender);
@@ -70,6 +71,7 @@ public class addProfileInfoServlet extends HttpServlet{
 			tempProfileInfo.setLikes(likes);
 			tempProfileInfo.setDislikes(dislikes);
 			tempProfileInfo.setLooking_For(looking_for);
+			*/
 			
 			ProfileController controller = new ProfileController();
 			try {

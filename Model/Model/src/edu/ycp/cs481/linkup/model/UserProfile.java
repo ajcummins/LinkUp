@@ -3,8 +3,22 @@ package edu.ycp.cs481.linkup.model;
 public class UserProfile {
 	//private String name;
 	
-	public UserProfile() {
-		
+	public UserProfile(int userid, String username, int location, int gender, int age, String religion, String books, String movies, String music,
+			String basic_info, String likes, String dislikes, int looking_for ) {
+		this.userid = userid;
+		this.username = username;
+		this.location = location;
+		this.gender = gender;
+		this.age = age;
+		this.religion = religion;
+		this.books = books;
+		this.movies = movies;
+		this.music = music;
+		this.basic_info = basic_info;
+		this.likes = likes;
+		this.dislikes = dislikes;
+		this.looking_for = looking_for;
+	
 	}
 	
 	//commentttttttttttttttttttttttt
@@ -26,10 +40,10 @@ public class UserProfile {
 	
 	
 	
-	public void setUserid(String inUserid)
+	public void setUserid(int inUserid)
 	{
-		userid = Integer.parseInt(inUserid);
-		//userid = inUseid;
+		//userid = Integer.parseInt(user_id);
+		userid = inUserid;
 	}
 	
 	public void setUsername(String inUsername)
@@ -37,22 +51,22 @@ public class UserProfile {
 		username = inUsername;
 	}
 	
-	public void setLocation(String inLocation)
+	public void setLocation(int inLocation)
 	{
-		//location = inLocation;
-		location = Integer.parseInt(inLocation);
+		location = inLocation;
+		//location = Integer.parseInt(inLocation);
 	}
 	
-	public void setGender(String inGender)
+	public void setGender(int inGender)
 	{
-		//gender = inGender;
-		gender = Integer.parseInt(inGender);
+		gender = inGender;
+		//gender = Integer.parseInt(inGender);
 	}
 	
-	public void setAge(String inAge)
+	public void setAge(int inAge)
 	{
-		//age = inAge;
-		age = Integer.parseInt(inAge);
+		age = inAge;
+		//age = Integer.parseInt(inAge);
 	}
 	
 	public void setReligion(String inReligion)
@@ -85,10 +99,10 @@ public class UserProfile {
 	{
 		dislikes = inDislikes;
 	}
-	public void setLooking_For(String inLooking_For)
+	public void setLooking_For(int inLooking_For)
 	{
-		//looking_for = inLooking_For;
-		looking_for = Integer.parseInt(inLooking_For);
+		looking_for = inLooking_For;
+		//looking_for = Integer.parseInt(inLooking_For);
 	}
 	
 	
