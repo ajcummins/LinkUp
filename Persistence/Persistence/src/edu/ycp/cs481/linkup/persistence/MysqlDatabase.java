@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import edu.ycp.cs481.linkup.model.LookingFor;
+import edu.ycp.cs481.linkup.model.Matching;
 import edu.ycp.cs481.linkup.model.User;
 import edu.ycp.cs481.linkup.model.UserProfile;
 
@@ -321,17 +322,17 @@ public class MysqlDatabase implements IDatabase {
 			}
 			
 			//method to produce a match for the user
-			public String find_match(int userid, int age_low, int age_high, int gender) throws Exception
+			//public String find_match(int userid, int age_low, int age_high, int gender) throws Exception
+			public String find_match(Matching inMatching) throws PersistenceException
 			{
 				
 				int match_id = -1;
 				String username = null;
-				//determine next available userID
 				java.sql.PreparedStatement stmt = null;
 				
 				 try 
 			        {   
-			        	stmt = con.prepareStatement("SELECT user_id FROM linkup.profile_info WHERE gender = " + gender +" AND age BETWEEN "+ age_low +" AND " + age_high);
+			        	stmt = con.prepareStatement("SELECT user_id FROM linkup.profile_info WHERE gender = " + inMatching.getGender() +" AND age BETWEEN "+ inMatching.getAgeLow() +" AND " + inMatching.getAgeHigh());
 			            stmt.executeQuery();
 			            ResultSet result = stmt.getResultSet();
 			            result.next();
