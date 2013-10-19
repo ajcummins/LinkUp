@@ -64,16 +64,7 @@ public class LookingForServlet extends HttpServlet{
 					+ "\nseriousness: " + seriousness
 					+ "\nseriousness weight: " + seriousnessWeight);
 			LookingFor tempLooking = new LookingFor(userid, ageLow, ageHigh, gender, religion, religionWeight, seriousness, seriousnessWeight);
-			/*
-			tempLooking.setUserid(userid);
-			tempLooking.setAgeLow(ageLow);
-			tempLooking.setAgeHigh(ageHigh);
-			tempLooking.setGender(gender);
-			tempLooking.setReligion(religion);
-			tempLooking.setReligionWeight(religionWeight);
-			tempLooking.setseriousness(seriousness);
-			tempLooking.setseriousnessWeight(seriousnessWeight);
-			*/
+
 
 			LookingForController controller = new LookingForController();
 			try {
