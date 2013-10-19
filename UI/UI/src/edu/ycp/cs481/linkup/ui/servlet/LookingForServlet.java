@@ -64,6 +64,7 @@ public class LookingForServlet extends HttpServlet{
 					+ "\nseriousness: " + seriousness
 					+ "\nseriousness weight: " + seriousnessWeight);
 			LookingFor tempLooking = new LookingFor(userid, ageLow, ageHigh, gender, religion, religionWeight, seriousness, seriousnessWeight);
+			/*
 			tempLooking.setUserid(userid);
 			tempLooking.setAgeLow(ageLow);
 			tempLooking.setAgeHigh(ageHigh);
@@ -72,11 +73,11 @@ public class LookingForServlet extends HttpServlet{
 			tempLooking.setReligionWeight(religionWeight);
 			tempLooking.setseriousness(seriousness);
 			tempLooking.setseriousnessWeight(seriousnessWeight);
-			
+			*/
 
 			LookingForController controller = new LookingForController();
 			try {
-				req.getRequestDispatcher("/_view/userMatch.jsp").forward(req, resp);
+				//req.getRequestDispatcher("/_view/userMatch.jsp").forward(req, resp);
 				controller.LookingFor(tempLooking);
 				//req.setAttribute("info", "Successfully created user!");
 			} catch (PersistenceException e) {

@@ -141,7 +141,6 @@ public class MysqlDatabase implements IDatabase {
 		@Override
 		public void add_user_looking_for(LookingFor inlooking) throws PersistenceException {
 			java.sql.PreparedStatement stmt = null;
-			System.out.println("i got here too!");
 	        try
 	        {
 	        	//using con create an entry into the appropriate table to add a user's looking for information
@@ -151,7 +150,7 @@ public class MysqlDatabase implements IDatabase {
 	            stmt.setInt(2, inlooking.getAgeLow());
 	            stmt.setInt(3, inlooking.getAgeHigh());
 	            stmt.setInt(4, inlooking.getGender());
-	            stmt.setString(5, inlooking.getReligion());
+	            stmt.setString(5, "" + inlooking.getReligion());
 	            stmt.setInt(6, inlooking.getReligionWeight());
 	            stmt.setInt(7, inlooking.getseriousness());
 	            stmt.setInt(8, inlooking.getseriousnessWeight());
