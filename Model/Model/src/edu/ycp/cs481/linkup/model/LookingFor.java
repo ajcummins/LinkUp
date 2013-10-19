@@ -17,49 +17,57 @@ public class LookingFor {
 	private int seriousness;
 	private int seriousness_weight;
 	
-	public LookingFor()
+	public LookingFor(int userid, int ageLow, int ageHigh, int gender, String religion, int religion_weight, int seriousness, int seriousness_weight)
 	{
-		
+		this.userid = userid;
+		this.ageLow = ageLow;
+		this.ageHigh = ageHigh;
+		this.gender = gender;
+		this.religion = religion;
+		this.religion_weight = religion_weight;
+		this.seriousness = seriousness;
+		this.seriousness_weight = seriousness_weight;
 	}
 	
 	public void setUserid(int inUserid)
 	{
-		userid = inUserid;
+		this.userid = inUserid;
+		//userid = inUserid;
 	}
 	
 	public void setAgeLow(int inAgeLow)
 	{
-		ageLow = inAgeLow;
+		this.ageLow = inAgeLow;
 	}
 	
 	public void setAgeHigh(int inAgeHigh)
 	{
-		ageHigh = inAgeHigh;
+		this.ageHigh = inAgeHigh;
 	}
 	
 	public void setGender(int inGender)
 	{
-		gender = inGender;
+		this.gender = inGender;
 	}
 	
 	public void setReligion(String inReligion)
 	{
-		religion = inReligion;
+		this.religion = inReligion;
 	}
 	
 	public void setReligionWeight(int inReligionWeight)
 	{
-		religion_weight = inReligionWeight;
+		this.religion_weight = inReligionWeight;
 	}
 	
 	public void setseriousness(int inseriousness)
 	{
-		seriousness = inseriousness;
+		this.seriousness = inseriousness;
 	}
 	
 	public void setseriousnessWeight(int inseriousnessWeight)
 	{
-		seriousness_weight = inseriousnessWeight;
+		this.seriousness_weight = inseriousnessWeight;
 	}
 	
 	public int getUserid()
@@ -103,6 +111,4 @@ public class LookingFor {
 	}
 
 	
-	
-	//comment 
 }

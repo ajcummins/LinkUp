@@ -30,7 +30,7 @@ public class LookingForServlet extends HttpServlet{
 		int userid = -1;
 		int ageLow = -1;
 		int ageHigh = -1;
-		//int gender = -1;
+		int gender = -1;
 		int religionWeight = -1;
 		int seriousness = -1;
 		int seriousnessWeight = -1;
@@ -39,9 +39,7 @@ public class LookingForServlet extends HttpServlet{
 		userid = Integer.parseInt(req.getParameter("user_id"));
 		ageLow = Integer.parseInt(req.getParameter("age_low"));
 		ageHigh = Integer.parseInt(req.getParameter("age_high"));
-		//gender = Integer.parseInt(req.getParameter("gender"));
-		String gender = req.getParameter("gender");
-		System.out.printf("\ngender: %d", gender);
+		gender = Integer.parseInt(req.getParameter("gender"));
 		String religion = req.getParameter("religion");
 		religionWeight = Integer.parseInt(req.getParameter("religion_weight"));
 		seriousness = Integer.parseInt(req.getParameter("seriousness"));
@@ -60,16 +58,16 @@ public class LookingForServlet extends HttpServlet{
 		{
 			System.out.println("age low: " + ageLow 
 					+ "\nage high: " + ageHigh
-					+ "\ngender: " + ageHigh
+					+ "\ngender: " + gender
 					+ "\nreligion: " + religion
 					+ "\nreligion weight: " + religionWeight
 					+ "\nseriousness: " + seriousness
 					+ "\nseriousness weight: " + seriousnessWeight);
-			LookingFor tempLooking = new LookingFor();
+			LookingFor tempLooking = new LookingFor(userid, ageLow, ageHigh, gender, religion, religionWeight, seriousness, seriousnessWeight);
 			tempLooking.setUserid(userid);
 			tempLooking.setAgeLow(ageLow);
 			tempLooking.setAgeHigh(ageHigh);
-			//tempLooking.setGender(gender);
+			tempLooking.setGender(gender);
 			tempLooking.setReligion(religion);
 			tempLooking.setReligionWeight(religionWeight);
 			tempLooking.setseriousness(seriousness);

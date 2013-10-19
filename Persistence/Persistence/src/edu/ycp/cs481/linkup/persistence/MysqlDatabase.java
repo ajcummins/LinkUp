@@ -139,7 +139,7 @@ public class MysqlDatabase implements IDatabase {
 		@Override
 		public void add_user_looking_for(LookingFor inlooking) throws PersistenceException {
 			java.sql.PreparedStatement stmt = null;
-			
+			System.out.println("i got here too!");
 	        try
 	        {
 	        	//using con create an entry into the appropriate table to add a user's looking for information

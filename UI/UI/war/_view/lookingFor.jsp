@@ -35,9 +35,9 @@
 						Gender:
 					</td>
 					<td>
-						<select>
-						  <option gender="1" value = "1" size="20">Male</option>
-						  <option gender="2" value = "2" size="20">Female</option>
+						<select name="gender">
+						  <option name="gender" value = "1" size="20">Male</option>
+						  <option name="gender" value = "2" size="20">Female</option>
 						</select>
 					</td>
 				</tr>
@@ -54,17 +54,17 @@
 						Religion Importance:
 					</td>
 					<td>
-						<select>
-						  <option value="1" name="religion_weight" type="int" size="20">1</option>
-						  <option value="2" name="religion_weight" type="int" size="20">2</option>
-						  <option value="3" name="religion_weight" type="int" size="20">3</option>
-						  <option value="4" name="religion_weight" type="int" size="20">4</option>
-						  <option value="5" name="religion_weight" type="int" size="20">5</option>
-						  <option value="6" name="religion_weight" type="int" size="20">6</option>
-						  <option value="7" name="religion_weight" type="int" size="20">7</option>
-						  <option value="8" name="religion_weight" type="int" size="20">8</option>
-						  <option value="9" name="religion_weight" type="int" size="20">9</option>
-						  <option value="10" name="religion_weight" type="int" size="20">10</option>
+						<select name="religion_weight">
+						  <option value="1" name="religion_weight" size="20">1</option>
+						  <option value="2" name="religion_weight" size="20">2</option>
+						  <option value="3" name="religion_weight" size="20">3</option>
+						  <option value="4" name="religion_weight" size="20">4</option>
+						  <option value="5" name="religion_weight" size="20">5</option>
+						  <option value="6" name="religion_weight" size="20">6</option>
+						  <option value="7" name="religion_weight" size="20">7</option>
+						  <option value="8" name="religion_weight" size="20">8</option>
+						  <option value="9" name="religion_weight" size="20">9</option>
+						  <option value="10" name="religion_weight" size="20">10</option>
 						</select>
 					</td>
 				</tr>
@@ -73,7 +73,7 @@
 						Seriousness:
 					</td>
 					<td>
-						<select>
+						<select name="seriousness">
 						  <option value="1" name="seriousness" type="int" size="20">1</option>
 						  <option value="2" name="seriousness" type="int" size="20">2</option>
 						  <option value="3" name="seriousness" type="int" size="20">3</option>
@@ -92,7 +92,7 @@
 						Seriousness Importance:
 					</td>
 					<td>
-						<select>
+						<select name="seriousness_weight">
 						  <option value="1" name="seriousness_weight" type="int" size="20">1</option>
 						  <option value="2" name="seriousness_weight" type="int" size="20">2</option>
 						  <option value="3" name="seriousness_weight" type="int" size="20">3</option>

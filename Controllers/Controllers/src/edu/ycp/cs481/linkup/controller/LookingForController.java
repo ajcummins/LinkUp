@@ -9,6 +9,3 @@ public class LookingForController {
 		Database.getInstance().add_user_looking_for(inLooking);
 	}
 }
-
-
-//comment
