@@ -4,16 +4,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.util.Enumeration;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.ycp.cs481.linkup.controller.MatchingController;
-import edu.ycp.cs481.linkup.model.Matching;
-import edu.ycp.cs481.linkup.persistence.PersistenceException;
 import edu.ycp.cs481.linkup.persistence.SQLconnection;
 
 
@@ -51,7 +46,7 @@ public class MatchServlet extends HttpServlet {
 					pw.println("</head>");
 					pw.println("<body>		");
 					pw.println("<form action='/userMatch' method='POST'>");
-					pw.println("<fieldset>");
+					pw.println("<input type='hidden' name='userid' value='1'><fieldset>");
 					pw.println("<legend> Condulations!!!! </legend>");
 					pw.println("<table>");
 					pw.println("	<tr>");

@@ -11,9 +11,10 @@
 		<form action="/userMatch" method="POST">
 		<fieldset>
 		<legend> Condulations!!!! </legend>
+			<input type="hidden" name="userid">
 			<table>
 				<tr>
-					Your Perfect Match: Everyone! <input name="soulMate" size="20" />
+					Your Perfect Match: Everyone!
 				</tr>
 				<tr>
 					<td></td>
