@@ -37,6 +37,7 @@ public class CreateUserServlet extends HttpServlet {
 		String secQues = req.getParameter("security_question");
 		String secAns = req.getParameter("security_answer");
 		
+		System.out.println("secQues : " + secQues);
 		
 		// Check if null | Check if password and confirmpassword are the same | Validate that there is no other Usernames like this one
 		if(user == null || pass == null || confirmPass == null || firstname == null || lastname == null || dob == null || email == null || secQues == null ||
@@ -47,7 +48,7 @@ public class CreateUserServlet extends HttpServlet {
 			//throw new ServletException("You have remaining Empty Fields");
 			req.getRequestDispatcher("/_view/createUser.jsp").forward(req, resp);
 		}
-		else if(pass != confirmPass)
+		else if(!pass.equals(confirmPass))
 		{
 			req.setAttribute("password","");
 			req.setAttribute("confirm_password","");

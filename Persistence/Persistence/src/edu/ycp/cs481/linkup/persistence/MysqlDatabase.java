@@ -19,7 +19,7 @@ public class MysqlDatabase implements IDatabase {
 	private static String DB_PASSWORD = "root";
 	
 	public MysqlDatabase() {
-		this.setDatabaseCredentials();
+		//this.setDatabaseCredentials();
 	}
 	
 	@Override
@@ -46,6 +46,7 @@ public class MysqlDatabase implements IDatabase {
 	@Override
 	public void createUser(User inUser) throws PersistenceException {
 		
+		System.out.println("GOT HERE");
 		int userID = 0;
 //		java.sql.PreparedStatement stmt = null;
 		SQLconnection sqlConn = null;

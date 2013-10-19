@@ -49,8 +49,7 @@ public class User
 	}
 
 	public void setSecQues(String inSecQues) {
-		secQuestion = Integer.getInteger(inSecQues);
-		
+		secQuestion = Integer.parseInt(inSecQues);
 	}
 
 	public void setSecAns(String inSecAns) {

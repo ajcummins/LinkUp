@@ -73,12 +73,12 @@
 						Security Question : 
 					</td>
 					<td>
-						<select> 
-						<option security_question="1">What is your mother's madien Name?</option>
-						<option security_question="2">What is your favorite pet's Name?</option>
-						<option security_question="3">What is the street you grew up on?</option>
-						<option security_question="4">What is your favorite crayon color?</option>
-						<option security_question="5">What is your favorite teacher's name</option>
+						<select name = "security_question"> 
+						<option value="1">What is your mother's madien Name?</option>
+						<option value="2">What is your favorite pet's Name?</option>
+						<option value="3">What is the street you grew up on?</option>
+						<option value="4">What is your favorite crayon color?</option>
+						<option value="5">What is your favorite teacher's name</option>
 						</select>
 					</td>
 				</tr>
