@@ -9,8 +9,14 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
+
+
+import edu.ycp.cs481.linkup.controller.CreateUserController;
+import edu.ycp.cs481.linkup.controller.IndexController;
 import edu.ycp.cs481.linkup.controller.LoadUserProfile;
+import edu.ycp.cs481.linkup.model.User;
 import edu.ycp.cs481.linkup.model.UserProfile;
+import edu.ycp.cs481.linkup.persistence.DuplicateUserException;
 import edu.ycp.cs481.linkup.persistence.PersistenceException;
 
 public class IndexServlet extends HttpServlet{
@@ -19,26 +25,53 @@ public class IndexServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		try {
-			// FIXME: should get user id from URL path info
-			String pathInfo = req.getPathInfo(); // <-- here
-			
-			int profileId = 456;
-			
-			LoadUserProfile controller = new LoadUserProfile();
-			UserProfile profile = controller.getUserProfile(profileId);
-			// FIXME: should check to see if it's null
-			
-			// Put model objects to be displayed in request as request attributes
-			req.setAttribute("UserProfile", profile);
-			
-			// Forward to a view for rendering
+		req.getRequestDispatcher("/_view/index.jsp").forward(req, resp);
+		
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		// TODO: get username and password, use a controller to create new user account, forward to view
+		String inUser = req.getParameter("inUser");
+		String inPass = req.getParameter("inPass");
+
+		
+		// Check if null | Check if password and confirmpassword are the same | Validate that there is no other Usernames like this one
+		if(inUser == null || inPass == null)
+		{
+			//Some type of error
+			req.setAttribute("error", "You Have Empty Fields");
 			req.getRequestDispatcher("/_view/index.jsp").forward(req, resp);
-		
-		} catch (PersistenceException e) {
-			throw new ServletException("Persistence exception getting user profile", e);
 		}
-		
+		else
+		{
+						
+			IndexController controller = new IndexController();
+			try {
+				
+				User testUser = controller.checkUserCredentials(inUser,inPass);
+				req.setAttribute("info", "Successfully logged in!");
+				
+				if(testUser != null)
+				{
+					//Challenge of credentials passed
+					//req.getRequestDispatcher("/_view/userProfile/" +asdf ".jsp").forward(req, resp);
+				}
+				else
+				{
+					//Challenge of credentials failed
+					req.setAttribute("error", "Your Username or Password was incorrect");
+					req.getRequestDispatcher("/_view/index.jsp").forward(req, resp);
+				}
+				
+				// redirect
+			} catch (PersistenceException e) {
+				throw new ServletException("Error communicating with database", e);
+			}
+			
+			req.getRequestDispatcher("/_view/index.jsp").forward(req, resp);
+		}
 	}
 
 }

@@ -36,8 +36,7 @@ public class CreateUserServlet extends HttpServlet {
 		String email = req.getParameter("email");
 		String secQues = req.getParameter("security_question");
 		String secAns = req.getParameter("security_answer");
-		
-		System.out.println("secQues : " + secQues);
+
 		
 		// Check if null | Check if password and confirmpassword are the same | Validate that there is no other Usernames like this one
 		if(user == null || pass == null || confirmPass == null || firstname == null || lastname == null || dob == null || email == null || secQues == null ||
@@ -58,7 +57,6 @@ public class CreateUserServlet extends HttpServlet {
 		}
 		else
 		{
-			System.out.println("USER: " + user + " PASS: " + pass);
 			User tempUser = new User();
 			tempUser.setUsername(user);
 			tempUser.setPassword(pass);
@@ -75,6 +73,7 @@ public class CreateUserServlet extends HttpServlet {
 				req.setAttribute("info", "Successfully created user!");
 				
 				// redirect
+				req.getRequestDispatcher("/_view/SetUpProfileInfo.jsp");
 			} catch (DuplicateUserException e) {
 				// User already exists
 				req.setAttribute("error", "User " + user + " already exists");
@@ -82,7 +81,7 @@ public class CreateUserServlet extends HttpServlet {
 				throw new ServletException("Error communicating with database", e);
 			}
 			
-			req.getRequestDispatcher("/_view/createUser.jsp").forward(req, resp);
+			//req.getRequestDispatcher("/_view/createUser.jsp").forward(req, resp);
 		}
 	}
 }

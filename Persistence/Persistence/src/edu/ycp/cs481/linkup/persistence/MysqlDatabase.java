@@ -46,9 +46,7 @@ public class MysqlDatabase implements IDatabase {
 	@Override
 	public void createUser(User inUser) throws PersistenceException {
 		
-		System.out.println("GOT HERE");
 		int userID = 0;
-//		java.sql.PreparedStatement stmt = null;
 		SQLconnection sqlConn = null;
 
 		// Outer try/finally (to ensure SQLconnection is cleaned up properly)
@@ -374,6 +372,80 @@ public class MysqlDatabase implements IDatabase {
 				}
 				return "There are not matchs at this time.";
 			}
+
+			@Override
+			public User checkUserCredentials(String inUsername, String inPassword) 
+			{
+				
+				SQLconnection sqlConn = null;
+				
+				// Outer try/finally (to ensure SQLconnection is cleaned up properly)
+				try {
+					// Inner try/catch to handle SQLException
+					try {
+						// Try to create the Sql Connection
+						sqlConn = new SQLconnection();
+						Connection conn = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+						// use the connection
+						
+						if(checkForUsername(conn,inUsername))
+						{
+							//Username Exists
+						}
+						else
+						{
+							//Username Doesn't Exist
+						}
+						
+		            }
+		            catch(SQLException e)
+		            {
+		            	String state = e.getSQLState();
+		            	/*if ( state.startsWith(????) )
+		            	{
+		            		
+		            	}
+		            	else
+		            	{
+		            		throw new PersistenceException("Error Checking Credentials", e);
+		            	}*/
+		            }
+				}
+				finally {
+					if (sqlConn != null) {
+						sqlConn.stopConnection();
+					}
+				}
+				
+				return null;
+				
+				
+				
+			}
+			
+			public boolean checkForUsername(Connection conn,String inUsername) throws SQLException 
+			{
+				/*
+				java.sql.PreparedStatement stmt2 = null;
+				ResultSet result = null;
+				
+				try {
+					int userID;
+					int max;
+					stmt2 = conn.prepareStatement("SELECT user_id FROM linkup.user WHERE username =" + inUsername);
+					stmt2.executeQuery();
+					result = stmt2.getResultSet();
+					result.next();
+					
+				} finally {
+					DBUtil.closeQuietly(result);
+					DBUtil.closeQuietly(stmt2);
+				}
+				*/
+				return true;
+			}
+
+			
 	
 
 }

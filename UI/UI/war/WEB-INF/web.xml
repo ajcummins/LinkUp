@@ -59,6 +59,10 @@
 		<url-pattern>/userMatch/*</url-pattern>
 	</servlet-mapping> 
 
+	<welcome-file-list>
+		<welcome-file>/index/*</welcome-file>
+	</welcome-file-list>
+
 	<!-- Use the /index servlet as the welcome file -->
 	<!--
 	<welcome-file-list>
