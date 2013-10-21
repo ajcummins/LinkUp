@@ -35,7 +35,9 @@ public interface IDatabase {
 
 	public String find_match(Matching inMatching) throws PersistenceException;
 
-	public User checkUserCredentials(String inUsername, String inPassword);
+	public User checkUserCredentials(String inUsername, String inPassword) throws PersistenceException;
+
+	public String[] get_profile_info(UserProfile inProfile) throws PersistenceException;
 
 	
 

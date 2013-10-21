@@ -11,11 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
+
 import edu.ycp.cs481.linkup.controller.CreateUserController;
 import edu.ycp.cs481.linkup.controller.IndexController;
 import edu.ycp.cs481.linkup.controller.LoadUserProfile;
 import edu.ycp.cs481.linkup.model.User;
 import edu.ycp.cs481.linkup.model.UserProfile;
+import edu.ycp.cs481.linkup.persistence.BadCredentialsException;
 import edu.ycp.cs481.linkup.persistence.DuplicateUserException;
 import edu.ycp.cs481.linkup.persistence.PersistenceException;
 
@@ -51,12 +53,22 @@ public class IndexServlet extends HttpServlet{
 			try {
 				
 				User testUser = controller.checkUserCredentials(inUser,inPass);
-				req.setAttribute("info", "Successfully logged in!");
+				
 				
 				if(testUser != null)
 				{
+					req.setAttribute("info", "Successfully logged in!");
 					//Challenge of credentials passed
-					//req.getRequestDispatcher("/_view/userProfile/" +asdf ".jsp").forward(req, resp);
+					//req.getRequestDispatcher("/_view/index.jsp").forward(req, resp);
+					
+					//Forward to the profile page
+					
+					// Pass the user object
+					
+					
+					
+					//go to profile page
+					req.getRequestDispatcher("/_view/userProfile.jsp").forward(req, resp);
 				}
 				else
 				{
@@ -66,6 +78,9 @@ public class IndexServlet extends HttpServlet{
 				}
 				
 				// redirect
+			} catch (BadCredentialsException e) {
+				// Credentials Did not match
+				req.setAttribute("error", " Username / Password Combination not Found");
 			} catch (PersistenceException e) {
 				throw new ServletException("Error communicating with database", e);
 			}

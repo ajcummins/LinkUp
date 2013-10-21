@@ -374,10 +374,11 @@ public class MysqlDatabase implements IDatabase {
 			}
 
 			@Override
-			public User checkUserCredentials(String inUsername, String inPassword) 
+			public User checkUserCredentials(String inUsername, String inPassword) throws PersistenceException
 			{
 				
 				SQLconnection sqlConn = null;
+				User loggedInUser = null;
 				
 				// Outer try/finally (to ensure SQLconnection is cleaned up properly)
 				try {
@@ -388,27 +389,25 @@ public class MysqlDatabase implements IDatabase {
 						Connection conn = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
 						// use the connection
 						
-						if(checkForUsername(conn,inUsername))
-						{
-							//Username Exists
-						}
-						else
-						{
-							//Username Doesn't Exist
-						}
+						loggedInUser = getUser(conn,inUsername,inPassword);
+						
+						
 						
 		            }
 		            catch(SQLException e)
 		            {
-		            	String state = e.getSQLState();
-		            	/*if ( state.startsWith(????) )
+
+						String state = e.getSQLState();
+		            	if (state.startsWith("57"))
 		            	{
-		            		
+		            		// Integrity violation: probably the user already exists
+		            		throw new DuplicateUserException("TEST ERROR");
 		            	}
 		            	else
 		            	{
-		            		throw new PersistenceException("Error Checking Credentials", e);
-		            	}*/
+		            		throw new PersistenceException("Error creating user", e);
+		            	}
+
 		            }
 				}
 				finally {
@@ -417,35 +416,128 @@ public class MysqlDatabase implements IDatabase {
 					}
 				}
 				
-				return null;
-				
-				
+				return loggedInUser;
 				
 			}
 			
-			public boolean checkForUsername(Connection conn,String inUsername) throws SQLException 
-			{
-				/*
-				java.sql.PreparedStatement stmt2 = null;
+						
+			private User getUser(Connection conn, String inUsername, String inPassword) throws PersistenceException {
+				java.sql.PreparedStatement stmt = null;
 				ResultSet result = null;
+				User user = new User();
+				boolean validCredentials = false;
 				
 				try {
-					int userID;
-					int max;
-					stmt2 = conn.prepareStatement("SELECT user_id FROM linkup.user WHERE username =" + inUsername);
-					stmt2.executeQuery();
-					result = stmt2.getResultSet();
-					result.next();
-					
-				} finally {
-					DBUtil.closeQuietly(result);
-					DBUtil.closeQuietly(stmt2);
+			    	stmt = conn.prepareStatement("SELECT * FROM linkup.user WHERE username = '" + inUsername 
+			    								+ "' AND password = '" + inPassword + "'");
+			    	stmt.executeQuery();
+			    	result = stmt.getResultSet();
+			    	
+			    	
+			    	result.next();
+			    	user.setUserID(result.getInt("user_id"));
+			    	user.setFirstName(result.getString("first_name"));
+			    	user.setLastName(result.getString("last_name"));
+			    	user.setEmail(result.getString("email"));
+			    	user.setDOB(result.getString("birth_date"));
+			    	user.setUsername(result.getString("username"));
+			    	user.setSecQues(result.getString("security_question"));
+			    	user.setSecAns(result.getString("security_answer"));
+			    	user.setPassword(result.getString("password"));
+			    	
+			    	
+				} catch (SQLException e) {
+					String state = e.getSQLState();
+					if(state.startsWith("S1000"))
+					{
+						throw new BadCredentialsException("User not found with these Credentials");
+					}
+					else
+					{
+						throw new PersistenceException("Error Checking User Credentials",e);
+					}
 				}
-				*/
-				return true;
+				finally {
+					DBUtil.closeQuietly(result);
+					DBUtil.closeQuietly(stmt);
+				}
+				
+				return user;
 			}
 
 			
-	
-
+			//GET PROFILE INFO
+			@Override
+			public String[] get_profile_info(UserProfile inProfile)
+					throws PersistenceException {
+				//determine next available userID
+				java.sql.PreparedStatement stmt = null;
+				
+				int location =0; int age = 0; int gender = 0; int looking_for = 0;
+				String religion = null; String books = null; String movies =null; String music = null;
+				String likes = null; String dislikes = null; String basic_info = null;
+		        try
+		        {
+		        	SQLconnection sqlConn = new SQLconnection();
+					Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+		        	//using con create an entry into the appropriate table to add a user's looking for information
+		        	stmt = con.prepareStatement("SELECT location, gender, religion"
+		        			+ ",books, movies, music, basic_info, likes, dislikes, looking_for FROM linkup.profile_info WHERE (user_id='2')");
+		        	stmt.executeQuery();
+		        	ResultSet result = stmt.getResultSet();
+		        	result.next();
+		        	location = result.getInt(location);
+		        	//System.out.println(location);
+		        	//
+		        	age = result.getInt(age);
+		        	gender = result.getInt(gender);
+		        	looking_for = result.getInt(looking_for);
+		        	books = result.getString(books);
+		        	music = result.getString(music);
+		        	movies = result.getString(movies);
+		        	basic_info = result.getString(basic_info);
+		        	likes = result.getString(likes);
+		        	dislikes = result.getString(dislikes);
+		        	
+		        	String age1 = String.valueOf(age);
+		        	String gender1 = String.valueOf(gender);
+		        	String location1 = String.valueOf(location);
+		        	String looking_for1 = String.valueOf(looking_for);
+		        	
+		        	
+		        	String[] ResultArray = new String[11];
+		        	ResultArray[0] = books;
+		        	ResultArray[1] = music;
+		        	ResultArray[2] = movies;
+		        	ResultArray[3] = basic_info;
+		        	ResultArray[4] = likes;
+		        	ResultArray[5] = dislikes;
+		        	ResultArray[6] = age1;
+		        	ResultArray[7] = location1;
+		        	ResultArray[8] = gender1;
+		         	ResultArray[9] = looking_for1;
+		        	
+		        	
+		        	return ResultArray;
+		        
+		        }
+		        catch (Exception e) 
+		        {
+		            e.printStackTrace();
+		        }
+		        finally
+		        {
+		        	if (stmt != null) {
+		                try {
+		                   stmt.close();
+		                } catch (SQLException ex) {
+		                }
+		            }
+		        }
+				// TODO Auto-generated method stub
+				return null;
+				
+			}
+			
+		
 }
