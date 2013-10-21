@@ -374,10 +374,11 @@ public class MysqlDatabase implements IDatabase {
 			}
 
 			@Override
-			public User checkUserCredentials(String inUsername, String inPassword) 
+			public User checkUserCredentials(String inUsername, String inPassword) throws PersistenceException
 			{
 				
 				SQLconnection sqlConn = null;
+				User loggedInUser = null;
 				
 				// Outer try/finally (to ensure SQLconnection is cleaned up properly)
 				try {
@@ -388,27 +389,25 @@ public class MysqlDatabase implements IDatabase {
 						Connection conn = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
 						// use the connection
 						
-						if(checkForUsername(conn,inUsername))
-						{
-							//Username Exists
-						}
-						else
-						{
-							//Username Doesn't Exist
-						}
+						loggedInUser = getUser(conn,inUsername,inPassword);
+						
+						
 						
 		            }
 		            catch(SQLException e)
 		            {
-		            	String state = e.getSQLState();
-		            	/*if ( state.startsWith(????) )
+
+						String state = e.getSQLState();
+		            	if (state.startsWith("57"))
 		            	{
-		            		
+		            		// Integrity violation: probably the user already exists
+		            		throw new DuplicateUserException("TEST ERROR");
 		            	}
 		            	else
 		            	{
-		            		throw new PersistenceException("Error Checking Credentials", e);
-		            	}*/
+		            		throw new PersistenceException("Error creating user", e);
+		            	}
+
 		            }
 				}
 				finally {
@@ -417,32 +416,53 @@ public class MysqlDatabase implements IDatabase {
 					}
 				}
 				
-				return null;
-				
-				
+				return loggedInUser;
 				
 			}
 			
-			public boolean checkForUsername(Connection conn,String inUsername) throws SQLException 
-			{
-				/*
-				java.sql.PreparedStatement stmt2 = null;
+						
+			private User getUser(Connection conn, String inUsername, String inPassword) throws PersistenceException {
+				java.sql.PreparedStatement stmt = null;
 				ResultSet result = null;
+				User user = new User();
+				boolean validCredentials = false;
 				
 				try {
-					int userID;
-					int max;
-					stmt2 = conn.prepareStatement("SELECT user_id FROM linkup.user WHERE username =" + inUsername);
-					stmt2.executeQuery();
-					result = stmt2.getResultSet();
-					result.next();
-					
-				} finally {
-					DBUtil.closeQuietly(result);
-					DBUtil.closeQuietly(stmt2);
+			    	stmt = conn.prepareStatement("SELECT * FROM linkup.user WHERE username = '" + inUsername 
+			    								+ "' AND password = '" + inPassword + "'");
+			    	stmt.executeQuery();
+			    	result = stmt.getResultSet();
+			    	
+			    	
+			    	result.next();
+			    	user.setUserID(result.getInt("user_id"));
+			    	user.setFirstName(result.getString("first_name"));
+			    	user.setLastName(result.getString("last_name"));
+			    	user.setEmail(result.getString("email"));
+			    	user.setDOB(result.getString("birth_date"));
+			    	user.setUsername(result.getString("username"));
+			    	user.setSecQues(result.getString("security_question"));
+			    	user.setSecAns(result.getString("security_answer"));
+			    	user.setPassword(result.getString("password"));
+			    	
+			    	
+				} catch (SQLException e) {
+					String state = e.getSQLState();
+					if(state.startsWith("S1000"))
+					{
+						throw new BadCredentialsException("User not found with these Credentials");
+					}
+					else
+					{
+						throw new PersistenceException("Error Checking User Credentials",e);
+					}
 				}
-				*/
-				return true;
+				finally {
+					DBUtil.closeQuietly(result);
+					DBUtil.closeQuietly(stmt);
+				}
+				
+				return user;
 			}
 
 			
@@ -519,6 +539,5 @@ public class MysqlDatabase implements IDatabase {
 				
 			}
 			
-	
-
+		
 }

@@ -9,4 +9,6 @@ public class IndexController {
 	{
 		return Database.getInstance().checkUserCredentials(inUsername,inPassword);
 	}
+	
+	
 }

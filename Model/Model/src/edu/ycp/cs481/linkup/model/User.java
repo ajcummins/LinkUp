@@ -23,6 +23,11 @@ public class User
 		
 	}
 	
+	public void setUserID(int inUserID)
+	{
+		userID = inUserID;
+	}
+	
 	public void setUsername(String inUsername)
 	{
 		username = inUsername;
@@ -60,6 +65,11 @@ public class User
 	public void setDOB(String inDOB) {
 		dob = inDOB;
 		
+	}
+	
+	public int getUserID()
+	{
+		return userID;
 	}
 	
 	public String getUsername()

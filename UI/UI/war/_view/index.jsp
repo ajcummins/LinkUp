@@ -27,7 +27,7 @@
 						Password :
 					</td>
 					<td>
-						<input name = "inPass" type = "pass" size = "20" />
+						<input name = "inPass" type = "password" size = "20" />
 					</td>
 				</tr>
 				
