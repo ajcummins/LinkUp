@@ -93,7 +93,8 @@
 				<tr>
 					<td></td>
                     <td> <!--  <input name="submit" type="submit" /></td> -->
-                    	<button type="button" onclick="document.location.href='SetUpProfileInfo'">Submit!</button>
+                    	<input type="submit" value="Submit">	
+                    	<button type="button" onclick="document.location.href='SetUpProfileInfo'">Continue</button>
 				</tr>
 								
 				</fieldset>

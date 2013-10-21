@@ -35,9 +35,11 @@
 					<td>
 					</td>
 					<td>
-						<!--  <input name="submit" type="submit" /> -->
-						<button type="button" onclick="document.location.href='userProfile'">Log in</button> 		
+						<!--  <input name="submit" type="submit" /> -->					 	
+						<input type="submit" value="Submit">	
+						<button type="button" onclick="document.location.href='userProfile'">Go to Profile</button>
 					</td>
+					
 				</tr>
 			</table>
 			

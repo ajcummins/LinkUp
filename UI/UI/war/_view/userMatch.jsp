@@ -23,7 +23,7 @@
 					</td>
 				</tr>
 				<tr>
-				<td><input name="submit" value="Find Match" type="submit" /></td> <td>	<button type="button" onclick="document.location.href='userProfile'">Profile</button></td>
+				<td><input name="submit" value="Find Match" type="submit" /></td> <td>	<button type="button" onclick="document.location.href='userProfile'">Go Back to Profile</button></td>
 				</tr>
 				
 			</table>
