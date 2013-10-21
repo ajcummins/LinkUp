@@ -39,8 +39,8 @@ public class CreateUserServlet extends HttpServlet {
 
 		
 		// Check if null | Check if password and confirmpassword are the same | Validate that there is no other Usernames like this one
-		if(user == null || pass == null || confirmPass == null || firstname == null || lastname == null || dob == null || email == null || secQues == null ||
-				secAns == null )
+		if(user == "" || pass == "" || confirmPass == "" || firstname == "" || lastname == "" || dob == "" || email == "" || secQues == "" ||
+				secAns == "" )
 		{
 			//Some type of error
 			req.setAttribute("error", "You have remaining Empty Fields");

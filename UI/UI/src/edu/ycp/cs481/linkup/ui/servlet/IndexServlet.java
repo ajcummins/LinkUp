@@ -55,29 +55,24 @@ public class IndexServlet extends HttpServlet{
 				User testUser = controller.checkUserCredentials(inUser,inPass);
 				
 				
-				if(testUser != null)
+				if(inUser == "" || inPass == "")
+				{
+					req.setAttribute("error", " Not all fields have been filled out");
+					req.getRequestDispatcher("/_view/index.jsp").forward(req, resp);
+				}
+				else
 				{
 					req.setAttribute("info", "Successfully logged in!");
 					//Challenge of credentials passed
-					//req.getRequestDispatcher("/_view/index.jsp").forward(req, resp);
 					
-					//Forward to the profile page
-					
-					// Pass the user object
-					
-					
+					//Forward to the profile page and Pass the user object
+					//FIXME: forward the user object to the userProfile....
 					
 					//go to profile page
 					req.getRequestDispatcher("/_view/userProfile.jsp").forward(req, resp);
 				}
-				else
-				{
-					//Challenge of credentials failed
-					req.setAttribute("error", "Your Username or Password was incorrect");
-					req.getRequestDispatcher("/_view/index.jsp").forward(req, resp);
-				}
 				
-				// redirect
+				
 			} catch (BadCredentialsException e) {
 				// Credentials Did not match
 				req.setAttribute("error", " Username / Password Combination not Found");
@@ -85,7 +80,6 @@ public class IndexServlet extends HttpServlet{
 				throw new ServletException("Error communicating with database", e);
 			}
 			
-			req.getRequestDispatcher("/_view/index.jsp").forward(req, resp);
 		}
 	}
 
