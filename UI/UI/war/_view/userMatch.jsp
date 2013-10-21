@@ -30,7 +30,7 @@
 			<br>
 			<br>
 		
-		<legend> Condulations!!!! </legend>
+		<legend> Congradulations!!!! </legend>
 			<input type="hidden" name="userid">
 			<table>
 				<tr>
