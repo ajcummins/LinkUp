@@ -23,6 +23,20 @@ public class User
 		
 	}
 	
+	public User(String inFName, String inLName, int inUserID, String inUsername, String inPassword, String inEmail, String inDOB, String inSecQues, String inSecAns)
+	{
+		userID = inUserID;
+		username = inUsername;
+		password = inPassword;
+		firstName = inFName;
+		lastName = inLName;
+		email = inEmail;
+		secQuestion = Integer.parseInt(inSecQues);
+		secAnswer = inSecAns;
+		dob = inDOB;
+		
+	}
+	
 	public void setUserID(int inUserID)
 	{
 		userID = inUserID;
