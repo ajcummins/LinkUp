@@ -21,7 +21,7 @@
 		</form>
 		<form action="/userMatch" method="POST">
 		<button type="button" onclick="document.location.href='userMatch'">Matches!</button> 
-		<!--  input type="submit" value="Matches" onclick="document.location.href='userMatch.jsp'" /> --> 
+	
 		&nbsp; <input type="submit" value="Messages">&nbsp; <input type="submit" value="Account Settings">
 	
 		</form>

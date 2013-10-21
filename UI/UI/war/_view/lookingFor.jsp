@@ -119,7 +119,8 @@
 				</tr>
 				<tr>
 					<td></td>
-					<td><input name="submit" type="submit" /></td>
+					<td> <!-- <input name="submit" type="submit" /></td> --> 
+					<button type="button" onclick="document.location.href='userProfile'">Submit!</button>
 				</tr>
 			</table>
 			</fieldset>
