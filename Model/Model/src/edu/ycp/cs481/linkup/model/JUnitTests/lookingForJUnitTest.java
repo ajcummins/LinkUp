@@ -1,5 +1,6 @@
-package edu.ycp.cs481.linkup.model;
+package edu.ycp.cs481.linkup.model.JUnitTests;
 
+import edu.ycp.cs481.linkup.model.LookingFor;
 import junit.framework.TestCase;
 
 public class lookingForJUnitTest extends TestCase {

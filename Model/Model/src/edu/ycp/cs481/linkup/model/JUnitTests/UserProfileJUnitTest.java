@@ -1,7 +1,8 @@
-package edu.ycp.cs481.linkup.model;
+package edu.ycp.cs481.linkup.model.JUnitTests;
 
 
 
+import edu.ycp.cs481.linkup.model.UserProfile;
 import junit.framework.TestCase;
 
 public class UserProfileJUnitTest extends TestCase {
