@@ -76,6 +76,7 @@ public class IndexServlet extends HttpServlet{
 			} catch (BadCredentialsException e) {
 				// Credentials Did not match
 				req.setAttribute("error", " Username / Password Combination not Found");
+				req.getRequestDispatcher("/_view/index.jsp").forward(req, resp);
 			} catch (PersistenceException e) {
 				throw new ServletException("Error communicating with database", e);
 			}
