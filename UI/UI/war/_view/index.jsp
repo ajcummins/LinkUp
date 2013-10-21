@@ -35,12 +35,14 @@
 					<td>
 					</td>
 					<td>
-						<input name="submit" type="submit" />
+						<!--  <input name="submit" type="submit" /> -->
+						<button type="button" onclick="document.location.href='userProfile'">Log in</button> 		
 					</td>
 				</tr>
 			</table>
 			
-			<a href="localhost:8080/createUser" target="_blank" >Not a Member? Sign Up Now!</a>						
+			<!--  <a href="localhost:8080/createUser" target="_blank" >Not a Member? Sign Up Now!</a>			-->
+			<button type="button" onclick="document.location.href='createUser'">Not a Member? Sign up now!!!!</button> 			
 		</fieldset>
 		
 		<c:if test="${! empty error}">
