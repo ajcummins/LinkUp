@@ -18,11 +18,13 @@
 		
 		<div style="display: inline;">
 
-		
-		<input type="submit" value="Matches"> &nbsp; <input type="submit" value="Messages">&nbsp; <input type="submit" value="Account Settigns">
+		</form>
+		<form action="/userMatch" method="POST">
+		<input type="submit" value="Matches" onclick="document.location.href='userMatch.jsp'" /> &nbsp; <input type="submit" value="Messages">&nbsp; <input type="submit" value="Account Settings">
 	
+		</form>
 		</div>
-		
+		<form>
 		
 		<br><br><table>
 				<tr>
