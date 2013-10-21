@@ -59,19 +59,7 @@ public class addProfileInfoServlet extends HttpServlet{
 		
 			UserProfile tempProfileInfo = new UserProfile(user_id, username, location, gender, age, religion, books, movies, music, basic_info, likes, dislikes, looking_for);
 			
-			/*tempProfileInfo.setUserid(user_id);
-			tempProfileInfo.setUsername(username);
-			tempProfileInfo.setLocation(location);
-			tempProfileInfo.setGender(gender);
-			tempProfileInfo.setAge(age);
-			tempProfileInfo.setReligion(religion);
-			tempProfileInfo.setBooks(books); 
-			tempProfileInfo.setMusic(music);
-			tempProfileInfo.setBasic_Info(basic_info);
-			tempProfileInfo.setLikes(likes);
-			tempProfileInfo.setDislikes(dislikes);
-			tempProfileInfo.setLooking_For(looking_for);
-			*/
+			
 			
 			ProfileController controller = new ProfileController();
 			try {

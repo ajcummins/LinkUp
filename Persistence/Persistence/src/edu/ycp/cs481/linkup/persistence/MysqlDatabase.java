@@ -446,6 +446,79 @@ public class MysqlDatabase implements IDatabase {
 			}
 
 			
+			//GET PROFILE INFO
+			@Override
+			public String[] get_profile_info(UserProfile inProfile)
+					throws PersistenceException {
+				//determine next available userID
+				java.sql.PreparedStatement stmt = null;
+				
+				int location =0; int age = 0; int gender = 0; int looking_for = 0;
+				String religion = null; String books = null; String movies =null; String music = null;
+				String likes = null; String dislikes = null; String basic_info = null;
+		        try
+		        {
+		        	SQLconnection sqlConn = new SQLconnection();
+					Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+		        	//using con create an entry into the appropriate table to add a user's looking for information
+		        	stmt = con.prepareStatement("SELECT location, gender, religion"
+		        			+ ",books, movies, music, basic_info, likes, dislikes, looking_for FROM linkup.profile_info WHERE (user_id='2')");
+		        	stmt.executeQuery();
+		        	ResultSet result = stmt.getResultSet();
+		        	result.next();
+		        	location = result.getInt(location);
+		        	//System.out.println(location);
+		        	//
+		        	age = result.getInt(age);
+		        	gender = result.getInt(gender);
+		        	looking_for = result.getInt(looking_for);
+		        	books = result.getString(books);
+		        	music = result.getString(music);
+		        	movies = result.getString(movies);
+		        	basic_info = result.getString(basic_info);
+		        	likes = result.getString(likes);
+		        	dislikes = result.getString(dislikes);
+		        	
+		        	String age1 = String.valueOf(age);
+		        	String gender1 = String.valueOf(gender);
+		        	String location1 = String.valueOf(location);
+		        	String looking_for1 = String.valueOf(looking_for);
+		        	
+		        	
+		        	String[] ResultArray = new String[11];
+		        	ResultArray[0] = books;
+		        	ResultArray[1] = music;
+		        	ResultArray[2] = movies;
+		        	ResultArray[3] = basic_info;
+		        	ResultArray[4] = likes;
+		        	ResultArray[5] = dislikes;
+		        	ResultArray[6] = age1;
+		        	ResultArray[7] = location1;
+		        	ResultArray[8] = gender1;
+		         	ResultArray[9] = looking_for1;
+		        	
+		        	
+		        	return ResultArray;
+		        
+		        }
+		        catch (Exception e) 
+		        {
+		            e.printStackTrace();
+		        }
+		        finally
+		        {
+		        	if (stmt != null) {
+		                try {
+		                   stmt.close();
+		                } catch (SQLException ex) {
+		                }
+		            }
+		        }
+				// TODO Auto-generated method stub
+				return null;
+				
+			}
+			
 	
 
 }

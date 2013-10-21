@@ -37,6 +37,8 @@ public interface IDatabase {
 
 	public User checkUserCredentials(String inUsername, String inPassword);
 
+	public String[] get_profile_info(UserProfile inProfile) throws PersistenceException;
+
 	
 
 
