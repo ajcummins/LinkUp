@@ -35,10 +35,10 @@
 				<tr>
 					Your Perfect Match: ${match}
 				</tr>
-				<tr>
+				<!--<tr>
 					<td></td>
 					<td><input name="submit" value="profile" type="submit" /></td>
-				</tr>
+				</tr>-->
 			</table>
 			</fieldset>
 			
