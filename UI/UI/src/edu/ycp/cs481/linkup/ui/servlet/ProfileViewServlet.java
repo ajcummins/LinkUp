@@ -217,6 +217,7 @@ public class ProfileViewServlet extends HttpServlet {
 				throws ServletException, IOException {
 			
 			req.getRequestDispatcher("/_view/userMatch.jsp").forward(req, resp);
+			//req.getRequestDispatcher("/_view/userMatch.jsp");
 				
 	}
 		
