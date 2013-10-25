@@ -11,8 +11,8 @@ public class UserProfileJUnitTest extends TestCase {
 	private UserProfile user2;
 	
 	protected void setUp() throws Exception {
-		user = new UserProfile(11, "testing123", 2, 1, 23, "baptist", "to kill a mocking bird", "pee wee's big adventure", "led zeppelin", "im super cool", "kittens, long walks on the beach, sunsets", "rainbows", 2);
-		user2 = new UserProfile(12, "testing456", 1, 2, 54, "catholic", "the sun also rises", "ferris buellers day off", "britney spears", "i am a college student", "", "people that snore", 4);
+		user = new UserProfile(11, 2, 1, 23, "baptist", "to kill a mocking bird", "pee wee's big adventure", "led zeppelin", "im super cool", "kittens, long walks on the beach, sunsets", "rainbows", 2);
+		user2 = new UserProfile(12, 1, 2, 54, "catholic", "the sun also rises", "ferris buellers day off", "britney spears", "i am a college student", "", "people that snore", 4);
 	}
 	
 	public void testGetUserid() throws Exception{
@@ -20,10 +20,12 @@ public class UserProfileJUnitTest extends TestCase {
 		assertEquals(12, user2.getUserid());
 	}
 	
+	/*
 	public void testGetUsername() throws Exception{
 		assertEquals("testing123", user.getUsername());
 		assertEquals("testing456", user2.getUsername());
 	}
+	*/
 	
 	public void testGetLocation() throws Exception{
 		assertEquals(2, user.getLocation());
@@ -86,6 +88,7 @@ public class UserProfileJUnitTest extends TestCase {
 		assertEquals(12, user2.getUserid());
 	}
 	
+	/*
 	public void testSetUsername() throws Exception{
 		user.setUsername("testing123");
 		assertEquals("testing123", user.getUsername());
@@ -94,6 +97,7 @@ public class UserProfileJUnitTest extends TestCase {
 		assertEquals("testing456", user2.getUsername());
 	
 	}
+	*/
 	
 	public void testSetLocation() throws Exception{
 		

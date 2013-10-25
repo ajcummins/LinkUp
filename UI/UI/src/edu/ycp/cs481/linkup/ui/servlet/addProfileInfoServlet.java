@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import edu.ycp.cs481.linkup.controller.LookingForController;
 import edu.ycp.cs481.linkup.controller.ProfileController;
 import edu.ycp.cs481.linkup.model.LookingFor;
+import edu.ycp.cs481.linkup.model.Path;
 import edu.ycp.cs481.linkup.model.UserProfile;
 import edu.ycp.cs481.linkup.persistence.PersistenceException;
 
@@ -28,8 +29,13 @@ public class addProfileInfoServlet extends HttpServlet{
 			throws ServletException, IOException {
 		// TODO: get profile info 
 		
-		int user_id = Integer.parseInt(req.getParameter("user_id")); //convert to int later
-		String username = req.getParameter("username");
+		int user_id;			
+		//Get userid from the url passed
+		Path urlPath = new Path(req.getPathInfo());
+		user_id = Integer.parseInt(urlPath.getUserIDFromPath());
+		
+		
+		//int user_id = Integer.parseInt(req.getParameter("user_id")); //convert to int later
 		int location = Integer.parseInt(req.getParameter("location"));  //convert to int later
 		int gender = Integer.parseInt(req.getParameter("gender"));    //convert to int later
 		int age = Integer.parseInt(req.getParameter("age"));				//convert to int later
@@ -44,7 +50,6 @@ public class addProfileInfoServlet extends HttpServlet{
 		
 		//testing to see if gets info
 		System.out.println("user id: " + user_id 
-					+ "\nusername: " + username
 					+ "\nlocation: " + location
 					+ "\nreligion: " + gender
 					+ "\nage: " + age
@@ -57,7 +62,7 @@ public class addProfileInfoServlet extends HttpServlet{
 					+ "\ndislikes: " + dislikes
 					+ "\nlooking for: " + looking_for);
 		
-			UserProfile tempProfileInfo = new UserProfile(user_id, username, location, gender, age, religion, books, movies, music, basic_info, likes, dislikes, looking_for);
+			UserProfile tempProfileInfo = new UserProfile(user_id, location, gender, age, religion, books, movies, music, basic_info, likes, dislikes, looking_for);
 			
 			
 			
@@ -68,7 +73,9 @@ public class addProfileInfoServlet extends HttpServlet{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			req.getRequestDispatcher("/_view/lookingFor.jsp").forward(req, resp);
+			
+			resp.sendRedirect("lookingFor/"+ user_id);
+			//req.getRequestDispatcher("/_view/lookingFor.jsp").forward(req, resp);
 		
 			
 			

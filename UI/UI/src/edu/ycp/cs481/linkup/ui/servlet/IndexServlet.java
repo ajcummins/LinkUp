@@ -68,8 +68,12 @@ public class IndexServlet extends HttpServlet{
 					//Forward to the profile page and Pass the user object
 					//FIXME: forward the user object to the userProfile....
 					
+					//req.setAttribute("inUser", testUser);
+					
+					
+					
 					//go to profile page
-					req.getRequestDispatcher("/_view/userProfile.jsp").forward(req, resp);
+					resp.sendRedirect("userProfile/"+ testUser.getUserID());			
 				}
 				
 				

@@ -44,7 +44,7 @@ public class MysqlDatabase implements IDatabase {
 	}
 
 	@Override
-	public void createUser(User inUser) throws PersistenceException {
+	public int createUser(User inUser) throws PersistenceException {
 		
 		int userID = 0;
 		SQLconnection sqlConn = null;
@@ -63,6 +63,8 @@ public class MysqlDatabase implements IDatabase {
 
 				// Using the newly found userId add the User
 				insertUser(conn, userID, inUser);
+				
+				return userID;
             }
             catch(SQLException e)
             {
@@ -81,9 +83,10 @@ public class MysqlDatabase implements IDatabase {
 		finally {
 			if (sqlConn != null) {
 				sqlConn.stopConnection();
+				
 			}
 		}
-				
+		
 		
 		
 	}
@@ -293,10 +296,9 @@ public class MysqlDatabase implements IDatabase {
 		        	SQLconnection sqlConn = new SQLconnection();
 					Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
 		        	//using con create an entry into the appropriate table to add a user's looking for information
-		        	stmt = con.prepareStatement("INSERT INTO linkup.profile_info(user_id,username, location, gender, religion"
-		        			+ ",books, movies, music, basic_info, likes, dislikes, looking_for) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+		        	stmt = con.prepareStatement("INSERT INTO linkup.profile_info(user_id,location, gender, religion"
+		        			+ ",books, movies, music, basic_info, likes, dislikes, looking_for) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
 		            stmt.setInt(1, inProfile.getUserid());
-		            stmt.setString(2, inProfile.getUsername());
 		            stmt.setInt(3, inProfile.getLocation());
 		            stmt.setInt(4, inProfile.getGender());
 		            stmt.setString(5, inProfile.getReligion());

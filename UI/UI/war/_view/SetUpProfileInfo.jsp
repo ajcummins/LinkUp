@@ -11,21 +11,21 @@
 		<form action="/SetUpProfileInfo" method="POST">
 			<table>
 			<tr>
-					<td>
+					<!--<td>
 						User ID:
 					</td>
 					<td>
 						<input name="user_id" type="text" size="20" style="width: 100px; "/>
-					</td>
+					</td>-->
 				</tr>
 				<tr>
 				<tr>
-					<td>
+					<!--<td>
 						Username:
 					</td>
 					<td>
 						<input name="username" type="text" size="20" style="width: 100px; "/>
-					</td>
+					</td>-->
 				</tr>
 				<tr>
 			

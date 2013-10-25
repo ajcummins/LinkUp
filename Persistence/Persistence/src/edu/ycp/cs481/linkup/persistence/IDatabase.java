@@ -24,10 +24,11 @@ public interface IDatabase {
 	 * Create given user in the database.
 	 * 
 	 * @param inUser the {@link User} to create
+	 * @return 
 	 * @throws DuplicateUserException if the user already exists
 	 * @throws PersistenceException if some other database error occurs
 	 */
-	public void createUser(User inUser) throws PersistenceException;
+	public int createUser(User inUser) throws PersistenceException;
 
 	public void add_user_looking_for(LookingFor inLooking) throws PersistenceException;
 	

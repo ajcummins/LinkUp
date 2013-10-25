@@ -27,6 +27,7 @@ public class CreateUserServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		// TODO: get username and password, use a controller to create new user account, forward to view
+		int userID;
 		String user = req.getParameter("username");
 		String pass = req.getParameter("password");
 		String confirmPass = req.getParameter("confirm_password");
@@ -69,11 +70,12 @@ public class CreateUserServlet extends HttpServlet {
 			
 			CreateUserController controller = new CreateUserController();
 			try {
-				controller.createUser(tempUser);
+				userID = controller.createUser(tempUser);
 				req.setAttribute("info", "Successfully created user!");
 				
 				// redirect
-				req.getRequestDispatcher("/_view/SetUpProfileInfo.jsp");
+				resp.sendRedirect("SetUpProfileInfo/"+ userID);
+				//req.getRequestDispatcher("/_view/SetUpProfileInfo.jsp");
 			} catch (DuplicateUserException e) {
 				// User already exists
 				req.setAttribute("error", "User " + user + " already exists");

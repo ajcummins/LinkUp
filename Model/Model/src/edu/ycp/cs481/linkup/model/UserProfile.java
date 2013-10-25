@@ -3,10 +3,9 @@ package edu.ycp.cs481.linkup.model;
 public class UserProfile {
 	//private String name;
 	
-	public UserProfile(int userid, String username, int location, int gender, int age, String religion, String books, String movies, String music,
+	public UserProfile(int userid, int location, int gender, int age, String religion, String books, String movies, String music,
 			String basic_info, String likes, String dislikes, int looking_for ) {
 		this.userid = userid;
-		this.username = username;
 		this.location = location;
 		this.gender = gender;
 		this.age = age;
@@ -25,7 +24,6 @@ public class UserProfile {
 	
 	private String inUser;
 	private int userid;
-	private String username;
 	private int location;
 	private int gender;
 	private int age;
@@ -46,10 +44,6 @@ public class UserProfile {
 		userid = inUserid;
 	}
 	
-	public void setUsername(String inUsername)
-	{
-		username = inUsername;
-	}
 	
 	public void setLocation(int inLocation)
 	{
@@ -111,10 +105,7 @@ public class UserProfile {
 		return userid;
 	}
 	
-	public String getUsername()
-	{
-		return username;
-	}
+	
 	
 	public int getLocation()
 	{

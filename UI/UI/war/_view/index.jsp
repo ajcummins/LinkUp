@@ -34,8 +34,7 @@
 				<tr>
 					<td>
 					</td>
-					<td>
-						<!--  <input name="submit" type="submit" /> -->					 	
+					<td>			 	
 						<input type="submit" value="Submit">	
 						<button type="button" onclick="document.location.href='userProfile'">Go to Profile</button>
 					</td>
@@ -43,7 +42,6 @@
 				</tr>
 			</table>
 			
-			<!--  <a href="localhost:8080/createUser" target="_blank" >Not a Member? Sign Up Now!</a>			-->
 			<button type="button" onclick="document.location.href='createUser'">Not a Member? Sign up now!!!!</button> 			
 		</fieldset>
 		

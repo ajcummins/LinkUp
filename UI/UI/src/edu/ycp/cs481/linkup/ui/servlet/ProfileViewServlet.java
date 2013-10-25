@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import edu.ycp.cs481.linkup.controller.LoadUserProfile;
 import edu.ycp.cs481.linkup.controller.ProfileController;
+import edu.ycp.cs481.linkup.model.Path;
+import edu.ycp.cs481.linkup.model.User;
 import edu.ycp.cs481.linkup.model.UserProfile;
 import edu.ycp.cs481.linkup.persistence.PersistenceException;
 import edu.ycp.cs481.linkup.persistence.SQLconnection;
@@ -32,10 +34,13 @@ public class ProfileViewServlet extends HttpServlet {
 		
 			// Forward to a view for rendering
 			//req.getRequestDispatcher("/_view/userProfile.jsp").forward(req, resp);
-			
-			
-			int userid = 2;
 			//userid = Integer.parseInt(req.getParameter("user_id"));
+		
+			int userid;			
+			//Get userid from the url passed
+			Path urlPath = new Path(req.getPathInfo());
+			userid = Integer.parseInt(urlPath.getUserIDFromPath());
+			
 
 			
 				java.sql.PreparedStatement stmt = null;
@@ -220,6 +225,9 @@ public class ProfileViewServlet extends HttpServlet {
 			//req.getRequestDispatcher("/_view/userMatch.jsp");
 				
 	}
+	
+	
+	
 		
 		
 
