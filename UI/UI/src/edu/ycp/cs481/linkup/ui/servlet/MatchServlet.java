@@ -3,7 +3,9 @@ package edu.ycp.cs481.linkup.ui.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -46,6 +48,7 @@ public class MatchServlet extends HttpServlet {
 			else
 			{
 				java.sql.PreparedStatement stmt = null;
+				int match = -1;
 				String soulMate = null;
 				try 
 		        {   
@@ -78,25 +81,95 @@ public class MatchServlet extends HttpServlet {
 		            e.printStackTrace();
 		        }
 				 
+				int number = 0;
+				try{
+					
+					SQLconnection sqlConn = new SQLconnection();
+					 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+					String sql = ("SELECT COUNT(*) FROM linkup.profile_info WHERE gender = " + lookingGender +" AND age BETWEEN "+ lookingAgeLow +" AND " + lookingAgeHigh);
+					PreparedStatement prest = con.prepareStatement(sql);
+				    ResultSet rs = prest.executeQuery();
+				    while (rs.next()) {
+				      number = rs.getInt(1);
+				    }
+				    System.out.println("Number of records: " + number);
+				    con.close();
+					
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}finally{
+					 int newnum = 0;
+				}
+				
+				int[] matchs = new int[100];
+				int i = 0;
 				try{ 
+					SQLconnection sqlConn = new SQLconnection();
+					 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+					//end here
+					 stmt = con.prepareStatement("SELECT user_id FROM linkup.profile_info WHERE gender = " + lookingGender +" AND age BETWEEN "+ lookingAgeLow +" AND " + lookingAgeHigh);
+			            stmt.executeQuery();
+			            ResultSet result = stmt.getResultSet();
+			            while(result.next()){
+			            	//System.out.println("result is: " +result.getInt(1));
+			            	match = result.getInt(1);
+			            	matchs[i] = match;
+			            	i++;
+			            	System.out.println("match is: " + matchs[i]);
+			            }
+			        	
+			        } 
+			        catch (Exception e) 
+			        {
+			            e.printStackTrace();
+			        } 
+					
+				
+				/*try{ 
 				SQLconnection sqlConn = new SQLconnection();
 				 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
 				//end here
-				 stmt = con.prepareStatement("SELECT username FROM linkup.profile_info WHERE gender = " + lookingGender +" AND age BETWEEN "+ lookingAgeLow +" AND " + lookingAgeHigh);
-				 //stmt = con.prepareStatement("SELECT username FROM linkup.profile_info WHERE gender = " + gender +" AND age BETWEEN "+ ageLow +" AND " + ageHigh);
+				 stmt = con.prepareStatement("SELECT user_id FROM linkup.profile_info WHERE gender = " + lookingGender +" AND age BETWEEN "+ lookingAgeLow +" AND " + lookingAgeHigh);
 		            stmt.executeQuery();
 		            ResultSet result = stmt.getResultSet();
 		            result.next();
-		            soulMate = result.getString(1);
+		            match = result.getInt(1);
 		        	
 		        } 
 		        catch (Exception e) 
 		        {
 		            e.printStackTrace();
-		        } 
+		        } */
+				String[] soulMates = new String[100];
+				int j = 0;
+				for(j = 0; j < number; j++){
+				try{ 
+					SQLconnection sqlConn = new SQLconnection();
+					 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+					//end here
+					 stmt = con.prepareStatement("SELECT username FROM linkup.user WHERE user_id = " + matchs[j]);
+			            stmt.executeQuery();
+			            ResultSet result = stmt.getResultSet();
+			            result.next();
+			            soulMates[j] = result.getString(1);
+			            System.out.println("user name: " + soulMates[j]);
+			        } 
+			        catch (Exception e) 
+			        {
+			            e.printStackTrace();
+			        } 
+					
 				
-				req.setAttribute("match", soulMate);
+				}
+				
+				int k;
+				for(k = 1; k <= number; k++){
+					req.setAttribute("match"+k, soulMates[k]);
+				}
 				req.getRequestDispatcher("/_view/userMatch.jsp").forward(req, resp);
+				
 		}
 	}
 }
