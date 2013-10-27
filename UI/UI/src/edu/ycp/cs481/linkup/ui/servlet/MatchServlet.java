@@ -50,6 +50,7 @@ public class MatchServlet extends HttpServlet {
 				java.sql.PreparedStatement stmt = null;
 				int match = -1;
 				String soulMate = null;
+				int lookingReligion = -1;
 				try 
 		        {   
 				 SQLconnection sqlConn = new SQLconnection();
@@ -74,6 +75,12 @@ public class MatchServlet extends HttpServlet {
 		            ResultSet result3 = stmt.getResultSet();
 		            result3.next();
 		            lookingAgeHigh = result3.getInt(1);
+		            
+		            stmt = con.prepareStatement("SELECT religion FROM linkup.looking_for WHERE user_id = " + userid);
+		            stmt.executeQuery();
+		            ResultSet result4 = stmt.getResultSet();
+		            result4.next();
+		            lookingReligion = result4.getInt(1);
 		        	
 		        } 
 		        catch (Exception e) 
@@ -86,7 +93,7 @@ public class MatchServlet extends HttpServlet {
 					
 					SQLconnection sqlConn = new SQLconnection();
 					 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
-					String sql = ("SELECT COUNT(*) FROM linkup.profile_info WHERE gender = " + lookingGender +" AND age BETWEEN "+ lookingAgeLow +" AND " + lookingAgeHigh);
+					String sql = ("SELECT COUNT(*) FROM linkup.profile_info WHERE religion = "+ lookingReligion + " AND gender = " + lookingGender +" AND age BETWEEN "+ lookingAgeLow +" AND " + lookingAgeHigh);
 					PreparedStatement prest = con.prepareStatement(sql);
 				    ResultSet rs = prest.executeQuery();
 				    while (rs.next()) {
@@ -102,14 +109,14 @@ public class MatchServlet extends HttpServlet {
 				}finally{
 					 int newnum = 0;
 				}
-				
+			if(number != 0){	
 				int[] matchs = new int[100];
 				int i = 0;
 				try{ 
 					SQLconnection sqlConn = new SQLconnection();
 					 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
 					//end here
-					 stmt = con.prepareStatement("SELECT user_id FROM linkup.profile_info WHERE gender = " + lookingGender +" AND age BETWEEN "+ lookingAgeLow +" AND " + lookingAgeHigh);
+					 stmt = con.prepareStatement("SELECT user_id FROM linkup.profile_info WHERE religion = "+ lookingReligion + " AND gender = " + lookingGender +" AND age BETWEEN "+ lookingAgeLow +" AND " + lookingAgeHigh);
 			            stmt.executeQuery();
 			            ResultSet result = stmt.getResultSet();
 			            while(result.next()){
@@ -175,7 +182,10 @@ public class MatchServlet extends HttpServlet {
 				}
 				req.setAttribute("match", matchList);
 				req.getRequestDispatcher("/_view/userMatch.jsp").forward(req, resp);
-				
+			}else{
+				req.setAttribute("match", "There are no users that fit the qualities that you are looking for at this time. :(");
+				req.getRequestDispatcher("/_view/userMatch.jsp").forward(req, resp);
+			}
 		}
 	}
 }

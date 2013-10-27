@@ -11,13 +11,13 @@ public class LookingFor {
 	
 	private int gender;
 	
-	private String religion;
+	private int religion;
 	private int religion_weight;
 	
 	private int seriousness;
 	private int seriousness_weight;
 	
-	public LookingFor(int userid, int ageLow, int ageHigh, int gender, String religion, int religion_weight, int seriousness, int seriousness_weight)
+	public LookingFor(int userid, int ageLow, int ageHigh, int gender, int religion, int religion_weight, int seriousness, int seriousness_weight)
 	{
 		this.userid = userid;
 		this.ageLow = ageLow;
@@ -49,7 +49,7 @@ public class LookingFor {
 		this.gender = inGender;
 	}
 	
-	public void setReligion(String inReligion)
+	public void setReligion(int inReligion)
 	{
 		this.religion = inReligion;
 	}
@@ -89,7 +89,7 @@ public class LookingFor {
 		return gender;
 	}
 	
-	public String getReligion()
+	public int getReligion()
 	{
 		return religion;
 	}

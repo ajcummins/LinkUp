@@ -34,21 +34,21 @@ public class LookingForServlet extends HttpServlet{
 		int religionWeight = -1;
 		int seriousness = -1;
 		int seriousnessWeight = -1;
+		int religion = -1;
 		
 		// TODO: get looking for information, use a controller to create new user account, forward to view
 		userid = Integer.parseInt(req.getParameter("user_id"));
 		ageLow = Integer.parseInt(req.getParameter("age_low"));
 		ageHigh = Integer.parseInt(req.getParameter("age_high"));
 		gender = Integer.parseInt(req.getParameter("gender"));
-		String religion = req.getParameter("religion");
+		religion = Integer.parseInt(req.getParameter("religion"));
 		religionWeight = Integer.parseInt(req.getParameter("religion_weight"));
 		seriousness = Integer.parseInt(req.getParameter("seriousness"));
 		seriousnessWeight = Integer.parseInt(req.getParameter("seriousness_weight"));
 		
 		
 		// Check if null 
-		if(ageLow >= ageHigh || ageLow < 0 || ageHigh < 0 || userid < 0 || religion == null)
-		{
+		if(ageLow >= ageHigh || ageLow < 0 || ageHigh < 0 || userid < 0 || religion < 0){
 			//Some type of error
 			req.setAttribute("error", "You have remaining Empty Fields");
 			//throw new ServletException("You have remaining Empty Fields");
