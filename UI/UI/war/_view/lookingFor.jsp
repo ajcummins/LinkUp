@@ -47,16 +47,16 @@
 					</td>
 					<td>
 						<select name="religion">
-						  <option value="Non-Religious" name="religion" size="20">Non-Religious</option>
-						  <option value="Atheist" name="religion" size="20">Atheist</option>
-						  <option value="Buddhism" name="religion" size="20">Buddhism</option>
-						  <option value="Christian" name="religion" size="20">Christian</option>
-						  <option value="Hinduism" name="religion" size="20">Hinduism</option>
-						  <option value="Islam" name="religion" size="20">Islam</option>
-						  <option value="Jewish" name="religion" size="20">Jewish</option>
-						  <option value="Muslim" name="religion" size="20">Muslim</option>  
-						  <option value="Sikhism" name="religion" size="20">Sikhism</option>
-						  <option value="Other" name="religion" size="20">Other</option>
+						  <option value="1" name="religion" size="20">Non-Religious</option>
+						  <option value="2" name="religion" size="20">Atheist</option>
+						  <option value="3" name="religion" size="20">Buddhism</option>
+						  <option value="4" name="religion" size="20">Christian</option>
+						  <option value="5" name="religion" size="20">Hinduism</option>
+						  <option value="6" name="religion" size="20">Islam</option>
+						  <option value="7" name="religion" size="20">Jewish</option>
+						  <option value="8" name="religion" size="20">Muslim</option>  
+						  <option value="9" name="religion" size="20">Sikhism</option>
+						  <option value="10" name="religion" size="20">Other</option>
 						</select>
 					</td>
 				</tr>
