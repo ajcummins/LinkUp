@@ -34,10 +34,7 @@
 			<input type="hidden" name="userid">
 			<table>
 				<tr>
-					Your Perfect Match: ${match1}
-										${match2}
-										${match3}
-										${match4}
+					Your Perfect Match: ${match}
 				</tr>
 				<!--<tr>
 					<td></td>

@@ -165,9 +165,15 @@ public class MatchServlet extends HttpServlet {
 				}
 				
 				int k;
-				for(k = 1; k <= number; k++){
-					req.setAttribute("match"+k, soulMates[k]);
+				String matchList = "";
+				for(k = 0; k < number; k++){
+					if(k == 0){
+						matchList = matchList + soulMates[k];
+					}else{
+						matchList = matchList + ", " + soulMates[k];
+					}
 				}
+				req.setAttribute("match", matchList);
 				req.getRequestDispatcher("/_view/userMatch.jsp").forward(req, resp);
 				
 		}
