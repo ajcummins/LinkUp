@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.ycp.cs481.linkup.model.Path;
 import edu.ycp.cs481.linkup.persistence.SQLconnection;
 
 
@@ -21,10 +22,17 @@ public class MatchServlet extends HttpServlet {
 	private static String DB_USERNAME = "ajcummins";
 	private static String DB_PASSWORD = "root";
 	
+	int user_id;
+	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		//req.setAttribute("match", soulMate);
 		req.getRequestDispatcher("/_view/userMatch.jsp").forward(req, resp);
+		
+		//Get userid from the url passed
+		Path urlPath = new Path(req.getPathInfo());
+		System.out.println("Path = " + req.getPathInfo());
+		user_id = Integer.parseInt(urlPath.getUserIDFromPath());
 	      
 	}
 	
@@ -58,25 +66,25 @@ public class MatchServlet extends HttpServlet {
 				 
 				 //start here
 				
-				 stmt = con.prepareStatement("SELECT gender FROM linkup.looking_for WHERE user_id = " + userid);
+				 stmt = con.prepareStatement("SELECT gender FROM linkup.looking_for WHERE user_id = " + user_id);
 		            stmt.executeQuery();
 		            ResultSet result = stmt.getResultSet();
 		            result.next();
 		            lookingGender = result.getInt(1);
 		            
-		            stmt = con.prepareStatement("SELECT age_low FROM linkup.looking_for WHERE user_id = " + userid);
+		            stmt = con.prepareStatement("SELECT age_low FROM linkup.looking_for WHERE user_id = " + user_id);
 		            stmt.executeQuery();
 		            ResultSet result2 = stmt.getResultSet();
 		            result2.next();
 		            lookingAgeLow = result2.getInt(1);
 		            
-		            stmt = con.prepareStatement("SELECT age_high FROM linkup.looking_for WHERE user_id = " + userid);
+		            stmt = con.prepareStatement("SELECT age_high FROM linkup.looking_for WHERE user_id = " + user_id);
 		            stmt.executeQuery();
 		            ResultSet result3 = stmt.getResultSet();
 		            result3.next();
 		            lookingAgeHigh = result3.getInt(1);
 		            
-		            stmt = con.prepareStatement("SELECT religion FROM linkup.looking_for WHERE user_id = " + userid);
+		            stmt = con.prepareStatement("SELECT religion FROM linkup.looking_for WHERE user_id = " + user_id);
 		            stmt.executeQuery();
 		            ResultSet result4 = stmt.getResultSet();
 		            result4.next();
@@ -110,7 +118,7 @@ public class MatchServlet extends HttpServlet {
 					 int newnum = 0;
 				}
 			if(number != 0){	
-				int[] matchs = new int[100];
+				int[] matchs = new int[number];
 				int i = 0;
 				try{ 
 					SQLconnection sqlConn = new SQLconnection();
