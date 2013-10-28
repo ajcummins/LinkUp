@@ -17,22 +17,24 @@ import edu.ycp.cs481.linkup.persistence.PersistenceException;
 
 public class addProfileInfoServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
-
+	private int user_id;
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		req.getRequestDispatcher("/_view/SetUpProfileInfo.jsp").forward(req, resp);
+		
+					
+		//Get userid from the url passed
+		Path urlPath = new Path(req.getPathInfo());
+		System.out.println("Path = " + req.getPathInfo());
+		user_id = Integer.parseInt(urlPath.getUserIDFromPath());
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		// TODO: get profile info 
-		
-		int user_id;			
-		//Get userid from the url passed
-		Path urlPath = new Path(req.getPathInfo());
-		user_id = Integer.parseInt(urlPath.getUserIDFromPath());
 		
 		
 		//int user_id = Integer.parseInt(req.getParameter("user_id")); //convert to int later
