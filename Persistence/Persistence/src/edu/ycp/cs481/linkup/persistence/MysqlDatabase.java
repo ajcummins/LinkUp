@@ -296,11 +296,12 @@ public class MysqlDatabase implements IDatabase {
 		        	SQLconnection sqlConn = new SQLconnection();
 					Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
 		        	//using con create an entry into the appropriate table to add a user's looking for information
-		        	stmt = con.prepareStatement("INSERT INTO linkup.profile_info(user_id,location, gender, religion"
+		        	stmt = con.prepareStatement("INSERT INTO linkup.profile_info(user_id,location, gender, age, religion"
 		        			+ ",books, movies, music, basic_info, likes, dislikes, looking_for) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
 		            stmt.setInt(1, inProfile.getUserid());
-		            stmt.setInt(3, inProfile.getLocation());
-		            stmt.setInt(4, inProfile.getGender());
+		            stmt.setInt(2, inProfile.getLocation());
+		            stmt.setInt(3, inProfile.getGender());
+		            stmt.setInt(4, inProfile.getAge());
 		            stmt.setString(5, inProfile.getReligion());
 		            stmt.setString(6, inProfile.getBooks());
 		            stmt.setString(7, inProfile.getMovies());
@@ -308,7 +309,7 @@ public class MysqlDatabase implements IDatabase {
 		            stmt.setString(9, inProfile.getBasic_Info());
 		            stmt.setString(10, inProfile.getLikes());
 		            stmt.setString(11, inProfile.getDislikes());
-		            stmt.setInt(12, inProfile.getLooking_For());
+		            stmt.setInt(12 , inProfile.getLooking_For());
 		            stmt.executeUpdate();
 		        }
 		        catch (Exception e) 
