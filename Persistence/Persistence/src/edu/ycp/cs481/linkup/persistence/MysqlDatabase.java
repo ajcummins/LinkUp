@@ -178,94 +178,6 @@ public class MysqlDatabase implements IDatabase {
 			
 		}
 		
-		
-		
-		//-----------------------------------------------------------------//
-		//generic update statements for different types of variables
-		
-		//update statement for an integer
-		public void update_table_int(String inTableName, int inUserID, String inFieldName, int inValue){
-			java.sql.PreparedStatement stmt = null;
-			try
-	        {
-	        	//using con create an entry into the appropriate table to add a user's looking for information
-	        	stmt = con.prepareStatement("UPDATE linkup." + inTableName 
-	        										+ "SET " + inFieldName + " = ?"
-	        										+ "WHERE user_id = ?");
-	            stmt.setInt(1, inValue);
-	            stmt.setInt(2, inUserID);
-	            stmt.executeUpdate();
-	        }
-	        catch (Exception e) 
-	        {
-	            e.printStackTrace();
-	        }
-	        finally
-	        {
-	        	if (stmt != null) {
-	                try {
-	                   stmt.close();
-	                } catch (SQLException ex) {
-	                }
-	            }
-	        }
-		}
-		
-		//update statement for a string
-				public void update_table_string(String inTableName, int inUserID, String inFieldName, String inValue){
-					java.sql.PreparedStatement stmt = null;
-					try
-			        {
-			        	//using con create an entry into the appropriate table to add a user's looking for information
-			        	stmt = con.prepareStatement("UPDATE linkup." + inTableName 
-			        										+ "SET " + inFieldName + " = ?"
-			        										+ "WHERE user_id = ?");
-			            stmt.setString(1, inValue);
-			            stmt.setInt(2, inUserID);
-			            stmt.executeUpdate();
-			        }
-			        catch (Exception e) 
-			        {
-			            e.printStackTrace();
-			        }
-			        finally
-			        {
-			        	if (stmt != null) {
-			                try {
-			                   stmt.close();
-			                } catch (SQLException ex) {
-			                }
-			            }
-			        }
-				}
-				
-		    //update statement for a date
-			public void update_table_string(String inTableName, int inUserID, String inFieldName, Date inValue){
-				java.sql.PreparedStatement stmt = null;
-				try
-		        {
-		        	//using con create an entry into the appropriate table to add a user's looking for information
-		        	stmt = con.prepareStatement("UPDATE linkup." + inTableName 
-		        										+ "SET " + inFieldName + " = ?"
-		        										+ "WHERE user_id = ?");
-		            stmt.setDate(1, inValue);
-		            stmt.setInt(2, inUserID);
-		            stmt.executeUpdate();
-		        }
-		        catch (Exception e) 
-		        {
-		            e.printStackTrace();
-		        }
-		        finally
-		        {
-		        	if (stmt != null) {
-		                try {
-		                   stmt.close();
-		                } catch (SQLException ex) {
-		                }
-		            }
-		        }
-			}
 			
 			public void setDatabaseCredentials()
 			{
@@ -276,14 +188,7 @@ public class MysqlDatabase implements IDatabase {
 				dialogSecurity.main(null);
 				
 			}
-
-			/*public void add_profile_info(int userid, String username, String location, String gender, int age, String religion, String books,
-					String movies, String music, String basic_info, String likes, String dislikes, String looking_for) throws Exception
-			{*/
-				
 		
-		        		
-			
 
 			@Override
 			public void add_profile_info(UserProfile inProfile)

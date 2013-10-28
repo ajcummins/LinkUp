@@ -11,16 +11,23 @@ import javax.servlet.http.HttpServletResponse;
 import edu.ycp.cs481.linkup.controller.CreateUserController;
 import edu.ycp.cs481.linkup.controller.LookingForController;
 import edu.ycp.cs481.linkup.model.LookingFor;
+import edu.ycp.cs481.linkup.model.Path;
 import edu.ycp.cs481.linkup.persistence.DuplicateUserException;
 import edu.ycp.cs481.linkup.persistence.PersistenceException;
 
 public class LookingForServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
+	int user_id;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		req.getRequestDispatcher("/_view/lookingFor.jsp").forward(req, resp);
+		
+		//Get userid from the url passed
+				Path urlPath = new Path(req.getPathInfo());
+				System.out.println("Path = " + req.getPathInfo());
+				user_id = Integer.parseInt(urlPath.getUserIDFromPath());
 	}
 	
 
@@ -63,7 +70,7 @@ public class LookingForServlet extends HttpServlet{
 					+ "\nreligion weight: " + religionWeight
 					+ "\nseriousness: " + seriousness
 					+ "\nseriousness weight: " + seriousnessWeight);
-			LookingFor tempLooking = new LookingFor(userid, ageLow, ageHigh, gender, religion, religionWeight, seriousness, seriousnessWeight);
+			LookingFor tempLooking = new LookingFor(user_id, ageLow, ageHigh, gender, religion, religionWeight, seriousness, seriousnessWeight);
 
 
 			LookingForController controller = new LookingForController();
