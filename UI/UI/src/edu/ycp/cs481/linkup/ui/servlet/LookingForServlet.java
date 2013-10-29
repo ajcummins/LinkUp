@@ -34,7 +34,7 @@ public class LookingForServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		int userid = -1;
+		//int userid = -1;
 		int ageLow = -1;
 		int ageHigh = -1;
 		int gender = -1;
@@ -44,7 +44,7 @@ public class LookingForServlet extends HttpServlet{
 		int religion = -1;
 		
 		// TODO: get looking for information, use a controller to create new user account, forward to view
-		userid = Integer.parseInt(req.getParameter("user_id"));
+		//userid = Integer.parseInt(req.getParameter("user_id"));
 		ageLow = Integer.parseInt(req.getParameter("age_low"));
 		ageHigh = Integer.parseInt(req.getParameter("age_high"));
 		gender = Integer.parseInt(req.getParameter("gender"));
@@ -55,7 +55,7 @@ public class LookingForServlet extends HttpServlet{
 		
 		
 		// Check if null 
-		if(ageLow >= ageHigh || ageLow < 0 || ageHigh < 0 || userid < 0 || religion < 0){
+		if(ageLow >= ageHigh || ageLow < 0 || ageHigh < 0 || user_id < 0 || religion < 0){
 			//Some type of error
 			req.setAttribute("error", "You have remaining Empty Fields");
 			//throw new ServletException("You have remaining Empty Fields");
@@ -84,7 +84,7 @@ public class LookingForServlet extends HttpServlet{
 				throw new ServletException("Error communicating with database", e);
 			}
 
-			req.getRequestDispatcher("/_view/userProfile.jsp").forward(req, resp);
+			req.getRequestDispatcher("userProfile/" + user_id).forward(req, resp);
 			
 		}
 	}
