@@ -48,7 +48,7 @@ public class MatchServlet extends HttpServlet {
 		resp.sendRedirect("userProfile/"+ user_id);	
 	}
 	
-	String get_match(int user_id, HttpServletRequest req, HttpServletResponse resp)	{
+	String get_match(int userid, HttpServletRequest req, HttpServletResponse resp)	{
 		int lookingGender = 1;
 		int lookingAgeLow = 0;
 		int lookingAgeHigh = 100;
@@ -65,25 +65,25 @@ public class MatchServlet extends HttpServlet {
 			 
 			 //start here
 			
-			 stmt = con.prepareStatement("SELECT gender FROM linkup.looking_for WHERE user_id = " + user_id);
+			 stmt = con.prepareStatement("SELECT gender FROM linkup.looking_for WHERE user_id = " + userid);
 	            stmt.executeQuery();
 	            ResultSet result = stmt.getResultSet();
 	            result.next();
 	            lookingGender = result.getInt(1);
 	            
-	            stmt = con.prepareStatement("SELECT age_low FROM linkup.looking_for WHERE user_id = " + user_id);
+	            stmt = con.prepareStatement("SELECT age_low FROM linkup.looking_for WHERE user_id = " + userid);
 	            stmt.executeQuery();
 	            ResultSet result2 = stmt.getResultSet();
 	            result2.next();
 	            lookingAgeLow = result2.getInt(1);
 	            
-	            stmt = con.prepareStatement("SELECT age_high FROM linkup.looking_for WHERE user_id = " + user_id);
+	            stmt = con.prepareStatement("SELECT age_high FROM linkup.looking_for WHERE user_id = " + userid);
 	            stmt.executeQuery();
 	            ResultSet result3 = stmt.getResultSet();
 	            result3.next();
 	            lookingAgeHigh = result3.getInt(1);
 	            
-	            stmt = con.prepareStatement("SELECT religion FROM linkup.looking_for WHERE user_id = " + user_id);
+	            stmt = con.prepareStatement("SELECT religion FROM linkup.looking_for WHERE user_id = " + userid);
 	            stmt.executeQuery();
 	            ResultSet result4 = stmt.getResultSet();
 	            result4.next();
@@ -140,22 +140,6 @@ public class MatchServlet extends HttpServlet {
 		            e.printStackTrace();
 		        } 
 				
-			
-			/*try{ 
-			SQLconnection sqlConn = new SQLconnection();
-			 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
-			//end here
-			 stmt = con.prepareStatement("SELECT user_id FROM linkup.profile_info WHERE gender = " + lookingGender +" AND age BETWEEN "+ lookingAgeLow +" AND " + lookingAgeHigh);
-	            stmt.executeQuery();
-	            ResultSet result = stmt.getResultSet();
-	            result.next();
-	            match = result.getInt(1);
-	        	
-	        } 
-	        catch (Exception e) 
-	        {
-	            e.printStackTrace();
-	        } */
 			String[] soulMates = new String[100];
 			int j = 0;
 			for(j = 0; j < number; j++){
