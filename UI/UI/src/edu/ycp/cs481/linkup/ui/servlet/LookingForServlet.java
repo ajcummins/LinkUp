@@ -34,7 +34,6 @@ public class LookingForServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		//int userid = -1;
 		int ageLow = -1;
 		int ageHigh = -1;
 		int gender = -1;
@@ -44,7 +43,6 @@ public class LookingForServlet extends HttpServlet{
 		int religion = -1;
 		
 		// TODO: get looking for information, use a controller to create new user account, forward to view
-		//userid = Integer.parseInt(req.getParameter("user_id"));
 		ageLow = Integer.parseInt(req.getParameter("age_low"));
 		ageHigh = Integer.parseInt(req.getParameter("age_high"));
 		gender = Integer.parseInt(req.getParameter("gender"));
@@ -84,7 +82,9 @@ public class LookingForServlet extends HttpServlet{
 				throw new ServletException("Error communicating with database", e);
 			}
 
-			req.getRequestDispatcher("userProfile/" + user_id).forward(req, resp);
+			System.out.print("this is the user id:" + user_id);
+			resp.sendRedirect("userProfile/"+ user_id);	
+			//req.getRequestDispatcher("userProfile/" + user_id).forward(req, resp);
 			
 		}
 	}

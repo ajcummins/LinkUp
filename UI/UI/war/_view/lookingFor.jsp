@@ -15,12 +15,12 @@
 		<legend> Let's Find A Match </legend>
 			<table>
 				<tr>
-					<td>
+					<!--<td>
 						User ID:
 					</td>
 					<td>
 						<input name="user_id" type="int" size="20" />
-					</td>
+					</td>-->
 				</tr>
 				<tr>
 					<td>
