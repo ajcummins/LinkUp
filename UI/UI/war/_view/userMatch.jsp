@@ -12,34 +12,15 @@
 		
 		<fieldset>
 		
-		<br><br>
-		<table>
-				<tr>
-					<td>
-						User ID:
-					</td>
-					<td>
-						<input name="user_id" type="int" size="20" />
-					</td>
-				</tr>
-				<tr>
-				<td><input name="submit" value="Find Match" type="submit" /></td> <td>	<button type="button" onclick="document.location.href='userProfile'">Go Back to Profile</button></td>
-				</tr>
-				
-			</table>
-			<br>
-			<br>
-		
 		<legend> Congradulations!!!! </legend>
 			<input type="hidden" name="userid">
 			<table>
 				<tr>
 					Your Perfect Match: ${match}
 				</tr>
-				<!--<tr>
-					<td></td>
-					<td><input name="submit" value="profile" type="submit" /></td>
-				</tr>-->
+				<tr>
+				<td><input name="submit" value="Profile" type="submit" /></td>
+				</tr>
 			</table>
 			</fieldset>
 			
