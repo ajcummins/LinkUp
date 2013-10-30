@@ -19,9 +19,9 @@
 		<div style="display: inline;">
 
 		</form>
-		<form action="/userMatch" method="POST">
-		<button type="button" onclick="document.location.href='userMatch'">Matches!</button> 
-	
+		<form action="/userProfile" method="POST">
+		<!--<button type="button" onclick="document.location.href='userMatch'">Matches!</button> -->
+	<input type="submit" value="Matches!">
 		&nbsp; <input type="submit" value="Messages">&nbsp; <input type="submit" value="Account Settings">
 	
 		</form>

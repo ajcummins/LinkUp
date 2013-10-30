@@ -23,7 +23,7 @@ public class ProfileViewServlet extends HttpServlet {
 
 	private static String DB_USERNAME = "ajcummins";
 	private static String DB_PASSWORD = "root";
-	
+	private int userid;	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -36,7 +36,7 @@ public class ProfileViewServlet extends HttpServlet {
 			//req.getRequestDispatcher("/_view/userProfile.jsp").forward(req, resp);
 			//userid = Integer.parseInt(req.getParameter("user_id"));
 		
-			int userid;			
+					
 			//Get userid from the url passed
 			Path urlPath = new Path(req.getPathInfo());
 			userid = Integer.parseInt(urlPath.getUserIDFromPath());
@@ -220,8 +220,9 @@ public class ProfileViewServlet extends HttpServlet {
 		
 		protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 				throws ServletException, IOException {
-			
-			req.getRequestDispatcher("/_view/userMatch.jsp").forward(req, resp);
+			System.out.print("this is the user id:" + userid);
+			resp.sendRedirect("userMatch/"+ userid);	
+			//req.getRequestDispatcher("/_view/userMatch.jsp").forward(req, resp);
 			//req.getRequestDispatcher("/_view/userMatch.jsp");
 				
 	}
