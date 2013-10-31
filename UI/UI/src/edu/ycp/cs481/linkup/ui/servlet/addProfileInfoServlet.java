@@ -41,7 +41,7 @@ public class addProfileInfoServlet extends HttpServlet{
 		int location = Integer.parseInt(req.getParameter("location"));  //convert to int later
 		int gender = Integer.parseInt(req.getParameter("gender"));    //convert to int later
 		int age = Integer.parseInt(req.getParameter("age"));				//convert to int later
-		String religion = req.getParameter("religion");
+		int religion = Integer.parseInt(req.getParameter("religion"));
 		String books = req.getParameter("books");
 		String movies = req.getParameter("movies");
 		String music = req.getParameter("music");

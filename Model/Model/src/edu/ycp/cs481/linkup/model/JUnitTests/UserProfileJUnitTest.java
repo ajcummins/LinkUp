@@ -11,8 +11,8 @@ public class UserProfileJUnitTest extends TestCase {
 	private UserProfile user2;
 	
 	protected void setUp() throws Exception {
-		user = new UserProfile(11, 2, 1, 23, "baptist", "to kill a mocking bird", "pee wee's big adventure", "led zeppelin", "im super cool", "kittens, long walks on the beach, sunsets", "rainbows", 2);
-		user2 = new UserProfile(12, 1, 2, 54, "catholic", "the sun also rises", "ferris buellers day off", "britney spears", "i am a college student", "", "people that snore", 4);
+		user = new UserProfile(11, 2, 1, 23, 1, "to kill a mocking bird", "pee wee's big adventure", "led zeppelin", "im super cool", "kittens, long walks on the beach, sunsets", "rainbows", 2);
+		user2 = new UserProfile(12, 1, 2, 54, 2, "the sun also rises", "ferris buellers day off", "britney spears", "i am a college student", "", "people that snore", 4);
 	}
 	
 	public void testGetUserid() throws Exception{
@@ -130,11 +130,11 @@ public class UserProfileJUnitTest extends TestCase {
 	
 	public void testSetReligion() throws Exception{
 		
-		user.setReligion("baptist");
-		assertEquals("baptist", user.getReligion());
+		user.setReligion(1);
+		assertEquals(1, user.getReligion());
 		
-		user2.setReligion("catholic");
-		assertEquals("catholic", user2.getReligion());
+		user2.setReligion(2);
+		assertEquals(2, user2.getReligion());
 
 	}
 	
