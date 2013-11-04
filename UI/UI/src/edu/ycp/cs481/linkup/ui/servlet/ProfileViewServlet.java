@@ -31,7 +31,8 @@ public class ProfileViewServlet extends HttpServlet {
 		String location1 = null;
 		String gender1 = null;
 		String looking_for1 = null;
-		
+		String religion1 = null;
+		//String locationR = null;
 			// Forward to a view for rendering
 			//req.getRequestDispatcher("/_view/userProfile.jsp").forward(req, resp);
 			//userid = Integer.parseInt(req.getParameter("user_id"));
@@ -76,10 +77,17 @@ public class ProfileViewServlet extends HttpServlet {
 		            stmt.executeQuery();
 		            ResultSet result = stmt.getResultSet();
 		            result.next();
-		            location = result.getInt(1); //gets location
+		            location = result.getInt(1); //gets location = 2
 		            
 		        	
-		            if(location == 0){
+		            stmt = con.prepareStatement("SELECT location FROM linkup.location WHERE location_id = " + location);
+		            stmt.executeQuery();
+		            ResultSet result14 = stmt.getResultSet();
+		            result14.next();
+		            location1 = result14.getString(1);
+		            
+		            
+		            /*if(location == 0){
 		            	 location1 = "PA";
 		            }else if(location == 1){
 		            	location1 = "DE";
@@ -87,7 +95,7 @@ public class ProfileViewServlet extends HttpServlet {
 		            	location1 = "MD";
 		            }else if(location == 3){
 		            	location1 = "NJ";
-		            }
+		            }*/
 		  
 		            
 		            //GENDER
@@ -98,11 +106,20 @@ public class ProfileViewServlet extends HttpServlet {
 		            gender = result2.getInt(1);
 		            
 		            
-		            if(gender == 1){
+		            stmt = con.prepareStatement("SELECT gender FROM linkup.gender WHERE gender_id = " + gender);
+		            stmt.executeQuery();
+		            ResultSet result15 = stmt.getResultSet();
+		            result15.next();
+		            gender1 = result15.getString(1);
+		            
+		           /* if(gender == 1){
 		            	 gender1 = "Male";
 		            }else if(gender == 2){
 		            	gender1 = "Female";
-		            }
+		            }*/
+		            
+		            
+		            
 		            
 		            //AGE
 		            stmt = con.prepareStatement("SELECT age FROM linkup.profile_info WHERE user_id = " + userid);
@@ -117,6 +134,14 @@ public class ProfileViewServlet extends HttpServlet {
 		            ResultSet result4 = stmt.getResultSet();
 		            result4.next();
 		            religion = result4.getString(1);
+		            
+		            
+		            stmt = con.prepareStatement("SELECT religion FROM linkup.religion WHERE religion_id = " + religion);
+		            stmt.executeQuery();
+		            ResultSet result17 = stmt.getResultSet();
+		            result17.next();
+		            religion1 = result17.getString(1);
+		            //religion1 = religion;
 		        	
 		            //BOOKS
 		            stmt = con.prepareStatement("SELECT books FROM linkup.profile_info WHERE user_id = " + userid);
@@ -167,7 +192,13 @@ public class ProfileViewServlet extends HttpServlet {
 		            result11.next();
 		            looking_for = result11.getInt(1);
 		            
-		            if(looking_for == 1){
+		            stmt = con.prepareStatement("SELECT PInfoLookingFor FROM linkup.pinfolookingfor WHERE PInfoLookingFor_id = " + looking_for);
+		            stmt.executeQuery();
+		            ResultSet result16 = stmt.getResultSet();
+		            result16.next();
+		            looking_for1 = result16.getString(1);
+		            
+		            /*if(looking_for == 1){
 		            	looking_for1 = "Relationship";
 		            }else if(looking_for == 2){
 		            	looking_for1 = "Friendship";
@@ -175,10 +206,10 @@ public class ProfileViewServlet extends HttpServlet {
 		            	looking_for1 = "Cuddle Buddy";
 		            }else if(looking_for == 4){
 		            	looking_for1 = "Nothing Serious";
-		            }
+		            }*/
 		            
-		            
-		            System.out.println("Location: " + location1);
+		            System.out.println("Location: " + location);
+		            System.out.println("Location1: " + location1);
 		        	
 		            
 		        } 
@@ -201,7 +232,7 @@ public class ProfileViewServlet extends HttpServlet {
 				
 				req.getSession().setAttribute("gender", gender1);
 				req.getSession().setAttribute("age", age);
-				req.getSession().setAttribute("religion", religion);
+				req.getSession().setAttribute("religion", religion1);
 				req.getSession().setAttribute("books", books);
 				req.getSession().setAttribute("music", music);
 				req.getSession().setAttribute("movies", movies);

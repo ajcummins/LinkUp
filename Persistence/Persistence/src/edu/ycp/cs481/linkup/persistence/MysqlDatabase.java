@@ -207,7 +207,7 @@ public class MysqlDatabase implements IDatabase {
 		            stmt.setInt(2, inProfile.getLocation());
 		            stmt.setInt(3, inProfile.getGender());
 		            stmt.setInt(4, inProfile.getAge());
-		            stmt.setString(5, inProfile.getReligion());
+		            stmt.setInt(5, inProfile.getReligion());
 		            stmt.setString(6, inProfile.getBooks());
 		            stmt.setString(7, inProfile.getMovies());
 		            stmt.setString(8, inProfile.getMusic());

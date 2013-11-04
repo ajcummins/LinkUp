@@ -3,7 +3,7 @@ package edu.ycp.cs481.linkup.model;
 public class UserProfile {
 	//private String name;
 	
-	public UserProfile(int userid, int location, int gender, int age, String religion, String books, String movies, String music,
+	public UserProfile(int userid, int location, int gender, int age, int religion, String books, String movies, String music,
 			String basic_info, String likes, String dislikes, int looking_for ) {
 		this.userid = userid;
 		this.location = location;
@@ -27,7 +27,7 @@ public class UserProfile {
 	private int location;
 	private int gender;
 	private int age;
-	private String religion;
+	private int religion;
 	private String books;
 	private String movies;
 	private String  music;
@@ -63,7 +63,7 @@ public class UserProfile {
 		//age = Integer.parseInt(inAge);
 	}
 	
-	public void setReligion(String inReligion)
+	public void setReligion(int inReligion)
 	{
 		religion = inReligion;
 	}
@@ -122,7 +122,7 @@ public class UserProfile {
 		return age;
 	}
 	
-	public String getReligion()
+	public int getReligion()
 	{
 		return religion;
 	}
