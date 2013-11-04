@@ -201,7 +201,7 @@ public class MysqlDatabase implements IDatabase {
 		        	SQLconnection sqlConn = new SQLconnection();
 					Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
 		        	//using con create an entry into the appropriate table to add a user's looking for information
-		        	stmt = con.prepareStatement("INSERT INTO linkup.profile_info(user_id,location, gender, age, religion"
+		        	stmt = con.prepareStatement("INSERT INTO linkup.profile_info(user_id,location, gender, age, religionID"
 		        			+ ",books, movies, music, basic_info, likes, dislikes, looking_for) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
 		            stmt.setInt(1, inProfile.getUserid());
 		            stmt.setInt(2, inProfile.getLocation());
