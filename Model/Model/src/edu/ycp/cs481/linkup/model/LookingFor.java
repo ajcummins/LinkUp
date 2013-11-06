@@ -17,7 +17,9 @@ public class LookingFor {
 	private int seriousness;
 	private int seriousness_weight;
 	
-	public LookingFor(int userid, int ageLow, int ageHigh, int gender, int religion, int religion_weight, int seriousness, int seriousness_weight)
+	private int location;
+	
+	public LookingFor(int userid, int ageLow, int ageHigh, int gender, int religion, int religion_weight, int seriousness, int seriousness_weight, int location)
 	{
 		this.userid = userid;
 		this.ageLow = ageLow;
@@ -27,6 +29,7 @@ public class LookingFor {
 		this.religion_weight = religion_weight;
 		this.seriousness = seriousness;
 		this.seriousness_weight = seriousness_weight;
+		this.setLocation(location);
 	}
 	
 	public void setUserid(int inUserid)
@@ -107,6 +110,14 @@ public class LookingFor {
 	public int getseriousnessWeight()
 	{
 		return seriousness_weight;
+	}
+
+	public int getLocation() {
+		return location;
+	}
+
+	public void setLocation(int location) {
+		this.location = location;
 	}
 
 	

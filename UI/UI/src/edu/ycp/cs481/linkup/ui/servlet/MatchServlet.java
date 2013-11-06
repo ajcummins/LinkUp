@@ -57,6 +57,7 @@ public class MatchServlet extends HttpServlet {
 		int lookingGender = 1;
 		int lookingAgeLow = 0;
 		int lookingAgeHigh = 100;
+		int lookingLocation = -1;
 		String[] mates = new String[1];
 		mates[0] = "No Matches at this time. :(";
 
@@ -94,6 +95,12 @@ public class MatchServlet extends HttpServlet {
 	            ResultSet result4 = stmt.getResultSet();
 	            result4.next();
 	            lookingReligion = result4.getInt(1);
+	            
+	            stmt = con.prepareStatement("SELECT location FROM linkup.looking_for WHERE user_id = " + userid);
+	            stmt.executeQuery();
+	            ResultSet result5 = stmt.getResultSet();
+	            result5.next();
+	            lookingReligion = result5.getInt(1);
 	        	
 	        } 
 	        catch (Exception e) 
@@ -106,7 +113,7 @@ public class MatchServlet extends HttpServlet {
 				
 				SQLconnection sqlConn = new SQLconnection();
 				 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
-				String sql = ("SELECT COUNT(*) FROM linkup.profile_info WHERE gender = " + lookingGender +" AND age BETWEEN "+ lookingAgeLow +" AND " + lookingAgeHigh);
+				String sql = ("SELECT COUNT(*) FROM linkup.profile_info WHERE location = " + lookingLocation + " AND gender = " + lookingGender +" AND age BETWEEN "+ lookingAgeLow +" AND " + lookingAgeHigh);
 				PreparedStatement prest = con.prepareStatement(sql);
 			    ResultSet rs = prest.executeQuery();
 			    while (rs.next()) {
@@ -130,7 +137,7 @@ public class MatchServlet extends HttpServlet {
 				SQLconnection sqlConn = new SQLconnection();
 				 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
 				//end here
-				 stmt = con.prepareStatement("SELECT user_id FROM linkup.profile_info WHERE gender = " + lookingGender +" AND age BETWEEN "+ lookingAgeLow +" AND " + lookingAgeHigh);
+				 stmt = con.prepareStatement("SELECT user_id FROM linkup.profile_info WHERE location = " + lookingLocation + " AND gender = " + lookingGender +" AND age BETWEEN "+ lookingAgeLow +" AND " + lookingAgeHigh);
 		            stmt.executeQuery();
 		            ResultSet result = stmt.getResultSet();
 		            while(result.next()){

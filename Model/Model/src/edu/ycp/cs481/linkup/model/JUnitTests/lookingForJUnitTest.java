@@ -9,8 +9,8 @@ public class lookingForJUnitTest extends TestCase {
 	private LookingFor user2;
 	
 	protected void setUp() throws Exception {
-		user = new LookingFor(1, 21, 30, 1, 1, 1, 1, 1);
-		user2 = new LookingFor(2, 22, 50, 2, 2, 2, 2, 2);
+		user = new LookingFor(1, 21, 30, 1, 1, 1, 1, 1, 1);
+		user2 = new LookingFor(2, 22, 50, 2, 2, 2, 2, 2, 2);
 	}
 	
 	public void testGetUserid() throws Exception{
@@ -34,8 +34,8 @@ public class lookingForJUnitTest extends TestCase {
 	}
 	
 	public void testGetReligion() throws Exception{
-		assertEquals("any", user.getReligion());
-		assertEquals("catholic", user2.getReligion());
+		assertEquals(1, user.getReligion());
+		assertEquals(2, user2.getReligion());
 	}
 	
 	public void testGetReligionWeight() throws Exception{
