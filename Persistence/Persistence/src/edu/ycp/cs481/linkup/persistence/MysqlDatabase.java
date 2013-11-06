@@ -1,9 +1,11 @@
 package edu.ycp.cs481.linkup.persistence;
 
 import java.sql.Connection;
-import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import com.mysql.jdbc.Messages;
 
 import edu.ycp.cs481.linkup.model.LookingFor;
 import edu.ycp.cs481.linkup.model.Matching;
@@ -446,6 +448,42 @@ public class MysqlDatabase implements IDatabase {
 				return null;
 				
 			}
+
+			@Override
+			public Messages getMessages(Messages inMessage)
+					throws PersistenceException {
+				String[] noMessages = new String[1];
+				noMessages[0] = "No Messages at this time :(";
+				int toID = 1;//inMessage.getToID();
+					java.sql.PreparedStatement stmt = null;					 				 
+					
+					//get number of messages for user
+					int number = 0;
+					try{
+						
+						SQLconnection sqlConn = new SQLconnection();
+						 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+						String sql = ("SELECT COUNT(*) FROM linkup.match_messages WHERE user_to = " + toID);
+						PreparedStatement prest = con.prepareStatement(sql);
+					    ResultSet rs = prest.executeQuery();
+					    while (rs.next()) {
+					      number = rs.getInt(1);
+					    }
+					    System.out.println("Number of records: " + number);
+					    con.close();
+						
+						
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}finally{
+						 int newnum = 0;
+					}
+					
+					
+				
+				return null;
+		}
 			
 		
 }
