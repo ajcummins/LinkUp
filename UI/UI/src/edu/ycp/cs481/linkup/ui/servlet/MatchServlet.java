@@ -100,7 +100,8 @@ public class MatchServlet extends HttpServlet {
 	            stmt.executeQuery();
 	            ResultSet result5 = stmt.getResultSet();
 	            result5.next();
-	            lookingReligion = result5.getInt(1);
+	            lookingLocation = result5.getInt(1);
+	        	System.out.print("location is : " + lookingLocation);
 	        	
 	        } 
 	        catch (Exception e) 
@@ -113,7 +114,7 @@ public class MatchServlet extends HttpServlet {
 				
 				SQLconnection sqlConn = new SQLconnection();
 				 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
-				String sql = ("SELECT COUNT(*) FROM linkup.profile_info WHERE location = " + lookingLocation + " AND gender = " + lookingGender +" AND age BETWEEN "+ lookingAgeLow +" AND " + lookingAgeHigh);
+				String sql = ("SELECT COUNT(*) FROM linkup.profile_info WHERE gender = " + lookingGender +" AND location = " + lookingLocation + " AND religion = " + lookingReligion + " AND age BETWEEN "+ lookingAgeLow +" AND " + lookingAgeHigh);
 				PreparedStatement prest = con.prepareStatement(sql);
 			    ResultSet rs = prest.executeQuery();
 			    while (rs.next()) {
@@ -137,7 +138,7 @@ public class MatchServlet extends HttpServlet {
 				SQLconnection sqlConn = new SQLconnection();
 				 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
 				//end here
-				 stmt = con.prepareStatement("SELECT user_id FROM linkup.profile_info WHERE location = " + lookingLocation + " AND gender = " + lookingGender +" AND age BETWEEN "+ lookingAgeLow +" AND " + lookingAgeHigh);
+				 stmt = con.prepareStatement("SELECT user_id FROM linkup.profile_info WHERE gender = " + lookingGender +" AND location = " + lookingLocation + " AND religion = " + lookingReligion + " AND age BETWEEN "+ lookingAgeLow +" AND " + lookingAgeHigh);
 		            stmt.executeQuery();
 		            ResultSet result = stmt.getResultSet();
 		            while(result.next()){
