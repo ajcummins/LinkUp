@@ -107,16 +107,13 @@
 					</td>
 					<td>
 						<select name="seriousness">
-						  <option value="1" name="seriousness" type="int" size="20">1</option>
-						  <option value="2" name="seriousness" type="int" size="20">2</option>
-						  <option value="3" name="seriousness" type="int" size="20">3</option>
-						  <option value="4" name="seriousness" type="int" size="20">4</option>
-						  <option value="5" name="seriousness" type="int" size="20">5</option>
-						  <option value="6" name="seriousness" type="int" size="20">6</option>
-						  <option value="7" name="seriousness" type="int" size="20">7</option>
-						  <option value="8" name="seriousness" type="int" size="20">8</option>
-						  <option value="9" name="seriousness" type="int" size="20">9</option>
-						  <option value="10" name="seriousness" type="int" size="20">10</option>
+						  <option value="1" name="looking_for" type="int" size="20">Relationship</option>
+						  <option value="2" name="looking_for" type="int" size="20">Friendship</option>
+						  <option value="3" name="looking_for" type="int" size="20">Cuddle Buddy</option>
+						  <option value="4" name="looking_for" type="int" size="20">Nothing Serious</option>
+						  <option value="5" name="looking_for" type="int" size="20">Long Term</option>
+						  <option value="6" name="looking_for" type="int" size="20">Short Term</option>
+						  <option value="7" name="looking_for" type="int" size="20">Fun</option>  
 						</select>
 					</td>
 				</tr>

@@ -58,6 +58,8 @@ public class MatchServlet extends HttpServlet {
 		int lookingAgeLow = 0;
 		int lookingAgeHigh = 100;
 		int lookingLocation = -1;
+		int lookingSeriousness = -1;
+		int lookingSeriousnessWeight = -1;
 		String[] mates = new String[1];
 		mates[0] = "No Matches at this time. :(";
 
@@ -103,12 +105,102 @@ public class MatchServlet extends HttpServlet {
 	            lookingLocation = result5.getInt(1);
 	        	System.out.print("location is : " + lookingLocation);
 	        	
+	        	stmt = con.prepareStatement("SELECT seriousness FROM linkup.looking_for WHERE user_id = " + userid);
+	            stmt.executeQuery();
+	            ResultSet result6 = stmt.getResultSet();
+	            result6.next();
+	            lookingSeriousness = result6.getInt(1);
+	        	System.out.print("type is : " + lookingSeriousness);
+	        	
+	        	stmt = con.prepareStatement("SELECT seriousness_weight FROM linkup.looking_for WHERE user_id = " + userid);
+	            stmt.executeQuery();
+	            ResultSet result7 = stmt.getResultSet();
+	            result7.next();
+	            lookingSeriousnessWeight = result7.getInt(1);
+	        	System.out.print("weight is : " + lookingSeriousnessWeight);
+	        	
 	        } 
 	        catch (Exception e) 
 	        {
 	            e.printStackTrace();
 	        }
-			 
+			
+			if(lookingSeriousnessWeight > 6){
+				int number = 0;
+				try{
+					
+					SQLconnection sqlConn = new SQLconnection();
+					 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+					String sql = ("SELECT COUNT(*) FROM linkup.profile_info WHERE gender = " + lookingGender +" AND location = " + lookingLocation + " AND religion = " + lookingReligion + " AND seriousness = " +lookingSeriousness +"AND age BETWEEN "+ lookingAgeLow +" AND " + lookingAgeHigh);
+					PreparedStatement prest = con.prepareStatement(sql);
+				    ResultSet rs = prest.executeQuery();
+				    while (rs.next()) {
+				      number = rs.getInt(1);
+				    }
+				    System.out.println("Number of records: " + number);
+				    con.close();
+					
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}finally{
+					 int newnum = 0;
+				}
+			if(number != 0){	
+				int[] matchs = new int[number];
+				String[] soulMates = new String[number];
+				int i = 0;
+				try{ 
+					SQLconnection sqlConn = new SQLconnection();
+					 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+					//end here
+					 stmt = con.prepareStatement("SELECT user_id FROM linkup.profile_info WHERE gender = " + lookingGender +" AND location = " + lookingLocation + " AND religion = " + lookingReligion + " AND seriousness = " +lookingSeriousness +"AND age BETWEEN "+ lookingAgeLow +" AND " + lookingAgeHigh);
+			            stmt.executeQuery();
+			            ResultSet result = stmt.getResultSet();
+			            while(result.next()){
+			            	//System.out.println("result is: " +result.getInt(1));
+			            	match = result.getInt(1);
+			            	matchs[i] = match;
+			            	System.out.println("match is: " + matchs[i]);
+			            	i++;
+			            }
+			        	
+			        } 
+			        catch (Exception e) 
+			        {
+			            e.printStackTrace();
+			        } 
+					
+				
+				int j = 0;
+				for(j = 0; j < number; j++){
+				try{ 
+					SQLconnection sqlConn = new SQLconnection();
+					 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+					//end here
+					 stmt = con.prepareStatement("SELECT username FROM linkup.user WHERE user_id = " + matchs[j]);
+			            stmt.executeQuery();
+			            ResultSet result = stmt.getResultSet();
+			            result.next();
+			            soulMates[j] = result.getString(1);
+			            System.out.println("user name: " + soulMates[j]);
+			        } 
+			        catch (Exception e) 
+			        {
+			            e.printStackTrace();
+			        } 
+					
+				
+				}
+				return soulMates;
+			}else{
+				return mates;
+			}
+				
+			}else{
+			
+			
 			int number = 0;
 			try{
 				
@@ -180,7 +272,7 @@ public class MatchServlet extends HttpServlet {
 		}else{
 			return mates;
 		}
-	
+			}
 	}
 }
 
