@@ -16,7 +16,7 @@
 			<input type="hidden" name="userid">
 			<table>
 				<tr>
-					Your Perfect Match: ${match}
+					Your Perfect Match:<br> ${match}
 				</tr>
 				<tr>
 				<td><input name="submit" value="Profile" type="submit" /></td>

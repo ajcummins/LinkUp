@@ -2,6 +2,7 @@ package edu.ycp.cs481.linkup.ui.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,8 +35,12 @@ public class MatchServlet extends HttpServlet {
 		System.out.println("Path = " + req.getPathInfo());
 		user_id = Integer.parseInt(urlPath.getUserIDFromPath());
 		
-		String match = get_match(user_id, req, resp);
-		req.setAttribute("match", match);
+		String[] match = get_match(user_id, req, resp);
+		String table = "";
+		for(int i = 0; i < match.length; i++){
+			table = table + (i+1) + ") " + match[i] + "<br>";
+		}
+		req.setAttribute("match", table);
 		req.getRequestDispatcher("/_view/userMatch.jsp").forward(req, resp);
 	      
 	}
@@ -48,11 +53,12 @@ public class MatchServlet extends HttpServlet {
 		resp.sendRedirect("userProfile/"+ user_id);	
 	}
 	
-	String get_match(int userid, HttpServletRequest req, HttpServletResponse resp)	{
+	String[] get_match(int userid, HttpServletRequest req, HttpServletResponse resp)	{
 		int lookingGender = 1;
 		int lookingAgeLow = 0;
 		int lookingAgeHigh = 100;
-	
+		String[] mates = new String[1];
+		mates[0] = "No Matches at this time. :(";
 
 			java.sql.PreparedStatement stmt = null;
 			int match = -1;
@@ -100,7 +106,7 @@ public class MatchServlet extends HttpServlet {
 				
 				SQLconnection sqlConn = new SQLconnection();
 				 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
-				String sql = ("SELECT COUNT(*) FROM linkup.profile_info WHERE religion = "+ lookingReligion + " AND gender = " + lookingGender +" AND age BETWEEN "+ lookingAgeLow +" AND " + lookingAgeHigh);
+				String sql = ("SELECT COUNT(*) FROM linkup.profile_info WHERE gender = " + lookingGender +" AND age BETWEEN "+ lookingAgeLow +" AND " + lookingAgeHigh);
 				PreparedStatement prest = con.prepareStatement(sql);
 			    ResultSet rs = prest.executeQuery();
 			    while (rs.next()) {
@@ -118,20 +124,21 @@ public class MatchServlet extends HttpServlet {
 			}
 		if(number != 0){	
 			int[] matchs = new int[number];
+			String[] soulMates = new String[number];
 			int i = 0;
 			try{ 
 				SQLconnection sqlConn = new SQLconnection();
 				 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
 				//end here
-				 stmt = con.prepareStatement("SELECT user_id FROM linkup.profile_info WHERE religion = "+ lookingReligion + " AND gender = " + lookingGender +" AND age BETWEEN "+ lookingAgeLow +" AND " + lookingAgeHigh);
+				 stmt = con.prepareStatement("SELECT user_id FROM linkup.profile_info WHERE gender = " + lookingGender +" AND age BETWEEN "+ lookingAgeLow +" AND " + lookingAgeHigh);
 		            stmt.executeQuery();
 		            ResultSet result = stmt.getResultSet();
 		            while(result.next()){
 		            	//System.out.println("result is: " +result.getInt(1));
 		            	match = result.getInt(1);
 		            	matchs[i] = match;
-		            	i++;
 		            	System.out.println("match is: " + matchs[i]);
+		            	i++;
 		            }
 		        	
 		        } 
@@ -140,7 +147,7 @@ public class MatchServlet extends HttpServlet {
 		            e.printStackTrace();
 		        } 
 				
-			String[] soulMates = new String[100];
+			
 			int j = 0;
 			for(j = 0; j < number; j++){
 			try{ 
@@ -161,19 +168,9 @@ public class MatchServlet extends HttpServlet {
 				
 			
 			}
-			
-			int k;
-			String matchList = "";
-			for(k = 0; k < number; k++){
-				if(k == 0){
-					matchList = matchList + soulMates[k];
-				}else{
-					matchList = matchList + ", " + soulMates[k];
-				}
-			}
-			return matchList;
+			return soulMates;
 		}else{
-			return "There are no users that fit the qualities that you are looking for at this time. :(";
+			return mates;
 		}
 	
 	}
