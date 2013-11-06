@@ -88,16 +88,7 @@ public class ProfileViewServlet extends HttpServlet {
 		            result14.next();
 		            location1 = result14.getString(1);
 		            
-		            
-		            /*if(location == 0){
-		            	 location1 = "PA";
-		            }else if(location == 1){
-		            	location1 = "DE";
-		            }else if(location == 2){
-		            	location1 = "MD";
-		            }else if(location == 3){
-		            	location1 = "NJ";
-		            }*/
+		      
 		  
 		            
 		            //GENDER
@@ -112,13 +103,9 @@ public class ProfileViewServlet extends HttpServlet {
 		            stmt.executeQuery();
 		            ResultSet result15 = stmt.getResultSet();
 		            result15.next();
+		   
 		            gender1 = result15.getString(1);
-		            
-		           /* if(gender == 1){
-		            	 gender1 = "Male";
-		            }else if(gender == 2){
-		            	gender1 = "Female";
-		            }*/
+		
 		            
 		            
 		            
@@ -138,11 +125,13 @@ public class ProfileViewServlet extends HttpServlet {
 		            religion = result4.getString(1);
 		            
 		            
+		            
 		            stmt = con.prepareStatement("SELECT religion FROM linkup.religion WHERE religion_id = " + religion);
 		            stmt.executeQuery();
 		            ResultSet result17 = stmt.getResultSet();
 		            result17.next();
 		            religion1 = result17.getString(1);
+		        
 		            //religion1 = religion;
 		        	
 		            //BOOKS
@@ -200,16 +189,7 @@ public class ProfileViewServlet extends HttpServlet {
 		            result16.next();
 		            looking_for1 = result16.getString(1);
 		            
-		            /*if(looking_for == 1){
-		            	looking_for1 = "Relationship";
-		            }else if(looking_for == 2){
-		            	looking_for1 = "Friendship";
-		            }else if(looking_for == 3){
-		            	looking_for1 = "Cuddle Buddy";
-		            }else if(looking_for == 4){
-		            	looking_for1 = "Nothing Serious";
-		            }*/
-		            
+		       
 		            System.out.println("Location: " + location);
 		            System.out.println("Location1: " + location1);
 		        	
