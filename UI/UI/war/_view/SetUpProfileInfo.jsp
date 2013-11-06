@@ -33,12 +33,13 @@
 					<td>
 						Upload a Picture:
 					</td>
+					
 					<td>
 						<form action="" method="post" enctype="multipart/form-data">
     					<fieldset>
-      						<input type="file" name="Image" />
+      						<input name ="picture" type="file" name="Image" />
       						<br/>
-     						 <input type="submit" value="Upload" />
+     						 
    						 </fieldset>
  						 </form>
  
@@ -187,7 +188,8 @@
 				
 				<tr>
 					<td></td>
-					<td><input name="submit" type="submit" /></td>
+					<td><input name="submit" type="submit" value="Upload"/></td>
+				
 				</tr>
 				
 			</table>
