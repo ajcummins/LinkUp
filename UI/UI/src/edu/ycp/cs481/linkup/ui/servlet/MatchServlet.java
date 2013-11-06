@@ -38,7 +38,7 @@ public class MatchServlet extends HttpServlet {
 		String[] match = get_match(user_id, req, resp);
 		String table = "";
 		for(int i = 0; i < match.length; i++){
-			table = table + (i+1) + ") " + match[i] + "<br>";
+			table = table + (i+1) + ") " + match[i] + "      <a href='/MatchProfile/1'>Link text</a><br>";
 		}
 		req.setAttribute("match", table);
 		req.getRequestDispatcher("/_view/userMatch.jsp").forward(req, resp);
