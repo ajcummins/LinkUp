@@ -10,7 +10,7 @@
 	</head>
 	
 	<body>		
-		<form action="/matchProfile" method="GET">
+		<form action="/MatchProfile" method="GET">
 		
 		<fieldset>
 		
@@ -19,7 +19,7 @@
 		<div style="display: inline;">
 
 		</form>
-		<form action="/matchProfile" method="POST">
+		<form action="/MatchProfile" method="POST">
 	 <input type="submit" value="Matches!"> 	
 		</form>
 		</div>
