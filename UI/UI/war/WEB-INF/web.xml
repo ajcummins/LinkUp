@@ -78,7 +78,7 @@
 	
 	<servlet-mapping>
 		<servlet-name>MatchProfileView</servlet-name>
-		<url-pattern>/matchProfile/*</url-pattern>
+		<url-pattern>/MatchProfile/*</url-pattern>
 	</servlet-mapping> 
 
 	<welcome-file-list>
