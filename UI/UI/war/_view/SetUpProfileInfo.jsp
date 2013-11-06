@@ -29,6 +29,26 @@
 				</tr>
 				<tr>
 			
+				<tr>
+					<td>
+						Upload a Picture:
+					</td>
+					<td>
+						<form action="" method="post" enctype="multipart/form-data">
+    					<fieldset>
+      						<input type="file" name="Image" />
+      						<br/>
+     						 <input type="submit" value="Upload" />
+   						 </fieldset>
+ 						 </form>
+ 
+   
+   
+    
+					</td>
+				</tr>
+				
+			
 			
 			
 				<tr>
