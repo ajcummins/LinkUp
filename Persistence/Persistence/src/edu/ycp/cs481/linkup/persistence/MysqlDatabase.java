@@ -151,14 +151,15 @@ public class MysqlDatabase implements IDatabase {
 					+ "\nreligion: " + inlooking.getReligion()
 					+ "\nreligion weight: " + inlooking.getReligionWeight()
 					+ "\nseriousness: " + inlooking.getseriousness()
-					+ "\nseriousness weight: " + inlooking.getseriousnessWeight());
+					+ "\nseriousness weight: " + inlooking.getseriousnessWeight()
+					+ "\nlocation: " + inlooking.getLocation());
 	        try
 	        {
 	        	SQLconnection sqlConn = new SQLconnection();
 				Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
 	        	//using con create an entry into the appropriate table to add a user's looking for information
 	        	stmt = con.prepareStatement("INSERT INTO linkup.looking_for(user_id,age_low"
-	        			+ ",age_high,gender,religion,religion_weight,seriousness,seriousness_weight) VALUES (?,?,?,?,?,?,?,?)");
+	        			+ ",age_high,gender,religion,religion_weight,seriousness,seriousness_weight, location) VALUES (?,?,?,?,?,?,?,?,?)");
 	            stmt.setInt(1, inlooking.getUserid());
 	            stmt.setInt(2, inlooking.getAgeLow());
 	            stmt.setInt(3, inlooking.getAgeHigh());
@@ -167,6 +168,7 @@ public class MysqlDatabase implements IDatabase {
 	            stmt.setInt(6, inlooking.getReligionWeight());
 	            stmt.setInt(7, inlooking.getseriousness());
 	            stmt.setInt(8, inlooking.getseriousnessWeight());
+	            stmt.setInt(9, inlooking.getLocation());
 	            stmt.executeUpdate();
 	        }
 	        catch (Exception e) 
@@ -203,7 +205,7 @@ public class MysqlDatabase implements IDatabase {
 		        	SQLconnection sqlConn = new SQLconnection();
 					Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
 		        	//using con create an entry into the appropriate table to add a user's looking for information
-		        	stmt = con.prepareStatement("INSERT INTO linkup.profile_info(user_id,location, gender, age, religionID"
+		        	stmt = con.prepareStatement("INSERT INTO linkup.profile_info(user_id,location, gender, age, religion"
 		        			+ ",books, movies, music, basic_info, likes, dislikes, looking_for) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
 		            stmt.setInt(1, inProfile.getUserid());
 		            stmt.setInt(2, inProfile.getLocation());
