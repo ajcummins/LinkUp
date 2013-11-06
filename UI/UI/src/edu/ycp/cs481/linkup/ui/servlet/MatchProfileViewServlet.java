@@ -34,10 +34,6 @@ public class MatchProfileViewServlet extends HttpServlet {
 		String gender1 = null;
 		String looking_for1 = null;
 		String religion1 = null;
-		//String locationR = null;
-			// Forward to a view for rendering
-			//req.getRequestDispatcher("/_view/userProfile.jsp").forward(req, resp);
-			//userid = Integer.parseInt(req.getParameter("user_id"));
 		
 					
 			//Get userid from the url passed
@@ -235,16 +231,7 @@ public class MatchProfileViewServlet extends HttpServlet {
 		protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 				throws ServletException, IOException {
 			System.out.print("this is the user id:" + userid);
-			//req.getSession().setAttribute("user_id", userid);
-			
-		
-			
-			
-			resp.sendRedirect("MatchMatch/"+ userid);	
-			
-			//req.getRequestDispatcher("/_view/userMatch.jsp").forward(req, resp);
-			//req.getRequestDispatcher("/_view/userMatch.jsp");
-				
+			resp.sendRedirect("userMatch/"+ userid);				
 	}
 	
 	
