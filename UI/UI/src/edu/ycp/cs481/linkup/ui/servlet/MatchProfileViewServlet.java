@@ -223,7 +223,7 @@ public class MatchProfileViewServlet extends HttpServlet {
 				req.getSession().setAttribute("dislikes", dislikes);
 				req.getSession().setAttribute("looking_for", looking_for1);
 				
-				req.getRequestDispatcher("/_view/userProfile.jsp").forward(req, resp);
+				req.getRequestDispatcher("/_view/MatchProfile.jsp").forward(req, resp);
 	
 				req.getSession().setAttribute("user_id", userid);
 				System.out.println("sdfjkfhsdjkh: " + userid);
@@ -240,7 +240,7 @@ public class MatchProfileViewServlet extends HttpServlet {
 		
 			
 			
-			resp.sendRedirect("userMatch/"+ userid);	
+			resp.sendRedirect("MatchMatch/"+ userid);	
 			
 			//req.getRequestDispatcher("/_view/userMatch.jsp").forward(req, resp);
 			//req.getRequestDispatcher("/_view/userMatch.jsp");
