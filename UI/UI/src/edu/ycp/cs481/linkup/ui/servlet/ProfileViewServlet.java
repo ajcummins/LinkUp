@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.eclipse.jetty.client.api.Request;
+
 import edu.ycp.cs481.linkup.controller.LoadUserProfile;
 import edu.ycp.cs481.linkup.controller.ProfileController;
 import edu.ycp.cs481.linkup.model.Path;
@@ -243,7 +245,8 @@ public class ProfileViewServlet extends HttpServlet {
 				
 				req.getRequestDispatcher("/_view/userProfile.jsp").forward(req, resp);
 	
-				
+				req.getSession().setAttribute("user_id", userid);
+				System.out.println("sdfjkfhsdjkh: " + userid);
 			
 			
 		
@@ -252,7 +255,13 @@ public class ProfileViewServlet extends HttpServlet {
 		protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 				throws ServletException, IOException {
 			System.out.print("this is the user id:" + userid);
+			//req.getSession().setAttribute("user_id", userid);
+			
+		
+			
+			
 			resp.sendRedirect("userMatch/"+ userid);	
+			
 			//req.getRequestDispatcher("/_view/userMatch.jsp").forward(req, resp);
 			//req.getRequestDispatcher("/_view/userMatch.jsp");
 				

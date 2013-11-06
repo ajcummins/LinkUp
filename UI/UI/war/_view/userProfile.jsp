@@ -20,9 +20,9 @@
 
 		</form>
 		<form action="/userProfile" method="POST">
-		<!--<button type="button" onclick="document.location.href='userMatch'">Matches!</button> -->
-	<input type="submit" value="Matches!">
-		&nbsp; <input type="submit" value="Messages">&nbsp; <input type="submit" value="Account Settings">
+		<!--  <button type="button" onclick="document.location.href='userMatch/${user_id}'">Matches!</button> -->
+	 <input type="submit" value="Matches!"> 
+		&nbsp;  <input type="submit" value="Messages">&nbsp; <input type="submit" value="Account Settings">
 	
 		</form>
 		</div>
