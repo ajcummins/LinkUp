@@ -79,7 +79,18 @@
 						Religion:
 					</td>
 					<td>
-						<input name="religion" type="text" size="20" style="width: 245px; "/>
+						<select name = "religion">
+						  <option value="1" name="gender" type="int" size="20">Non-Religious</option>
+						  <option value="2" name="gender" type="int" size="20">Atheist</option>
+						  <option value="3" name="gender" type="int" size="20">Buddhism</option>
+						  <option value="4" name="gender" type="int" size="20">Christian</option>
+						  <option value="5" name="gender" type="int" size="20">Hinduism</option>
+						  <option value="6" name="gender" type="int" size="20">Islam</option>
+						  <option value="7" name="gender" type="int" size="20">Jewish</option>
+						  <option value="8" name="gender" type="int" size="20">Sikhism</option>
+						  <option value="9" name="gender" type="int" size="20">Other</option>
+						  
+						</select>
 					</td>
 				</tr>
 				<tr>
