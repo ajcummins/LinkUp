@@ -4,6 +4,7 @@ import com.mysql.jdbc.Messages;
 
 import edu.ycp.cs481.linkup.model.LookingFor;
 import edu.ycp.cs481.linkup.model.Matching;
+import edu.ycp.cs481.linkup.model.Rating;
 import edu.ycp.cs481.linkup.model.User;
 import edu.ycp.cs481.linkup.model.UserProfile;;
 
@@ -43,6 +44,8 @@ public interface IDatabase {
 	public String[] get_profile_info(UserProfile inProfile) throws PersistenceException;
 	
 	public Messages getMessages(Messages inMessage) throws PersistenceException;
+	
+	public void add_rating(Rating inRating) throws PersistenceException;
 
 
 

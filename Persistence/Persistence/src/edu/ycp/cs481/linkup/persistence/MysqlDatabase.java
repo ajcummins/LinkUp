@@ -9,6 +9,7 @@ import com.mysql.jdbc.Messages;
 
 import edu.ycp.cs481.linkup.model.LookingFor;
 import edu.ycp.cs481.linkup.model.Matching;
+import edu.ycp.cs481.linkup.model.Rating;
 import edu.ycp.cs481.linkup.model.User;
 import edu.ycp.cs481.linkup.model.UserProfile;
 
@@ -485,6 +486,39 @@ public class MysqlDatabase implements IDatabase {
 					
 				
 				return null;
+		}
+			
+		public void add_rating(Rating inRating)throws PersistenceException {
+				//determine next available userID
+				java.sql.PreparedStatement stmt = null;
+				
+		        try
+		        {
+		        	SQLconnection sqlConn = new SQLconnection();
+					Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+		        	//using con create an entry into the appropriate table to add a user's looking for information
+		        	stmt = con.prepareStatement("INSERT INTO linkup.rating_system(rating_id,user_id, comment VALUES (?,?,?)");
+		            stmt.setInt(1, inRating.getUserID());
+		            stmt.setString(2, inRating.getUsername());
+		            stmt.setString(3, inRating.getComment());
+		         
+		        }
+		        catch (Exception e) 
+		        {
+		            e.printStackTrace();
+		        }
+		        finally
+		        {
+		        	if (stmt != null) {
+		                try {
+		                   stmt.close();
+		                } catch (SQLException ex) {
+		                }
+		            }
+		        }
+			
+		
+			
 		}
 			
 		
