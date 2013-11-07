@@ -37,7 +37,7 @@ public class RatingServlet extends HttpServlet{
 	private static String DB_PASSWORD = "root";
 
 
-	private int user_id1;
+	private int userLogin;
 	private String username;
 	private String comment;
 
@@ -49,9 +49,9 @@ public class RatingServlet extends HttpServlet{
 
 
 		//Get userid from the url passed
-		//Path urlPath = new Path(req.getPathInfo());
-		//System.out.println("Path = " + req.getPathInfo());
-		//user_id = Integer.parseInt(urlPath.getUserIDFromPath());
+				Path urlPath = new Path(req.getPathInfo());
+				System.out.println("Path = " + req.getPathInfo());
+				userLogin = Integer.parseInt(urlPath.getUserIDFromPath());
 
 	}
 
@@ -120,8 +120,8 @@ public class RatingServlet extends HttpServlet{
 			e.printStackTrace();
 		}
 
-		resp.sendRedirect("lookingFor/"+ user_id);
-		//req.getRequestDispatcher("/_view/lookingFor.jsp").forward(req, resp);
+		resp.sendRedirect("userProfile/"+ userLogin);
+		
 
 
 
