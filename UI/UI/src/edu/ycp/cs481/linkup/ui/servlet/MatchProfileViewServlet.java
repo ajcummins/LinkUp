@@ -38,7 +38,7 @@ public class MatchProfileViewServlet extends HttpServlet {
 					
 			//Get userid from the url passed
 			Path urlPath = new Path(req.getPathInfo());
-			userid = Integer.parseInt(urlPath.getUserIDFromPath());
+			userid = Integer.parseInt(urlPath.getMatchUserIDFromPath());
 			
 
 			
