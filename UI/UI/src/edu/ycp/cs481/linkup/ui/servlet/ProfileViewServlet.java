@@ -234,16 +234,18 @@ public class ProfileViewServlet extends HttpServlet {
 		
 		protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 				throws ServletException, IOException {
-			System.out.print("this is the user id:" + userid);
-			//req.getSession().setAttribute("user_id", userid);
+			System.out.print("\nthis is the user id:" + userid + "\n");
+			String buttonAction = req.getParameter("submit");
 			
-		
+			if(buttonAction.equals("Messages")){ //go to the user's messages page
+				System.out.print("\nthis is the user id:" + userid);
+				resp.sendRedirect("userProfile/"+ userid);					
+			}else{
+				resp.sendRedirect("userMatch/"+ userid);
+			}
 			
-			
-			resp.sendRedirect("userMatch/"+ userid);	
-			
-			//req.getRequestDispatcher("/_view/userMatch.jsp").forward(req, resp);
-			//req.getRequestDispatcher("/_view/userMatch.jsp");
+			//resp.sendRedirect("userMatch/"+ userid);	
+
 				
 	}
 	
