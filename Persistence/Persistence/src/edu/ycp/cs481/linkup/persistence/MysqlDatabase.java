@@ -5,10 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.mysql.jdbc.Messages;
-
 import edu.ycp.cs481.linkup.model.LookingFor;
 import edu.ycp.cs481.linkup.model.Matching;
+import edu.ycp.cs481.linkup.model.Messages;
 import edu.ycp.cs481.linkup.model.Rating;
 import edu.ycp.cs481.linkup.model.User;
 import edu.ycp.cs481.linkup.model.UserProfile;
@@ -473,9 +472,7 @@ public class MysqlDatabase implements IDatabase {
 					      number = rs.getInt(1);
 					    }
 					    System.out.println("Number of records: " + number);
-					    con.close();
-						
-						
+					    con.close();	
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
