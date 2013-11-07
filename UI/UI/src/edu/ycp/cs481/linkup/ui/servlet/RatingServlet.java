@@ -113,7 +113,7 @@ public class RatingServlet extends HttpServlet{
 
 	RatingController controller = new RatingController();
 
-	try {
+	/*try {
 		rating_id = controller.createRating(tempRating);
 	} catch (PersistenceException e) {
 		// TODO Auto-generated catch block
@@ -123,7 +123,7 @@ public class RatingServlet extends HttpServlet{
 	resp.sendRedirect("lookingFor/"+ user_id);
 	//req.getRequestDispatcher("/_view/lookingFor.jsp").forward(req, resp);
 
-
+*/
 
 
 
