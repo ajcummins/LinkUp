@@ -2,10 +2,9 @@ package edu.ycp.cs481.linkup.persistence;
 
 import java.sql.Connection;
 
-import com.mysql.jdbc.Messages;
-
 import edu.ycp.cs481.linkup.model.LookingFor;
 import edu.ycp.cs481.linkup.model.Matching;
+import edu.ycp.cs481.linkup.model.Messages;
 import edu.ycp.cs481.linkup.model.Rating;
 import edu.ycp.cs481.linkup.model.User;
 import edu.ycp.cs481.linkup.model.UserProfile;;
