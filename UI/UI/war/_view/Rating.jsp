@@ -26,8 +26,13 @@
 						Comment on your date experience:
 					</td>
 					<td>
-						<textarea rows="5" cols="31" name="rating" type="text" size="20"></textarea>
+						<textarea rows="5" cols="31" name="comment" type="text" size="20"></textarea>
 					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input name="submit" type="submit" value="Submit"/></td>
+				
 				</tr>
 				
 				

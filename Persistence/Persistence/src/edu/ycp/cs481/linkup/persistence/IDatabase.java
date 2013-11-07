@@ -1,5 +1,7 @@
 package edu.ycp.cs481.linkup.persistence;
 
+import java.sql.Connection;
+
 import com.mysql.jdbc.Messages;
 
 import edu.ycp.cs481.linkup.model.LookingFor;
@@ -45,7 +47,8 @@ public interface IDatabase {
 	
 	public Messages getMessages(Messages inMessage) throws PersistenceException;
 	
-	public void add_rating(Rating inRating) throws PersistenceException;
+	public int createRating(Rating inRating) throws PersistenceException;
+
 
 
 

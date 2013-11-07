@@ -42,6 +42,11 @@
 		<servlet-class>edu.ycp.cs481.linkup.ui.servlet.MatchProfileViewServlet</servlet-class>
 	</servlet>
 	
+	<servlet>
+		<servlet-name>Rating</servlet-name>
+		<servlet-class>edu.ycp.cs481.linkup.ui.servlet.RatingServlet</servlet-class>
+	</servlet>
+	
 
 
 	<!-- Servlet-mapping -->
@@ -80,6 +85,13 @@
 		<servlet-name>MatchProfileView</servlet-name>
 		<url-pattern>/MatchProfile/*</url-pattern>
 	</servlet-mapping> 
+	
+	<servlet-mapping>
+		<servlet-name>Rating</servlet-name>
+		<url-pattern>/Rating/*</url-pattern>
+	</servlet-mapping> 
+	
+	
 
 	<welcome-file-list>
 		<welcome-file>/index/*</welcome-file>

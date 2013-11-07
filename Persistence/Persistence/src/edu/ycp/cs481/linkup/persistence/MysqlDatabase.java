@@ -488,38 +488,94 @@ public class MysqlDatabase implements IDatabase {
 				return null;
 		}
 			
-		public void add_rating(Rating inRating)throws PersistenceException {
+		public void add_rating(Connection con, int rating_id, Rating inRating)throws SQLException {
 				//determine next available userID
+			
+			//SQLconnection sqlConn = null;
 				java.sql.PreparedStatement stmt = null;
 				
 		        try
 		        {
-		        	SQLconnection sqlConn = new SQLconnection();
-					Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
-		        	//using con create an entry into the appropriate table to add a user's looking for information
-		        	stmt = con.prepareStatement("INSERT INTO linkup.rating_system(rating_id,user_id, comment VALUES (?,?,?)");
-		            stmt.setInt(1, inRating.getUserID());
-		            stmt.setString(2, inRating.getUsername());
-		            stmt.setString(3, inRating.getComment());
+		
+		        	stmt = con.prepareStatement("INSERT INTO linkup.rating_system(rating_id,user_id,comment) VALUES (?,?,?)");
+		            stmt.setInt(1,inRating.getRatingID());
+		            stmt.setInt(2, inRating.getUserID());
+		            stmt.setString(3, "" + inRating.getComment());
+		            
+		            stmt.executeUpdate();
 		         
-		        }
-		        catch (Exception e) 
-		        {
-		            e.printStackTrace();
-		        }
-		        finally
-		        {
-		        	if (stmt != null) {
-		                try {
-		                   stmt.close();
-		                } catch (SQLException ex) {
-		                }
-		            }
-		        }
+		        }finally {
+					DBUtil.closeQuietly(stmt);
+				}
+		        
+		        
 			
 		
 			
 		}
+		
+		public int createRating(Rating inRating) throws PersistenceException {
+			
+			int rating_id = 0;
+			SQLconnection sqlConn = null;
+
+			// Outer try/finally (to ensure SQLconnection is cleaned up properly)
+			try {
+				// Inner try/catch to handle SQLException
+				try {
+					// Try to create the Sql Connection
+					sqlConn = new SQLconnection();
+					Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+					// use the connection
+
+					// Find the Max UserID so we can add after it
+					rating_id = getMaxRatingID(con); 
+
+					// Using the newly found userId add the User
+					add_rating(con, rating_id, inRating);
+					
+					return rating_id;
+	            }
+	            catch(SQLException e)
+	            {
+	            	throw new PersistenceException("Error creating user", e);
+	            }
+			}
+			finally {
+				if (sqlConn != null) {
+					sqlConn.stopConnection();
+					
+				}
+			}
+			
+			
+			
+			
+		}
+		
+		private int getMaxRatingID(Connection con) throws SQLException{
+			java.sql.PreparedStatement stmt2 = null;
+			ResultSet result = null;
+			
+			try {
+				int rating_id;
+				int max;
+				stmt2 = con.prepareStatement("SELECT MAX(rating_id) FROM linkup.rating_system");
+				stmt2.executeQuery();
+				result = stmt2.getResultSet();
+				result.next();
+				max = result.getInt(1);
+				rating_id = max + 1;
+				System.out.println("MAX RATING ID: " + rating_id);
+				return rating_id;
+			} finally {
+				DBUtil.closeQuietly(result);
+				DBUtil.closeQuietly(stmt2);
+			}
+		}
+
+		
+
 			
 		
 }

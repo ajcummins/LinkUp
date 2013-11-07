@@ -4,41 +4,46 @@ package edu.ycp.cs481.linkup.model;
 public class Rating 
 {
 
-	private int userID;
-	private String username;
+	private int rating_id;
+	private int user_id;
 	private String comment;
 
 	
-	public Rating(){
+	public Rating()
+	{
 		
 	}
 	
-	public Rating(int inUserID, String inUsername, String inComment){
 	
-		userID = inUserID;
-		username = inUsername;
+	public Rating(int inRatingID, int inUserID, String inComment){
+	
+		rating_id = inRatingID;
+		user_id = inUserID;
 		comment = inComment;
 		
 	}
-	
-	public void setUserID(int inUserID){
-		userID = inUserID;
+
+
+
+
+	public void setUserID(int inRatingID){
+		rating_id = inRatingID;
 	}
 	
-	public void setUsername(String inUsername){
-		username = inUsername;
+	public void setUsername(int inUserID){
+		user_id = inUserID;
 	}
 	
 	public void setComment(String inComment){
 		comment = inComment;
 	}
 	
-	public int getUserID(){
-		return userID;
+	public int getRatingID(){
+		return rating_id;
 	}
 	
-	public String getUsername(){
-		return username;
+	public int getUserID(){
+		return user_id;
 	}
 	
 	public String getComment(){
