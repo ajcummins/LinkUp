@@ -47,6 +47,11 @@
 		<servlet-class>edu.ycp.cs481.linkup.ui.servlet.RatingServlet</servlet-class>
 	</servlet>
 	
+	<servlet>
+		<servlet-name>Messages</servlet-name>
+		<servlet-class>edu.ycp.cs481.linkup.ui.servlet.MessageServlet</servlet-class>
+	</servlet>
+	
 
 
 	<!-- Servlet-mapping -->
@@ -89,6 +94,11 @@
 	<servlet-mapping>
 		<servlet-name>Rating</servlet-name>
 		<url-pattern>/Rating/*</url-pattern>
+	</servlet-mapping> 
+	
+	<servlet-mapping>
+		<servlet-name>Messages</servlet-name>
+		<url-pattern>/matchMessages/*</url-pattern>
 	</servlet-mapping> 
 	
 	
