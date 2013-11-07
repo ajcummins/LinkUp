@@ -43,7 +43,7 @@ public class MatchServlet extends HttpServlet {
 		}
 		else{
 			for(int i = 0; i < match.length; i++){
-				table = table + (i+1) + ") " + match[i] + "      <a href='MatchProfile/1'>View Profile</a><br>";
+				table = table + (i+1) + ") " + match[i] + "      <input name='submit' value='View Match' type='submit' /><br>";
 			}
 			req.setAttribute("match", table);
 			req.getRequestDispatcher("/_view/userMatch.jsp").forward(req, resp);
@@ -53,9 +53,15 @@ public class MatchServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-			
-		System.out.print("this is the user id:" + user_id);
-		resp.sendRedirect("userProfile/"+ user_id);	
+		String buttonAction = req.getParameter("submit");
+		
+		if(buttonAction.equals("View Match")){
+			//System.out.print("this is the user id:" + user_id);
+			resp.sendRedirect("MatchProfile/"+ user_id + "/30");	
+		}else{
+			System.out.print("this is the user id:" + user_id);
+			resp.sendRedirect("userProfile/"+ user_id);	
+		}
 	}
 	
 	String[] get_match(int userid, HttpServletRequest req, HttpServletResponse resp)	{
