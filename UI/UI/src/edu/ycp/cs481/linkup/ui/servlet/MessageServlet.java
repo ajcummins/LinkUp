@@ -33,7 +33,7 @@ public class MessageServlet extends HttpServlet {
 		user_id = Integer.parseInt(urlPath.getUserIDFromPath());
 		String username = getUserName(user_id);
 		req.setAttribute("username", username);
-		req.setAttribute("table", "<tr><td>Row 1, cell 1</td><td>Row 1, cell 2</td></tr></table>");
+		req.setAttribute("table", "<tr><td>username who sent</td><td>message they sent</td></tr></table>");
 		req.getRequestDispatcher("/_view/matchMessages.jsp").forward(req, resp);
 	}
 	
