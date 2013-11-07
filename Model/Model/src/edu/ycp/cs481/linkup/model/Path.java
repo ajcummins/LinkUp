@@ -39,6 +39,40 @@ public class Path {
 		return pathUserID;
 	}
 	
+	public String getLoggedInUserIDFromPath()
+	{
+		//Just get the userID / UserID hash tag from the url
+		int i = 0;
+		int count = 0;
+		String pathUserID = "";
+		while(i < 1)
+		{
+			// Count the /'s their should only be 1 right before the userID / userID Hashtag
+			// example userProfile/3  NOTE: localhost:8080/ is not part of the path
+			String currentChar = path.substring(count, count+1);
+			count++;
+			if(currentChar.equals("/"))
+			{
+				i++;
+			}
+			
+		}
+		pathUserID = path.substring(count);
+		String[] array = pathUserID.split("");
+		String loggedIN = "";
+		boolean done = false;
+		for(i = 0; i < array.length; i++){
+			if(array[i].equals("/")){
+				done = true;
+				return loggedIN;
+			}if(done == false){
+				loggedIN = loggedIN + array[i];
+			}
+			
+		}
+		return loggedIN;
+	}
+	
 	public String getMatchUserIDFromPath()
 	{
 		//Just get the userID / UserID hash tag from the url

@@ -26,6 +26,7 @@ public class MatchProfileViewServlet extends HttpServlet {
 	private static String DB_USERNAME = "ajcummins";
 	private static String DB_PASSWORD = "root";
 	private int userid;	
+	private int Loginuserid;
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -35,6 +36,9 @@ public class MatchProfileViewServlet extends HttpServlet {
 		String looking_for1 = null;
 		String religion1 = null;
 		
+		Path urlPath1 = new Path(req.getPathInfo());
+		Loginuserid = Integer.parseInt(urlPath1.getLoggedInUserIDFromPath());
+		System.out.print("This is the user that is logged in: " + Loginuserid);
 					
 			//Get userid from the url passed
 			Path urlPath = new Path(req.getPathInfo());
@@ -230,8 +234,8 @@ public class MatchProfileViewServlet extends HttpServlet {
 		
 		protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 				throws ServletException, IOException {
-			System.out.print("this is the user id:" + userid);
-			resp.sendRedirect("userMatch/"+ userid);				
+			//System.out.print("this is the user id:" + userid);
+			resp.sendRedirect("userMatch/"+ Loginuserid);				
 	}
 	
 	
