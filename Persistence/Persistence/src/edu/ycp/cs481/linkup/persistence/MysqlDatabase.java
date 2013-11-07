@@ -5,10 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.mysql.jdbc.Messages;
-
 import edu.ycp.cs481.linkup.model.LookingFor;
 import edu.ycp.cs481.linkup.model.Matching;
+import edu.ycp.cs481.linkup.model.Messages;
 import edu.ycp.cs481.linkup.model.Rating;
 import edu.ycp.cs481.linkup.model.User;
 import edu.ycp.cs481.linkup.model.UserProfile;
@@ -452,54 +451,54 @@ public class MysqlDatabase implements IDatabase {
 				
 			}
 
-			@Override
-			public Messages getMessages(Messages inMessage)
-					throws PersistenceException {
-				String[] noMessages = new String[1];
-				noMessages[0] = "No Messages at this time :(";
-				int toID = 1;//inMessage.getToID();
-					java.sql.PreparedStatement stmt = null;					 				 
-					
-					//get number of messages for user
-					int number = 0;
-					try{
-						
-						SQLconnection sqlConn = new SQLconnection();
-						 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
-						String sql = ("SELECT COUNT(*) FROM linkup.match_messages WHERE user_to = " + toID);
-						PreparedStatement prest = con.prepareStatement(sql);
-					    ResultSet rs = prest.executeQuery();
-					    while (rs.next()) {
-					      number = rs.getInt(1);
-					    }
-					    System.out.println("Number of records: " + number);
-					    con.close();
-						
-						
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}finally{
-						 int newnum = 0;
-					}
-					
-					
-				
-				return null;
-		}
+			 @Override
+             public Messages getMessages(Messages inMessage)
+                             throws PersistenceException {
+                     String[] noMessages = new String[1];
+                     noMessages[0] = "No Messages at this time :(";
+                     int toID = 1;//inMessage.getToID();
+                             java.sql.PreparedStatement stmt = null;                                                                         
+                             
+                             //get number of messages for user
+                             int number = 0;
+                             try{
+                                     
+                                     SQLconnection sqlConn = new SQLconnection();
+                                      Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+                                     String sql = ("SELECT COUNT(*) FROM linkup.match_messages WHERE user_to = " + toID);
+                                     PreparedStatement prest = con.prepareStatement(sql);
+                              ResultSet rs = prest.executeQuery();
+                              while (rs.next()) {
+                              number = rs.getInt(1);
+                              }
+                              System.out.println("Number of records: " + number);
+                              con.close();        
+                             } catch (SQLException e) {
+                                     // TODO Auto-generated catch block
+                                     e.printStackTrace();
+                             }finally{
+                                      int newnum = 0;
+                             }
+                             
+                             
+                     
+                     return null;
+     }
 			
 		public void add_rating(Connection con, int rating_id, Rating inRating)throws SQLException {
 				//determine next available userID
 			
 			//SQLconnection sqlConn = null;
 				java.sql.PreparedStatement stmt = null;
+				System.out.println("RATING ID IN ADD RATING : " + rating_id);
+				//System.out.println("USER ID IN ADD RATING: "+ user_id);
 				
 		        try
 		        {
 		
 		        	stmt = con.prepareStatement("INSERT INTO linkup.rating_system(rating_id,user_id,comment) VALUES (?,?,?)");
-		            stmt.setInt(1,inRating.getRatingID());
-		            stmt.setInt(2, inRating.getUserID());
+		            stmt.setInt(1, rating_id);
+		            stmt.setString(2, "" +  inRating.getUserID());
 		            stmt.setString(3, "" + inRating.getComment());
 		            
 		            stmt.executeUpdate();
@@ -530,11 +529,13 @@ public class MysqlDatabase implements IDatabase {
 
 					// Find the Max UserID so we can add after it
 					rating_id = getMaxRatingID(con); 
-
+					System.out.println("CreateRating rating_id1: " + rating_id);
 					// Using the newly found userId add the User
 					add_rating(con, rating_id, inRating);
 					
+					System.out.println("CreateRating rating_id: " + rating_id);
 					return rating_id;
+				
 	            }
 	            catch(SQLException e)
 	            {

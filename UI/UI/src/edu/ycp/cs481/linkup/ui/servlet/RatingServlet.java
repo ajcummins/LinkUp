@@ -66,7 +66,7 @@ public class RatingServlet extends HttpServlet{
 		//check to make sure username is in database
 		//get that usernames User_ID
 		String comment = req.getParameter("comment");
-		
+
 
 		java.sql.PreparedStatement stmt = null;
 		int userid=0;
@@ -91,8 +91,8 @@ public class RatingServlet extends HttpServlet{
 			e.printStackTrace();
 		}
 
-		
-		
+
+
 
 
 		//testing to see if gets info
@@ -105,30 +105,30 @@ public class RatingServlet extends HttpServlet{
 
 
 
-	
-
-	Rating tempRating = new Rating(rating_id, user_id, comment);
 
 
+		Rating tempRating = new Rating(rating_id, user_id, comment);
 
-	RatingController controller = new RatingController();
 
-	/*try {
-		rating_id = controller.createRating(tempRating);
-	} catch (PersistenceException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+
+		RatingController controller = new RatingController();
+
+		try {
+			rating_id = controller.createRating(tempRating);
+		} catch (PersistenceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		resp.sendRedirect("lookingFor/"+ user_id);
+		//req.getRequestDispatcher("/_view/lookingFor.jsp").forward(req, resp);
+
+
+
+
+
+
 	}
-
-	resp.sendRedirect("lookingFor/"+ user_id);
-	//req.getRequestDispatcher("/_view/lookingFor.jsp").forward(req, resp);
-
-*/
-
-
-
-
-}
 
 }
 

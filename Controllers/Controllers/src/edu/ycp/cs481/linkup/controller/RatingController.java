@@ -5,9 +5,14 @@ import edu.ycp.cs481.linkup.persistence.Database;
 import edu.ycp.cs481.linkup.persistence.PersistenceException;
 
 public class RatingController {
-		public void Rating(Rating inRating) throws PersistenceException{
-			Database.getInstance().createRating(inRating);
+		public int createRating(Rating inRating) throws PersistenceException{
+			return Database.getInstance().createRating(inRating);
 		}
+
+
+	
+
+	
 
 }
 
