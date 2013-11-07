@@ -37,12 +37,17 @@ public class MatchServlet extends HttpServlet {
 		
 		String[] match = get_match(user_id, req, resp);
 		String table = "";
-		for(int i = 0; i < match.length; i++){
-			table = table + (i+1) + ") " + match[i] + "      <a href='MatchProfile/1'>View Profile</a><br>";
+		if(match == null){
+			req.setAttribute("match", "No Matches at this time. :(");
+			req.getRequestDispatcher("/_view/userMatch.jsp").forward(req, resp);
 		}
-		req.setAttribute("match", table);
-		req.getRequestDispatcher("/_view/userMatch.jsp").forward(req, resp);
-	      
+		else{
+			for(int i = 0; i < match.length; i++){
+				table = table + (i+1) + ") " + match[i] + "      <a href='MatchProfile/1'>View Profile</a><br>";
+			}
+			req.setAttribute("match", table);
+			req.getRequestDispatcher("/_view/userMatch.jsp").forward(req, resp);
+		}
 	}
 	
 
@@ -60,8 +65,6 @@ public class MatchServlet extends HttpServlet {
 		int lookingLocation = -1;
 		int lookingSeriousness = -1;
 		int lookingSeriousnessWeight = -1;
-		String[] mates = new String[1];
-		mates[0] = "No Matches at this time. :(";
 
 			java.sql.PreparedStatement stmt = null;
 			int match = -1;
@@ -131,7 +134,7 @@ public class MatchServlet extends HttpServlet {
 					
 					SQLconnection sqlConn = new SQLconnection();
 					 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
-					String sql = ("SELECT COUNT(*) FROM linkup.profile_info WHERE gender = " + lookingGender +" AND location = " + lookingLocation + " AND religion = " + lookingReligion + " AND seriousness = " +lookingSeriousness +"AND age BETWEEN "+ lookingAgeLow +" AND " + lookingAgeHigh);
+					String sql = ("SELECT COUNT(*) FROM linkup.profile_info WHERE gender = " + lookingGender +" AND location = " + lookingLocation + " AND religion = " + lookingReligion + " AND looking_for = " + lookingSeriousness +" AND age BETWEEN "+ lookingAgeLow +" AND " + lookingAgeHigh);
 					PreparedStatement prest = con.prepareStatement(sql);
 				    ResultSet rs = prest.executeQuery();
 				    while (rs.next()) {
@@ -195,7 +198,7 @@ public class MatchServlet extends HttpServlet {
 				}
 				return soulMates;
 			}else{
-				return mates;
+				return null;
 			}
 				
 			}else{
@@ -270,7 +273,7 @@ public class MatchServlet extends HttpServlet {
 			}
 			return soulMates;
 		}else{
-			return mates;
+			return null;
 		}
 			}
 	}
