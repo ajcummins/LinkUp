@@ -48,6 +48,8 @@ public interface IDatabase {
 	
 	public int createRating(Rating inRating) throws PersistenceException;
 
+	public void insertMessages(Messages inMessage) throws PersistenceException;
+
 
 
 

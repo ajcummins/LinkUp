@@ -235,7 +235,17 @@ public class MatchProfileViewServlet extends HttpServlet {
 		protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 				throws ServletException, IOException {
 			//System.out.print("this is the user id:" + userid);
-			resp.sendRedirect("userMatch/"+ Loginuserid);				
+			
+			System.out.print("\nthis is the user id:" + userid + "\n");
+			String buttonAction = req.getParameter("submit");
+			
+			if(buttonAction.equals("Send Message")){ //go to the send message page
+				resp.sendRedirect("sendMessage/"+ Loginuserid +"/" +userid);
+			
+			}else{
+				resp.sendRedirect("userMatch/"+ Loginuserid);
+			}
+				
 	}
 	
 	

@@ -575,7 +575,67 @@ public class MysqlDatabase implements IDatabase {
 		}
 	}
 
+	@SuppressWarnings("resource")
+	@Override
+	public void insertMessages(Messages inMessage) throws PersistenceException {
+		java.sql.PreparedStatement stmt = null;
+		System.out.println("userid to" + inMessage.getToID()
+				+ "\nuserid from: " + inMessage.getFromID()
+				+ "\nMessage: " + inMessage.getMessage());
+		try
+		{
+			SQLconnection sqlConn = new SQLconnection();
+			Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+			
+			int messID = getMaxMessageId(con);
+			String userName = null;
+			
+			stmt = con.prepareStatement("SELECT username FROM linkup.user WHERE user_id = " + inMessage.getFromID());
+            stmt.executeQuery();
+            ResultSet result = stmt.getResultSet();
+            result.next();
+            userName = result.getString(1);
+			
+			
+			//using con create an entry into the appropriate table to add a user's looking for information
+			stmt = con.prepareStatement("INSERT INTO linkup.match_messages(message_id,user_to"
+					+ ",user_from,message) VALUES (?,?,?,?)");
+			stmt.setInt(1, messID);
+			stmt.setInt(2, inMessage.getToID());
+			stmt.setString(3, userName);
+			stmt.setString(4, inMessage.getMessage());
+			stmt.executeUpdate();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			DBUtil.closeQuietly(stmt);
+		}
+		
+	}
 
+	private int getMaxMessageId(Connection conn) throws SQLException {
+		java.sql.PreparedStatement stmt2 = null;
+		ResultSet result = null;
+
+		try {
+			int messID;
+			int max;
+			stmt2 = conn.prepareStatement("SELECT MAX(message_id) FROM linkup.match_messages");
+			stmt2.executeQuery();
+			result = stmt2.getResultSet();
+			result.next();
+			max = result.getInt(1);
+			messID = max + 1;
+			return messID;
+		} finally {
+			DBUtil.closeQuietly(result);
+			DBUtil.closeQuietly(stmt2);
+		}
+	}
 
 
 
