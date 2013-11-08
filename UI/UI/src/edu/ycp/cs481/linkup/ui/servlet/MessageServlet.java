@@ -33,8 +33,66 @@ public class MessageServlet extends HttpServlet {
 		user_id = Integer.parseInt(urlPath.getUserIDFromPath());
 		String username = getUserName(user_id);
 		req.setAttribute("username", username);
-		req.setAttribute("table", "<tr><td>username who sent</td><td>message they sent</td></tr></table>");
-		req.getRequestDispatcher("/_view/matchMessages.jsp").forward(req, resp);
+		java.sql.PreparedStatement stmt = null;
+		int number = 0;
+		String usernameFrom = "";
+		String mess = "";
+		try{
+			
+			SQLconnection sqlConn = new SQLconnection();
+			 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+			String sql = ("SELECT COUNT(*) FROM linkup.match_messages WHERE user_to = " + user_id);
+			PreparedStatement prest = con.prepareStatement(sql);
+		    ResultSet rs = prest.executeQuery();
+		    while (rs.next()) {
+		      number = rs.getInt(1);
+		    }
+		    System.out.println("Number of records: " + number);
+		    con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			 int newnum = 0;
+		}
+		if(number != 0){
+			String[] fromUser = new String[number];
+			String[] matchMess = new String[number];
+			int i = 0;
+			try{ 
+				SQLconnection sqlConn = new SQLconnection();
+				 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+				 stmt = con.prepareStatement("SELECT user_from, message FROM linkup.match_messages WHERE user_to = " + user_id);
+		            stmt.executeQuery();
+		            ResultSet result = stmt.getResultSet();
+		            while(result.next()){
+		            	//System.out.println("result is: " +result.getInt(1));
+		            	usernameFrom = result.getString(1);
+		            	mess = result.getString(2);
+		            	fromUser[i] = usernameFrom;
+		            	matchMess[i] = mess;
+		            	System.out.println("sender id: " + fromUser[i]);
+		            	System.out.println("\nmessage is: " + matchMess[i]);
+		            	i++;
+		            }
+		        	
+		        } 
+		        catch (Exception e) 
+		        {
+		            e.printStackTrace();
+		        }
+			int j;
+			String tableData = "";
+			for(j = 0; j < number; j++){
+				tableData = tableData + "<tr><td>" +fromUser[j]+"</td><td>"+matchMess[j]+"</td></tr>";
+			}
+			tableData = tableData + "</table>";
+			req.setAttribute("table", tableData);
+			req.getRequestDispatcher("/_view/matchMessages.jsp").forward(req, resp);
+		}else{
+			req.setAttribute("table", "<tr><td>username who sent</td><td>message they sent</td></tr></table>");
+			req.getRequestDispatcher("/_view/matchMessages.jsp").forward(req, resp);
+		}
 	}
 	
 	public String getUserName(int user_id){
