@@ -20,11 +20,12 @@ public class MySqlDatabaseJUnitTest extends TestCase {
 		conn = SQLcon.createConnection(dbUser, dbPass);
 	}
 	
-	public void testGetUser() throws Exception{
+	/*public void testGetUser() throws Exception{
 		/*
 		MysqlDatabase.getUser(conn, testUser, testPass);
 		assertEquals(1, user.getUserid());
 		assertEquals(2, user2.getUserid());
-		*/
-	}
+		
+	}*/
+	
 }
