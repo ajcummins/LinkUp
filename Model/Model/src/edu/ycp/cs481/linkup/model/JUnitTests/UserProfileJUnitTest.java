@@ -42,8 +42,8 @@ public class UserProfileJUnitTest extends TestCase {
 	}
 	
 	public void testGetReligion() throws Exception{
-		assertEquals("baptist", user.getReligion());
-		assertEquals("catholic", user2.getReligion());
+		assertEquals(1, user.getReligion());
+		assertEquals(2, user2.getReligion());
 	}
 	
 	public void testGetBooks() throws Exception{
