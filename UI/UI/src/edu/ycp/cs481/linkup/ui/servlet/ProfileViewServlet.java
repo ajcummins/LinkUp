@@ -241,10 +241,10 @@ public class ProfileViewServlet extends HttpServlet {
 				System.out.print("\nthis is the user id:" + userid);
 				resp.sendRedirect("matchMessages/"+ userid);
 			
-			}if(buttonAction.equals("Rate a Date")){ //go to the user's messages page
+			/*if(buttonAction.equals("Rate a Date")){ //go to the user's rate page
 				System.out.print("\nthis is the user id:" + userid);
 				resp.sendRedirect("Rating/"+ userid);
-			
+			*/
 			}else{
 				resp.sendRedirect("userMatch/"+ userid);
 			}

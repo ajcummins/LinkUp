@@ -241,7 +241,10 @@ public class MatchProfileViewServlet extends HttpServlet {
 			
 			if(buttonAction.equals("Send Message")){ //go to the send message page
 				resp.sendRedirect("sendMessage/"+ Loginuserid +"/" +userid);
-			
+			}
+			if(buttonAction.equals("Rate a Date")){ //go to the user's messages page
+					System.out.print("\ngoing to rate page:" + userid);
+					resp.sendRedirect("Rating/" +  userid);
 			}else{
 				resp.sendRedirect("userMatch/"+ Loginuserid);
 			}

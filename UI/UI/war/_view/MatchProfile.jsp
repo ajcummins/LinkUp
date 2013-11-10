@@ -20,7 +20,7 @@
 
 		</form>
 		<form action="/MatchProfile" method="POST">
-	 <input name= "submit" type="submit" value="Matches!"> <td>	<input name ="submit" type="submit" value="Send Message"> </td>
+	 <input name= "submit" type="submit" value="Matches!"> <td>	<input name ="submit" type="submit" value="Send Message"> </td> <input name ="submit" type="submit" value="Rate a Date"> </td>
 		</form>
 		</div>
 		<form>

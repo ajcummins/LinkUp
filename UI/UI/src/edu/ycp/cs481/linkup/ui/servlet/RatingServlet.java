@@ -51,7 +51,8 @@ public class RatingServlet extends HttpServlet{
 		//Get userid from the url passed
 				Path urlPath = new Path(req.getPathInfo());
 				System.out.println("Path = " + req.getPathInfo());
-				userLogin = Integer.parseInt(urlPath.getUserIDFromPath());
+				userLogin = Integer.parseInt(urlPath.getUserIDFromPath());  //this is the id of the ratee not the rater
+				System.out.println("\nTHIS IS THE RATING ID GOTTEN FROM THE PATH: " + userLogin);
 
 	}
 
@@ -62,8 +63,11 @@ public class RatingServlet extends HttpServlet{
 
 
 
-		String username = req.getParameter("username"); //get username of the person they are rating
-		//check to make sure username is in database
+		//String username = req.getParameter("username"); //get username of the person they are rating
+		/*Path urlPath1 = new Path(req.getPathInfo());
+		int id = Integer.parseInt(urlPath1.getUserIDFromPath());
+		System.out.println("\nTHIS IS THE RATEEES USER ID? : " + id);
+		*///check to make sure username is in database
 		//get that usernames User_ID
 		String comment = req.getParameter("comment");
 
@@ -78,12 +82,12 @@ public class RatingServlet extends HttpServlet{
 
 
 			//RATED USERS ID
-			stmt = con.prepareStatement("SELECT user_id FROM linkup.user WHERE username = '" + username + "';" );
+			/*stmt = con.prepareStatement("SELECT user_id FROM linkup.user WHERE username = '" + username + "';" );
 			stmt.executeQuery();
 			ResultSet result = stmt.getResultSet();
 			result.next();
 			userid = result.getInt(1); //gets the rated users id
-			System.out.println("user id: " + userid);
+			System.out.println("user id: " + userid);*/
 
 		} 
 		catch (Exception e) 
@@ -96,8 +100,7 @@ public class RatingServlet extends HttpServlet{
 
 
 		//testing to see if gets info
-		System.out.println("username: " + username
-				+ "\nrated user id: " + userid
+		System.out.println("\nrated user id: " + userLogin
 				+ "\ncomment: " + comment);
 
 
@@ -107,7 +110,7 @@ public class RatingServlet extends HttpServlet{
 
 
 
-		Rating tempRating = new Rating(rating_id, userid, comment);
+		Rating tempRating = new Rating(rating_id, userLogin, comment);
 
 
 

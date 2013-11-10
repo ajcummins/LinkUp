@@ -22,7 +22,7 @@
 		<form action="/userProfile" method="POST">
 		<!--  <button type="button" onclick="document.location.href='userMatch/${user_id}'">Matches!</button> -->
 	 <input name ="submit" type="submit" value="Matches!"> 
-		&nbsp;  <input name ="submit" type="submit" value="Messages">&nbsp; <input type="submit" value="Account Settings"><input name ="submit" type="submit" value="Rate a Date">
+		&nbsp;  <input name ="submit" type="submit" value="Messages">&nbsp; <input type="submit" value="Account Settings"><!--  <input name ="submit" type="submit" value="Rate a Date">-->
 	
 		</form>
 		</div>
