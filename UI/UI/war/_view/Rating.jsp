@@ -11,14 +11,6 @@
 		<form action="/Rating" method="POST">
 			<table>
 		
-			<tr>
-					<td>
-						Enter the username of your date:
-					</td>
-					<td>
-						<input name="username" type="int" size="20" />
-					</td>
-				</tr>
 			
 				
 				<tr>

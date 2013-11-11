@@ -34,7 +34,7 @@
 						Upload a Picture:
 					</td>
 					
-					<td>
+					<!--  <td>
 						<form action="" method="post" enctype="multipart/form-data">
     					<fieldset>
       						<input name ="picture" type="file" name="Image" />
@@ -46,7 +46,7 @@
    
    
     
-					</td>
+					</td>-->
 				</tr>
 				
 			
