@@ -90,7 +90,7 @@ public class MessageServlet extends HttpServlet {
 			req.setAttribute("table", tableData);
 			req.getRequestDispatcher("/_view/matchMessages.jsp").forward(req, resp);
 		}else{
-			req.setAttribute("table", "<tr><td>username who sent</td><td>message they sent</td></tr></table>");
+			req.setAttribute("table", "<tr><td></td><td></td></tr></table>");
 			req.getRequestDispatcher("/_view/matchMessages.jsp").forward(req, resp);
 		}
 	}
