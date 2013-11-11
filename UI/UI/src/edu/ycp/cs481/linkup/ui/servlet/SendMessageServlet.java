@@ -61,7 +61,7 @@ public class SendMessageServlet extends HttpServlet {
 				//Some type of error
 				req.setAttribute("error", "You have remaining Empty Fields");
 				//throw new ServletException("You have remaining Empty Fields");
-				req.getRequestDispatcher("/_view/lookinFor.jsp").forward(req, resp);
+				req.getRequestDispatcher("/_view/lookingFor.jsp").forward(req, resp);
 			}
 			else
 			{
