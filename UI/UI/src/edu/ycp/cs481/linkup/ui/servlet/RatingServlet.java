@@ -40,19 +40,34 @@ public class RatingServlet extends HttpServlet{
 	private int userLogin;
 	private String username;
 	private String comment;
+	
 
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		req.getRequestDispatcher("/_view/Rating.jsp").forward(req, resp);
-
+		
+		Path urlPath1 = new Path(req.getPathInfo());
+		userLogin = Integer.parseInt(urlPath1.getLoggedInUserIDFromPath());
+		System.out.print("This is the user that is logged in: " + userLogin);
 
 		//Get userid from the url passed
-				Path urlPath = new Path(req.getPathInfo());
+		Path urlPath = new Path(req.getPathInfo());
+		user_id = Integer.parseInt(urlPath.getMatchUserIDFromPath());
+		System.out.print("This is the user that is rated in: " + user_id);
+
+		//Get userid from the url passed
+				/*Path urlPath = new Path(req.getPathInfo());
 				System.out.println("Path = " + req.getPathInfo());
 				userLogin = Integer.parseInt(urlPath.getUserIDFromPath());  //this is the id of the ratee not the rater
 				System.out.println("\nTHIS IS THE RATING ID GOTTEN FROM THE PATH: " + userLogin);
+				
+				Path urlPath2 = new Path(req.getPathInfo());
+				user_id = Integer.parseInt(urlPath2.getMatchUserIDFromPath());
+				System.out.println("THIS IS THE PERSON BEING RATEDS ID: " + user_id);
+					*/
+		
+		req.getRequestDispatcher("/_view/Rating.jsp").forward(req, resp);
 
 	}
 
@@ -123,7 +138,7 @@ public class RatingServlet extends HttpServlet{
 			e.printStackTrace();
 		}
 
-		resp.sendRedirect("userProfile/"+ userLogin);
+		resp.sendRedirect("MatchProfile/"+ userLogin + "/" + user_id);
 		
 
 
