@@ -36,7 +36,7 @@
 					</td>
 					<td>			 	
 						<input type="submit" value="Submit">	
-						<button type="button" onclick="document.location.href='userProfile'">Go to Profile</button>
+						<!--<button type="button" onclick="document.location.href='userProfile'">Go to Profile</button>-->
 					</td>
 					
 				</tr>
