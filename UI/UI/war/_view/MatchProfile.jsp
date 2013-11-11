@@ -128,12 +128,27 @@
 				
 				
 			</table>
-		
-			<br>
-			<br>
-		
-		
+			<form action = "/MatchProfile" method = "POST">
+			<fieldset>
+			<legend> Comments: </legend>
+			<input type = "hidden" name="userid">
+			<table>
+				<tr>
+					<td> ${comments} </td> 
+				</tr>
+			</table>
 			</fieldset>
+		
+			<c:if test="${! empty error}">
+				<b>Error: ${error}</b>
+			</c:if>
+			
+			<c:if test="${! empty info}">
+				<p>${info}</p>
+			</c:if> 
+		
+		
+		
 			
 			
 			
