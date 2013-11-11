@@ -272,7 +272,7 @@ public class MatchProfileViewServlet extends HttpServlet {
 			System.out.print("\ngoing to rate page:" + userid);
 			resp.sendRedirect("Rating/" +  Loginuserid +"/" + userid);
 		}else{
-			resp.sendRedirect("MatchProfile/"+ Loginuserid);
+			resp.sendRedirect("userMatch/"+ Loginuserid);
 		}
 
 	}
