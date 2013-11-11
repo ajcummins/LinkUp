@@ -43,7 +43,7 @@ public class addProfileInfoServlet extends HttpServlet{
 			throws ServletException, IOException {
 		// TODO: get profile info 
 		
-		final String path = "/UserPictures/";
+		/*final String path = "/UserPictures/";
 		final Part picture1 = req.getPart("picture");
 		//final String fileName = getFileName(picture);
 		String picture = req.getParameter("picture"); // get untiled.jpg 
@@ -74,7 +74,7 @@ public class addProfileInfoServlet extends HttpServlet{
 		            writer.close();
 		        }
 		}
-		
+		*/
 		
 		//int user_id = Integer.parseInt(req.getParameter("user_id")); //convert to int later
 		int location = Integer.parseInt(req.getParameter("location"));  //convert to int later
@@ -111,8 +111,8 @@ public class addProfileInfoServlet extends HttpServlet{
 					+ "\nbasic info: " + basic_info
 					+ "\nlikes: " + likes
 					+ "\ndislikes: " + dislikes
-					+ "\nlooking for: " + looking_for
-					+ "\nPICTURE: "+ picture);
+					+ "\nlooking for: " + looking_for);
+					//+ "\nPICTURE: "+ picture);
 		
 			UserProfile tempProfileInfo = new UserProfile(user_id, location, gender, age, religion, books, movies, music, basic_info, likes, dislikes, looking_for);
 			
