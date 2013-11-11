@@ -49,7 +49,7 @@ public class MatchProfileViewServlet extends HttpServlet {
 		userid = Integer.parseInt(urlPath.getMatchUserIDFromPath());
 		System.out.print("This is the user that is rated in: " + userid);
 
-		/*String[] comments = get_comment(userid, req, resp);
+		String[] comments = get_comment(userid, req, resp);
 		String table = "";
 		if(comments == null){
 			req.setAttribute("comments", "No Comments at this time. :(");
@@ -57,14 +57,14 @@ public class MatchProfileViewServlet extends HttpServlet {
 		}
 		else{
 			for(int i = 0; i < comments.length; i++){
-				table = table + (i+1) + ") " + comments[i] + "      <input name='submit' value='View "+ comments[i] +" Profile' type='submit' /><br>";
+				table = table + (i+1) + ") " + comments[i] + "      <br>";
 			}
 			req.setAttribute("comments", table);
-			req.getRequestDispatcher("/_view/MatchProfile.jsp").forward(req, resp);
+			//req.getRequestDispatcher("/_view/MatchProfile.jsp").forward(req, resp);
 		}
 
 
-*/
+
 		java.sql.PreparedStatement stmt = null;
 		String  religion =null; String books=null; String movies=null; String music=null;String basic_info=null;
 		String likes=null; String dislikes=null; 
@@ -280,7 +280,7 @@ public class MatchProfileViewServlet extends HttpServlet {
 	String[] get_comment(int userid, HttpServletRequest req, HttpServletResponse resp)	{
 		int NumComments = 0;
 		int number=0;
-		String [] commentList = new String[number];
+		
 		java.sql.PreparedStatement stmt = null;
 
 		try 
@@ -307,7 +307,10 @@ public class MatchProfileViewServlet extends HttpServlet {
 		}
 
 		if(number!=0){
-			for(int i=0;i<number; i++){
+			String [] commentList = new String[number];
+			int i = 0;
+			String commen = "";
+			//for(int i=0;i<number; i++){
 				try{
 					SQLconnection sqlConn = new SQLconnection();
 					Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);	
@@ -315,13 +318,16 @@ public class MatchProfileViewServlet extends HttpServlet {
 					stmt = con.prepareStatement("SELECT comment FROM linkup.rating_system WHERE user_id = " + userid);
 					stmt.executeQuery();
 					ResultSet Cresult = stmt.getResultSet();
-					Cresult.next();
-					commentList[i] = Cresult.getString(1);
-					System.out.println("Comment: " + commentList[i]);
+					while(Cresult.next()){
+						commen = Cresult.getString(1);
+						commentList[i] = commen;
+						System.out.println("Comment: " + commentList[i]);
+						i++;
+					 }
 				}catch(Exception e){
 					e.printStackTrace();
 				}
-			}
+			//}
 			return commentList;
 		}else{
 			return null;
