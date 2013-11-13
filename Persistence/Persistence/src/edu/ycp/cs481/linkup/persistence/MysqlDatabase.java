@@ -1,5 +1,6 @@
 package edu.ycp.cs481.linkup.persistence;
 
+import java.security.Timestamp;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -460,6 +461,7 @@ public class MysqlDatabase implements IDatabase {
 		String usernameFrom = "";
 		String mess = "";
 		String tableData = "";
+		java.sql.Timestamp time = null;
 		try{
 			
 			SQLconnection sqlConn = new SQLconnection();
@@ -485,7 +487,7 @@ public class MysqlDatabase implements IDatabase {
 			try{ 
 				SQLconnection sqlConn = new SQLconnection();
 				 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
-				 stmt = con.prepareStatement("SELECT user_from, message FROM linkup.match_messages WHERE user_to = " + user_id);
+				 stmt = con.prepareStatement("SELECT user_from, message FROM linkup.match_messages WHERE user_to = " + user_id + " ORDER BY time DESC");
 		            stmt.executeQuery();
 		            ResultSet result = stmt.getResultSet();
 		            while(result.next()){
