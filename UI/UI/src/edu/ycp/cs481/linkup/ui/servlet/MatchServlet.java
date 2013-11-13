@@ -47,9 +47,7 @@ public class MatchServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		//String[] match = get_match(user_id, req, resp);
+
 		String table = "";
 		if(match == null){
 			req.setAttribute("match", "No Matches at this time. :(");
@@ -73,49 +71,19 @@ public class MatchServlet extends HttpServlet {
 			resp.sendRedirect("userProfile/"+ user_id);					
 		}else{
 			System.out.print("\nthis is the value:" + buttonAction);
-			int id = getMatchID(buttonAction);
+			MatchingController controller = new MatchingController();
+			int id = 0;
+			try {
+				id = controller.MatchID(buttonAction);
+			} catch (PersistenceException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			//int id = getMatchID(buttonAction);
 			
 			resp.sendRedirect("MatchProfile/"+ user_id + "/" + id);
 		}
-	}
-	public int getMatchID(String buttonAction)
-	{
-		String[] array = buttonAction.split("");
-		System.out.print("\nthis is the array:" + array);
-		String matchUser = "";
-		int i; 
-		int matchid = -1;
-		for(i = 0; i < array.length; i++){
-			
-			if(i < 6 || i > (array.length - 9)){
-				//do nothing	
-			}
-			else{
-				//System.out.print("\n" + array[i]);
-				matchUser = matchUser + array[i];
-			}
-		}
-		
-		java.sql.PreparedStatement stmt = null;
-		try 
-        {   
-		 SQLconnection sqlConn = new SQLconnection();
-		 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);	
-
-		 stmt = con.prepareStatement("SELECT user_id FROM linkup.user WHERE username = '" + matchUser + "';");
-            stmt.executeQuery();
-            ResultSet result = stmt.getResultSet();
-            result.next();
-            matchid = result.getInt(1);
-        }catch (Exception e) 
-        {
-            e.printStackTrace();
-        }
-		System.out.print("\nthis is the usernaem:" + matchUser + "\n");
-		System.out.print("\nthis is the User Id of Match:" + matchid + "\n");
-		return matchid;
-	}
-	
+	}	
 	
 }
 

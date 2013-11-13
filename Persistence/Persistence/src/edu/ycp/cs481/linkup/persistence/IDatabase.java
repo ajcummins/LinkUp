@@ -50,6 +50,8 @@ public interface IDatabase {
 
 	public void insertMessages(Messages inMessage) throws PersistenceException;
 
+	public int getMatchID(String buttonAction) throws PersistenceException;
+
 
 
 
