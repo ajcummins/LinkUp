@@ -5,7 +5,7 @@ import edu.ycp.cs481.linkup.persistence.Database;
 import edu.ycp.cs481.linkup.persistence.PersistenceException;
 
 public class MatchingController {
-	public void Matching(Matching inMatching) throws PersistenceException{
-		Database.getInstance().find_match(inMatching);
+	public String[] Matching(int inMatching) throws PersistenceException{
+		return Database.getInstance().find_match(inMatching);
 	}
 }
