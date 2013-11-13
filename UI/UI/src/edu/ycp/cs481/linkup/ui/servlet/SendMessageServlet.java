@@ -13,6 +13,7 @@ import org.eclipse.jetty.client.api.Request;
 
 import edu.ycp.cs481.linkup.controller.LoadUserProfile;
 import edu.ycp.cs481.linkup.controller.LookingForController;
+import edu.ycp.cs481.linkup.controller.MessageController;
 import edu.ycp.cs481.linkup.controller.ProfileController;
 import edu.ycp.cs481.linkup.controller.SendMessageController;
 import edu.ycp.cs481.linkup.model.LookingFor;
@@ -44,11 +45,16 @@ public class SendMessageServlet extends HttpServlet {
 		Path urlPath = new Path(req.getPathInfo());
 		userid = Integer.parseInt(urlPath.getMatchUserIDFromPath());
 			
-				
+		MessageController controller = new MessageController();
+		String username = null;
+		try {
+			username = controller.MessagingUserName(userid);
+		} catch (PersistenceException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}	
+		req.getSession().setAttribute("sendid", username);
 		req.getRequestDispatcher("/_view/sendMessage.jsp").forward(req, resp);
-
-		req.getSession().setAttribute("sendid", userid);		
-		
 	}
 		
 		protected void doPost(HttpServletRequest req, HttpServletResponse resp)

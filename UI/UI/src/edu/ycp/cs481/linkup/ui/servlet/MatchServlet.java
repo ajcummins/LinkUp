@@ -30,10 +30,7 @@ public class MatchServlet extends HttpServlet {
 	int user_id;
 	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		//req.setAttribute("match", soulMate);
-		//req.getRequestDispatcher("/_view/userMatch.jsp").forward(req, resp);
-		
+			throws ServletException, IOException {		
 		//Get userid from the url passed
 		Path urlPath = new Path(req.getPathInfo());
 		System.out.println("Path = " + req.getPathInfo());
@@ -51,15 +48,14 @@ public class MatchServlet extends HttpServlet {
 		String table = "";
 		if(match == null){
 			req.setAttribute("match", "No Matches at this time. :(");
-			req.getRequestDispatcher("/_view/userMatch.jsp").forward(req, resp);
 		}
 		else{
 			for(int i = 0; i < match.length; i++){
 				table = table + (i+1) + ") " + match[i] + "      <input name='submit' value='View "+ match[i] +" Profile' type='submit' /><br>";
 			}
 			req.setAttribute("match", table);
-			req.getRequestDispatcher("/_view/userMatch.jsp").forward(req, resp);
 		}
+		req.getRequestDispatcher("/_view/userMatch.jsp").forward(req, resp);
 	}
 	
 

@@ -90,21 +90,12 @@ public class MatchProfileViewServlet extends HttpServlet {
 		req.getSession().setAttribute("dislikes", profile.getDislikes());
 		req.getSession().setAttribute("looking_for", profile.getLooking_For());
 
-		req.getRequestDispatcher("/_view/MatchProfile.jsp").forward(req, resp);
-
 		req.getSession().setAttribute("user_id", userid);
-		System.out.println("sdfjkfhsdjkh: " + userid);
-
-
-
-
-
-
+		req.getRequestDispatcher("/_view/MatchProfile.jsp").forward(req, resp);
 	}
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		//System.out.print("this is the user id:" + userid);
 
 		System.out.print("\nthis is the user id:" + userid + "\n");
 		String buttonAction = req.getParameter("submit");
