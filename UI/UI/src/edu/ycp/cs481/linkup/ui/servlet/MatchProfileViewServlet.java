@@ -46,7 +46,7 @@ public class MatchProfileViewServlet extends HttpServlet {
 		//Get userid from the url passed
 		Path urlPath = new Path(req.getPathInfo());
 		userid = Integer.parseInt(urlPath.getMatchUserIDFromPath());
-		System.out.print("This is the user that is rated in: " + userid);
+		System.out.print("\nThis is the user that is rated in: " + userid);
 		
 		ProfileViewController controller = new ProfileViewController();
 		String[] comments = null;
@@ -59,7 +59,6 @@ public class MatchProfileViewServlet extends HttpServlet {
 		String table = "";
 		if(comments == null){
 			req.setAttribute("comments", "No Comments at this time. :(");
-			req.getRequestDispatcher("/_view/MatchProfile.jsp").forward(req, resp);
 		}
 		else{
 			for(int i = 0; i < comments.length; i++){

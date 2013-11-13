@@ -59,6 +59,10 @@ public interface IDatabase {
 
 	public MatchUserProfile getMatchProfile(int userid)	throws PersistenceException;
 
+	public void insertReplyMessages(Messages inMessage)	throws PersistenceException;
+
+	public int getReplyID(String buttonAction)	throws PersistenceException;
+
 
 
 

@@ -56,6 +56,11 @@
 		<servlet-name>SendMessages</servlet-name>
 		<servlet-class>edu.ycp.cs481.linkup.ui.servlet.SendMessageServlet</servlet-class>
 	</servlet>
+	
+	<servlet>
+		<servlet-name>ReplyMessages</servlet-name>
+		<servlet-class>edu.ycp.cs481.linkup.ui.servlet.ReplyMessageServlet</servlet-class>
+	</servlet>
 
 	<!-- Servlet-mapping -->
 	<!--<servlet-mapping>
@@ -107,6 +112,11 @@
 	<servlet-mapping>
 		<servlet-name>SendMessages</servlet-name>
 		<url-pattern>/sendMessage/*</url-pattern>
+	</servlet-mapping> 
+	
+	<servlet-mapping>
+		<servlet-name>ReplyMessages</servlet-name>
+		<url-pattern>/replyMessage/*</url-pattern>
 	</servlet-mapping> 
 
 	<welcome-file-list>

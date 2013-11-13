@@ -507,7 +507,7 @@ public class MysqlDatabase implements IDatabase {
 			int j;
 			
 			for(j = 0; j < number; j++){
-				tableData = tableData + "<tr><td>" +fromUser[j]+"</td><td>"+matchMess[j]+"</td></tr>";
+				tableData = tableData + "<tr><td>" +fromUser[j]+"</td><td>"+matchMess[j]+"</td><td><input name='submit' value='Reply to "+ fromUser[j] +"' type='submit' /></td></tr>";
 			}
 			tableData = tableData + "</table>";
 		}else{
@@ -925,6 +925,44 @@ public class MysqlDatabase implements IDatabase {
 		System.out.print("\nthis is the User Id of Match:" + matchid + "\n");
 		return matchid;
 	}
+	
+	public int getReplyID(String buttonAction)
+	{
+		String[] array = buttonAction.split("");
+		System.out.print("\nthis is the array:" + array);
+		String matchUser = "";
+		int i; 
+		int matchid = -1;
+		for(i = 0; i < array.length; i++){
+			
+			if(i < 10){
+				//do nothing	
+			}
+			else{
+				//System.out.print("\n" + array[i]);
+				matchUser = matchUser + array[i];
+			}
+		}
+		
+		java.sql.PreparedStatement stmt = null;
+		try 
+        {   
+		 SQLconnection sqlConn = new SQLconnection();
+		 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);	
+
+		 stmt = con.prepareStatement("SELECT user_id FROM linkup.user WHERE username = '" + matchUser + "';");
+            stmt.executeQuery();
+            ResultSet result = stmt.getResultSet();
+            result.next();
+            matchid = result.getInt(1);
+        }catch (Exception e) 
+        {
+            e.printStackTrace();
+        }
+		System.out.print("\nthis is the usernaem:" + matchUser + "\n");
+		System.out.print("\nthis is the User Id of Match:" + matchid + "\n");
+		return matchid;
+	}
 
 	public String getUserName(int user_id){
 		String username = "";
@@ -1162,6 +1200,48 @@ public class MysqlDatabase implements IDatabase {
 				basic_info, likes, dislikes, looking_for1, first_name, last_name);
 		System.out.println("Age: " + age);
 		return tempProfile;
+	}
+
+	@Override
+	public void insertReplyMessages(Messages inMessage)
+			throws PersistenceException {
+		java.sql.PreparedStatement stmt = null;
+		System.out.println("userid to" + inMessage.getToID()
+				+ "\nuserid from: " + inMessage.getFromID()
+				+ "\nMessage: " + inMessage.getMessage());
+		try
+		{
+			SQLconnection sqlConn = new SQLconnection();
+			Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+			
+			int messID = getMaxMessageId(con);
+			String userName = null;
+			
+			stmt = con.prepareStatement("SELECT username FROM linkup.user WHERE user_id = " + inMessage.getFromID());
+            stmt.executeQuery();
+            ResultSet result = stmt.getResultSet();
+            result.next();
+            userName = result.getString(1);
+			
+			
+			//using con create an entry into the appropriate table to add a user's looking for information
+			stmt = con.prepareStatement("INSERT INTO linkup.match_messages(message_id,user_to"
+					+ ",user_from,message) VALUES (?,?,?,?)");
+			stmt.setInt(1, messID);
+			stmt.setInt(2, inMessage.getToID());
+			stmt.setString(3, userName);
+			stmt.setString(4, inMessage.getMessage());
+			stmt.executeUpdate();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			DBUtil.closeQuietly(stmt);
+		}
+		
 	}
 	
 

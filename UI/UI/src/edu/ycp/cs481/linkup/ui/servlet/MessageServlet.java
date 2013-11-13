@@ -13,7 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.ycp.cs481.linkup.controller.MatchingController;
 import edu.ycp.cs481.linkup.controller.MessageController;
+import edu.ycp.cs481.linkup.controller.SendMessageController;
 import edu.ycp.cs481.linkup.model.Path;
 import edu.ycp.cs481.linkup.persistence.PersistenceException;
 import edu.ycp.cs481.linkup.persistence.SQLconnection;
@@ -62,10 +64,23 @@ public class MessageServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-
+		
+		String buttonAction = req.getParameter("submit");
+		if(buttonAction.equals("Profile")){
+			System.out.print("\nthis is the user id:" + user_id);
 			resp.sendRedirect("userProfile/"+ user_id);					
-
+		}else{
+			System.out.print("\nthis is the value:" + buttonAction);
+			SendMessageController controller = new SendMessageController();
+			int id = 0;
+			try {
+				id = controller.ReplyID(buttonAction);
+			} catch (PersistenceException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			resp.sendRedirect("replyMessage/"+ user_id + "/" + id);
+		}		
 	}	
-
 }
 

@@ -4,22 +4,22 @@
 
 <html>
 	<head>
-		<title>User Messages</title>
+		<title>Reply Match Messages</title>
 	</head>
 	
 	<body>		
-		<form action="/matchMessages" method="POST">
+		<form action="/replyMessage" method="POST">
 		
 		<fieldset>
 		
-		<legend> ${username} Messages</legend>
-			<input type="hidden" name="userid">
+		<legend> Send ${sendid} a Messages</legend>
 			<br>
 			<table border='1'>
-				<tr><td>From: </td><td>Message</td><td>Click to Reply</td></tr>
-				${table}
-				<br>
-				<td><input name="submit" value="Profile" type="submit" /></td>
+				<tr>
+				<textarea rows="5" cols="31" name="message" type="text" size="20"></textarea>
+				</tr>
+				<tr>
+					<td><input name="submit" type="submit" value="Send"/></td>
 				</tr>
 			</table>
 			</fieldset>
