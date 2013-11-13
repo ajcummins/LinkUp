@@ -76,7 +76,7 @@ public class ReplyMessageServlet extends HttpServlet {
 					e.printStackTrace();
 					throw new ServletException("Error communicating with database", e);
 				}
-				resp.sendRedirect("matchMessage/"+ Loginuserid);				
+				resp.sendRedirect("matchMessages/"+ Loginuserid);				
 			}				
 	}
 }

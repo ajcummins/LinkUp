@@ -12,11 +12,11 @@
 		
 		<fieldset>
 		
-		<legend> Congradulations!!!! </legend>
+		<legend> Congratulations!!!! </legend>
 			<input type="hidden" name="userid">
 			<table>
 				<tr>
-					Your Perfect Match:<br> ${match}
+					Your Matches are:<br> ${match}
 				</tr>
 				<tr>
 				<td><input name="submit" value="Profile" type="submit" /></td>
