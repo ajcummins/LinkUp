@@ -451,38 +451,68 @@ public class MysqlDatabase implements IDatabase {
 
 	}
 
-	@Override
-	public Messages getMessages(Messages inMessage)
+
+	public String getMessages(int user_id)
 			throws PersistenceException {
-		String[] noMessages = new String[1];
-		noMessages[0] = "No Messages at this time :(";
-		int toID = 1;//inMessage.getToID();
-		java.sql.PreparedStatement stmt = null;                                                                         
-
-		//get number of messages for user
+		java.sql.PreparedStatement stmt = null;
 		int number = 0;
+		String usernameFrom = "";
+		String mess = "";
+		String tableData = "";
 		try{
-
+			
 			SQLconnection sqlConn = new SQLconnection();
-			Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
-			String sql = ("SELECT COUNT(*) FROM linkup.match_messages WHERE user_to = " + toID);
+			 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+			String sql = ("SELECT COUNT(*) FROM linkup.match_messages WHERE user_to = " + user_id);
 			PreparedStatement prest = con.prepareStatement(sql);
-			ResultSet rs = prest.executeQuery();
-			while (rs.next()) {
-				number = rs.getInt(1);
-			}
-			System.out.println("Number of records: " + number);
-			con.close();        
+		    ResultSet rs = prest.executeQuery();
+		    while (rs.next()) {
+		      number = rs.getInt(1);
+		    }
+		    System.out.println("Number of records: " + number);
+		    con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			int newnum = 0;
+			 int newnum = 0;
 		}
-
-
-
-		return null;
+		if(number != 0){
+			String[] fromUser = new String[number];
+			String[] matchMess = new String[number];
+			int i = 0;
+			try{ 
+				SQLconnection sqlConn = new SQLconnection();
+				 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+				 stmt = con.prepareStatement("SELECT user_from, message FROM linkup.match_messages WHERE user_to = " + user_id);
+		            stmt.executeQuery();
+		            ResultSet result = stmt.getResultSet();
+		            while(result.next()){
+		            	//System.out.println("result is: " +result.getInt(1));
+		            	usernameFrom = result.getString(1);
+		            	mess = result.getString(2);
+		            	fromUser[i] = usernameFrom;
+		            	matchMess[i] = mess;
+		            	System.out.println("sender id: " + fromUser[i]);
+		            	System.out.println("\nmessage is: " + matchMess[i]);
+		            	i++;
+		            }
+		        	
+		        } 
+		        catch (Exception e) 
+		        {
+		            e.printStackTrace();
+		        }
+			int j;
+			
+			for(j = 0; j < number; j++){
+				tableData = tableData + "<tr><td>" +fromUser[j]+"</td><td>"+matchMess[j]+"</td></tr>";
+			}
+			tableData = tableData + "</table>";
+		}else{
+			tableData = "<tr><td></td><td></td></tr></table>";
+		}
+		return tableData;
 	}
 
 	public void add_rating(Connection con, int rating_id, Rating inRating)throws SQLException {
@@ -893,6 +923,26 @@ public class MysqlDatabase implements IDatabase {
 		System.out.print("\nthis is the usernaem:" + matchUser + "\n");
 		System.out.print("\nthis is the User Id of Match:" + matchid + "\n");
 		return matchid;
+	}
+
+	public String getUserName(int user_id){
+		String username = "";
+		java.sql.PreparedStatement stmt = null;
+		try 
+        {   
+		 SQLconnection sqlConn = new SQLconnection();
+		 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);	
+
+		 stmt = con.prepareStatement("SELECT username FROM linkup.user WHERE user_id = " + user_id);
+            stmt.executeQuery();
+            ResultSet result = stmt.getResultSet();
+            result.next();
+            username = result.getString(1);
+        }catch (Exception e) 
+        {
+            e.printStackTrace();
+        }	
+		return username;
 	}
 
 }

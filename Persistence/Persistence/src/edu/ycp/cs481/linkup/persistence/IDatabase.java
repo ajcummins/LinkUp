@@ -44,13 +44,15 @@ public interface IDatabase {
 
 	public String[] get_profile_info(UserProfile inProfile) throws PersistenceException;
 	
-	public Messages getMessages(Messages inMessage) throws PersistenceException;
-	
 	public int createRating(Rating inRating) throws PersistenceException;
 
 	public void insertMessages(Messages inMessage) throws PersistenceException;
 
 	public int getMatchID(String buttonAction) throws PersistenceException;
+
+	public String getMessages(int user_id) throws PersistenceException;
+	
+	public String getUserName(int user_id) throws PersistenceException;
 
 
 
