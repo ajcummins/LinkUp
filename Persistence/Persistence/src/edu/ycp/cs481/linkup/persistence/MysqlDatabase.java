@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import edu.ycp.cs481.linkup.model.LookingFor;
+import edu.ycp.cs481.linkup.model.MatchUserProfile;
 import edu.ycp.cs481.linkup.model.Matching;
 import edu.ycp.cs481.linkup.model.Messages;
 import edu.ycp.cs481.linkup.model.Rating;
@@ -944,5 +945,224 @@ public class MysqlDatabase implements IDatabase {
         }	
 		return username;
 	}
+	
+	public String[] get_comment(int userid)	{
+		int NumComments = 0;
+		int number=0;
+		
+		java.sql.PreparedStatement stmt = null;
+
+		try 
+		{   
+			SQLconnection sqlConn = new SQLconnection();
+			Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);	
+
+			String sql = ("SELECT COUNT(*) FROM linkup.rating_system WHERE user_id = " + userid);
+			java.sql.PreparedStatement prest = con.prepareStatement(sql);
+			ResultSet rs = prest.executeQuery();
+			while (rs.next()) {
+				number = rs.getInt(1);
+			}
+			System.out.println("\nTHE NUMBER OF RATINGS FOR THIS USER ARE: " + number);
+			//con.close();
+
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+		finally{
+
+		}
+
+		if(number!=0){
+			String [] commentList = new String[number];
+			int i = 0;
+			String commen = "";
+			//for(int i=0;i<number; i++){
+				try{
+					SQLconnection sqlConn = new SQLconnection();
+					Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);	
+
+					stmt = con.prepareStatement("SELECT comment FROM linkup.rating_system WHERE user_id = " + userid);
+					stmt.executeQuery();
+					ResultSet Cresult = stmt.getResultSet();
+					while(Cresult.next()){
+						commen = Cresult.getString(1);
+						commentList[i] = commen;
+						System.out.println("Comment: " + commentList[i]);
+						i++;
+					 }
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+			//}
+			return commentList;
+		}else{
+			return null;
+		}
+	}
+	
+	public MatchUserProfile getMatchProfile(int userid){
+		java.sql.PreparedStatement stmt = null;
+		String  religion =null; String books=null; String movies=null; String music=null;String basic_info=null;
+		String likes=null; String dislikes=null; 
+		int location=0; int gender=0;int age=0;int looking_for=0;
+		String first_name = null; String last_name = null;
+		String location1 = null;
+		String gender1 = null;
+		String looking_for1 = null;
+		String religion1 = null;
+
+
+		try 
+		{   
+			SQLconnection sqlConn = new SQLconnection();
+			Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);	
+
+			//GET F NAME!!!
+			stmt = con.prepareStatement("SELECT first_name FROM linkup.user WHERE user_id = " + userid);
+			stmt.executeQuery();
+			ResultSet result12 = stmt.getResultSet();
+			result12.next();
+			first_name = result12.getString(1); //gets first name
+
+			//GET L NAME!!!
+			stmt = con.prepareStatement("SELECT last_name FROM linkup.user WHERE user_id = " + userid);
+			stmt.executeQuery();
+			ResultSet result13 = stmt.getResultSet();
+			result13.next();
+			last_name = result13.getString(1); //gets first name
+
+
+
+
+			//LOCATION
+			stmt = con.prepareStatement("SELECT location FROM linkup.profile_info WHERE user_id = " + userid);
+			stmt.executeQuery();
+			ResultSet result = stmt.getResultSet();
+			result.next();
+			location = result.getInt(1); //gets location = 2
+
+
+			stmt = con.prepareStatement("SELECT location FROM linkup.location WHERE location_id = " + location);
+			stmt.executeQuery();
+			ResultSet result14 = stmt.getResultSet();
+			result14.next();
+			location1 = result14.getString(1);
+
+
+
+
+			//GENDER
+			stmt = con.prepareStatement("SELECT gender FROM linkup.profile_info WHERE user_id = " + userid);
+			stmt.executeQuery();
+			ResultSet result2 = stmt.getResultSet();
+			result2.next();
+			gender = result2.getInt(1);
+
+
+			stmt = con.prepareStatement("SELECT gender FROM linkup.gender WHERE gender_id = " + gender);
+			stmt.executeQuery();
+			ResultSet result15 = stmt.getResultSet();
+			result15.next();
+
+			gender1 = result15.getString(1);
+
+
+
+
+
+			//AGE
+			stmt = con.prepareStatement("SELECT age FROM linkup.profile_info WHERE user_id = " + userid);
+			stmt.executeQuery();
+			ResultSet result3 = stmt.getResultSet();
+			result3.next();
+			age = result3.getInt(1);
+
+			//RELIGION
+			stmt = con.prepareStatement("SELECT religion FROM linkup.profile_info WHERE user_id = " + userid);
+			stmt.executeQuery();
+			ResultSet result4 = stmt.getResultSet();
+			result4.next();
+			religion = result4.getString(1);
+
+
+
+			stmt = con.prepareStatement("SELECT religion FROM linkup.religion WHERE religion_id = " + religion);
+			stmt.executeQuery();
+			ResultSet result17 = stmt.getResultSet();
+			result17.next();
+			religion1 = result17.getString(1);
+
+			//religion1 = religion;
+
+			//BOOKS
+			stmt = con.prepareStatement("SELECT books FROM linkup.profile_info WHERE user_id = " + userid);
+			stmt.executeQuery();
+			ResultSet result5 = stmt.getResultSet();
+			result5.next();
+			books = result5.getString(1);
+
+			//MOVIEs
+			stmt = con.prepareStatement("SELECT movies FROM linkup.profile_info WHERE user_id = " + userid);
+			stmt.executeQuery();
+			ResultSet result6 = stmt.getResultSet();
+			result6.next();
+			movies = result6.getString(1);
+
+			//MUSIC
+			stmt = con.prepareStatement("SELECT music FROM linkup.profile_info WHERE user_id = " + userid);
+			stmt.executeQuery();
+			ResultSet result7 = stmt.getResultSet();
+			result7.next();
+			music = result7.getString(1);
+
+			//basic_info
+			stmt = con.prepareStatement("SELECT basic_info FROM linkup.profile_info WHERE user_id = " + userid);
+			stmt.executeQuery();
+			ResultSet result8 = stmt.getResultSet();
+			result8.next();
+			basic_info = result8.getString(1);
+
+			//LIKEs
+			stmt = con.prepareStatement("SELECT likes FROM linkup.profile_info WHERE user_id = " + userid);
+			stmt.executeQuery();
+			ResultSet result9 = stmt.getResultSet();
+			result9.next();
+			likes = result9.getString(1);
+
+			//dislikes
+			stmt = con.prepareStatement("SELECT dislikes FROM linkup.profile_info WHERE user_id = " + userid);
+			stmt.executeQuery();
+			ResultSet result10 = stmt.getResultSet();
+			result10.next();
+			dislikes = result10.getString(1);
+
+			//looking_for
+			stmt = con.prepareStatement("SELECT looking_for FROM linkup.profile_info WHERE user_id = " + userid);
+			stmt.executeQuery();
+			ResultSet result11 = stmt.getResultSet();
+			result11.next();
+			looking_for = result11.getInt(1);
+
+			stmt = con.prepareStatement("SELECT PInfoLookingFor FROM linkup.pinfolookingfor WHERE PInfoLookingFor_id = " + looking_for);
+			stmt.executeQuery();
+			ResultSet result16 = stmt.getResultSet();
+			result16.next();
+			looking_for1 = result16.getString(1);
+
+
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+		MatchUserProfile tempProfile = new MatchUserProfile(userid, location, gender, age, religion, books, movies, music,
+				basic_info, likes, dislikes, looking_for1, first_name, last_name);
+		System.out.println("Age: " + age);
+		return tempProfile;
+	}
+	
 
 }

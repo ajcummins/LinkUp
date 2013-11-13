@@ -3,6 +3,7 @@ package edu.ycp.cs481.linkup.persistence;
 import java.sql.Connection;
 
 import edu.ycp.cs481.linkup.model.LookingFor;
+import edu.ycp.cs481.linkup.model.MatchUserProfile;
 import edu.ycp.cs481.linkup.model.Matching;
 import edu.ycp.cs481.linkup.model.Messages;
 import edu.ycp.cs481.linkup.model.Rating;
@@ -53,6 +54,10 @@ public interface IDatabase {
 	public String getMessages(int user_id) throws PersistenceException;
 	
 	public String getUserName(int user_id) throws PersistenceException;
+	
+	public String[] get_comment(int userid)	throws PersistenceException;
+
+	public MatchUserProfile getMatchProfile(int userid)	throws PersistenceException;
 
 
 
