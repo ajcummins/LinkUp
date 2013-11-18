@@ -9,17 +9,30 @@
 	
 	<body>		
 		<form action="/matchMessages" method="POST">
-		
+		<td><input name="submit" value="Profile" type="submit" /></td>
 		<fieldset>
 		
-		<legend> ${username} Messages</legend>
+		<legend> ${username} Recieved Messages</legend>
 			<input type="hidden" name="userid">
 			<br>
 			<table border='1'>
 				<tr><td>From: </td><td>Message</td><td>Click to Reply</td></tr>
 				${table}
 				<br>
-				<td><input name="submit" value="Profile" type="submit" /></td>
+				
+				</tr>
+			</table>
+			</fieldset>
+			
+		<fieldset>
+		
+		<legend> ${username} Sent Messages</legend>
+			<input type="hidden" name="userid">
+			<br>
+			<table border='1'>
+				<tr><td>From: </td><td>Message</td></tr>
+				${sentTable}
+				<br>
 				</tr>
 			</table>
 			</fieldset>

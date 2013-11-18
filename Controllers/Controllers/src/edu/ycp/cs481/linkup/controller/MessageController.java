@@ -12,4 +12,8 @@ public class MessageController {
 	public String MessagingUserName(int inMessage) throws PersistenceException{
 		return Database.getInstance().getUserName(inMessage);
 	}
+
+	public String sentMessaging(int user_id) throws PersistenceException {
+		return Database.getInstance().getSentMessages(user_id);
+	}
 }

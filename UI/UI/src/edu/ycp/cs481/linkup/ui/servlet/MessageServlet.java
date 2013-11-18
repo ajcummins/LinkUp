@@ -58,6 +58,18 @@ public class MessageServlet extends HttpServlet {
 		
 			
 		req.setAttribute("table", tableData);
+		
+		//get sent messages
+		String sentTableData = null;
+		try {
+			sentTableData = controller.sentMessaging(user_id);
+		} catch (PersistenceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		req.setAttribute("sentTable", sentTableData);
+		
 		req.getRequestDispatcher("/_view/matchMessages.jsp").forward(req, resp);
 	}
 	

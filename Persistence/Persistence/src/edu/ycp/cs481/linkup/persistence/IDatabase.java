@@ -63,6 +63,8 @@ public interface IDatabase {
 
 	public int getReplyID(String buttonAction)	throws PersistenceException;
 
+	public String getSentMessages(int user_id)	throws PersistenceException;
+
 
 
 
