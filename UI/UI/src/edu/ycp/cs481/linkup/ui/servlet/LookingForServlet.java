@@ -87,7 +87,6 @@ public class LookingForServlet extends HttpServlet{
 
 			System.out.print("this is the user id:" + user_id);
 			resp.sendRedirect("userProfile/"+ user_id);	
-			//req.getRequestDispatcher("userProfile/" + user_id).forward(req, resp);
 			
 		}
 	}

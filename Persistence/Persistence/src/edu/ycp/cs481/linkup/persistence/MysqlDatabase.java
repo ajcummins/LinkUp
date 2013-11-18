@@ -1251,6 +1251,73 @@ public class MysqlDatabase implements IDatabase {
 		}
 		
 	}
+
+	@Override
+	public String getSentMessages(int user_id) throws PersistenceException {
+		java.sql.PreparedStatement stmt = null;
+		int number = 0;
+		int usernameFrom = -1;
+		String mess = "";
+		String tableData = "";
+		java.sql.Timestamp time = null;
+		
+		String username = getUserName(user_id);
+		
+		try{
+			
+			SQLconnection sqlConn = new SQLconnection();
+			 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+			String sql = ("SELECT COUNT(*) FROM linkup.match_messages WHERE user_from = '" + username +"';");
+			PreparedStatement prest = con.prepareStatement(sql);
+		    ResultSet rs = prest.executeQuery();
+		    while (rs.next()) {
+		      number = rs.getInt(1);
+		    }
+		    System.out.println("Number of sent records: " + number);
+		    con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			 int newnum = 0;
+		}
+		if(number != 0){
+			String[] toUser = new String[number];
+			String[] matchMess = new String[number];
+			int i = 0;
+			try{ 
+				SQLconnection sqlConn = new SQLconnection();
+				 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+				 stmt = con.prepareStatement("SELECT user_to, message FROM linkup.match_messages WHERE user_from = '" + username + "' ORDER BY time DESC");
+		            stmt.executeQuery();
+		            ResultSet result = stmt.getResultSet();
+		            while(result.next()){
+		            	//System.out.println("result is: " +result.getInt(1));
+		            	usernameFrom = result.getInt(1);
+		            	mess = result.getString(2);
+		            	toUser[i] = getUserName(usernameFrom);
+		            	matchMess[i] = mess;
+		            	System.out.println("Sent to: " + toUser[i]);
+		            	System.out.println("\nmessage is: " + matchMess[i]);
+		            	i++;
+		            }
+		        	
+		        } 
+		        catch (Exception e) 
+		        {
+		            e.printStackTrace();
+		        }
+			int j;
+			
+			for(j = 0; j < number; j++){
+				tableData = tableData + "<tr><td>" +toUser[j]+"</td><td>"+matchMess[j]+"</td></tr>";
+			}
+			tableData = tableData + "</table>";
+		}else{
+			tableData = "<tr><td></td><td></td></tr></table>";
+		}
+		return tableData;
+	}
 	
 
 }
