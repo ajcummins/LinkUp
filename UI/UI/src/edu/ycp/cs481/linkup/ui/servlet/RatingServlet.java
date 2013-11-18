@@ -85,6 +85,10 @@ public class RatingServlet extends HttpServlet{
 		*///check to make sure username is in database
 		//get that usernames User_ID
 		String comment = req.getParameter("comment");
+		
+		if(comment == ""){ //error checcking
+		
+		}
 
 
 		java.sql.PreparedStatement stmt = null;
@@ -125,7 +129,7 @@ public class RatingServlet extends HttpServlet{
 
 
 
-		Rating tempRating = new Rating(rating_id, userLogin, comment);
+		Rating tempRating = new Rating(rating_id, user_id, comment);
 
 
 

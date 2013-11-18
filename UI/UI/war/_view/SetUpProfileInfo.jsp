@@ -1,5 +1,7 @@
 <!doctype html>
 
+
+
 <html>
 	<head>
 		<title>Edit Profile</title>
@@ -87,14 +89,14 @@
 						</select>
 					</td>
 				</tr>
-				<tr>
+				<!--  <tr>
 					<td>
 						Age:
 					</td>
 					<td>
 						<input name="age" type="text" size="20" style="width: 59px; "/>
 					</td>
-				</tr>
+				</tr>-->
 				<tr>
 					<td>
 						Religion:
@@ -188,9 +190,11 @@
 				
 				<tr>
 					<td></td>
-					<td><input name="submit" type="submit" value="Upload"/></td>
+					<td><input name="submit" type="submit" value="Submit"/></td>
 				
 				</tr>
+				
+				
 				
 			</table>
 				
