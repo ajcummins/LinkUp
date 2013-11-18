@@ -125,7 +125,7 @@ public class RatingServlet extends HttpServlet{
 
 
 
-		Rating tempRating = new Rating(rating_id, userLogin, comment);
+		Rating tempRating = new Rating(rating_id, user_id, comment);
 
 
 

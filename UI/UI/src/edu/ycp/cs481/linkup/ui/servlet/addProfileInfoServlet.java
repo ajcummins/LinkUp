@@ -79,7 +79,14 @@ public class addProfileInfoServlet extends HttpServlet{
 		//int user_id = Integer.parseInt(req.getParameter("user_id")); //convert to int later
 		int location = Integer.parseInt(req.getParameter("location"));  //convert to int later
 		int gender = Integer.parseInt(req.getParameter("gender"));    //convert to int later
-		int age = Integer.parseInt(req.getParameter("age"));				//convert to int later
+		//int age = Integer.parseInt(req.getParameter("age"));				//convert to int later
+		
+		int age = 0;
+		/*if (req.getParameter("age") == ""){
+			req.setAttribute("error", "You have remaining Empty Fields");
+		
+		}*/
+		
 		int religion = Integer.parseInt(req.getParameter("religion"));
 		String books = req.getParameter("books");
 		String movies = req.getParameter("movies");
