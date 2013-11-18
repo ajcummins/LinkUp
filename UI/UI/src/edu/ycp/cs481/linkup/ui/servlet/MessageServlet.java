@@ -81,6 +81,9 @@ public class MessageServlet extends HttpServlet {
 		if(buttonAction.equals("Profile")){
 			System.out.print("\nthis is the user id:" + user_id);
 			resp.sendRedirect("userProfile/"+ user_id);					
+		}if(buttonAction.equals("Matches!")){
+			System.out.print("\nthis is the user id:" + user_id);
+			resp.sendRedirect("userMatch/"+ user_id);				
 		}else{
 			System.out.print("\nthis is the value:" + buttonAction);
 			SendMessageController controller = new SendMessageController();

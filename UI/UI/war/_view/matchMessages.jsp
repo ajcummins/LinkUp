@@ -9,7 +9,7 @@
 	
 	<body>		
 		<form action="/matchMessages" method="POST">
-		<td><input name="submit" value="Profile" type="submit" /></td>
+		<td><input name="submit" value="Profile" type="submit" /></td><td><input name="submit" value="Matches!" type="submit" /></td>
 		<fieldset>
 		
 		<legend> ${username} Recieved Messages</legend>
