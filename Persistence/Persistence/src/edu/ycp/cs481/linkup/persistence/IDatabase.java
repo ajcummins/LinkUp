@@ -65,6 +65,12 @@ public interface IDatabase {
 
 	public String getSentMessages(int user_id)	throws PersistenceException;
 
+	public String getDDLGender()	throws PersistenceException;
+
+	public String getDDLLocation()	throws PersistenceException;
+
+	public String getDDLLookingFor()	throws PersistenceException;
+
 
 
 

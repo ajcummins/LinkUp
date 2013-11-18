@@ -35,7 +35,10 @@
 						Gender:
 					</td>
 					<td>
-						${gender}
+						<select name="gender">
+						  <option name="gender" value = "1" size="20">Male</option>
+						  <option name="gender" value = "2" size="20">Female</option>
+						</select>
 					</td>
 				</tr>
 				<tr>

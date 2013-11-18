@@ -1312,6 +1312,44 @@ public class MysqlDatabase implements IDatabase {
 		}
 		return tableData;
 	}
+
+	@Override
+	public String getDDLGender() throws PersistenceException {
+		String ddl = "<select name='gender'>";
+		java.sql.PreparedStatement stmt = null;
+		String gender;
+		int i = 1;
+		try{ 
+			SQLconnection sqlConn = new SQLconnection();
+			 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+			 stmt = con.prepareStatement("SELECT gender FROM linkup.gender");
+	            stmt.executeQuery();
+	            ResultSet result = stmt.getResultSet();
+	            while(result.next()){
+	            	gender = result.getString(1);
+	            	ddl = ddl + "<option name='gender' value = '"+ i +"' size='20'>" + gender +"</option>";
+	            	i++;
+	            }
+	        	
+	        } 
+	        catch (Exception e) 
+	        {
+	            e.printStackTrace();
+	        }
+		return ddl + "</select>";
+	}
+
+	@Override
+	public String getDDLLocation() throws PersistenceException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getDDLLookingFor() throws PersistenceException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 }

@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edu.ycp.cs481.linkup.controller.CreateUserController;
+import edu.ycp.cs481.linkup.controller.DropDownListController;
 import edu.ycp.cs481.linkup.controller.LookingForController;
+import edu.ycp.cs481.linkup.controller.MatchingController;
 import edu.ycp.cs481.linkup.model.LookingFor;
 import edu.ycp.cs481.linkup.model.Path;
 import edu.ycp.cs481.linkup.persistence.DuplicateUserException;
@@ -22,6 +24,16 @@ public class LookingForServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		
+		DropDownListController controller = new DropDownListController();
+		String ddlGender = null;
+		try {
+			ddlGender = controller.ddlGender();
+		} catch (PersistenceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		req.setAttribute("gender", ddlGender);
 		req.getRequestDispatcher("/_view/lookingFor.jsp").forward(req, resp);
 		
 		//Get userid from the url passed
