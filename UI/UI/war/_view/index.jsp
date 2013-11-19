@@ -5,7 +5,7 @@
 <html>
 	<body>
 	
-		<h1>LinkUp!</h1>
+		<p><font color="pink" face="Comic Sans MS" size="15">LinkUp:</font> <font color="blue" face="Comic Sans MS" size="15"> Sign In or Sign Up</font></p>
 		
 		<form action="/index" method="POST">
 		
