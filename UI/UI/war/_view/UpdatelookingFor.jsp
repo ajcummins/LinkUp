@@ -10,7 +10,7 @@
 	<body>
 		<p> What are you looking for in a Match? </p>
 		
-		<form action="/UpdatelookingFor" method="POST">
+		<form action="/UpdateLookingFor" method="POST">
 		<fieldset>
 		<legend> Let's Find A Match </legend>
 			<table>
@@ -35,10 +35,7 @@
 						Gender:
 					</td>
 					<td>
-						<select name="gender">
-						  <option name="gender" value = "1" size="20">Male</option>
-						  <option name="gender" value = "2" size="20">Female</option>
-						</select>
+						${gender2}
 					</td>
 				</tr>
 				<tr>
@@ -46,21 +43,7 @@
 						Location:
 					</td>
 					<td>
-						<select name="location">
-						  <option value="1" name="location" type="int" size="20">PA</option>
-						  <option value="2" name="location" type="int" size="20">DE</option>
-						  <option value="3" name="location" type="int" size="20">MD</option>
-						  <option value="4" name="location" type="int" size="20">NJ</option>
-						  <option value="5" name="location" type="int" size="20">WI</option>
-						  <option value="6" name="location" type="int" size="20">CA</option>
-						  <option value="7" name="location" type="int" size="20">MA</option>
-						  <option value="8" name="location" type="int" size="20">RI</option>
-						  <option value="9" name="location" type="int" size="20">OH</option>
-						  <option value="10" name="location" type="int" size="20">SC</option>
-						  <option value="11" name="location" type="int" size="20">NC</option>
-						  <option value="12" name="location" type="int" size="20">VA</option>
-						  <option value="13" name="location" type="int" size="20">TX</option>
-						</select>
+						${location2}
 					</td>
 				</tr>
 				<tr>
@@ -68,18 +51,7 @@
 						Religion:
 					</td>
 					<td>
-						<select name="religion">
-						  <option value="1" name="religion" size="20">Non-Religious</option>
-						  <option value="2" name="religion" size="20">Atheist</option>
-						  <option value="3" name="religion" size="20">Buddhism</option>
-						  <option value="4" name="religion" size="20">Christian</option>
-						  <option value="5" name="religion" size="20">Hinduism</option>
-						  <option value="6" name="religion" size="20">Islam</option>
-						  <option value="7" name="religion" size="20">Jewish</option>
-						  <option value="8" name="religion" size="20">Muslim</option>  
-						  <option value="9" name="religion" size="20">Sikhism</option>
-						  <option value="10" name="religion" size="20">Other</option>
-						</select>
+						${religion2}
 					</td>
 				</tr>
 				<tr>
@@ -87,18 +59,7 @@
 						Religion Importance:
 					</td>
 					<td>
-						<select name="religion_weight">
-						  <option value="1" name="religion_weight" size="20">1</option>
-						  <option value="2" name="religion_weight" size="20">2</option>
-						  <option value="3" name="religion_weight" size="20">3</option>
-						  <option value="4" name="religion_weight" size="20">4</option>
-						  <option value="5" name="religion_weight" size="20">5</option>
-						  <option value="6" name="religion_weight" size="20">6</option>
-						  <option value="7" name="religion_weight" size="20">7</option>
-						  <option value="8" name="religion_weight" size="20">8</option>
-						  <option value="9" name="religion_weight" size="20">9</option>
-						  <option value="10" name="religion_weight" size="20">10</option>
-						</select>
+						${rWeight}
 					</td>
 				</tr>
 				<tr>
@@ -106,15 +67,7 @@
 						Seriousness:
 					</td>
 					<td>
-						<select name="seriousness">
-						  <option value="1" name="looking_for" type="int" size="20">Relationship</option>
-						  <option value="2" name="looking_for" type="int" size="20">Friendship</option>
-						  <option value="3" name="looking_for" type="int" size="20">Cuddle Buddy</option>
-						  <option value="4" name="looking_for" type="int" size="20">Nothing Serious</option>
-						  <option value="5" name="looking_for" type="int" size="20">Long Term</option>
-						  <option value="6" name="looking_for" type="int" size="20">Short Term</option>
-						  <option value="7" name="looking_for" type="int" size="20">Fun</option>  
-						</select>
+						${lookingfor2}
 					</td>
 				</tr>
 				<tr>
@@ -122,23 +75,13 @@
 						Seriousness Importance:
 					</td>
 					<td>
-						<select name="seriousness_weight">
-						  <option value="1" name="seriousness_weight" type="int" size="20">1</option>
-						  <option value="2" name="seriousness_weight" type="int" size="20">2</option>
-						  <option value="3" name="seriousness_weight" type="int" size="20">3</option>
-						  <option value="4" name="seriousness_weight" type="int" size="20">4</option>
-						  <option value="5" name="seriousness_weight" type="int" size="20">5</option>
-						  <option value="6" name="seriousness_weight" type="int" size="20">6</option>
-						  <option value="7" name="seriousness_weight" type="int" size="20">7</option>
-						  <option value="8" name="seriousness_weight" type="int" size="20">8</option>
-						  <option value="9" name="seriousness_weight" type="int" size="20">9</option>
-						  <option value="10" name="seriousness_weight" type="int" size="20">10</option>
-						</select>
+						${sWeight}
 					</td>
 				</tr>
 				<tr>
 					<td></td>
 					<td> <input name="submit" type="submit" />
+					<button type="button" onclick="document.location.href='userProfile'">Continue!</button></td> 
 				</tr>
 			</table>
 			</fieldset>
