@@ -6,7 +6,7 @@
 	<head>
 		<title>Looking For</title>
 	</head>
-	
+	<p><font color="pink" face="Comic Sans MS" size="15">LinkUp:</font> <font color="blue" face="Comic Sans MS" size="15">Looking For Information</font></p>
 	<body>
 		<p> What are you looking for in a Match? </p>
 		

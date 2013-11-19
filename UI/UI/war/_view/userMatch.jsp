@@ -6,10 +6,10 @@
 	<head>
 		<title>User Match</title>
 	</head>
-	
+	<p><font color="pink" face="Comic Sans MS" size="15">LinkUp:</font> <font color="blue" face="Comic Sans MS" size="15"> Matches</font></p>
 	<body>		
 		<form action="/userMatch" method="POST">
-		
+		<fieldset><td><input name="submit" value="Profile" type="submit" /></td></fieldset>
 		<fieldset>
 		
 		<legend> Congratulations!!!! </legend>
@@ -19,7 +19,7 @@
 					Your Matches are:<br> ${match}
 				</tr>
 				<tr>
-				<td><input name="submit" value="Profile" type="submit" /></td>
+				
 				</tr>
 			</table>
 			</fieldset>

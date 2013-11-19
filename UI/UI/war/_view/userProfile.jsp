@@ -8,10 +8,14 @@
 	<head>
 		<title>Profile Page</title>
 	</head>
-	
+	<p><font color="pink" face="Comic Sans MS" size="15">LinkUp:</font> <font color="blue" face="Comic Sans MS" size="15"> Your Profile</font></p>
 	<body>		
 		<form action="/userProfile" method="GET">
-		
+		<form action="/userProfile" method="POST">
+		<fieldset>
+	 <input name ="submit" type="submit" value="Matches!"> 
+		&nbsp;  <input name ="submit" type="submit" value="Messages">&nbsp; <input type="submit" value="Account Settings"><!--  <input name ="submit" type="submit" value="Rate a Date">-->
+	</fieldset>
 		<fieldset>
 		
 		<h1> ${first_name} ${last_name}  </h1> 
@@ -19,11 +23,7 @@
 		<div style="display: inline;">
 
 		</form>
-		<form action="/userProfile" method="POST">
-		<!--  <button type="button" onclick="document.location.href='userMatch/${user_id}'">Matches!</button> -->
-	 <input name ="submit" type="submit" value="Matches!"> 
-		&nbsp;  <input name ="submit" type="submit" value="Messages">&nbsp; <input type="submit" value="Account Settings"><!--  <input name ="submit" type="submit" value="Rate a Date">-->
-	
+		
 		</form>
 		</div>
 		<form>

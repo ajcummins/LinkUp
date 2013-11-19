@@ -8,7 +8,7 @@
 	<head>
 		<title>Profile Page</title>
 	</head>
-	
+	<p><font color="pink" face="Comic Sans MS" size="15">LinkUp:</font> <font color="blue" face="Comic Sans MS" size="15">Match Profile</font></p>
 	<body>		
 		<form action="/MatchProfile" method="GET">
 		

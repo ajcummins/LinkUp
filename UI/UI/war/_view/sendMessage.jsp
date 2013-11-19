@@ -6,7 +6,7 @@
 	<head>
 		<title>Send Match Messages</title>
 	</head>
-	
+	<p><font color="pink" face="Comic Sans MS" size="15">LinkUp:</font> <font color="blue" face="Comic Sans MS" size="15">Send a Message</font></p>
 	<body>		
 		<form action="/sendMessage" method="POST">
 		

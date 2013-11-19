@@ -6,7 +6,7 @@
 	<head>
 		<title>Reply Match Messages</title>
 	</head>
-	
+	<p><font color="pink" face="Comic Sans MS" size="15">LinkUp:</font> <font color="blue" face="Comic Sans MS" size="15">Reply Message</font></p>
 	<body>		
 		<form action="/replyMessage" method="POST">
 		
