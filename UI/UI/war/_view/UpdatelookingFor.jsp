@@ -80,8 +80,7 @@
 				</tr>
 				<tr>
 					<td></td>
-					<td> <input name="submit" type="submit" />
-					<button type="button" onclick="document.location.href='userProfile'">Continue!</button></td> 
+					<td> <input name="submit" type="submit" /> 
 				</tr>
 			</table>
 			</fieldset>
