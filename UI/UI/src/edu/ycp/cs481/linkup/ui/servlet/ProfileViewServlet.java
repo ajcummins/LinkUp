@@ -51,6 +51,7 @@ public class ProfileViewServlet extends HttpServlet {
 				String likes=null; String dislikes=null; 
 				int location=0; int gender=0;int age=0;int looking_for=0;
 				String first_name = null; String last_name = null;
+				String b_date = null; String MonthName=null; String day = null; String year = null;
 				
 				try 
 		        {   
@@ -116,6 +117,28 @@ public class ProfileViewServlet extends HttpServlet {
 		            ResultSet result3 = stmt.getResultSet();
 		            result3.next();
 		            age = result3.getInt(1);
+		            
+		            
+		            //dob
+		            stmt = con.prepareStatement("SELECT birth_date FROM linkup.user WHERE user_id = " + userid);
+		            stmt.executeQuery();
+		            ResultSet dob = stmt.getResultSet();
+		            dob.next();
+		            b_date = dob.getString(1);
+		            
+		            String dateParts[]= b_date.split("-");
+		            year = dateParts[0];
+		            String month = dateParts[1];
+		            day = dateParts[2];
+		            
+		            stmt = con.prepareStatement("SELECT month_name FROM linkup.bday_months WHERE month_date = " + month);
+		            stmt.executeQuery();
+		            ResultSet monthConv = stmt.getResultSet();
+		            monthConv.next();
+		            MonthName = monthConv.getString(1);
+		            
+		            
+		            System.out.println("MONTH OF BIRTH FOR PROFILE VIEW: " + MonthName);
 		        	
 		            //RELIGION
 		            stmt = con.prepareStatement("SELECT religion FROM linkup.profile_info WHERE user_id = " + userid);
@@ -222,6 +245,10 @@ public class ProfileViewServlet extends HttpServlet {
 				req.getSession().setAttribute("likes", likes);
 				req.getSession().setAttribute("dislikes", dislikes);
 				req.getSession().setAttribute("looking_for", looking_for1);
+				
+				req.getSession().setAttribute("month", MonthName);
+				req.getSession().setAttribute("day", day);
+				req.getSession().setAttribute("year", year);
 				
 				req.getRequestDispatcher("/_view/userProfile.jsp").forward(req, resp);
 	

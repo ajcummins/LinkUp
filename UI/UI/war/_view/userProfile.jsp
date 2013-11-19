@@ -40,10 +40,10 @@
 				</tr>
 				<tr>
 					<td>
-						Age:
+						Birthday:
 					</td>
 					<td>
-						${age}
+						${month} ${day}, ${year}
 					</td>
 					
 				</tr>
