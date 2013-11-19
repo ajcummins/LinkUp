@@ -1373,8 +1373,28 @@ public class MysqlDatabase implements IDatabase {
 
 	@Override
 	public String getDDLLookingFor() throws PersistenceException {
-		// TODO Auto-generated method stub
-		return null;
+		String ddl = "<select name='seriousness'>";
+		java.sql.PreparedStatement stmt = null;
+		String lookingfor;
+		int i = 1;
+		try{ 
+			SQLconnection sqlConn = new SQLconnection();
+			 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+			 stmt = con.prepareStatement("SELECT PInfoLookingFor FROM linkup.pinfolookingfor");
+	            stmt.executeQuery();
+	            ResultSet result = stmt.getResultSet();
+	            while(result.next()){
+	            	lookingfor = result.getString(1);
+	            	ddl = ddl + "<option name='seriousness' value = '"+ i +"' size='20'>" + lookingfor +"</option>";
+	            	i++;
+	            }
+	        	
+	        } 
+	        catch (Exception e) 
+	        {
+	            e.printStackTrace();
+	        }
+		return ddl + "</select>";
 	}
 	
 

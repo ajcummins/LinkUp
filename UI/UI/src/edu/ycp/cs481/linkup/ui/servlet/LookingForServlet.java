@@ -28,15 +28,18 @@ public class LookingForServlet extends HttpServlet{
 		DropDownListController controller = new DropDownListController();
 		String ddlGender = null;
 		String ddlLocation = null;
+		String ddlLooking = null;
 		try {
 			ddlGender = controller.ddlGender();
 			ddlLocation = controller.ddlLocation();
+			ddlLooking = controller.ddlLookingFor();
 		} catch (PersistenceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		req.setAttribute("gender2", ddlGender);
 		req.setAttribute("location2", ddlLocation);
+		req.setAttribute("lookingfor2", ddlLooking);
 		
 		req.getRequestDispatcher("/_view/lookingFor.jsp").forward(req, resp);
 		

@@ -89,15 +89,7 @@
 						Seriousness:
 					</td>
 					<td>
-						<select name="seriousness">
-						  <option value="1" name="looking_for" type="int" size="20">Relationship</option>
-						  <option value="2" name="looking_for" type="int" size="20">Friendship</option>
-						  <option value="3" name="looking_for" type="int" size="20">Cuddle Buddy</option>
-						  <option value="4" name="looking_for" type="int" size="20">Nothing Serious</option>
-						  <option value="5" name="looking_for" type="int" size="20">Long Term</option>
-						  <option value="6" name="looking_for" type="int" size="20">Short Term</option>
-						  <option value="7" name="looking_for" type="int" size="20">Fun</option>  
-						</select>
+						${lookingfor2}
 					</td>
 				</tr>
 				<tr>
