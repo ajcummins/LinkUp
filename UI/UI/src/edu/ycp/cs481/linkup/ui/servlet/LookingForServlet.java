@@ -27,13 +27,17 @@ public class LookingForServlet extends HttpServlet{
 		
 		DropDownListController controller = new DropDownListController();
 		String ddlGender = null;
+		String ddlLocation = null;
 		try {
 			ddlGender = controller.ddlGender();
+			ddlLocation = controller.ddlLocation();
 		} catch (PersistenceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		req.setAttribute("gender", ddlGender);
+		req.setAttribute("gender2", ddlGender);
+		req.setAttribute("location2", ddlLocation);
+		
 		req.getRequestDispatcher("/_view/lookingFor.jsp").forward(req, resp);
 		
 		//Get userid from the url passed

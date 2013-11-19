@@ -35,7 +35,7 @@
 						Gender:
 					</td>
 					<td>
-						${gender}
+						${gender2}
 					</td>
 				</tr>
 				<tr>
@@ -43,21 +43,7 @@
 						Location:
 					</td>
 					<td>
-						<select name="location">
-						  <option value="1" name="location" type="int" size="20">PA</option>
-						  <option value="2" name="location" type="int" size="20">DE</option>
-						  <option value="3" name="location" type="int" size="20">MD</option>
-						  <option value="4" name="location" type="int" size="20">NJ</option>
-						  <option value="5" name="location" type="int" size="20">WI</option>
-						  <option value="6" name="location" type="int" size="20">CA</option>
-						  <option value="7" name="location" type="int" size="20">MA</option>
-						  <option value="8" name="location" type="int" size="20">RI</option>
-						  <option value="9" name="location" type="int" size="20">OH</option>
-						  <option value="10" name="location" type="int" size="20">SC</option>
-						  <option value="11" name="location" type="int" size="20">NC</option>
-						  <option value="12" name="location" type="int" size="20">VA</option>
-						  <option value="13" name="location" type="int" size="20">TX</option>
-						</select>
+						${location2}
 					</td>
 				</tr>
 				<tr>
