@@ -1059,6 +1059,8 @@ public class MysqlDatabase implements IDatabase {
 		String gender1 = null;
 		String looking_for1 = null;
 		String religion1 = null;
+		String monthName = null; String day = null; String year = null; 
+		String b_date = null;
 
 
 		try 
@@ -1125,6 +1127,27 @@ public class MysqlDatabase implements IDatabase {
 			ResultSet result3 = stmt.getResultSet();
 			result3.next();
 			age = result3.getInt(1);
+			
+			 //dob
+            stmt = con.prepareStatement("SELECT birth_date FROM linkup.user WHERE user_id = " + userid);
+            stmt.executeQuery();
+            ResultSet dob1 = stmt.getResultSet();
+            dob1.next();
+            b_date = dob1.getString(1);
+            
+            String dateParts[]= b_date.split("-");
+            year = dateParts[0];
+            String month = dateParts[1];
+            day = dateParts[2];
+            
+            stmt = con.prepareStatement("SELECT month_name FROM linkup.bday_months WHERE month_date = " + month);
+            stmt.executeQuery();
+            ResultSet monthConv = stmt.getResultSet();
+            monthConv.next();
+            monthName = monthConv.getString(1);
+            
+			
+			
 
 			//RELIGION
 			stmt = con.prepareStatement("SELECT religion FROM linkup.profile_info WHERE user_id = " + userid);

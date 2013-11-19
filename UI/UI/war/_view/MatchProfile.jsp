@@ -37,10 +37,10 @@
 				</tr>
 				<tr>
 					<td>
-						Age:
+						Birthdate:
 					</td>
 					<td>
-						${age}
+						${month} ${day}, ${year}
 					</td>
 					
 				</tr>

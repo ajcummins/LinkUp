@@ -36,8 +36,10 @@ public class MatchProfileViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
-		
-
+		java.sql.PreparedStatement stmt = null;
+		 String monthName = null; String day = null; String year = null; 
+			String b_date = null;
+	 
 
 		Path urlPath1 = new Path(req.getPathInfo());
 		Loginuserid = Integer.parseInt(urlPath1.getLoggedInUserIDFromPath());
@@ -76,6 +78,41 @@ public class MatchProfileViewServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 
+		
+		try 
+		{   
+			SQLconnection sqlConn = new SQLconnection();
+			Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);	
+			
+			 //dob
+            stmt = con.prepareStatement("SELECT birth_date FROM linkup.user WHERE user_id = " + userid);
+            stmt.executeQuery();
+            ResultSet dob1 = stmt.getResultSet();
+            dob1.next();
+            b_date = dob1.getString(1);
+            
+            String dateParts[]= b_date.split("-");
+            year = dateParts[0];
+            String month = dateParts[1];
+            day = dateParts[2];
+            
+            stmt = con.prepareStatement("SELECT month_name FROM linkup.bday_months WHERE month_date = " + month);
+            stmt.executeQuery();
+            ResultSet monthConv = stmt.getResultSet();
+            monthConv.next();
+            monthName = monthConv.getString(1);
+			
+			
+			
+			
+			} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+		
+		
+		
 		req.getSession().setAttribute("first_name", profile.getFirstName());
 		req.getSession().setAttribute("last_name", profile.getLastName());
 		req.getSession().setAttribute("location", profile.getLocation());
@@ -89,6 +126,10 @@ public class MatchProfileViewServlet extends HttpServlet {
 		req.getSession().setAttribute("likes", profile.getLikes());
 		req.getSession().setAttribute("dislikes", profile.getDislikes());
 		req.getSession().setAttribute("looking_for", profile.getLooking_For());
+		
+		req.getSession().setAttribute("month", monthName);
+		req.getSession().setAttribute("day", day);
+		req.getSession().setAttribute("year", year);
 
 		req.getSession().setAttribute("user_id", userid);
 		req.getRequestDispatcher("/_view/MatchProfile.jsp").forward(req, resp);
