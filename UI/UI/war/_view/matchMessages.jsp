@@ -9,7 +9,7 @@
 	<p><font color="pink" face="Comic Sans MS" size="15">LinkUp:</font> <font color="blue" face="Comic Sans MS" size="15">Messages</font></p>
 	<body>		
 		<form action="/matchMessages" method="POST">
-		<td><input name="submit" value="Profile" type="submit" /></td><td><input name="submit" value="Matches!" type="submit" /></td>
+		<fieldset><td><input name="submit" value="Profile" type="submit" /></td><td><input name="submit" value="Matches!" type="submit" /></td></fieldset>
 		<fieldset>
 		
 		<legend> ${username} Recieved Messages</legend>

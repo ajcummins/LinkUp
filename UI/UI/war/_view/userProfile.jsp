@@ -10,12 +10,8 @@
 	</head>
 	<p><font color="pink" face="Comic Sans MS" size="15">LinkUp:</font> <font color="blue" face="Comic Sans MS" size="15"> Your Profile</font></p>
 	<body>		
-		<form action="/userProfile" method="GET">
-		<form action="/userProfile" method="POST">
-		<fieldset>
-	 <input name ="submit" type="submit" value="Matches!"> 
-		&nbsp;  <input name ="submit" type="submit" value="Messages">&nbsp; <input type="submit" value="Account Settings"><!--  <input name ="submit" type="submit" value="Rate a Date">-->
-	</fieldset>
+		<form action="/userProfile" method="GET"></form>
+		
 		<fieldset>
 		
 		<h1> ${first_name} ${last_name}  </h1> 
@@ -23,7 +19,11 @@
 		<div style="display: inline;">
 
 		</form>
-		
+		<form action="/userProfile" method="POST">
+		<fieldset>
+	 <input name ="submit" type="submit" value="Matches!"> 
+		&nbsp;  <input name ="submit" type="submit" value="Messages">&nbsp; <input type="submit" value="Account Settings"><!--  <input name ="submit" type="submit" value="Rate a Date">-->
+	</fieldset>
 		</form>
 		</div>
 		<form>
