@@ -22,7 +22,7 @@
 		<form action="/userProfile" method="POST">
 		<fieldset>
 	 <input name ="submit" type="submit" value="Matches!"> 
-		&nbsp;  <input name ="submit" type="submit" value="Messages">&nbsp; <input type="submit" value="Account Settings">&nbsp; <input type="submit" value="Update Looking For"><!--  <input name ="submit" type="submit" value="Rate a Date">-->
+		&nbsp;  <input name ="submit" type="submit" value="Messages">&nbsp; <input type="submit" value="Account Settings">&nbsp; <input type="submit" value="Update Looking For"> <input name ="submit" type="submit" value="Edit Profile Info"><!--  <input name ="submit" type="submit" value="Rate a Date">-->
 	</fieldset>
 		</form>
 		</div>

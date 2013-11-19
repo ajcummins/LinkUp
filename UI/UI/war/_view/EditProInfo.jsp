@@ -8,7 +8,7 @@
 	</head>
 	
 	<body>
-		<p> <font face = "Impact" size ="18" >Set up your Profile!  </font></p>
+		<p> <font face = "Impact" size ="18" >Edit Profile info  </font></p>
 		
 		<form action="/SetUpProfileInfo" method="POST">
 			<table>
@@ -121,7 +121,7 @@
 						Books:
 					</td>
 					<td>
-						<textarea rows="5" cols="31" name="music" type="text" size="20" maxlength="250"></textarea>
+						<textarea rows="5" cols="31" name="music" type="text" size="20" maxlength="250" ${books} ></textarea>
 					</td>
 				</tr>
 				<tr>
@@ -129,7 +129,7 @@
 						Movies:
 					</td>
 					<td>
-						<textarea rows="5" cols="31" name="movies" type="text" size="20" maxlength="250"></textarea>
+						<textarea rows="5" cols="31" name="movies" type="text" size="20" maxlength="250" ${movies}></textarea>
 					</td>
 				</tr>
 				<tr>
@@ -137,7 +137,7 @@
 						Music:
 					</td>
 					<td>
-						<textarea rows="5" cols="31" name="books" type="text" size="20" maxlength="250"></textarea>
+						<textarea rows="5" cols="31" name="books" type="text" size="20" maxlength="250" ${music}></textarea>
 					</td>
 				</tr>
 				<tr>
@@ -145,7 +145,7 @@
 						Basic Info:
 					</td>
 					<td>
-						<textarea rows="5" cols="31" name="basic_info" type="text" size="20" maxlength="250"></textarea>
+						<textarea rows="5" cols="31" name="basic_info" type="text" size="20" maxlength="250" ${basic_info}></textarea>
 					</td>
 				</tr>
 				<tr>
@@ -153,7 +153,7 @@
 						Likes:
 					</td>
 					<td>
-						<textarea rows="5" cols="31" name="likes" type="text" size="20" maxlength="250"></textarea>
+						<textarea rows="5" cols="31" name="likes" type="text" size="20" maxlength="250" ${likes}></textarea>
 					</td>
 				</tr>
 				<tr>
@@ -161,7 +161,7 @@
 						Dislikes:
 					</td>
 					<td>
-						<textarea rows="5" cols="31" name="dislikes" type="text" size="20" maxlength="250"></textarea>
+						<textarea rows="5" cols="31" name="dislikes" type="text" size="20" maxlength="250" ${dislikes}></textarea>
 					</td>
 				</tr>
 				<tr>
