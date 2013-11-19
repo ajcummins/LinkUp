@@ -51,18 +51,7 @@
 						Religion:
 					</td>
 					<td>
-						<select name="religion">
-						  <option value="1" name="religion" size="20">Non-Religious</option>
-						  <option value="2" name="religion" size="20">Atheist</option>
-						  <option value="3" name="religion" size="20">Buddhism</option>
-						  <option value="4" name="religion" size="20">Christian</option>
-						  <option value="5" name="religion" size="20">Hinduism</option>
-						  <option value="6" name="religion" size="20">Islam</option>
-						  <option value="7" name="religion" size="20">Jewish</option>
-						  <option value="8" name="religion" size="20">Muslim</option>  
-						  <option value="9" name="religion" size="20">Sikhism</option>
-						  <option value="10" name="religion" size="20">Other</option>
-						</select>
+						${religion2}
 					</td>
 				</tr>
 				<tr>

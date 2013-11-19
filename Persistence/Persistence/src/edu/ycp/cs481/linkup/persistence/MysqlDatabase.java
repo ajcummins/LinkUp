@@ -1396,6 +1396,32 @@ public class MysqlDatabase implements IDatabase {
 	        }
 		return ddl + "</select>";
 	}
+
+	@Override
+	public String getDDLReligion() throws PersistenceException {
+		String ddl = "<select name='religion'>";
+		java.sql.PreparedStatement stmt = null;
+		String religion;
+		int i = 1;
+		try{ 
+			SQLconnection sqlConn = new SQLconnection();
+			 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+			 stmt = con.prepareStatement("SELECT religion FROM linkup.religion");
+	            stmt.executeQuery();
+	            ResultSet result = stmt.getResultSet();
+	            while(result.next()){
+	            	religion = result.getString(1);
+	            	ddl = ddl + "<option name='religion' value = '"+ i +"' size='20'>" + religion +"</option>";
+	            	i++;
+	            }
+	        	
+	        } 
+	        catch (Exception e) 
+	        {
+	            e.printStackTrace();
+	        }
+		return ddl + "</select>";
+	}
 	
 
 }

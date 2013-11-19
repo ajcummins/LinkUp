@@ -29,16 +29,19 @@ public class LookingForServlet extends HttpServlet{
 		String ddlGender = null;
 		String ddlLocation = null;
 		String ddlLooking = null;
+		String ddlReligion = null;
 		try {
 			ddlGender = controller.ddlGender();
 			ddlLocation = controller.ddlLocation();
 			ddlLooking = controller.ddlLookingFor();
+			ddlReligion = controller.ddlReligion();
 		} catch (PersistenceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		req.setAttribute("gender2", ddlGender);
 		req.setAttribute("location2", ddlLocation);
+		req.setAttribute("religion2", ddlReligion);
 		req.setAttribute("lookingfor2", ddlLooking);
 		
 		req.getRequestDispatcher("/_view/lookingFor.jsp").forward(req, resp);

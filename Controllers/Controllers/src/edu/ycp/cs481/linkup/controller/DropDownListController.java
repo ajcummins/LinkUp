@@ -17,4 +17,8 @@ public class DropDownListController {
 	{
 		return Database.getInstance().getDDLLookingFor();
 	}
+	public String ddlReligion() throws PersistenceException
+	{
+		return Database.getInstance().getDDLReligion();
+	}
 }
