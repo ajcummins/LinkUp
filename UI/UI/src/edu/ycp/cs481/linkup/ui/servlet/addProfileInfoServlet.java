@@ -7,6 +7,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Calendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;
@@ -20,11 +25,17 @@ import edu.ycp.cs481.linkup.controller.ProfileController;
 import edu.ycp.cs481.linkup.model.LookingFor;
 import edu.ycp.cs481.linkup.model.Path;
 import edu.ycp.cs481.linkup.model.UserProfile;
+import edu.ycp.cs481.linkup.persistence.MysqlDatabase;
 import edu.ycp.cs481.linkup.persistence.PersistenceException;
+import edu.ycp.cs481.linkup.persistence.SQLconnection;
 
 public class addProfileInfoServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
+
+	private static String DB_USERNAME = "ajcummins";
+	private static String DB_PASSWORD = "root";
 	private int user_id;
+	int age = 0;
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -76,16 +87,40 @@ public class addProfileInfoServlet extends HttpServlet{
 		}
 		*/
 		
+		
+		
+		SQLconnection sqlConn = null;
+		try {
+			sqlConn = new SQLconnection();
+		} catch (SQLException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+		
+		
+		
+		
 		//int user_id = Integer.parseInt(req.getParameter("user_id")); //convert to int later
 		int location = Integer.parseInt(req.getParameter("location"));  //convert to int later
 		int gender = Integer.parseInt(req.getParameter("gender"));    //convert to int later
 		//int age = Integer.parseInt(req.getParameter("age"));				//convert to int later
 		
-		int age = 0;
+	
+		try {
+			age = MysqlDatabase.getBirthdayAge(con, user_id);
+			System.out.println("\nUSERSSSSSSSSSS BDAY AGEEEEE CALCULAYTED = " + age);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		/*if (req.getParameter("age") == ""){
 			req.setAttribute("error", "You have remaining Empty Fields");
 		
 		}*/
+		
+		
+		System.out.println("\nUSERSSSSSSSSSS BDAY AGEEEEE CALCULAYTED = " + age);
 		
 		int religion = Integer.parseInt(req.getParameter("religion"));
 		String books = req.getParameter("books");

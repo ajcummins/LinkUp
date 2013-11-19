@@ -6,6 +6,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Calendar;
 
 import edu.ycp.cs481.linkup.model.LookingFor;
 import edu.ycp.cs481.linkup.model.MatchUserProfile;
@@ -210,9 +211,9 @@ public class MysqlDatabase implements IDatabase {
 			SQLconnection sqlConn = new SQLconnection();
 			Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
 			//using con create an entry into the appropriate table to add a user's looking for information
-					
-			
-			
+
+
+
 			stmt = con.prepareStatement("INSERT INTO linkup.profile_info(user_id,location, gender, age, religion"
 					+ ",books, movies, music, basic_info, likes, dislikes, looking_for) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
 			stmt.setInt(1, inProfile.getUserid());
@@ -469,22 +470,22 @@ public class MysqlDatabase implements IDatabase {
 		String tableData = "";
 		java.sql.Timestamp time = null;
 		try{
-			
+
 			SQLconnection sqlConn = new SQLconnection();
-			 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+			Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
 			String sql = ("SELECT COUNT(*) FROM linkup.match_messages WHERE user_to = " + user_id);
 			PreparedStatement prest = con.prepareStatement(sql);
-		    ResultSet rs = prest.executeQuery();
-		    while (rs.next()) {
-		      number = rs.getInt(1);
-		    }
-		    System.out.println("Number of records: " + number);
-		    con.close();
+			ResultSet rs = prest.executeQuery();
+			while (rs.next()) {
+				number = rs.getInt(1);
+			}
+			System.out.println("Number of records: " + number);
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			 int newnum = 0;
+			int newnum = 0;
 		}
 		if(number != 0){
 			String[] fromUser = new String[number];
@@ -492,28 +493,28 @@ public class MysqlDatabase implements IDatabase {
 			int i = 0;
 			try{ 
 				SQLconnection sqlConn = new SQLconnection();
-				 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
-				 stmt = con.prepareStatement("SELECT user_from, message FROM linkup.match_messages WHERE user_to = " + user_id + " ORDER BY time DESC");
-		            stmt.executeQuery();
-		            ResultSet result = stmt.getResultSet();
-		            while(result.next()){
-		            	//System.out.println("result is: " +result.getInt(1));
-		            	usernameFrom = result.getString(1);
-		            	mess = result.getString(2);
-		            	fromUser[i] = usernameFrom;
-		            	matchMess[i] = mess;
-		            	System.out.println("sender id: " + fromUser[i]);
-		            	System.out.println("\nmessage is: " + matchMess[i]);
-		            	i++;
-		            }
-		        	
-		        } 
-		        catch (Exception e) 
-		        {
-		            e.printStackTrace();
-		        }
+				Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+				stmt = con.prepareStatement("SELECT user_from, message FROM linkup.match_messages WHERE user_to = " + user_id + " ORDER BY time DESC");
+				stmt.executeQuery();
+				ResultSet result = stmt.getResultSet();
+				while(result.next()){
+					//System.out.println("result is: " +result.getInt(1));
+					usernameFrom = result.getString(1);
+					mess = result.getString(2);
+					fromUser[i] = usernameFrom;
+					matchMess[i] = mess;
+					System.out.println("sender id: " + fromUser[i]);
+					System.out.println("\nmessage is: " + matchMess[i]);
+					i++;
+				}
+
+			} 
+			catch (Exception e) 
+			{
+				e.printStackTrace();
+			}
 			int j;
-			
+
 			for(j = 0; j < number; j++){
 				tableData = tableData + "<tr><td>" +fromUser[j]+"</td><td>"+matchMess[j]+"</td><td><input name='submit' value='Reply to "+ fromUser[j] +"' type='submit' /></td></tr>";
 			}
@@ -625,17 +626,17 @@ public class MysqlDatabase implements IDatabase {
 		{
 			SQLconnection sqlConn = new SQLconnection();
 			Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
-			
+
 			int messID = getMaxMessageId(con);
 			String userName = null;
-			
+
 			stmt = con.prepareStatement("SELECT username FROM linkup.user WHERE user_id = " + inMessage.getFromID());
-            stmt.executeQuery();
-            ResultSet result = stmt.getResultSet();
-            result.next();
-            userName = result.getString(1);
-			
-			
+			stmt.executeQuery();
+			ResultSet result = stmt.getResultSet();
+			result.next();
+			userName = result.getString(1);
+
+
 			//using con create an entry into the appropriate table to add a user's looking for information
 			stmt = con.prepareStatement("INSERT INTO linkup.match_messages(message_id,user_to"
 					+ ",user_from,message) VALUES (?,?,?,?)");
@@ -653,7 +654,7 @@ public class MysqlDatabase implements IDatabase {
 		{
 			DBUtil.closeQuietly(stmt);
 		}
-		
+
 	}
 
 	private int getMaxMessageId(Connection conn) throws SQLException {
@@ -684,216 +685,216 @@ public class MysqlDatabase implements IDatabase {
 		int lookingSeriousness = -1;
 		int lookingSeriousnessWeight = -1;
 
-			java.sql.PreparedStatement stmt = null;
-			int match = -1;
-			String soulMate = null;
-			int lookingReligion = -1;
-			try 
-	        {   
-			 SQLconnection sqlConn = new SQLconnection();
-			 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);	
-			 
-			 //start here
-			
-			 stmt = con.prepareStatement("SELECT gender FROM linkup.looking_for WHERE user_id = " + userid);
-	            stmt.executeQuery();
-	            ResultSet result = stmt.getResultSet();
-	            result.next();
-	            lookingGender = result.getInt(1);
-	            
-	            stmt = con.prepareStatement("SELECT age_low FROM linkup.looking_for WHERE user_id = " + userid);
-	            stmt.executeQuery();
-	            ResultSet result2 = stmt.getResultSet();
-	            result2.next();
-	            lookingAgeLow = result2.getInt(1);
-	            
-	            stmt = con.prepareStatement("SELECT age_high FROM linkup.looking_for WHERE user_id = " + userid);
-	            stmt.executeQuery();
-	            ResultSet result3 = stmt.getResultSet();
-	            result3.next();
-	            lookingAgeHigh = result3.getInt(1);
-	            
-	            stmt = con.prepareStatement("SELECT religion FROM linkup.looking_for WHERE user_id = " + userid);
-	            stmt.executeQuery();
-	            ResultSet result4 = stmt.getResultSet();
-	            result4.next();
-	            lookingReligion = result4.getInt(1);
-	            
-	            stmt = con.prepareStatement("SELECT location FROM linkup.looking_for WHERE user_id = " + userid);
-	            stmt.executeQuery();
-	            ResultSet result5 = stmt.getResultSet();
-	            result5.next();
-	            lookingLocation = result5.getInt(1);
-	        	System.out.print("location is : " + lookingLocation);
-	        	
-	        	stmt = con.prepareStatement("SELECT seriousness FROM linkup.looking_for WHERE user_id = " + userid);
-	            stmt.executeQuery();
-	            ResultSet result6 = stmt.getResultSet();
-	            result6.next();
-	            lookingSeriousness = result6.getInt(1);
-	        	System.out.print("type is : " + lookingSeriousness);
-	        	
-	        	stmt = con.prepareStatement("SELECT seriousness_weight FROM linkup.looking_for WHERE user_id = " + userid);
-	            stmt.executeQuery();
-	            ResultSet result7 = stmt.getResultSet();
-	            result7.next();
-	            lookingSeriousnessWeight = result7.getInt(1);
-	        	System.out.print("weight is : " + lookingSeriousnessWeight);
-	        	
-	        } 
-	        catch (Exception e) 
-	        {
-	            e.printStackTrace();
-	        }
-			
-			if(lookingSeriousnessWeight > 6){
-				int number = 0;
-				try{
-					
-					SQLconnection sqlConn = new SQLconnection();
-					 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
-					String sql = ("SELECT COUNT(*) FROM linkup.profile_info WHERE gender = " + lookingGender +" AND location = " + lookingLocation + " AND religion = " + lookingReligion + " AND looking_for = " + lookingSeriousness +" AND age BETWEEN "+ lookingAgeLow +" AND " + lookingAgeHigh);
-					PreparedStatement prest = con.prepareStatement(sql);
-				    ResultSet rs = prest.executeQuery();
-				    while (rs.next()) {
-				      number = rs.getInt(1);
-				    }
-				    System.out.println("Number of records: " + number);
-				    con.close();
-					
-					
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}finally{
-					 int newnum = 0;
+		java.sql.PreparedStatement stmt = null;
+		int match = -1;
+		String soulMate = null;
+		int lookingReligion = -1;
+		try 
+		{   
+			SQLconnection sqlConn = new SQLconnection();
+			Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);	
+
+			//start here
+
+			stmt = con.prepareStatement("SELECT gender FROM linkup.looking_for WHERE user_id = " + userid);
+			stmt.executeQuery();
+			ResultSet result = stmt.getResultSet();
+			result.next();
+			lookingGender = result.getInt(1);
+
+			stmt = con.prepareStatement("SELECT age_low FROM linkup.looking_for WHERE user_id = " + userid);
+			stmt.executeQuery();
+			ResultSet result2 = stmt.getResultSet();
+			result2.next();
+			lookingAgeLow = result2.getInt(1);
+
+			stmt = con.prepareStatement("SELECT age_high FROM linkup.looking_for WHERE user_id = " + userid);
+			stmt.executeQuery();
+			ResultSet result3 = stmt.getResultSet();
+			result3.next();
+			lookingAgeHigh = result3.getInt(1);
+
+			stmt = con.prepareStatement("SELECT religion FROM linkup.looking_for WHERE user_id = " + userid);
+			stmt.executeQuery();
+			ResultSet result4 = stmt.getResultSet();
+			result4.next();
+			lookingReligion = result4.getInt(1);
+
+			stmt = con.prepareStatement("SELECT location FROM linkup.looking_for WHERE user_id = " + userid);
+			stmt.executeQuery();
+			ResultSet result5 = stmt.getResultSet();
+			result5.next();
+			lookingLocation = result5.getInt(1);
+			System.out.print("location is : " + lookingLocation);
+
+			stmt = con.prepareStatement("SELECT seriousness FROM linkup.looking_for WHERE user_id = " + userid);
+			stmt.executeQuery();
+			ResultSet result6 = stmt.getResultSet();
+			result6.next();
+			lookingSeriousness = result6.getInt(1);
+			System.out.print("type is : " + lookingSeriousness);
+
+			stmt = con.prepareStatement("SELECT seriousness_weight FROM linkup.looking_for WHERE user_id = " + userid);
+			stmt.executeQuery();
+			ResultSet result7 = stmt.getResultSet();
+			result7.next();
+			lookingSeriousnessWeight = result7.getInt(1);
+			System.out.print("weight is : " + lookingSeriousnessWeight);
+
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+
+		if(lookingSeriousnessWeight > 6){
+			int number = 0;
+			try{
+
+				SQLconnection sqlConn = new SQLconnection();
+				Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+				String sql = ("SELECT COUNT(*) FROM linkup.profile_info WHERE gender = " + lookingGender +" AND location = " + lookingLocation + " AND religion = " + lookingReligion + " AND looking_for = " + lookingSeriousness +" AND age BETWEEN "+ lookingAgeLow +" AND " + lookingAgeHigh);
+				PreparedStatement prest = con.prepareStatement(sql);
+				ResultSet rs = prest.executeQuery();
+				while (rs.next()) {
+					number = rs.getInt(1);
 				}
+				System.out.println("Number of records: " + number);
+				con.close();
+
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally{
+				int newnum = 0;
+			}
 			if(number != 0){	
 				int[] matchs = new int[number];
 				String[] soulMates = new String[number];
 				int i = 0;
 				try{ 
 					SQLconnection sqlConn = new SQLconnection();
-					 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+					Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
 					//end here
-					 stmt = con.prepareStatement("SELECT user_id FROM linkup.profile_info WHERE gender = " + lookingGender +" AND location = " + lookingLocation + " AND religion = " + lookingReligion + " AND seriousness = " +lookingSeriousness +"AND age BETWEEN "+ lookingAgeLow +" AND " + lookingAgeHigh);
-			            stmt.executeQuery();
-			            ResultSet result = stmt.getResultSet();
-			            while(result.next()){
-			            	//System.out.println("result is: " +result.getInt(1));
-			            	match = result.getInt(1);
-			            	matchs[i] = match;
-			            	System.out.println("match is: " + matchs[i]);
-			            	i++;
-			            }
-			        	
-			        } 
-			        catch (Exception e) 
-			        {
-			            e.printStackTrace();
-			        } 
-					
-				
+					stmt = con.prepareStatement("SELECT user_id FROM linkup.profile_info WHERE gender = " + lookingGender +" AND location = " + lookingLocation + " AND religion = " + lookingReligion + " AND seriousness = " +lookingSeriousness +"AND age BETWEEN "+ lookingAgeLow +" AND " + lookingAgeHigh);
+					stmt.executeQuery();
+					ResultSet result = stmt.getResultSet();
+					while(result.next()){
+						//System.out.println("result is: " +result.getInt(1));
+						match = result.getInt(1);
+						matchs[i] = match;
+						System.out.println("match is: " + matchs[i]);
+						i++;
+					}
+
+				} 
+				catch (Exception e) 
+				{
+					e.printStackTrace();
+				} 
+
+
 				int j = 0;
 				for(j = 0; j < number; j++){
-				try{ 
-					SQLconnection sqlConn = new SQLconnection();
-					 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
-					//end here
-					 stmt = con.prepareStatement("SELECT username FROM linkup.user WHERE user_id = " + matchs[j]);
-			            stmt.executeQuery();
-			            ResultSet result = stmt.getResultSet();
-			            result.next();
-			            soulMates[j] = result.getString(1);
-			            System.out.println("user name: " + soulMates[j]);
-			        } 
-			        catch (Exception e) 
-			        {
-			            e.printStackTrace();
-			        } 
-					
-				
+					try{ 
+						SQLconnection sqlConn = new SQLconnection();
+						Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+						//end here
+						stmt = con.prepareStatement("SELECT username FROM linkup.user WHERE user_id = " + matchs[j]);
+						stmt.executeQuery();
+						ResultSet result = stmt.getResultSet();
+						result.next();
+						soulMates[j] = result.getString(1);
+						System.out.println("user name: " + soulMates[j]);
+					} 
+					catch (Exception e) 
+					{
+						e.printStackTrace();
+					} 
+
+
 				}
 				return soulMates;
 			}else{
 				return null;
 			}
-				
-			}else{
-			
-			
+
+		}else{
+
+
 			int number = 0;
 			try{
-				
+
 				SQLconnection sqlConn = new SQLconnection();
-				 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+				Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
 				String sql = ("SELECT COUNT(*) FROM linkup.profile_info WHERE gender = " + lookingGender +" AND location = " + lookingLocation + " AND religion = " + lookingReligion + " AND age BETWEEN "+ lookingAgeLow +" AND " + lookingAgeHigh);
 				PreparedStatement prest = con.prepareStatement(sql);
-			    ResultSet rs = prest.executeQuery();
-			    while (rs.next()) {
-			      number = rs.getInt(1);
-			    }
-			    System.out.println("Number of records: " + number);
-			    con.close();
-				
-				
+				ResultSet rs = prest.executeQuery();
+				while (rs.next()) {
+					number = rs.getInt(1);
+				}
+				System.out.println("Number of records: " + number);
+				con.close();
+
+
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}finally{
-				 int newnum = 0;
+				int newnum = 0;
 			}
-		if(number != 0){	
-			int[] matchs = new int[number];
-			String[] soulMates = new String[number];
-			int i = 0;
-			try{ 
-				SQLconnection sqlConn = new SQLconnection();
-				 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
-				//end here
-				 stmt = con.prepareStatement("SELECT user_id FROM linkup.profile_info WHERE gender = " + lookingGender +" AND location = " + lookingLocation + " AND religion = " + lookingReligion + " AND age BETWEEN "+ lookingAgeLow +" AND " + lookingAgeHigh);
-		            stmt.executeQuery();
-		            ResultSet result = stmt.getResultSet();
-		            while(result.next()){
-		            	//System.out.println("result is: " +result.getInt(1));
-		            	match = result.getInt(1);
-		            	matchs[i] = match;
-		            	System.out.println("match is: " + matchs[i]);
-		            	i++;
-		            }
-		        	
-		        } 
-		        catch (Exception e) 
-		        {
-		            e.printStackTrace();
-		        } 
-				
-			
-			int j = 0;
-			for(j = 0; j < number; j++){
-			try{ 
-				SQLconnection sqlConn = new SQLconnection();
-				 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
-				//end here
-				 stmt = con.prepareStatement("SELECT username FROM linkup.user WHERE user_id = " + matchs[j]);
-		            stmt.executeQuery();
-		            ResultSet result = stmt.getResultSet();
-		            result.next();
-		            soulMates[j] = result.getString(1);
-		            System.out.println("user name: " + soulMates[j]);
-		        } 
-		        catch (Exception e) 
-		        {
-		            e.printStackTrace();
-		        } 
-				
-			
+			if(number != 0){	
+				int[] matchs = new int[number];
+				String[] soulMates = new String[number];
+				int i = 0;
+				try{ 
+					SQLconnection sqlConn = new SQLconnection();
+					Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+					//end here
+					stmt = con.prepareStatement("SELECT user_id FROM linkup.profile_info WHERE gender = " + lookingGender +" AND location = " + lookingLocation + " AND religion = " + lookingReligion + " AND age BETWEEN "+ lookingAgeLow +" AND " + lookingAgeHigh);
+					stmt.executeQuery();
+					ResultSet result = stmt.getResultSet();
+					while(result.next()){
+						//System.out.println("result is: " +result.getInt(1));
+						match = result.getInt(1);
+						matchs[i] = match;
+						System.out.println("match is: " + matchs[i]);
+						i++;
+					}
+
+				} 
+				catch (Exception e) 
+				{
+					e.printStackTrace();
+				} 
+
+
+				int j = 0;
+				for(j = 0; j < number; j++){
+					try{ 
+						SQLconnection sqlConn = new SQLconnection();
+						Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+						//end here
+						stmt = con.prepareStatement("SELECT username FROM linkup.user WHERE user_id = " + matchs[j]);
+						stmt.executeQuery();
+						ResultSet result = stmt.getResultSet();
+						result.next();
+						soulMates[j] = result.getString(1);
+						System.out.println("user name: " + soulMates[j]);
+					} 
+					catch (Exception e) 
+					{
+						e.printStackTrace();
+					} 
+
+
+				}
+				return soulMates;
+			}else{
+				return null;
 			}
-			return soulMates;
-		}else{
-			return null;
 		}
-			}
 	}
 
 	public int getMatchID(String buttonAction)
@@ -904,7 +905,7 @@ public class MysqlDatabase implements IDatabase {
 		int i; 
 		int matchid = -1;
 		for(i = 0; i < array.length; i++){
-			
+
 			if(i < 6 || i > (array.length - 9)){
 				//do nothing	
 			}
@@ -913,27 +914,27 @@ public class MysqlDatabase implements IDatabase {
 				matchUser = matchUser + array[i];
 			}
 		}
-		
+
 		java.sql.PreparedStatement stmt = null;
 		try 
-        {   
-		 SQLconnection sqlConn = new SQLconnection();
-		 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);	
+		{   
+			SQLconnection sqlConn = new SQLconnection();
+			Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);	
 
-		 stmt = con.prepareStatement("SELECT user_id FROM linkup.user WHERE username = '" + matchUser + "';");
-            stmt.executeQuery();
-            ResultSet result = stmt.getResultSet();
-            result.next();
-            matchid = result.getInt(1);
-        }catch (Exception e) 
-        {
-            e.printStackTrace();
-        }
+			stmt = con.prepareStatement("SELECT user_id FROM linkup.user WHERE username = '" + matchUser + "';");
+			stmt.executeQuery();
+			ResultSet result = stmt.getResultSet();
+			result.next();
+			matchid = result.getInt(1);
+		}catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
 		System.out.print("\nthis is the usernaem:" + matchUser + "\n");
 		System.out.print("\nthis is the User Id of Match:" + matchid + "\n");
 		return matchid;
 	}
-	
+
 	public int getReplyID(String buttonAction)
 	{
 		String[] array = buttonAction.split("");
@@ -942,7 +943,7 @@ public class MysqlDatabase implements IDatabase {
 		int i; 
 		int matchid = -1;
 		for(i = 0; i < array.length; i++){
-			
+
 			if(i < 10){
 				//do nothing	
 			}
@@ -951,22 +952,22 @@ public class MysqlDatabase implements IDatabase {
 				matchUser = matchUser + array[i];
 			}
 		}
-		
+
 		java.sql.PreparedStatement stmt = null;
 		try 
-        {   
-		 SQLconnection sqlConn = new SQLconnection();
-		 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);	
+		{   
+			SQLconnection sqlConn = new SQLconnection();
+			Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);	
 
-		 stmt = con.prepareStatement("SELECT user_id FROM linkup.user WHERE username = '" + matchUser + "';");
-            stmt.executeQuery();
-            ResultSet result = stmt.getResultSet();
-            result.next();
-            matchid = result.getInt(1);
-        }catch (Exception e) 
-        {
-            e.printStackTrace();
-        }
+			stmt = con.prepareStatement("SELECT user_id FROM linkup.user WHERE username = '" + matchUser + "';");
+			stmt.executeQuery();
+			ResultSet result = stmt.getResultSet();
+			result.next();
+			matchid = result.getInt(1);
+		}catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
 		System.out.print("\nthis is the usernaem:" + matchUser + "\n");
 		System.out.print("\nthis is the User Id of Match:" + matchid + "\n");
 		return matchid;
@@ -976,26 +977,26 @@ public class MysqlDatabase implements IDatabase {
 		String username = "";
 		java.sql.PreparedStatement stmt = null;
 		try 
-        {   
-		 SQLconnection sqlConn = new SQLconnection();
-		 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);	
+		{   
+			SQLconnection sqlConn = new SQLconnection();
+			Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);	
 
-		 stmt = con.prepareStatement("SELECT username FROM linkup.user WHERE user_id = " + user_id);
-            stmt.executeQuery();
-            ResultSet result = stmt.getResultSet();
-            result.next();
-            username = result.getString(1);
-        }catch (Exception e) 
-        {
-            e.printStackTrace();
-        }	
+			stmt = con.prepareStatement("SELECT username FROM linkup.user WHERE user_id = " + user_id);
+			stmt.executeQuery();
+			ResultSet result = stmt.getResultSet();
+			result.next();
+			username = result.getString(1);
+		}catch (Exception e) 
+		{
+			e.printStackTrace();
+		}	
 		return username;
 	}
-	
+
 	public String[] get_comment(int userid)	{
 		int NumComments = 0;
 		int number=0;
-		
+
 		java.sql.PreparedStatement stmt = null;
 
 		try 
@@ -1026,29 +1027,29 @@ public class MysqlDatabase implements IDatabase {
 			int i = 0;
 			String commen = "";
 			//for(int i=0;i<number; i++){
-				try{
-					SQLconnection sqlConn = new SQLconnection();
-					Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);	
+			try{
+				SQLconnection sqlConn = new SQLconnection();
+				Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);	
 
-					stmt = con.prepareStatement("SELECT comment FROM linkup.rating_system WHERE user_id = " + userid);
-					stmt.executeQuery();
-					ResultSet Cresult = stmt.getResultSet();
-					while(Cresult.next()){
-						commen = Cresult.getString(1);
-						commentList[i] = commen;
-						System.out.println("Comment: " + commentList[i]);
-						i++;
-					 }
-				}catch(Exception e){
-					e.printStackTrace();
+				stmt = con.prepareStatement("SELECT comment FROM linkup.rating_system WHERE user_id = " + userid);
+				stmt.executeQuery();
+				ResultSet Cresult = stmt.getResultSet();
+				while(Cresult.next()){
+					commen = Cresult.getString(1);
+					commentList[i] = commen;
+					System.out.println("Comment: " + commentList[i]);
+					i++;
 				}
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 			//}
 			return commentList;
 		}else{
 			return null;
 		}
 	}
-	
+
 	public MatchUserProfile getMatchProfile(int userid){
 		java.sql.PreparedStatement stmt = null;
 		String  religion =null; String books=null; String movies=null; String music=null;String basic_info=null;
@@ -1127,27 +1128,27 @@ public class MysqlDatabase implements IDatabase {
 			ResultSet result3 = stmt.getResultSet();
 			result3.next();
 			age = result3.getInt(1);
-			
-			 //dob
-            stmt = con.prepareStatement("SELECT birth_date FROM linkup.user WHERE user_id = " + userid);
-            stmt.executeQuery();
-            ResultSet dob1 = stmt.getResultSet();
-            dob1.next();
-            b_date = dob1.getString(1);
-            
-            String dateParts[]= b_date.split("-");
-            year = dateParts[0];
-            String month = dateParts[1];
-            day = dateParts[2];
-            
-            stmt = con.prepareStatement("SELECT month_name FROM linkup.bday_months WHERE month_date = " + month);
-            stmt.executeQuery();
-            ResultSet monthConv = stmt.getResultSet();
-            monthConv.next();
-            monthName = monthConv.getString(1);
-            
-			
-			
+
+			//dob
+			stmt = con.prepareStatement("SELECT birth_date FROM linkup.user WHERE user_id = " + userid);
+			stmt.executeQuery();
+			ResultSet dob1 = stmt.getResultSet();
+			dob1.next();
+			b_date = dob1.getString(1);
+
+			String dateParts[]= b_date.split("-");
+			year = dateParts[0];
+			String month = dateParts[1];
+			day = dateParts[2];
+
+			stmt = con.prepareStatement("SELECT month_name FROM linkup.bday_months WHERE month_date = " + month);
+			stmt.executeQuery();
+			ResultSet monthConv = stmt.getResultSet();
+			monthConv.next();
+			monthName = monthConv.getString(1);
+
+
+
 
 			//RELIGION
 			stmt = con.prepareStatement("SELECT religion FROM linkup.profile_info WHERE user_id = " + userid);
@@ -1244,17 +1245,17 @@ public class MysqlDatabase implements IDatabase {
 		{
 			SQLconnection sqlConn = new SQLconnection();
 			Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
-			
+
 			int messID = getMaxMessageId(con);
 			String userName = null;
-			
+
 			stmt = con.prepareStatement("SELECT username FROM linkup.user WHERE user_id = " + inMessage.getFromID());
-            stmt.executeQuery();
-            ResultSet result = stmt.getResultSet();
-            result.next();
-            userName = result.getString(1);
-			
-			
+			stmt.executeQuery();
+			ResultSet result = stmt.getResultSet();
+			result.next();
+			userName = result.getString(1);
+
+
 			//using con create an entry into the appropriate table to add a user's looking for information
 			stmt = con.prepareStatement("INSERT INTO linkup.match_messages(message_id,user_to"
 					+ ",user_from,message) VALUES (?,?,?,?)");
@@ -1272,7 +1273,7 @@ public class MysqlDatabase implements IDatabase {
 		{
 			DBUtil.closeQuietly(stmt);
 		}
-		
+
 	}
 
 	@Override
@@ -1283,26 +1284,26 @@ public class MysqlDatabase implements IDatabase {
 		String mess = "";
 		String tableData = "";
 		java.sql.Timestamp time = null;
-		
+
 		String username = getUserName(user_id);
-		
+
 		try{
-			
+
 			SQLconnection sqlConn = new SQLconnection();
-			 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+			Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
 			String sql = ("SELECT COUNT(*) FROM linkup.match_messages WHERE user_from = '" + username +"';");
 			PreparedStatement prest = con.prepareStatement(sql);
-		    ResultSet rs = prest.executeQuery();
-		    while (rs.next()) {
-		      number = rs.getInt(1);
-		    }
-		    System.out.println("Number of sent records: " + number);
-		    con.close();
+			ResultSet rs = prest.executeQuery();
+			while (rs.next()) {
+				number = rs.getInt(1);
+			}
+			System.out.println("Number of sent records: " + number);
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			 int newnum = 0;
+			int newnum = 0;
 		}
 		if(number != 0){
 			String[] toUser = new String[number];
@@ -1310,28 +1311,28 @@ public class MysqlDatabase implements IDatabase {
 			int i = 0;
 			try{ 
 				SQLconnection sqlConn = new SQLconnection();
-				 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
-				 stmt = con.prepareStatement("SELECT user_to, message FROM linkup.match_messages WHERE user_from = '" + username + "' ORDER BY time DESC");
-		            stmt.executeQuery();
-		            ResultSet result = stmt.getResultSet();
-		            while(result.next()){
-		            	//System.out.println("result is: " +result.getInt(1));
-		            	usernameFrom = result.getInt(1);
-		            	mess = result.getString(2);
-		            	toUser[i] = getUserName(usernameFrom);
-		            	matchMess[i] = mess;
-		            	System.out.println("Sent to: " + toUser[i]);
-		            	System.out.println("\nmessage is: " + matchMess[i]);
-		            	i++;
-		            }
-		        	
-		        } 
-		        catch (Exception e) 
-		        {
-		            e.printStackTrace();
-		        }
+				Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+				stmt = con.prepareStatement("SELECT user_to, message FROM linkup.match_messages WHERE user_from = '" + username + "' ORDER BY time DESC");
+				stmt.executeQuery();
+				ResultSet result = stmt.getResultSet();
+				while(result.next()){
+					//System.out.println("result is: " +result.getInt(1));
+					usernameFrom = result.getInt(1);
+					mess = result.getString(2);
+					toUser[i] = getUserName(usernameFrom);
+					matchMess[i] = mess;
+					System.out.println("Sent to: " + toUser[i]);
+					System.out.println("\nmessage is: " + matchMess[i]);
+					i++;
+				}
+
+			} 
+			catch (Exception e) 
+			{
+				e.printStackTrace();
+			}
 			int j;
-			
+
 			for(j = 0; j < number; j++){
 				tableData = tableData + "<tr><td>" +toUser[j]+"</td><td>"+matchMess[j]+"</td></tr>";
 			}
@@ -1350,21 +1351,21 @@ public class MysqlDatabase implements IDatabase {
 		int i = 1;
 		try{ 
 			SQLconnection sqlConn = new SQLconnection();
-			 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
-			 stmt = con.prepareStatement("SELECT gender FROM linkup.gender");
-	            stmt.executeQuery();
-	            ResultSet result = stmt.getResultSet();
-	            while(result.next()){
-	            	gender = result.getString(1);
-	            	ddl = ddl + "<option name='gender' value = '"+ i +"' size='20'>" + gender +"</option>";
-	            	i++;
-	            }
-	        	
-	        } 
-	        catch (Exception e) 
-	        {
-	            e.printStackTrace();
-	        }
+			Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+			stmt = con.prepareStatement("SELECT gender FROM linkup.gender");
+			stmt.executeQuery();
+			ResultSet result = stmt.getResultSet();
+			while(result.next()){
+				gender = result.getString(1);
+				ddl = ddl + "<option name='gender' value = '"+ i +"' size='20'>" + gender +"</option>";
+				i++;
+			}
+
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
 		return ddl + "</select>";
 	}
 
@@ -1376,21 +1377,21 @@ public class MysqlDatabase implements IDatabase {
 		int i = 1;
 		try{ 
 			SQLconnection sqlConn = new SQLconnection();
-			 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
-			 stmt = con.prepareStatement("SELECT location FROM linkup.location");
-	            stmt.executeQuery();
-	            ResultSet result = stmt.getResultSet();
-	            while(result.next()){
-	            	location = result.getString(1);
-	            	ddl = ddl + "<option name='location' value = '"+ i +"' size='20'>" + location +"</option>";
-	            	i++;
-	            }
-	        	
-	        } 
-	        catch (Exception e) 
-	        {
-	            e.printStackTrace();
-	        }
+			Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+			stmt = con.prepareStatement("SELECT location FROM linkup.location");
+			stmt.executeQuery();
+			ResultSet result = stmt.getResultSet();
+			while(result.next()){
+				location = result.getString(1);
+				ddl = ddl + "<option name='location' value = '"+ i +"' size='20'>" + location +"</option>";
+				i++;
+			}
+
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
 		return ddl + "</select>";
 	}
 
@@ -1402,21 +1403,21 @@ public class MysqlDatabase implements IDatabase {
 		int i = 1;
 		try{ 
 			SQLconnection sqlConn = new SQLconnection();
-			 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
-			 stmt = con.prepareStatement("SELECT PInfoLookingFor FROM linkup.pinfolookingfor");
-	            stmt.executeQuery();
-	            ResultSet result = stmt.getResultSet();
-	            while(result.next()){
-	            	lookingfor = result.getString(1);
-	            	ddl = ddl + "<option name='seriousness' value = '"+ i +"' size='20'>" + lookingfor +"</option>";
-	            	i++;
-	            }
-	        	
-	        } 
-	        catch (Exception e) 
-	        {
-	            e.printStackTrace();
-	        }
+			Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+			stmt = con.prepareStatement("SELECT PInfoLookingFor FROM linkup.pinfolookingfor");
+			stmt.executeQuery();
+			ResultSet result = stmt.getResultSet();
+			while(result.next()){
+				lookingfor = result.getString(1);
+				ddl = ddl + "<option name='seriousness' value = '"+ i +"' size='20'>" + lookingfor +"</option>";
+				i++;
+			}
+
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
 		return ddl + "</select>";
 	}
 
@@ -1428,21 +1429,21 @@ public class MysqlDatabase implements IDatabase {
 		int i = 1;
 		try{ 
 			SQLconnection sqlConn = new SQLconnection();
-			 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
-			 stmt = con.prepareStatement("SELECT religion FROM linkup.religion");
-	            stmt.executeQuery();
-	            ResultSet result = stmt.getResultSet();
-	            while(result.next()){
-	            	religion = result.getString(1);
-	            	ddl = ddl + "<option name='religion' value = '"+ i +"' size='20'>" + religion +"</option>";
-	            	i++;
-	            }
-	        	
-	        } 
-	        catch (Exception e) 
-	        {
-	            e.printStackTrace();
-	        }
+			Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+			stmt = con.prepareStatement("SELECT religion FROM linkup.religion");
+			stmt.executeQuery();
+			ResultSet result = stmt.getResultSet();
+			while(result.next()){
+				religion = result.getString(1);
+				ddl = ddl + "<option name='religion' value = '"+ i +"' size='20'>" + religion +"</option>";
+				i++;
+			}
+
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
 		return ddl + "</select>";
 	}
 
@@ -1454,21 +1455,21 @@ public class MysqlDatabase implements IDatabase {
 		int i = 1;
 		try{ 
 			SQLconnection sqlConn = new SQLconnection();
-			 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
-			 stmt = con.prepareStatement("SELECT weight FROM linkup.weight");
-	            stmt.executeQuery();
-	            ResultSet result = stmt.getResultSet();
-	            while(result.next()){
-	            	weight = result.getString(1);
-	            	ddl = ddl + "<option name='"+weight_type+"' value = '"+ i +"' size='20'>" + weight +"</option>";
-	            	i++;
-	            }
-	        	
-	        } 
-	        catch (Exception e) 
-	        {
-	            e.printStackTrace();
-	        }
+			Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+			stmt = con.prepareStatement("SELECT weight FROM linkup.weight");
+			stmt.executeQuery();
+			ResultSet result = stmt.getResultSet();
+			while(result.next()){
+				weight = result.getString(1);
+				ddl = ddl + "<option name='"+weight_type+"' value = '"+ i +"' size='20'>" + weight +"</option>";
+				i++;
+			}
+
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
 		return ddl + "</select>";
 	}
 
@@ -1511,8 +1512,80 @@ public class MysqlDatabase implements IDatabase {
 		{
 			DBUtil.closeQuietly(stmt);
 		}
-		
+
 	}
-	
+
+
+
+
+	public static int getBirthdayAge(Connection con, int userid) throws SQLException{
+		java.sql.PreparedStatement stmt2 = null;
+		ResultSet result = null;
+		String b_date = null; String MonthName=null; String day = null; String year = null; String month =null;
+		int age = 0;
+
+		try {
+
+			//get birthdate
+			//dob
+			stmt2 = con.prepareStatement("SELECT birth_date FROM linkup.user WHERE user_id = " + userid); //userid
+			stmt2.executeQuery();
+			ResultSet dob = stmt2.getResultSet();
+			dob.next();
+			b_date = dob.getString(1);
+
+
+			String dateParts[]= b_date.split("-");
+			year = dateParts[0];
+			String monthName = dateParts[1];
+			day = dateParts[2];
+
+			System.out.println("\nBEFORE bday year, month, day = " + year + " "+ monthName + " " +day);
+
+			int Byear = Integer.parseInt(year);
+			int Bmonth = Integer.parseInt(monthName);
+			int Bday = Integer.parseInt(day);
+
+			System.out.println("\nAFTER bday year, month, day = " + Byear + " "+ Bmonth + " " + Bday);
+
+			//todays date
+			Date date = null;
+			Calendar cal = Calendar.getInstance();
+			//cal.setTime(date);
+			int year1 = cal.get(Calendar.YEAR);
+			int month1 = cal.get(Calendar.MONTH);
+			int day1 = cal.get(Calendar.DAY_OF_MONTH);
+			month1 = month1+1;		
+			//System.out.println("TODAYS DATE? = " + month1 + "-" + day1 + "-" + year1);
+
+			/*int MYyear = 1990;
+	    		int Mymonth = 06;
+	    		int Myday = 14;
+			 */
+			int RealAge = year1 - Byear;
+			if(month1 < Bmonth){
+				RealAge --;
+			}else if(month1 == Bmonth && day1 < Bday){
+				RealAge --;
+			}
+
+			System.out.println("\nMY AGE!!! = "+ RealAge);
+
+
+
+
+
+
+
+			return RealAge;
+		} finally {
+			DBUtil.closeQuietly(result);
+			DBUtil.closeQuietly(stmt2);
+		}
+	}
+
+
+
+
 
 }

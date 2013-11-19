@@ -1,5 +1,7 @@
 package data;
 
+import java.sql.Date;
+import java.util.Calendar;
 import java.util.Scanner;
 
 // I imagine this will be our main
@@ -9,7 +11,32 @@ import java.util.Scanner;
 public class LinkUp {
 
 	public static void main(String[] args) throws Exception {
-		// Initiate Connection
+		
+		
+		Date date = null;
+		Calendar cal = Calendar.getInstance();
+		//cal.setTime(date);
+		int year1 = cal.get(Calendar.YEAR);
+		int month1 = cal.get(Calendar.MONTH);
+		int day1 = cal.get(Calendar.DAY_OF_MONTH);
+		month1 = month1+1;		
+		System.out.println("TODAYS DATE? = " + month1 + "-" + day1 + "-" + year1);
+		
+		int MYyear = 1990;
+		int Mymonth = 06;
+		int Myday = 14;
+		
+		int age = year1 - MYyear;
+		if(month1 < Mymonth){
+			age --;
+		}else if(month1 == Mymonth && day1 < Myday){
+			age --;
+		}
+		
+		System.out.println("\nMY AGE!!! = "+ age);
+		
+		
+		/*// Initiate Connection
 		SQLconnection ourCon = new SQLconnection();
 		
 		// We'll have to figure out a better way of doing this in the future
@@ -65,6 +92,6 @@ public class LinkUp {
 		System.out.println("Now lets determine what kind of person you are looking for!\n");
 		
 		looking_for.main(null);
+	}*/
 	}
-
 }
