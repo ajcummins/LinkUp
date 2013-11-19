@@ -75,6 +75,8 @@ public interface IDatabase {
 
 	public String getDDLWeight(String weight_type)	throws PersistenceException;
 
+	public void update_user_looking_for(LookingFor inLooking)	throws PersistenceException;
+
 
 
 

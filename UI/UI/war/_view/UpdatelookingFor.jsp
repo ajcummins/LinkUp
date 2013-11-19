@@ -4,13 +4,13 @@
 
 <html>
 	<head>
-		<title>Looking For</title>
+		<title>Update Looking For Information</title>
 	</head>
-	
+	<p><font color="pink" face="Comic Sans MS" size="15">LinkUp:</font> <font color="blue" face="Comic Sans MS" size="15">Update Looking For Information</font></p>
 	<body>
 		<p> What are you looking for in a Match? </p>
 		
-		<form action="/lookingFor" method="POST">
+		<form action="/UpdatelookingFor" method="POST">
 		<fieldset>
 		<legend> Let's Find A Match </legend>
 			<table>

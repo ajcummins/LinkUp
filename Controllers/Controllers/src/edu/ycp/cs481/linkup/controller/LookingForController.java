@@ -8,4 +8,7 @@ public class LookingForController {
 	public void LookingFor(LookingFor inLooking) throws PersistenceException{
 		Database.getInstance().add_user_looking_for(inLooking);
 	}
+	public void UpdateLookingFor(LookingFor inLooking) throws PersistenceException{
+		Database.getInstance().update_user_looking_for(inLooking);
+	}
 }

@@ -1448,6 +1448,48 @@ public class MysqlDatabase implements IDatabase {
 	        }
 		return ddl + "</select>";
 	}
+
+	@Override
+	public void update_user_looking_for(LookingFor inLooking)
+			throws PersistenceException {
+		java.sql.PreparedStatement stmt = null;
+		System.out.println("userid" + inLooking.getUserid()
+				+ "\nage low: " + inLooking.getAgeLow()
+				+ "\nage high: " + inLooking.getAgeHigh()
+				+ "\ngender: " + inLooking.getGender()
+				+ "\nreligion: " + inLooking.getReligion()
+				+ "\nreligion weight: " + inLooking.getReligionWeight()
+				+ "\nseriousness: " + inLooking.getseriousness()
+				+ "\nseriousness weight: " + inLooking.getseriousnessWeight()
+				+ "\nlocation: " + inLooking.getLocation());
+		try
+		{
+			SQLconnection sqlConn = new SQLconnection();
+			Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+			//using con create an entry into the appropriate table to add a user's looking for information
+			stmt = con.prepareStatement("UPDATE INTO linkup.looking_for(user_id,age_low"
+					+ ",age_high,gender,religion,religion_weight,seriousness,seriousness_weight, location) VALUES (?,?,?,?,?,?,?,?,?) WHERE user_id = "+inLooking.getUserid());
+			stmt.setInt(1, inLooking.getUserid());
+			stmt.setInt(2, inLooking.getAgeLow());
+			stmt.setInt(3, inLooking.getAgeHigh());
+			stmt.setInt(4, inLooking.getGender());
+			stmt.setInt(5, inLooking.getReligion());
+			stmt.setInt(6, inLooking.getReligionWeight());
+			stmt.setInt(7, inLooking.getseriousness());
+			stmt.setInt(8, inLooking.getseriousnessWeight());
+			stmt.setInt(9, inLooking.getLocation());
+			stmt.executeUpdate();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			DBUtil.closeQuietly(stmt);
+		}
+		
+	}
 	
 
 }
