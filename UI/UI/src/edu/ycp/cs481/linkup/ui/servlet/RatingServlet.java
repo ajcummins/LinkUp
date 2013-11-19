@@ -40,13 +40,13 @@ public class RatingServlet extends HttpServlet{
 	private int userLogin;
 	private String username;
 	private String comment;
-	
+
 
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		
+
 		Path urlPath1 = new Path(req.getPathInfo());
 		userLogin = Integer.parseInt(urlPath1.getLoggedInUserIDFromPath());
 		System.out.print("This is the user that is logged in: " + userLogin);
@@ -57,16 +57,16 @@ public class RatingServlet extends HttpServlet{
 		System.out.print("This is the user that is rated in: " + user_id);
 
 		//Get userid from the url passed
-				/*Path urlPath = new Path(req.getPathInfo());
+		/*Path urlPath = new Path(req.getPathInfo());
 				System.out.println("Path = " + req.getPathInfo());
 				userLogin = Integer.parseInt(urlPath.getUserIDFromPath());  //this is the id of the ratee not the rater
 				System.out.println("\nTHIS IS THE RATING ID GOTTEN FROM THE PATH: " + userLogin);
-				
+
 				Path urlPath2 = new Path(req.getPathInfo());
 				user_id = Integer.parseInt(urlPath2.getMatchUserIDFromPath());
 				System.out.println("THIS IS THE PERSON BEING RATEDS ID: " + user_id);
-					*/
-		
+		 */
+
 		req.getRequestDispatcher("/_view/Rating.jsp").forward(req, resp);
 
 	}
@@ -82,74 +82,75 @@ public class RatingServlet extends HttpServlet{
 		/*Path urlPath1 = new Path(req.getPathInfo());
 		int id = Integer.parseInt(urlPath1.getUserIDFromPath());
 		System.out.println("\nTHIS IS THE RATEEES USER ID? : " + id);
-		*///check to make sure username is in database
+		 *///check to make sure username is in database
 		//get that usernames User_ID
 		String comment = req.getParameter("comment");
-		
+
 		if(comment == ""){ //error checcking
-		
-		}
+			req.setAttribute("error", "You have left remaining Empty Fields");
+			req.getRequestDispatcher("/_view/Rating.jsp").forward(req, resp);
+		}else{
+
+			java.sql.PreparedStatement stmt = null;
+			int userid=0;
+
+			try 
+			{   
+				SQLconnection sqlConn = new SQLconnection();
+				Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);	
 
 
-		java.sql.PreparedStatement stmt = null;
-		int userid=0;
-
-		try 
-		{   
-			SQLconnection sqlConn = new SQLconnection();
-			Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);	
-
-
-			//RATED USERS ID
-			/*stmt = con.prepareStatement("SELECT user_id FROM linkup.user WHERE username = '" + username + "';" );
+				//RATED USERS ID
+				/*stmt = con.prepareStatement("SELECT user_id FROM linkup.user WHERE username = '" + username + "';" );
 			stmt.executeQuery();
 			ResultSet result = stmt.getResultSet();
 			result.next();
 			userid = result.getInt(1); //gets the rated users id
 			System.out.println("user id: " + userid);*/
 
-		} 
-		catch (Exception e) 
-		{
-			e.printStackTrace();
+			} 
+			catch (Exception e) 
+			{
+				e.printStackTrace();
+			}
+
+
+
+
+
+			//testing to see if gets info
+			System.out.println("\nrated user id: " + userLogin
+					+ "\ncomment: " + comment);
+
+
+
+
+
+
+
+
+			Rating tempRating = new Rating(rating_id, user_id, comment);
+
+
+
+			RatingController controller = new RatingController();
+
+			try {
+				rating_id = controller.createRating(tempRating);
+			} catch (PersistenceException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			resp.sendRedirect("MatchProfile/"+ userLogin + "/" + user_id);
+
+
+
+
+
+
+
 		}
-
-
-
-
-
-		//testing to see if gets info
-		System.out.println("\nrated user id: " + userLogin
-				+ "\ncomment: " + comment);
-
-
-
-
-
-
-
-
-		Rating tempRating = new Rating(rating_id, user_id, comment);
-
-
-
-		RatingController controller = new RatingController();
-
-		try {
-			rating_id = controller.createRating(tempRating);
-		} catch (PersistenceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		resp.sendRedirect("MatchProfile/"+ userLogin + "/" + user_id);
-		
-
-
-
-
-
-
 	}
 
 }

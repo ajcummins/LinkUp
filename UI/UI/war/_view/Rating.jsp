@@ -1,5 +1,5 @@
 <!doctype html>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 	<head>
 		<title>Edit Profile</title>
@@ -24,6 +24,15 @@
 				<tr>
 					<td></td>
 					<td><input name="submit" type="submit" value="Submit"/></td>
+				
+				</tr>
+				<tr>
+					<td>			<c:if test="${! empty error}">
+									<b>Error: ${error}</b>
+				
+									</c:if>
+					</td>
+					
 				
 				</tr>
 				
