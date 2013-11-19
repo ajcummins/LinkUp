@@ -59,18 +59,7 @@
 						Religion Importance:
 					</td>
 					<td>
-						<select name="religion_weight">
-						  <option value="1" name="religion_weight" size="20">1</option>
-						  <option value="2" name="religion_weight" size="20">2</option>
-						  <option value="3" name="religion_weight" size="20">3</option>
-						  <option value="4" name="religion_weight" size="20">4</option>
-						  <option value="5" name="religion_weight" size="20">5</option>
-						  <option value="6" name="religion_weight" size="20">6</option>
-						  <option value="7" name="religion_weight" size="20">7</option>
-						  <option value="8" name="religion_weight" size="20">8</option>
-						  <option value="9" name="religion_weight" size="20">9</option>
-						  <option value="10" name="religion_weight" size="20">10</option>
-						</select>
+						${rWeight}
 					</td>
 				</tr>
 				<tr>
@@ -86,18 +75,7 @@
 						Seriousness Importance:
 					</td>
 					<td>
-						<select name="seriousness_weight">
-						  <option value="1" name="seriousness_weight" type="int" size="20">1</option>
-						  <option value="2" name="seriousness_weight" type="int" size="20">2</option>
-						  <option value="3" name="seriousness_weight" type="int" size="20">3</option>
-						  <option value="4" name="seriousness_weight" type="int" size="20">4</option>
-						  <option value="5" name="seriousness_weight" type="int" size="20">5</option>
-						  <option value="6" name="seriousness_weight" type="int" size="20">6</option>
-						  <option value="7" name="seriousness_weight" type="int" size="20">7</option>
-						  <option value="8" name="seriousness_weight" type="int" size="20">8</option>
-						  <option value="9" name="seriousness_weight" type="int" size="20">9</option>
-						  <option value="10" name="seriousness_weight" type="int" size="20">10</option>
-						</select>
+						${sWeight}
 					</td>
 				</tr>
 				<tr>

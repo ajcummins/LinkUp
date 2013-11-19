@@ -21,4 +21,8 @@ public class DropDownListController {
 	{
 		return Database.getInstance().getDDLReligion();
 	}
+	public String ddlWeight(String weight_type) throws PersistenceException
+	{
+		return Database.getInstance().getDDLWeight(weight_type);
+	}
 }

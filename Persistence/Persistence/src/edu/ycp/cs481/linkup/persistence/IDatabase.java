@@ -73,6 +73,8 @@ public interface IDatabase {
 
 	public String getDDLReligion()	throws PersistenceException;
 
+	public String getDDLWeight(String weight_type)	throws PersistenceException;
+
 
 
 

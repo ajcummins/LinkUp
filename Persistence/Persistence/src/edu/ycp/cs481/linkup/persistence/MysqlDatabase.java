@@ -1422,6 +1422,32 @@ public class MysqlDatabase implements IDatabase {
 	        }
 		return ddl + "</select>";
 	}
+
+	@Override
+	public String getDDLWeight(String weight_type) throws PersistenceException {
+		String ddl = "<select name='"+weight_type+"'>";
+		java.sql.PreparedStatement stmt = null;
+		String weight;
+		int i = 1;
+		try{ 
+			SQLconnection sqlConn = new SQLconnection();
+			 Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+			 stmt = con.prepareStatement("SELECT weight FROM linkup.weight");
+	            stmt.executeQuery();
+	            ResultSet result = stmt.getResultSet();
+	            while(result.next()){
+	            	weight = result.getString(1);
+	            	ddl = ddl + "<option name='"+weight_type+"' value = '"+ i +"' size='20'>" + weight +"</option>";
+	            	i++;
+	            }
+	        	
+	        } 
+	        catch (Exception e) 
+	        {
+	            e.printStackTrace();
+	        }
+		return ddl + "</select>";
+	}
 	
 
 }
