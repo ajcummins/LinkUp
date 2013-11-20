@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import edu.ycp.cs481.linkup.controller.DropDownListController;
 import edu.ycp.cs481.linkup.controller.LookingForController;
 import edu.ycp.cs481.linkup.controller.ProfileController;
 import edu.ycp.cs481.linkup.model.LookingFor;
@@ -40,8 +41,29 @@ public class addProfileInfoServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		req.getRequestDispatcher("/_view/SetUpProfileInfo.jsp").forward(req, resp);
 		
+		DropDownListController controller = new DropDownListController();
+		String ddlGender = null;
+		String ddlLocation = null;
+		String ddlLooking = null;
+		String ddlReligion = null;
+		
+		try{
+			ddlGender = controller.ddlGender();
+			ddlLocation = controller.ddlLocation();
+			ddlLooking = controller.ddlLookingFor();
+			ddlReligion = controller.ddlReligion();
+		}catch (PersistenceException e){
+			e.printStackTrace();
+		}
+		
+		req.setAttribute("gender2", ddlGender);
+		req.setAttribute("location2", ddlLocation);
+		req.setAttribute("religion2", ddlReligion);
+		req.setAttribute("lookingfor2", ddlLooking);
+		
+		req.getRequestDispatcher("/_view/SetUpProfileInfo.jsp").forward(req, resp);
+
 					
 		//Get userid from the url passed
 		Path urlPath = new Path(req.getPathInfo());
