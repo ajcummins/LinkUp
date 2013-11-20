@@ -10,7 +10,7 @@
 	<body>
 		<p> <font face = "Impact" size ="18" >Edit Profile info  </font></p>
 		
-		<form action="/SetUpProfileInfo" method="POST">
+		<form action="/EditProInfo" method="POST">
 			<table>
 			<tr>
 					<!--<td>
