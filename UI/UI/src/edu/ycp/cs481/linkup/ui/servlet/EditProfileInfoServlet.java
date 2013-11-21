@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.ycp.cs481.linkup.controller.EditProfileInfoController;
 import edu.ycp.cs481.linkup.controller.ProfileController;
 import edu.ycp.cs481.linkup.model.Path;
 import edu.ycp.cs481.linkup.model.UserProfile;
@@ -362,11 +363,11 @@ public class EditProfileInfoServlet extends HttpServlet{
 				+ "\nlooking for: " + looking_for);
 		//+ "\nPICTURE: "+ picture);
 
-		/*UserProfile tempProfileInfo = new UserProfile(userid, location, gender, age, religion, books, movies, music, basic_info, likes, dislikes, looking_for);
+		UserProfile tempProfileInfo = new UserProfile(userid, location, gender, age, religion, books, movies, music, basic_info, likes, dislikes, looking_for);
 
 
 
-		ProfileController controller = new ProfileController();
+		EditProfileInfoController controller = new EditProfileInfoController();
 		try {
 			controller.Profile(tempProfileInfo);
 		} catch (PersistenceException e) {
@@ -374,7 +375,7 @@ public class EditProfileInfoServlet extends HttpServlet{
 			e.printStackTrace();
 		}
 
-*/
+
 
 
 

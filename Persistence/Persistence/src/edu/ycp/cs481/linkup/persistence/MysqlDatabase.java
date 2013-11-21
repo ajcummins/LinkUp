@@ -36,7 +36,6 @@ public class MysqlDatabase implements IDatabase {
 
 		try {
 			SQLconnection sqlConn = new SQLconnection();
-			Connection conn = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
 			try {
 				// use the connection
 			} finally {
@@ -1585,6 +1584,54 @@ public class MysqlDatabase implements IDatabase {
 	}
 
 
+	@Override
+	public void edit_profile_info(UserProfile inProfile)
+			throws PersistenceException {
+		//determine next available userID
+		java.sql.PreparedStatement stmt = null;
+		//java.sql.PreparedStatement stmt2 = null;
+		Date dob=null; //birth_date = null;
+
+		try
+		{
+			SQLconnection sqlConn = new SQLconnection();
+			Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+			//using con create an entry into the appropriate table to add a user's looking for information
+
+			
+
+			stmt = con.prepareStatement("UPDATE linkup.profile_info SET (location = '?', gender ='?', age ='?', religion ='?' "
+					+ "music = '?', books = '?', movies = '?', basic_info = '?', likes = '?', dislikes = '?', looking_for ='?') WHERE user_id = '?'");
+			stmt.setInt(1, inProfile.getUserid());
+			stmt.setInt(2, inProfile.getLocation());
+			stmt.setInt(3, inProfile.getGender());
+			stmt.setInt(4, inProfile.getAge());
+			stmt.setInt(5, inProfile.getReligion());
+			stmt.setString(6, inProfile.getBooks());
+			stmt.setString(7, inProfile.getMovies());
+			stmt.setString(8, inProfile.getMusic());
+			stmt.setString(9, inProfile.getBasic_Info());
+			stmt.setString(10, inProfile.getLikes());
+			stmt.setString(11, inProfile.getDislikes());
+			stmt.setInt(12 , inProfile.getLooking_For());
+			stmt.executeUpdate();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException ex) {
+				}
+			}
+		}
+		// TODO Auto-generated method stub
+
+	}
 
 
 
