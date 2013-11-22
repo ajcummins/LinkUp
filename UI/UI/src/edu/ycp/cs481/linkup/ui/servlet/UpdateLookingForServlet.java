@@ -136,7 +136,7 @@ public class UpdateLookingForServlet extends HttpServlet{
 			}
 
 			System.out.print("sending redirect here!!!");
-			resp.sendRedirect("UpdatelookingFor/"+ user_id);	
+			resp.sendRedirect("userProfile/"+ user_id);	
 		}
 	}
 }
