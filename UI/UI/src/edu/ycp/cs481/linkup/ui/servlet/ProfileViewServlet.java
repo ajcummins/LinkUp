@@ -263,13 +263,13 @@ public class ProfileViewServlet extends HttpServlet {
 				throws ServletException, IOException {
 			System.out.print("\nthis is the user id:" + userid + "\n");
 			String buttonAction = req.getParameter("submit");
+			System.out.print("\n button: " + buttonAction);
 			
 			if(buttonAction.equals("Messages")){ //go to the user's messages page
 				System.out.print("\nthis is the user id:" + userid);
 				resp.sendRedirect("matchMessages/"+ userid);
 				
 			}if(buttonAction.equals("Update Looking For")){ //go to update looking for info
-				System.out.print("\nAccount settings:" + userid);
 				resp.sendRedirect("UpdatelookingFor/"+ userid);
 				
 			}if(buttonAction.equals("Edit Profile Info")){

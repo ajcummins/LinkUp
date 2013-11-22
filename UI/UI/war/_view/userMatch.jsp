@@ -9,7 +9,12 @@
 	<p><font color="pink" face="Comic Sans MS" size="15">LinkUp:</font> <font color="blue" face="Comic Sans MS" size="15"> Matches</font></p>
 	<body>		
 		<form action="/userMatch" method="POST">
-		<fieldset><td><input name="submit" value="Profile" type="submit" /></td></fieldset>
+		<fieldset>
+		<table>
+		<td><td><input name="submit" value="Profile" type="submit"data-icon="home"/></td><td></td><td></td>
+		</tr>
+		</table>
+		</fieldset>
 		<fieldset>
 		
 		<legend> Congratulations!!!! </legend>

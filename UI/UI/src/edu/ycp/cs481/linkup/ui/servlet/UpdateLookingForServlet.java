@@ -25,38 +25,54 @@ public class UpdateLookingForServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
+		req.getRequestDispatcher("/_view/UpdatelookingFor.jsp").forward(req, resp);
+		//Get userid from the url passed
+		Path urlPath = new Path(req.getPathInfo());
+		System.out.println("Path = " + req.getPathInfo());
+		user_id = Integer.parseInt(urlPath.getUserIDFromPath());
+		
 		DropDownListController controller = new DropDownListController();
+		LookingForController control =  new LookingForController();
 		String ddlGender = null;
 		String ddlLocation = null;
 		String ddlLooking = null;
 		String ddlReligion = null;
-		String ddlRWeight = null;
-		String ddlSWeight = null;
+		LookingFor tempLooking = null;
 		
 		try {
 			ddlGender = controller.ddlGender();
 			ddlLocation = controller.ddlLocation();
 			ddlLooking = controller.ddlLookingFor();
 			ddlReligion = controller.ddlReligion();
-			ddlRWeight = controller.ddlWeight("religion_weight");
-			ddlSWeight = controller.ddlWeight("seriousness_weight");
+			tempLooking = control.GetLookingFor(user_id);
+			
 		} catch (PersistenceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		System.out.println("age_low: " + tempLooking.getAgeLow());
+		
 		req.setAttribute("gender2", ddlGender);
 		req.setAttribute("location2", ddlLocation);
 		req.setAttribute("religion2", ddlReligion);
 		req.setAttribute("lookingfor2", ddlLooking);
-		req.setAttribute("rWeight", ddlRWeight);
-		req.setAttribute("sWeight", ddlSWeight);
+		req.getSession().setAttribute("age_low", tempLooking.getAgeLow());
+		req.getSession().setAttribute("age_high", tempLooking.getAgeHigh());
+		req.getSession().setAttribute("gender", tempLooking.getGender());
+		req.getSession().setAttribute("religion_weight", tempLooking.getReligionWeight());
+		req.getSession().setAttribute("seriousness_weight", tempLooking.getseriousnessWeight());
+		req.getSession().setAttribute("state", tempLooking.getState());
+		req.getSession().setAttribute("children", tempLooking.getChildern());
+		req.getSession().setAttribute("married", tempLooking.getMarried());
+		req.getSession().setAttribute("pets", tempLooking.getPets());
+		req.getSession().setAttribute("race", tempLooking.getRace());
+		req.getSession().setAttribute("income", tempLooking.getIncome());
+		req.getSession().setAttribute("income_weight", tempLooking.getIncome_weight());
 		
-		req.getRequestDispatcher("/_view/lookingFor.jsp").forward(req, resp);
+	
 		
-		//Get userid from the url passed
-				Path urlPath = new Path(req.getPathInfo());
-				System.out.println("Path = " + req.getPathInfo());
-				user_id = Integer.parseInt(urlPath.getUserIDFromPath());
+		
 	}
 	
 
@@ -119,9 +135,8 @@ public class UpdateLookingForServlet extends HttpServlet{
 				throw new ServletException("Error communicating with database", e);
 			}
 
-			System.out.print("this is the user id:" + user_id);
-			resp.sendRedirect("userProfile/"+ user_id);	
-			
+			System.out.print("sending redirect here!!!");
+			resp.sendRedirect("UpdatelookingFor/"+ user_id);	
 		}
 	}
 }

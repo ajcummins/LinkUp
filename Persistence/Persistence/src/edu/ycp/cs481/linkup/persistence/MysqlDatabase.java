@@ -1633,6 +1633,52 @@ public class MysqlDatabase implements IDatabase {
 
 	}
 
+	@Override
+	public LookingFor getLooking_for(int userid) throws PersistenceException {
+		int ageLow = -1;
+		int ageHigh = -1;
+		int gender = -1;
+		int religionWeight = -1;
+		int seriousnessWeight = -1;
+		int state = -1;
+		int children = -1;
+		int married = -1;
+		int pets = -1;
+		int race = -1;
+		int income = -1;
+		int income_weight = -1;
+		
+		java.sql.PreparedStatement stmt = null;
+		try 
+		{   
+			SQLconnection sqlConn = new SQLconnection();
+			Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);	
+
+			stmt = con.prepareStatement("SELECT age_low,age_high,gender,religion_weight,seriousness_weight,state,children,married,pets,race,income,income_weight FROM linkup.looking_for WHERE user_id = " + userid);
+			stmt.executeQuery();
+			ResultSet result = stmt.getResultSet();
+			result.next();
+			ageLow = result.getInt(1);
+			ageHigh = result.getInt(2);
+			gender = result.getInt(3);
+			religionWeight = result.getInt(4);
+			seriousnessWeight = result.getInt(5);
+			state = result.getInt(6);
+			children = result.getInt(7);
+			married = result.getInt(8);
+			pets = result.getInt(9);
+			race = result.getInt(10);
+			income = result.getInt(11);
+			income_weight = result.getInt(12);
+		}catch (Exception e) 
+		{
+			e.printStackTrace();
+		}	
+		LookingFor tempLooking = new LookingFor(userid, ageLow, ageHigh, gender, religionWeight, seriousnessWeight, state, children, married, pets, race, income, income_weight);
+		
+		return tempLooking;
+	}
+
 
 
 }

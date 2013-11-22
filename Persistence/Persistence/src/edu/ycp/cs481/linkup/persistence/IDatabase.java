@@ -79,6 +79,8 @@ public interface IDatabase {
 	
 	public void edit_profile_info(UserProfile inProfile) throws PersistenceException;
 
+	public LookingFor getLooking_for(int userid) throws PersistenceException;
+
 
 
 
