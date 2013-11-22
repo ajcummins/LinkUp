@@ -21,10 +21,9 @@
 			<input type="hidden" name="userid">
 			<table>
 				<tr>
-					Your Matches are:<br> ${match}
-				</tr>
-				<tr>
-				
+					Your Matches are:<br> 
+					<tr>${match}
+					</tr>
 				</tr>
 			</table>
 			</fieldset>
