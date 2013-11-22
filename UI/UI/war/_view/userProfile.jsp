@@ -7,6 +7,9 @@
 <html>
 	<head>
 		<title>Profile Page</title>
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
 	</head>
 	<p><font color="pink" face="Comic Sans MS" size="15">LinkUp:</font> <font color="blue" face="Comic Sans MS" size="15"> Your Profile</font></p>
 	<body>		
@@ -21,7 +24,7 @@
 		</form>
 		<form action="/userProfile" method="POST">
 		<fieldset>
-	 <input name ="submit" type="submit" value="Matches!"> 
+	 <input name ="submit" type="submit" value="Matches!" data-icon="home"> 
 		&nbsp;  <input name ="submit" type="submit" value="Messages">&nbsp; <input type="submit" value="Account Settings">&nbsp; <input type="submit" value="Update Looking For"> <input name ="submit" type="submit" value="Edit Profile Info"><!--  <input name ="submit" type="submit" value="Rate a Date">-->
 	</fieldset>
 		</form>
