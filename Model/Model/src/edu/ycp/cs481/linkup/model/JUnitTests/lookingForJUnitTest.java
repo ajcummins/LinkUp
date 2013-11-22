@@ -9,8 +9,8 @@ public class lookingForJUnitTest extends TestCase {
 	private LookingFor user2;
 	
 	protected void setUp() throws Exception {
-		user = new LookingFor(1, 21, 30, 1, 1, 1, 1, 1, 1);
-		user2 = new LookingFor(2, 22, 50, 2, 2, 2, 2, 2, 2);
+		user = new LookingFor(1, 21, 30, 1, 1, 1, 1, 1, 1,1,1,1,1);
+		user2 = new LookingFor(2, 22, 50, 2, 2, 2, 2, 2, 2,2,2,2,2);
 	}
 	
 	public void testGetUserid() throws Exception{
@@ -33,9 +33,9 @@ public class lookingForJUnitTest extends TestCase {
 		assertEquals(2, user2.getGender());
 	}
 	
-	public void testGetReligion() throws Exception{
-		assertEquals(1, user.getReligion());
-		assertEquals(2, user2.getReligion());
+	public void testGetState() throws Exception{
+		assertEquals(1, user.getState());
+		assertEquals(2, user2.getState());
 	}
 	
 	public void testGetReligionWeight() throws Exception{
@@ -43,9 +43,9 @@ public class lookingForJUnitTest extends TestCase {
 		assertEquals(2, user2.getReligionWeight());
 	}
 	
-	public void testGetSeriousness() throws Exception{
-		assertEquals(1, user.getseriousness());
-		assertEquals(2, user2.getseriousness());
+	public void testGetPets() throws Exception{
+		assertEquals(1, user.getPets());
+		assertEquals(2, user2.getPets());
 	}
 	
 	public void testGetSeriousnessWeight() throws Exception{
@@ -86,11 +86,11 @@ public class lookingForJUnitTest extends TestCase {
 	}
 	
 	public void testsetReligion() throws Exception {
-		user.setReligion(1);
-		assertEquals(1, user.getReligion());
+		user.setState(1);
+		assertEquals(1, user.getState());
 		
-		user2.setReligion(2);
-		assertEquals(2, user2.getReligion());
+		user2.setState(2);
+		assertEquals(2, user2.getState());
 	}
 	
 	public void testsetReligionWeight() throws Exception {
@@ -102,11 +102,11 @@ public class lookingForJUnitTest extends TestCase {
 	}
 	
 	public void testsetSeriousness() throws Exception {
-		user.setseriousness(1);
-		assertEquals(1, user.getseriousness());
+		user.setPets(1);
+		assertEquals(1, user.getPets());
 		
-		user2.setseriousness(2);
-		assertEquals(2, user2.getseriousness());
+		user2.setPets(2);
+		assertEquals(2, user2.getPets());
 	}
 	
 	public void testsetSeriousnessWeight() throws Exception {

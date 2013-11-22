@@ -57,24 +57,32 @@ public class LookingForServlet extends HttpServlet{
 		int ageHigh = -1;
 		int gender = -1;
 		int religionWeight = -1;
-		int seriousness = -1;
 		int seriousnessWeight = -1;
-		int religion = -1;
-		int location = -1;
+		int state = -1;
+		int children = -1;
+		int married = -1;
+		int pets = -1;
+		int race = -1;
+		int income = -1;
+		int income_weight = -1;
 		
 		// TODO: get looking for information, use a controller to create new user account, forward to view
 		ageLow = Integer.parseInt(req.getParameter("age_low"));
 		ageHigh = Integer.parseInt(req.getParameter("age_high"));
 		gender = Integer.parseInt(req.getParameter("gender"));
-		religion = Integer.parseInt(req.getParameter("religion"));
 		religionWeight = Integer.parseInt(req.getParameter("religion_weight"));
-		seriousness = Integer.parseInt(req.getParameter("seriousness"));
 		seriousnessWeight = Integer.parseInt(req.getParameter("seriousness_weight"));
-		location = Integer.parseInt(req.getParameter("location"));
+		state = Integer.parseInt(req.getParameter("location"));
+		children = Integer.parseInt(req.getParameter("children"));
+		married = Integer.parseInt(req.getParameter("married"));
+		pets = Integer.parseInt(req.getParameter("pets"));
+		race = Integer.parseInt(req.getParameter("race"));
+		income = Integer.parseInt(req.getParameter("income"));
+		income_weight = Integer.parseInt(req.getParameter("income_weight"));
 		
 		
 		// Check if null 
-		if(ageLow >= ageHigh || ageHigh <= ageLow || ageLow < 1 || ageHigh < 1 || user_id < 1 || religion < 1 || location < 1){
+		if(ageLow >= ageHigh || ageHigh <= ageLow || ageLow < 1 || ageHigh < 1 || user_id < 1 || gender < 1 || religionWeight < 1){
 			//Some type of error
 			req.setAttribute("error", "You have remaining Empty Fields");
 			//throw new ServletException("You have remaining Empty Fields");
@@ -85,12 +93,17 @@ public class LookingForServlet extends HttpServlet{
 			System.out.println("age low: " + ageLow 
 					+ "\nage high: " + ageHigh
 					+ "\ngender: " + gender
-					+ "\nreligion: " + religion
 					+ "\nreligion weight: " + religionWeight
-					+ "\nseriousness: " + seriousness
 					+ "\nseriousness weight: " + seriousnessWeight
-					+ "\nlocation : " + location);
-			LookingFor tempLooking = new LookingFor(user_id, ageLow, ageHigh, gender, religion, religionWeight, seriousness, seriousnessWeight, location);
+					+ "\nlocation : " + state
+					+ "\nchildren : " + children
+					+ "\nmarried : " + married
+					+ "\npets : " + pets
+					+ "\nrace : " + race
+					+ "\nincome : " + income
+					+ "\nincome_weight : " + income_weight
+					);
+			LookingFor tempLooking = new LookingFor(user_id, ageLow, ageHigh, gender, religionWeight, seriousnessWeight, state, children, married, pets, race, income, income_weight);
 
 
 			LookingForController controller = new LookingForController();

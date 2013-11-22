@@ -150,28 +150,28 @@ public class MysqlDatabase implements IDatabase {
 		System.out.println("userid" + inlooking.getUserid()
 				+ "\nage low: " + inlooking.getAgeLow()
 				+ "\nage high: " + inlooking.getAgeHigh()
-				+ "\ngender: " + inlooking.getGender()
-				+ "\nreligion: " + inlooking.getReligion()
 				+ "\nreligion weight: " + inlooking.getReligionWeight()
-				+ "\nseriousness: " + inlooking.getseriousness()
-				+ "\nseriousness weight: " + inlooking.getseriousnessWeight()
-				+ "\nlocation: " + inlooking.getLocation());
+				+ "\nseriousness weight: " + inlooking.getseriousnessWeight());
 		try
 		{
 			SQLconnection sqlConn = new SQLconnection();
 			Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
 			//using con create an entry into the appropriate table to add a user's looking for information
 			stmt = con.prepareStatement("INSERT INTO linkup.looking_for(user_id,age_low"
-					+ ",age_high,gender,religion,religion_weight,seriousness,seriousness_weight, location) VALUES (?,?,?,?,?,?,?,?,?)");
+					+ ",age_high,gender,religion_weight,seriousness_weight,state,children,married,pets,race,income,income_weight) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			stmt.setInt(1, inlooking.getUserid());
 			stmt.setInt(2, inlooking.getAgeLow());
 			stmt.setInt(3, inlooking.getAgeHigh());
 			stmt.setInt(4, inlooking.getGender());
-			stmt.setInt(5, inlooking.getReligion());
-			stmt.setInt(6, inlooking.getReligionWeight());
-			stmt.setInt(7, inlooking.getseriousness());
-			stmt.setInt(8, inlooking.getseriousnessWeight());
-			stmt.setInt(9, inlooking.getLocation());
+			stmt.setInt(5, inlooking.getReligionWeight());
+			stmt.setInt(6, inlooking.getseriousnessWeight());
+			stmt.setInt(7, inlooking.getState());
+			stmt.setInt(8, inlooking.getChildern());
+			stmt.setInt(9, inlooking.getMarried());
+			stmt.setInt(10, inlooking.getPets());
+			stmt.setInt(11, inlooking.getRace());
+			stmt.setInt(12, inlooking.getIncome());
+			stmt.setInt(13, inlooking.getIncome_weight());
 			stmt.executeUpdate();
 		}
 		catch (Exception e)
@@ -1480,27 +1480,27 @@ public class MysqlDatabase implements IDatabase {
 				+ "\nage low: " + inLooking.getAgeLow()
 				+ "\nage high: " + inLooking.getAgeHigh()
 				+ "\ngender: " + inLooking.getGender()
-				+ "\nreligion: " + inLooking.getReligion()
 				+ "\nreligion weight: " + inLooking.getReligionWeight()
-				+ "\nseriousness: " + inLooking.getseriousness()
-				+ "\nseriousness weight: " + inLooking.getseriousnessWeight()
-				+ "\nlocation: " + inLooking.getLocation());
+				+ "\nseriousness weight: " + inLooking.getseriousnessWeight());
 		try
 		{
 			SQLconnection sqlConn = new SQLconnection();
 			Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
 			//using con create an entry into the appropriate table to add a user's looking for information
-			stmt = con.prepareStatement("UPDATE INTO linkup.looking_for(user_id,age_low"
-					+ ",age_high,gender,religion,religion_weight,seriousness,seriousness_weight, location) VALUES (?,?,?,?,?,?,?,?,?) WHERE user_id = "+inLooking.getUserid());
-			stmt.setInt(1, inLooking.getUserid());
-			stmt.setInt(2, inLooking.getAgeLow());
-			stmt.setInt(3, inLooking.getAgeHigh());
-			stmt.setInt(4, inLooking.getGender());
-			stmt.setInt(5, inLooking.getReligion());
-			stmt.setInt(6, inLooking.getReligionWeight());
-			stmt.setInt(7, inLooking.getseriousness());
-			stmt.setInt(8, inLooking.getseriousnessWeight());
-			stmt.setInt(9, inLooking.getLocation());
+			stmt = con.prepareStatement("UPDATE INTO linkup.looking_for(age_low"
+					+ ",age_high,gender,religion_weight,seriousness_weight,state,children,married,pets,race,income,income_weight) VALUES (?,?,?,?,?,?,?,?,?,?,?,?) WHERE user_id = "+inLooking.getUserid());
+			stmt.setInt(1, inLooking.getAgeLow());
+			stmt.setInt(2, inLooking.getAgeHigh());
+			stmt.setInt(3, inLooking.getGender());
+			stmt.setInt(4, inLooking.getReligionWeight());
+			stmt.setInt(5, inLooking.getseriousnessWeight());
+			stmt.setInt(9, inLooking.getState());
+			stmt.setInt(9, inLooking.getChildern());
+			stmt.setInt(9, inLooking.getMarried());
+			stmt.setInt(9, inLooking.getPets());
+			stmt.setInt(9, inLooking.getRace());
+			stmt.setInt(9, inLooking.getIncome());
+			stmt.setInt(9, inLooking.getIncome_weight());
 			stmt.executeUpdate();
 		}
 		catch (Exception e)
