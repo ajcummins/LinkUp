@@ -27,29 +27,19 @@ public class LookingForServlet extends HttpServlet{
 		
 		DropDownListController controller = new DropDownListController();
 		String ddlGender = null;
-		String ddlLocation = null;
 		String ddlLooking = null;
-		String ddlReligion = null;
-		String ddlRWeight = null;
-		String ddlSWeight = null;
-		
+		String ddlReligion = null;		
 		try {
 			ddlGender = controller.ddlGender();
-			ddlLocation = controller.ddlLocation();
 			ddlLooking = controller.ddlLookingFor();
 			ddlReligion = controller.ddlReligion();
-			ddlRWeight = controller.ddlWeight("religion_weight");
-			ddlSWeight = controller.ddlWeight("seriousness_weight");
 		} catch (PersistenceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		req.setAttribute("gender2", ddlGender);
-		req.setAttribute("location2", ddlLocation);
 		req.setAttribute("religion2", ddlReligion);
 		req.setAttribute("lookingfor2", ddlLooking);
-		req.setAttribute("rWeight", ddlRWeight);
-		req.setAttribute("sWeight", ddlSWeight);
 		
 		req.getRequestDispatcher("/_view/lookingFor.jsp").forward(req, resp);
 		

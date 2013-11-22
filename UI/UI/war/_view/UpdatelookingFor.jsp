@@ -10,7 +10,7 @@
 	<body>
 		<p> What are you looking for in a Match? </p>
 		
-		<form action="/UpdateLookingFor" method="POST">
+		<form action="/UpdatelookingFor" method="POST">
 		<fieldset>
 		<legend> Let's Find A Match </legend>
 			<table>
