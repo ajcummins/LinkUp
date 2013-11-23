@@ -676,226 +676,6 @@ public class MysqlDatabase implements IDatabase {
 		}
 	}
 
-	public String[] find_match(int userid)	{
-		int lookingGender = 1;
-		int lookingAgeLow = 0;
-		int lookingAgeHigh = 100;
-		int lookingLocation = -1;
-		int lookingSeriousness = -1;
-		int lookingSeriousnessWeight = -1;
-
-		java.sql.PreparedStatement stmt = null;
-		int match = -1;
-		String soulMate = null;
-		int lookingReligion = -1;
-		try 
-		{   
-			SQLconnection sqlConn = new SQLconnection();
-			Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);	
-
-			//start here
-
-			stmt = con.prepareStatement("SELECT gender FROM linkup.looking_for WHERE user_id = " + userid);
-			stmt.executeQuery();
-			ResultSet result = stmt.getResultSet();
-			result.next();
-			lookingGender = result.getInt(1);
-
-			stmt = con.prepareStatement("SELECT age_low FROM linkup.looking_for WHERE user_id = " + userid);
-			stmt.executeQuery();
-			ResultSet result2 = stmt.getResultSet();
-			result2.next();
-			lookingAgeLow = result2.getInt(1);
-
-			stmt = con.prepareStatement("SELECT age_high FROM linkup.looking_for WHERE user_id = " + userid);
-			stmt.executeQuery();
-			ResultSet result3 = stmt.getResultSet();
-			result3.next();
-			lookingAgeHigh = result3.getInt(1);
-
-			stmt = con.prepareStatement("SELECT religion FROM linkup.looking_for WHERE user_id = " + userid);
-			stmt.executeQuery();
-			ResultSet result4 = stmt.getResultSet();
-			result4.next();
-			lookingReligion = result4.getInt(1);
-
-			stmt = con.prepareStatement("SELECT location FROM linkup.looking_for WHERE user_id = " + userid);
-			stmt.executeQuery();
-			ResultSet result5 = stmt.getResultSet();
-			result5.next();
-			lookingLocation = result5.getInt(1);
-			System.out.print("location is : " + lookingLocation);
-
-			stmt = con.prepareStatement("SELECT seriousness FROM linkup.looking_for WHERE user_id = " + userid);
-			stmt.executeQuery();
-			ResultSet result6 = stmt.getResultSet();
-			result6.next();
-			lookingSeriousness = result6.getInt(1);
-			System.out.print("type is : " + lookingSeriousness);
-
-			stmt = con.prepareStatement("SELECT seriousness_weight FROM linkup.looking_for WHERE user_id = " + userid);
-			stmt.executeQuery();
-			ResultSet result7 = stmt.getResultSet();
-			result7.next();
-			lookingSeriousnessWeight = result7.getInt(1);
-			System.out.print("weight is : " + lookingSeriousnessWeight);
-
-		} 
-		catch (Exception e) 
-		{
-			e.printStackTrace();
-		}
-
-		if(lookingSeriousnessWeight > 6){
-			int number = 0;
-			try{
-
-				SQLconnection sqlConn = new SQLconnection();
-				Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
-				String sql = ("SELECT COUNT(*) FROM linkup.profile_info WHERE gender = " + lookingGender +" AND location = " + lookingLocation + " AND religion = " + lookingReligion + " AND looking_for = " + lookingSeriousness +" AND age BETWEEN "+ lookingAgeLow +" AND " + lookingAgeHigh);
-				PreparedStatement prest = con.prepareStatement(sql);
-				ResultSet rs = prest.executeQuery();
-				while (rs.next()) {
-					number = rs.getInt(1);
-				}
-				System.out.println("Number of records: " + number);
-				con.close();
-
-
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}finally{
-				int newnum = 0;
-			}
-			if(number != 0){	
-				int[] matchs = new int[number];
-				String[] soulMates = new String[number];
-				int i = 0;
-				try{ 
-					SQLconnection sqlConn = new SQLconnection();
-					Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
-					//end here
-					stmt = con.prepareStatement("SELECT user_id FROM linkup.profile_info WHERE gender = " + lookingGender +" AND location = " + lookingLocation + " AND religion = " + lookingReligion + " AND seriousness = " +lookingSeriousness +"AND age BETWEEN "+ lookingAgeLow +" AND " + lookingAgeHigh);
-					stmt.executeQuery();
-					ResultSet result = stmt.getResultSet();
-					while(result.next()){
-						//System.out.println("result is: " +result.getInt(1));
-						match = result.getInt(1);
-						matchs[i] = match;
-						System.out.println("match is: " + matchs[i]);
-						i++;
-					}
-
-				} 
-				catch (Exception e) 
-				{
-					e.printStackTrace();
-				} 
-
-
-				int j = 0;
-				for(j = 0; j < number; j++){
-					try{ 
-						SQLconnection sqlConn = new SQLconnection();
-						Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
-						//end here
-						stmt = con.prepareStatement("SELECT username FROM linkup.user WHERE user_id = " + matchs[j]);
-						stmt.executeQuery();
-						ResultSet result = stmt.getResultSet();
-						result.next();
-						soulMates[j] = result.getString(1);
-						System.out.println("user name: " + soulMates[j]);
-					} 
-					catch (Exception e) 
-					{
-						e.printStackTrace();
-					} 
-
-
-				}
-				return soulMates;
-			}else{
-				return null;
-			}
-
-		}else{
-
-
-			int number = 0;
-			try{
-
-				SQLconnection sqlConn = new SQLconnection();
-				Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
-				String sql = ("SELECT COUNT(*) FROM linkup.profile_info WHERE gender = " + lookingGender +" AND location = " + lookingLocation + " AND religion = " + lookingReligion + " AND age BETWEEN "+ lookingAgeLow +" AND " + lookingAgeHigh);
-				PreparedStatement prest = con.prepareStatement(sql);
-				ResultSet rs = prest.executeQuery();
-				while (rs.next()) {
-					number = rs.getInt(1);
-				}
-				System.out.println("Number of records: " + number);
-				con.close();
-
-
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}finally{
-				int newnum = 0;
-			}
-			if(number != 0){	
-				int[] matchs = new int[number];
-				String[] soulMates = new String[number];
-				int i = 0;
-				try{ 
-					SQLconnection sqlConn = new SQLconnection();
-					Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
-					//end here
-					stmt = con.prepareStatement("SELECT user_id FROM linkup.profile_info WHERE gender = " + lookingGender +" AND location = " + lookingLocation + " AND religion = " + lookingReligion + " AND age BETWEEN "+ lookingAgeLow +" AND " + lookingAgeHigh);
-					stmt.executeQuery();
-					ResultSet result = stmt.getResultSet();
-					while(result.next()){
-						//System.out.println("result is: " +result.getInt(1));
-						match = result.getInt(1);
-						matchs[i] = match;
-						System.out.println("match is: " + matchs[i]);
-						i++;
-					}
-
-				} 
-				catch (Exception e) 
-				{
-					e.printStackTrace();
-				} 
-
-
-				int j = 0;
-				for(j = 0; j < number; j++){
-					try{ 
-						SQLconnection sqlConn = new SQLconnection();
-						Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
-						//end here
-						stmt = con.prepareStatement("SELECT username FROM linkup.user WHERE user_id = " + matchs[j]);
-						stmt.executeQuery();
-						ResultSet result = stmt.getResultSet();
-						result.next();
-						soulMates[j] = result.getString(1);
-						System.out.println("user name: " + soulMates[j]);
-					} 
-					catch (Exception e) 
-					{
-						e.printStackTrace();
-					} 
-
-
-				}
-				return soulMates;
-			}else{
-				return null;
-			}
-		}
-	}
-
 	public int getMatchID(String buttonAction)
 	{
 		String[] array = buttonAction.split("");
@@ -1679,6 +1459,186 @@ public class MysqlDatabase implements IDatabase {
 		return tempLooking;
 	}
 
+	public String[] find_match(int userid)	{
+		
+		int lookingAgeLow = 0;
+		int lookingAgeHigh = 100;
+		int lookingGender = 1;
+		int lookingReligion = -1;
+		int ReligionOkay = -1;
+		int lookingSeriousness = -1;
+		int SeriousnessWeight = -1;
+		int lookingState = -1;
+		int StateOkay = -1;
+		int lookingChildren = -1;
+		int lookingMarried = -1;
+		int lookingPets = -1;
+		int lookingRace = -1;
+		int RaceOkay = -1;
+		int lookingIncome = -1;
+		int IncomeWeight = -1;
 
+		java.sql.PreparedStatement stmt = null;
+		int match = -1;
+		String soulMate = null;
+		try 
+		{   
+			SQLconnection sqlConn = new SQLconnection();
+			Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);	
+
+			//start here
+
+			stmt = con.prepareStatement("SELECT age_low, age_high, gender, religion_weight, seriousness_weight, state, children, married, pets, race, income, income_weight FROM linkup.looking_for WHERE user_id = " + userid);
+			stmt.executeQuery();
+			ResultSet result = stmt.getResultSet();
+			result.next();
+			lookingAgeLow = result.getInt(1);
+			lookingAgeHigh = result.getInt(2);
+			lookingGender = result.getInt(3);
+			ReligionOkay = result.getInt(4);
+			SeriousnessWeight = result.getInt(5);
+			StateOkay = result.getInt(6);
+			lookingChildren = result.getInt(7);
+			lookingMarried = result.getInt(8);
+			lookingPets = result.getInt(9);
+			RaceOkay = result.getInt(10);
+			lookingIncome = result.getInt(11);
+			IncomeWeight = result.getInt(12);
+
+			stmt = con.prepareStatement("SELECT religionID, seriousness, state, race FROM linkup.profile_info WHERE user_id = " + userid);
+			stmt.executeQuery();
+			ResultSet result1 = stmt.getResultSet();
+			result1.next();
+			lookingReligion = result1.getInt(1);
+			lookingSeriousness = result1.getInt(2);
+			lookingState = result1.getInt(3);
+			lookingRace = result1.getInt(4);
+			
+
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+		
+		int seriousRange = 0;
+		int seriousLow = 0;
+		int seriousHigh = 0;
+		
+		seriousRange = 10 - SeriousnessWeight;
+		seriousLow = lookingSeriousness - seriousRange;
+		if(seriousLow < 0){
+			seriousLow = 0;
+		}
+		seriousHigh = lookingSeriousness + seriousRange;
+		if(seriousHigh > 10){
+			seriousHigh = 10;
+		}
+		
+		int incomeRange = 0;
+		int incomeLow = 0;
+		int incomeHigh = 0;
+		
+		incomeRange = 10 - IncomeWeight;
+		incomeLow = lookingIncome - incomeRange;
+		if(incomeLow < 0){
+			incomeLow = 0;
+		}
+		incomeHigh = lookingIncome + incomeRange;
+		if(incomeHigh > 10){
+			incomeHigh = 10;
+		}
+
+		String ReligionStateRace = getStatement(ReligionOkay, StateOkay, RaceOkay, lookingReligion, lookingState, lookingRace, lookingChildren, lookingMarried, lookingPets);
+		
+		if(lookingChildren == 2){
+			
+		}
+		
+			int number = 0;
+			try{
+
+				SQLconnection sqlConn = new SQLconnection();
+				Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+				String sql = ("SELECT COUNT(*) FROM linkup.profile_info WHERE gender = " + lookingGender + ReligionStateRace 
+						/*+ " AND children = " + lookingChildren + " AND married = " + lookingMarried 
+						+ " AND pets = " + lookingPets*/
+						+ " AND income BETWEEN " + incomeLow +" AND " + incomeHigh 
+						+ " AND seriousness BETWEEN " + seriousLow +" AND " + seriousHigh 
+						+ " AND age BETWEEN "+ lookingAgeLow +" AND " + lookingAgeHigh);
+				PreparedStatement prest = con.prepareStatement(sql);
+				ResultSet rs = prest.executeQuery();
+				System.out.print(sql);
+				while (rs.next()) {
+					number = rs.getInt(1);
+				}
+				System.out.println("Number of records: " + number);
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally{
+				int newnum = 0;
+			}
+			
+			if(number != 0){	
+				String[] matchs = new String[number];
+				int i = 0;
+				try{ 
+					SQLconnection sqlConn = new SQLconnection();
+					Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
+					//end here
+					stmt = con.prepareStatement("SELECT user_id FROM linkup.profile_info WHERE gender = " + lookingGender + ReligionStateRace 
+						/*+ " AND children = " + lookingChildren + " AND married = " + lookingMarried 
+						+ " AND pets = " + lookingPets*/
+						+ " AND income BETWEEN " + incomeLow +" AND " + incomeHigh 
+						+ " AND seriousness BETWEEN " + seriousLow +" AND " + seriousHigh 
+						+ " AND age BETWEEN "+ lookingAgeLow +" AND " + lookingAgeHigh);
+					stmt.executeQuery();
+					ResultSet result = stmt.getResultSet();
+					while(result.next()){
+						match = result.getInt(1);
+						matchs[i] = getUserName(match);
+						System.out.println("match is: " + matchs[i]);
+						i++;
+					}
+					return matchs;
+
+				} 
+				catch (Exception e) 
+				{
+					e.printStackTrace();
+				} 
+
+
+				}else{
+					return null;
+				}
+			return null;
+	}
+	
+	public String getStatement(int ReligionOkay, int StateOkay, int RaceOkay, int religion, int state, int race, int lookingChildren, int lookingMarried, int lookingPets){
+		String statement = null;
+		if(ReligionOkay == 1 && StateOkay == 1){
+			statement = "";
+		}else if(ReligionOkay == 1 && StateOkay == 2){
+			statement = " AND state = " + state;
+		}else if(ReligionOkay == 2 && StateOkay == 1){
+			statement = " AND religionID = " + religion;
+		}else{
+			statement = " AND state = " + state + " AND religionID = " + religion;
+		}
+		
+		if(RaceOkay == 2){
+			statement = statement + " AND race = " + race;
+		}if(lookingChildren == 2){
+			statement = statement + " AND children = 2";
+		}if(lookingMarried == 2){
+			statement = statement + " AND married = 2";
+		}if(lookingPets == 2){
+			statement = statement + " AND pets = 2";
+		}
+		return statement;
+	}
 
 }
