@@ -1267,20 +1267,21 @@ public class MysqlDatabase implements IDatabase {
 			SQLconnection sqlConn = new SQLconnection();
 			Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
 			//using con create an entry into the appropriate table to add a user's looking for information
-			stmt = con.prepareStatement("UPDATE INTO linkup.looking_for(age_low"
-					+ ",age_high,gender,religion_weight,seriousness_weight,state,children,married,pets,race,income,income_weight) VALUES (?,?,?,?,?,?,?,?,?,?,?,?) WHERE user_id = "+inLooking.getUserid());
+			stmt = con.prepareStatement("UPDATE linkup.looking_for set age_low = ?, "
+					+ "age_high = ?, gender = ?, religion_weight = ?, seriousness_weight = ?, state = ?, children = ?, married = ?, pets = ?, "
+					+ "race = ?, income = ?, income_weight = ? WHERE user_id = "+inLooking.getUserid());
 			stmt.setInt(1, inLooking.getAgeLow());
 			stmt.setInt(2, inLooking.getAgeHigh());
 			stmt.setInt(3, inLooking.getGender());
 			stmt.setInt(4, inLooking.getReligionWeight());
 			stmt.setInt(5, inLooking.getseriousnessWeight());
-			stmt.setInt(9, inLooking.getState());
-			stmt.setInt(9, inLooking.getChildern());
-			stmt.setInt(9, inLooking.getMarried());
+			stmt.setInt(6, inLooking.getState());
+			stmt.setInt(7, inLooking.getChildern());
+			stmt.setInt(8, inLooking.getMarried());
 			stmt.setInt(9, inLooking.getPets());
-			stmt.setInt(9, inLooking.getRace());
-			stmt.setInt(9, inLooking.getIncome());
-			stmt.setInt(9, inLooking.getIncome_weight());
+			stmt.setInt(10, inLooking.getRace());
+			stmt.setInt(11, inLooking.getIncome());
+			stmt.setInt(12, inLooking.getIncome_weight());
 			stmt.executeUpdate();
 		}
 		catch (Exception e)

@@ -45,7 +45,6 @@
 						Are you okay with someone with a different religion:
 					</td>
 					<td>
-						<!--${rWeight}-->
 						<select name="religion_weight">
 							<option name="religion_weight" value = "1"' size='20'>Yes</option>
 							<option name="religion_weight" value = "2" size='20'>No</option>
@@ -58,7 +57,11 @@
 						Seriousness:
 					</td>
 					<td>
-						${lookingfor2}
+						 <div data-role="content">
+						      <div data-role="fieldcontain">
+						        <input type="range" name="seriousness" id="seriousness" value="5" min="1" max="10">
+						  </div>
+						</div>
 					</td>
 				</tr>
 				<tr>
@@ -66,7 +69,6 @@
 						How important is Seriousness:
 					</td>
 					<td>
-						<!--${sWeight}-->
 						  <div data-role="content">
 						      <div data-role="fieldcontain">
 						        <input type="range" name="seriousness_weight" id="seriousness_weight" value="5" min="1" max="10">
@@ -99,7 +101,6 @@
 						Are you okay with someone out of state:
 					</td>
 					<td>
-						<!--${location2}-->
 						<select name="location">
 							<option name="location" value = "1"' size='20'>Yes</option>
 							<option name="location" value = "2" size='20'>No</option>

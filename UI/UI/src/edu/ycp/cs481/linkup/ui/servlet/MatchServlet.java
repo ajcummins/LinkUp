@@ -51,7 +51,7 @@ public class MatchServlet extends HttpServlet {
 		}
 		else{
 			for(int i = 0; i < match.length; i++){
-				table = table + (i+1) + ") " + match[i] + "      <input name='submit' value='View "+ match[i] +" Profile' type='submit' />";
+				table = table + (i+1) + ") " + match[i] + "      <input name='submit' value='View "+ match[i] +" Profile' type='submit' /><br>";
 			}
 			req.setAttribute("match", table);
 		}

@@ -25,7 +25,7 @@ public class UpdateLookingForServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
-		req.getRequestDispatcher("/_view/UpdatelookingFor.jsp").forward(req, resp);
+		
 		//Get userid from the url passed
 		Path urlPath = new Path(req.getPathInfo());
 		System.out.println("Path = " + req.getPathInfo());
@@ -34,15 +34,11 @@ public class UpdateLookingForServlet extends HttpServlet{
 		DropDownListController controller = new DropDownListController();
 		LookingForController control =  new LookingForController();
 		String ddlGender = null;
-		String ddlLocation = null;
-		String ddlLooking = null;
 		String ddlReligion = null;
 		LookingFor tempLooking = null;
 		
 		try {
 			ddlGender = controller.ddlGender();
-			ddlLocation = controller.ddlLocation();
-			ddlLooking = controller.ddlLookingFor();
 			ddlReligion = controller.ddlReligion();
 			tempLooking = control.GetLookingFor(user_id);
 			
@@ -51,12 +47,9 @@ public class UpdateLookingForServlet extends HttpServlet{
 			e.printStackTrace();
 		}
 		
-		System.out.println("age_low: " + tempLooking.getAgeLow());
 		
 		req.setAttribute("gender2", ddlGender);
-		req.setAttribute("location2", ddlLocation);
 		req.setAttribute("religion2", ddlReligion);
-		req.setAttribute("lookingfor2", ddlLooking);
 		req.getSession().setAttribute("age_low", tempLooking.getAgeLow());
 		req.getSession().setAttribute("age_high", tempLooking.getAgeHigh());
 		req.getSession().setAttribute("gender", tempLooking.getGender());
@@ -70,7 +63,8 @@ public class UpdateLookingForServlet extends HttpServlet{
 		req.getSession().setAttribute("income", tempLooking.getIncome());
 		req.getSession().setAttribute("income_weight", tempLooking.getIncome_weight());
 		
-	
+		
+		req.getRequestDispatcher("/_view/UpdatelookingFor.jsp").forward(req, resp);
 		
 		
 	}
