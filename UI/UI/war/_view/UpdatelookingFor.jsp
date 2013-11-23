@@ -21,7 +21,7 @@
 						Age Range:
 					</td>
 					<td>
-						<input name="age_low" type="int" size="20" /> - <input name="age_high" type="int" size="20" />
+						<input name="age_low" type="int" size="20" style="width:50px"/> - <input name="age_high" type="int" size="20" style="width:50px"/>
 					</td>
 				</tr>
 				<tr>
@@ -45,7 +45,7 @@
 						Are you okay with someone with a different religion:
 					</td>
 					<td>
-						<select name="religion_weight">
+						<select name="religion_weight" style="width:110px">
 							<option name="religion_weight" value = "1"' size='20'>Yes</option>
 							<option name="religion_weight" value = "2" size='20'>No</option>
 						</select>
@@ -101,7 +101,7 @@
 						Are you okay with someone out of state:
 					</td>
 					<td>
-						<select name="location">
+						<select name="location" style="width:110px">
 							<option name="location" value = "1"' size='20'>Yes</option>
 							<option name="location" value = "2" size='20'>No</option>
 						</select>
@@ -112,7 +112,7 @@
 						Are you okay with someone who has children:
 					</td>
 					<td>
-						<select name="children">
+						<select name="children" style="width:110px">
 							<option name="children" value = "1"' size='20'>Yes</option>
 							<option name="children" value = "2" size='20'>No</option>
 						</select>
@@ -123,7 +123,7 @@
 						Are you okay with someone who has be previously married:
 					</td>
 					<td>
-						<select name="married">
+						<select name="married" style="width:110px">
 							<option name="married" value = "1"' size='20'>Yes</option>
 							<option name="married" value = "2" size='20'>No</option>
 						</select>
@@ -134,7 +134,7 @@
 						Are you okay with someone who has pets:
 					</td>
 					<td>
-						<select name="pets">
+						<select name="pets" style="width:110px">
 							<option name="pets" value = "1"' size='20'>Yes</option>
 							<option name="pets" value = "2" size='20'>No</option>
 						</select>
@@ -145,7 +145,7 @@
 						Are you okay with someone from a different race:
 					</td>
 					<td>
-						<select name="race">
+						<select name="race" style="width:110px">
 							<option name="race" value = "1"' size='20'>Yes</option>
 							<option name="race" value = "2" size='20'>No</option>
 						</select>

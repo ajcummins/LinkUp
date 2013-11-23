@@ -22,8 +22,7 @@
 			<table>
 				<tr>
 					Your Matches are:<br> 
-					<tr>${match}
-					</tr>
+					${match}
 				</tr>
 			</table>
 			</fieldset>

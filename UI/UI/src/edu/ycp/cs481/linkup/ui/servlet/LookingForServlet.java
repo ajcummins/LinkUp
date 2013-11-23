@@ -27,11 +27,9 @@ public class LookingForServlet extends HttpServlet{
 		
 		DropDownListController controller = new DropDownListController();
 		String ddlGender = null;
-		String ddlLooking = null;
 		String ddlReligion = null;		
 		try {
 			ddlGender = controller.ddlGender();
-			ddlLooking = controller.ddlLookingFor();
 			ddlReligion = controller.ddlReligion();
 		} catch (PersistenceException e) {
 			// TODO Auto-generated catch block
@@ -39,7 +37,6 @@ public class LookingForServlet extends HttpServlet{
 		}
 		req.setAttribute("gender2", ddlGender);
 		req.setAttribute("religion2", ddlReligion);
-		req.setAttribute("lookingfor2", ddlLooking);
 		
 		req.getRequestDispatcher("/_view/lookingFor.jsp").forward(req, resp);
 		

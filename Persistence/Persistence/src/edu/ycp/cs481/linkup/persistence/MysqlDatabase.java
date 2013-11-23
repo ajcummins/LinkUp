@@ -1124,7 +1124,7 @@ public class MysqlDatabase implements IDatabase {
 
 	@Override
 	public String getDDLGender() throws PersistenceException {
-		String ddl = "<select name='gender'>";
+		String ddl = "<select name='gender' style='width:110px'>";
 		java.sql.PreparedStatement stmt = null;
 		String gender;
 		int i = 1;
@@ -1150,7 +1150,7 @@ public class MysqlDatabase implements IDatabase {
 
 	@Override
 	public String getDDLLocation() throws PersistenceException {
-		String ddl = "<select name='location'>";
+		String ddl = "<select name='location' style='width:110px'>";
 		java.sql.PreparedStatement stmt = null;
 		String location;
 		int i = 1;
@@ -1176,7 +1176,7 @@ public class MysqlDatabase implements IDatabase {
 
 	@Override
 	public String getDDLLookingFor() throws PersistenceException {
-		String ddl = "<select name='seriousness'>";
+		String ddl = "<select name='seriousness' style='width:110px'>";
 		java.sql.PreparedStatement stmt = null;
 		String lookingfor;
 		int i = 1;
