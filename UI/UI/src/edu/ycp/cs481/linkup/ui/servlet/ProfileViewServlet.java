@@ -276,6 +276,10 @@ public class ProfileViewServlet extends HttpServlet {
 				
 				resp.sendRedirect("EditProInfo/"+ userid);
 			
+			}if(buttonAction.equals("Logout")){
+				
+				resp.sendRedirect("index");
+			
 			}else{
 				resp.sendRedirect("userMatch/"+ userid);
 			}
