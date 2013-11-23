@@ -3,7 +3,7 @@ package edu.ycp.cs481.linkup.model;
 public class MatchUserProfile {
 	//private String name;
 	
-	public MatchUserProfile(int userid, int location2, int gender2, int age, String religion, String books, String movies, String music,
+	public MatchUserProfile(int userid, String location2, String gender2, int age, String religion, String books, String movies, String music,
 			String basic_info, String likes, String dislikes, String looking_for1, String first_name, String last_name ) {
 		this.userid = userid;
 		this.location = location2;
@@ -22,10 +22,11 @@ public class MatchUserProfile {
 	
 	}
 	
+
 	private String inUser;
 	private int userid;
-	private int location;
-	private int gender;
+	private String location;
+	private String gender;
 	private int age;
 	private String religion;
 	private String books;
@@ -47,13 +48,13 @@ public class MatchUserProfile {
 	}
 	
 	
-	public void setLocation(int inLocation)
+	public void setLocation(String inLocation)
 	{
 		location = inLocation;
 		//location = Integer.parseInt(inLocation);
 	}
 	
-	public void setGender(int inGender)
+	public void setGender(String inGender)
 	{
 		gender = inGender;
 		//gender = Integer.parseInt(inGender);
@@ -109,12 +110,12 @@ public class MatchUserProfile {
 	
 	
 	
-	public int getLocation()
+	public String getLocation()
 	{
 		return location;
 	}
 	
-	public int getGender()
+	public String getGender()
 	{
 		return gender;
 	}

@@ -1007,7 +1007,7 @@ public class MysqlDatabase implements IDatabase {
 		{
 			e.printStackTrace();
 		}
-		MatchUserProfile tempProfile = new MatchUserProfile(userid, location, gender, age, religion, books, movies, music,
+		MatchUserProfile tempProfile = new MatchUserProfile(userid, location1, gender1, age, religion1, books, movies, music,
 				basic_info, likes, dislikes, looking_for1, first_name, last_name);
 		System.out.println("Age: " + age);
 		return tempProfile;
