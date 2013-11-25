@@ -11,7 +11,7 @@
 		<form action="/userMatch" method="POST">
 		<fieldset>
 		<table>
-		<td><td><input href="index.html" name="submit" value="Profile" type="submit"data-icon="home"/></td><td><input name ="submit" type="submit" value="Messages" data-icon="grid"><td><input name="submit" type="submit" value="Update Looking For" data-icon="gear"></td><td><input name ="submit" type="submit" value="Edit Profile Info" data-icon="gear"></td></td><td><input name="submit" type="submit" value="Logout"></td><td></td><td></td>
+		<td><td><input name="submit" value="Profile" type="submit"/></td><td><input name ="submit" type="submit" value="Messages"><td><input name="submit" type="submit" value="Update Looking For"></td><td><input name ="submit" type="submit" value="Edit Profile Info"></td></td><td><input name="submit" type="submit" value="Logout"></td><td></td><td></td>
 		</tr>
 		</table>
 		</fieldset>

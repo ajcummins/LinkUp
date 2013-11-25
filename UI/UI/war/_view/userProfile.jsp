@@ -22,7 +22,7 @@
 		<form action="/userProfile" method="POST">
 		<fieldset>
 		<table>
-	 	<tr><td><input name ="submit" type="submit" value="Matches!" data-icon="star"></td><td><input name ="submit" type="submit" value="Messages" data-icon="grid"><td><input name="submit" type="submit" value="Update Looking For" data-icon="gear"></td><td><input name ="submit" type="submit" value="Edit Profile Info" data-icon="gear"></td></td><td><input name="submit" type="submit" value="Logout"></td>
+	 	<tr><td><input name ="submit" type="submit" value="Matches!"></td><td><input name ="submit" type="submit" value="Messages"><td><input name="submit" type="submit" value="Update Looking For"></td><td><input name ="submit" type="submit" value="Edit Profile Info"></td></td><td><input name="submit" type="submit" value="Logout"></td>
 		</tr>
 		</table>
 	</fieldset>
