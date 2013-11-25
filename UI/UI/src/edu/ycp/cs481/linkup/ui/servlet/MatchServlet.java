@@ -65,6 +65,21 @@ public class MatchServlet extends HttpServlet {
 		if(buttonAction.equals("Profile")){
 			System.out.print("\nthis is the user id:" + user_id);
 			resp.sendRedirect("userProfile/"+ user_id);					
+		}if(buttonAction.equals("Messages")){ //go to the user's messages page
+			System.out.print("\nthis is the user id:" + user_id);
+			resp.sendRedirect("matchMessages/"+ user_id);
+			
+		}if(buttonAction.equals("Update Looking For")){ //go to update looking for info
+			resp.sendRedirect("UpdatelookingFor/"+ user_id);
+			
+		}if(buttonAction.equals("Edit Profile Info")){
+			
+			resp.sendRedirect("EditProInfo/"+ user_id);
+		
+		}if(buttonAction.equals("Logout")){
+			
+			resp.sendRedirect("index");
+		
 		}else{
 			System.out.print("\nthis is the value:" + buttonAction);
 			MatchingController controller = new MatchingController();
