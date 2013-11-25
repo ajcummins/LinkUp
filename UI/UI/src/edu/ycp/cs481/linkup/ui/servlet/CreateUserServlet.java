@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import edu.ycp.cs481.linkup.controller.CreateUserController;
 import edu.ycp.cs481.linkup.model.User;
@@ -68,14 +69,21 @@ public class CreateUserServlet extends HttpServlet {
 			tempUser.setSecQues(secQues);
 			tempUser.setSecAns(secAns);
 			
+			
 			CreateUserController controller = new CreateUserController();
 			try {
 				userID = controller.createUser(tempUser);
 				req.setAttribute("info", "Successfully created user!");
+				System.out.println("CreateUserServlet UserID = " + userID);
+				tempUser.setUserID(userID);
+				
+				// Set session variables and redirect to setup their profile
+				HttpSession thisSession = req.getSession(true);
+				thisSession.setAttribute("loggedInUser",tempUser);
+				thisSession.setAttribute("login.isDone",true);
 				
 				// redirect
-				resp.sendRedirect("SetUpProfileInfo/"+ userID);
-				//req.getRequestDispatcher("/_view/SetUpProfileInfo.jsp");
+				resp.sendRedirect("SetUpProfileInfo");
 			} catch (DuplicateUserException e) {
 				// User already exists
 				req.setAttribute("error", "User " + user + " already exists");
@@ -83,7 +91,6 @@ public class CreateUserServlet extends HttpServlet {
 				throw new ServletException("Error communicating with database", e);
 			}
 			
-			//req.getRequestDispatcher("/_view/createUser.jsp").forward(req, resp);
 		}
 	}
 }

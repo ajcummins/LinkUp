@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
+import javax.servlet.http.HttpSession;
+
 import edu.ycp.cs481.linkup.controller.CreateUserController;
 import edu.ycp.cs481.linkup.controller.IndexController;
 import edu.ycp.cs481.linkup.controller.LoadUserProfile;
@@ -68,12 +70,14 @@ public class IndexServlet extends HttpServlet{
 					//Forward to the profile page and Pass the user object
 					//FIXME: forward the user object to the userProfile....
 					
-					//req.setAttribute("inUser", testUser);
-					
+					HttpSession thisSession = req.getSession(true);
+					thisSession.setAttribute("loggedInUser", testUser);
+					thisSession.setAttribute("login.isDone", true);
+
 					
 					
 					//go to profile page
-					resp.sendRedirect("userProfile/"+ testUser.getUserID());			
+					resp.sendRedirect("userProfile");			
 				}
 				
 				

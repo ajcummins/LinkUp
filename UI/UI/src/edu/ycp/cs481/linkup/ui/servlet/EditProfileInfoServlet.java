@@ -9,10 +9,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import edu.ycp.cs481.linkup.controller.EditProfileInfoController;
 import edu.ycp.cs481.linkup.controller.ProfileController;
 import edu.ycp.cs481.linkup.model.Path;
+import edu.ycp.cs481.linkup.model.User;
 import edu.ycp.cs481.linkup.model.UserProfile;
 import edu.ycp.cs481.linkup.persistence.MysqlDatabase;
 import edu.ycp.cs481.linkup.persistence.PersistenceException;
@@ -33,9 +35,18 @@ public class EditProfileInfoServlet extends HttpServlet{
 
 
 		//Get userid from the url passed
-		Path urlPath = new Path(req.getPathInfo());
-		System.out.println("Path = " + req.getPathInfo());
-		userid = Integer.parseInt(urlPath.getUserIDFromPath());
+		HttpSession thisSession = req.getSession(true);
+		User thisUser = (User) thisSession.getAttribute("loggedInUser");
+		Boolean loggedIn = (Boolean) thisSession.getAttribute("login.isDone");
+		
+		if(loggedIn)
+		{
+			userid = thisUser.getUserID();
+		}
+		else
+		{
+			//FIXME: Error User not logged in, fix with filters
+		}
 
 		java.sql.PreparedStatement stmt = null;
 
@@ -376,10 +387,11 @@ public class EditProfileInfoServlet extends HttpServlet{
 		}
 
 
+		HttpSession thisSession = req.getSession(true);
+		thisSession.setAttribute("usersProfile",tempProfileInfo);
 
-
-
-		resp.sendRedirect("userProfile/"+ userid);
+		
+		resp.sendRedirect("userProfile/");
 		//req.getRequestDispatcher("/_view/lookingFor.jsp").forward(req, resp);
 
 

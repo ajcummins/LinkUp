@@ -140,6 +140,10 @@
 		
 			</fieldset>
 			
+			<c:if test="${! empty error}">
+			<b>Error: ${error}</b>
+			</c:if>
+			
 			
 			
 		</form>

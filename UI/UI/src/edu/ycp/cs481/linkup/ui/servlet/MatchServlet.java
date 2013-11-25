@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import edu.ycp.cs481.linkup.controller.IndexController;
 import edu.ycp.cs481.linkup.controller.MatchingController;
@@ -78,6 +79,13 @@ public class MatchServlet extends HttpServlet {
 		
 		}if(buttonAction.equals("Logout")){
 			
+			// Reset Session values
+			HttpSession thisSession = req.getSession(true);
+			thisSession.setAttribute("loggedInUser", null);
+			thisSession.setAttribute("login.isDone", false);
+			thisSession.setAttribute("usersLookingFor",null);
+			thisSession.setAttribute("usersProfile",null);
+						
 			resp.sendRedirect("index");
 		
 		}else{

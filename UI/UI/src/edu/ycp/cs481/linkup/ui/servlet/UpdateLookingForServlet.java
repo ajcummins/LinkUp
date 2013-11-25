@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import edu.ycp.cs481.linkup.controller.CreateUserController;
 import edu.ycp.cs481.linkup.controller.DropDownListController;
@@ -14,6 +15,7 @@ import edu.ycp.cs481.linkup.controller.LookingForController;
 import edu.ycp.cs481.linkup.controller.MatchingController;
 import edu.ycp.cs481.linkup.model.LookingFor;
 import edu.ycp.cs481.linkup.model.Path;
+import edu.ycp.cs481.linkup.model.User;
 import edu.ycp.cs481.linkup.persistence.DuplicateUserException;
 import edu.ycp.cs481.linkup.persistence.PersistenceException;
 
@@ -27,9 +29,18 @@ public class UpdateLookingForServlet extends HttpServlet{
 		
 		
 		//Get userid from the url passed
-		Path urlPath = new Path(req.getPathInfo());
-		System.out.println("Path = " + req.getPathInfo());
-		user_id = Integer.parseInt(urlPath.getUserIDFromPath());
+		HttpSession thisSession = req.getSession(true);
+		User thisUser = (User) thisSession.getAttribute("loggedInUser");
+		Boolean loggedIn = (Boolean) thisSession.getAttribute("login.isDone");
+		
+		if(loggedIn)
+		{
+			user_id = thisUser.getUserID();
+		}
+		else
+		{
+			//FIXME: Error User not logged in, fix with filters
+		}
 		
 		DropDownListController controller = new DropDownListController();
 		LookingForController control =  new LookingForController();
@@ -130,7 +141,10 @@ public class UpdateLookingForServlet extends HttpServlet{
 			}
 
 			System.out.print("sending redirect here!!!");
-			resp.sendRedirect("userProfile/"+ user_id);	
+			HttpSession thisSession = req.getSession(true);
+			thisSession.setAttribute("usersLookingFor",tempLooking);
+			
+			resp.sendRedirect("userProfile/");	
 		}
 	}
 }

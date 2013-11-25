@@ -18,6 +18,7 @@ import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import edu.ycp.cs481.linkup.controller.DropDownListController;
@@ -25,6 +26,7 @@ import edu.ycp.cs481.linkup.controller.LookingForController;
 import edu.ycp.cs481.linkup.controller.ProfileController;
 import edu.ycp.cs481.linkup.model.LookingFor;
 import edu.ycp.cs481.linkup.model.Path;
+import edu.ycp.cs481.linkup.model.User;
 import edu.ycp.cs481.linkup.model.UserProfile;
 import edu.ycp.cs481.linkup.persistence.MysqlDatabase;
 import edu.ycp.cs481.linkup.persistence.PersistenceException;
@@ -65,10 +67,19 @@ public class addProfileInfoServlet extends HttpServlet{
 		req.getRequestDispatcher("/_view/SetUpProfileInfo.jsp").forward(req, resp);
 
 					
-		//Get userid from the url passed
-		Path urlPath = new Path(req.getPathInfo());
-		System.out.println("Path = " + req.getPathInfo());
-		user_id = Integer.parseInt(urlPath.getUserIDFromPath());
+		//Get the userID from the Session User object		
+		HttpSession thisSession = req.getSession(true);
+		User thisUser = (User) thisSession.getAttribute("loggedInUser");
+		Boolean loggedIn = (Boolean) thisSession.getAttribute("login.isDone");
+		
+		if(loggedIn)
+		{
+			user_id = thisUser.getUserID();
+		}
+		else
+		{
+			//FIXME: Error User not logged in, need to fix w/ filters
+		}
 	}
 	
 	@Override
@@ -190,8 +201,11 @@ public class addProfileInfoServlet extends HttpServlet{
 				e.printStackTrace();
 			}
 			
-			resp.sendRedirect("lookingFor/"+ user_id);
-			//req.getRequestDispatcher("/_view/lookingFor.jsp").forward(req, resp);
+			//Add the new data to the session for easy use and then redirect
+			HttpSession thisSession = req.getSession(true);
+			thisSession.setAttribute("usersProfile",tempProfileInfo);
+			
+			resp.sendRedirect("lookingFor");
 		
 			
 			
