@@ -5,6 +5,28 @@
 <html>
 	<head>
 		<title>Looking For</title>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+		</script>
+		<script>
+			$(document).ready(function(){
+			  $("#seriousness").click(function(){
+			  	var s = document.getElementById("seriousness");
+			    $("#test1").text(s.value);
+			  });
+			  $("#seriousness_weight").click(function(){
+			 	 var sw = document.getElementById("seriousness_weight");
+			    $("#test2").text(sw.value);
+			  });
+			  $("#income").click(function(){
+			 	 var i = document.getElementById("income");
+			    $("#test3").text(i.value);
+			  });
+			  $("#income_weight").click(function(){
+			 	 var iw = document.getElementById("income_weight");
+			    $("#test4").text(iw.value);
+			  });
+			});
+		</script>
 	</head>
 	<p><font color="pink" face="Comic Sans MS" size="15">LinkUp:</font> <font color="blue" face="Comic Sans MS" size="15">Update Looking For Information</font></p>
 	<body>
@@ -54,7 +76,7 @@
 				</tr>
 				<tr>
 					<td>
-						Seriousness:
+						Seriousness: <p id="test1">5</p>
 					</td>
 					<td>
 						 <div data-role="content">
@@ -66,7 +88,7 @@
 				</tr>
 				<tr>
 					<td>
-						How important is Seriousness:
+						How important is Seriousness: <p id="test2">5</p>
 					</td>
 					<td>
 						  <div data-role="content">
@@ -153,7 +175,7 @@
 				</tr>
 				<tr>
 					<td>
-						How important is Income:
+						How important is Income: <p id="test3">5</p>
 					</td>
 					<td>
 						<!--${sWeight}-->
@@ -186,7 +208,7 @@
 				</tr>
 				<tr>
 					<td>
-						How important is it they have that income:
+						How important is it they have that income: <p id="test4">5</p>
 					</td>
 					<td>
 						<!--${sWeight}-->

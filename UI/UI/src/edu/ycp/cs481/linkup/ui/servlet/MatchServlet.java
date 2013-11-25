@@ -88,7 +88,6 @@ public class MatchServlet extends HttpServlet {
 				id = controller.MatchID(buttonAction);
 				resp.sendRedirect("MatchProfile/"+ user_id + "/" + id);
 			} catch (PersistenceException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}				
 		}
