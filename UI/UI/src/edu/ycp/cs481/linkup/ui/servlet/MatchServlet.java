@@ -38,7 +38,7 @@ public class MatchServlet extends HttpServlet {
 		user_id = Integer.parseInt(urlPath.getUserIDFromPath());
 		
 		MatchingController controller = new MatchingController();
-		String[] match = null;
+		String[][] match = null;
 		try {
 			match = controller.Matching(user_id);
 		} catch (PersistenceException e) {
@@ -51,8 +51,8 @@ public class MatchServlet extends HttpServlet {
 			req.setAttribute("match", "No Matches at this time. :(");
 		}
 		else{
-			for(int i = 0; i < match.length; i++){
-				table = table + "<tr><td>" + (i+1) + ") " + match[i] + "      </td><td><input name='submit' value='View "+ match[i] +" Profile' type='submit'  style='width:200px'/></td></tr>";
+			for(int i = 0; i < match[1].length; i++){
+				table = table + "<tr><td>" + (i+1) + ") " + match[0][i] + "      </td><td>"+ (match[1][i]) +" % match </td><td><input name='submit' value='View "+ match[0][i] +" Profile' type='submit'  style='width:200px'/></td></tr>";
 			}
 			req.setAttribute("match", table);
 		}

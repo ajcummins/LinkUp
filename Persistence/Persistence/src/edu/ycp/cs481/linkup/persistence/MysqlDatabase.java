@@ -1460,7 +1460,7 @@ public class MysqlDatabase implements IDatabase {
 		return tempLooking;
 	}
 
-	public String[] find_match(int userid)	{
+	public String[][] find_match(int userid)	{
 		
 		int lookingAgeLow = 0;
 		int lookingAgeHigh = 100;
@@ -1583,13 +1583,16 @@ public class MysqlDatabase implements IDatabase {
 			}
 			
 			if(number != 0){	
-				String[] matchs = new String[number];
+				String[][] matchs = new String[2][number];
+				int seriousCal;
+				int incomeCal;
 				int i = 0;
 				try{ 
 					SQLconnection sqlConn = new SQLconnection();
 					Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
 					//end here
-					stmt = con.prepareStatement("SELECT user_id FROM linkup.profile_info WHERE gender = " + lookingGender + ReligionStateRace 
+					//stmt = con.prepareStatement("SELECT user_id FROM linkup.profile_info WHERE gender = " + lookingGender + ReligionStateRace 
+					stmt = con.prepareStatement("SELECT user_id, seriousness, income FROM linkup.profile_info WHERE gender = " + lookingGender + ReligionStateRace
 						/*+ " AND children = " + lookingChildren + " AND married = " + lookingMarried 
 						+ " AND pets = " + lookingPets*/
 						+ " AND income BETWEEN " + incomeLow +" AND " + incomeHigh 
@@ -1599,8 +1602,35 @@ public class MysqlDatabase implements IDatabase {
 					ResultSet result = stmt.getResultSet();
 					while(result.next()){
 						match = result.getInt(1);
-						matchs[i] = getUserName(match);
-						System.out.println("match is: " + matchs[i]);
+						seriousCal = result.getInt(2);
+						incomeCal = result.getInt(3);
+						matchs[0][i] = getUserName(match);
+						System.out.print("serious cal: " + seriousCal);
+						System.out.print("\nincome cal: " + incomeCal);
+						//calculate precentage of match
+						double p = 9;
+						double s = 0;
+						if(lookingSeriousness > seriousCal){
+							s = lookingSeriousness - seriousCal;
+						}if(lookingSeriousness == seriousCal){
+							s = seriousRange;
+						}else{
+							s = seriousCal - lookingSeriousness;
+						}
+						double ic = 0;
+						if(lookingIncome > incomeCal){
+							ic = lookingIncome - incomeCal;
+						}if(lookingIncome == incomeCal){
+							ic = incomeRange;
+						}else{
+							ic = incomeCal - lookingIncome;
+						}
+						System.out.println("\nseriousness range: " + s);
+						System.out.println("income range: " + ic);
+						p = ((p + ic + s) / (p + lookingIncome + lookingSeriousness)) * 100;
+						matchs[1][i] = Integer.toString((int)p);
+						
+						System.out.println("match is: " + matchs[0][i]);
 						i++;
 					}
 					return matchs;
