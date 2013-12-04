@@ -31,6 +31,17 @@
 		<form>
 		
 		<br><br><table>
+				<!--  <tr>
+					<td>
+						Image:
+					</td>
+					<td>
+						${image}
+					</td>
+					
+				</tr> -->
+				<tr>
+				
 				<tr>
 					<td>
 						Location:

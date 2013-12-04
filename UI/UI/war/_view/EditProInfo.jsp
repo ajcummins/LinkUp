@@ -32,9 +32,9 @@
 				<tr>
 			
 				<tr>
-					<td>
+					<!--  <td>
 						Upload a Picture:
-					</td>
+					</td> -->
 					
 					<!--  <td>
 						<form action="" method="post" enctype="multipart/form-data">
