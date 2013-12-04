@@ -27,7 +27,6 @@ public class MysqlDatabase implements IDatabase {
 	public MysqlDatabase() {
 		//this.setDatabaseCredentials();
 	}
-
 	@Override
 	public UserProfile loadUserProfile(int profileId) throws PersistenceException {
 

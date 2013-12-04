@@ -201,7 +201,7 @@ public class addProfileInfoServlet extends HttpServlet{
 					+ "\nseriousness: " + seriousness);
 					//+ "\nPICTURE: "+ picture);
 		
-			UserProfile tempProfileInfo = new UserProfile(user_id, location, gender, age, religion, books, movies, music, basic_info, likes, dislikes, seriousness, children, married, pets, race, income);
+			UserProfile tempProfileInfo = new UserProfile(user_id, location, gender, age, religion, music, movies, books, basic_info, likes, dislikes, seriousness, children, married, pets, race, income);
 			
 			
 			
