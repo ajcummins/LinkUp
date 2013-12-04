@@ -214,7 +214,7 @@ public class MysqlDatabase implements IDatabase {
 
 
 			stmt = con.prepareStatement("INSERT INTO linkup.profile_info(user_id,location, gender, age, religion"
-					+ ",books, movies, music, basic_info, likes, dislikes, looking_for) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+					+ ",books, movies, music, basic_info, likes, dislikes, seriousness, children, married, pets, race, income) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			stmt.setInt(1, inProfile.getUserid());
 			stmt.setInt(2, inProfile.getLocation());
 			stmt.setInt(3, inProfile.getGender());
@@ -225,8 +225,13 @@ public class MysqlDatabase implements IDatabase {
 			stmt.setString(8, inProfile.getMusic());
 			stmt.setString(9, inProfile.getBasic_Info());
 			stmt.setString(10, inProfile.getLikes());
-			stmt.setString(11, inProfile.getDislikes());
-			stmt.setInt(12 , inProfile.getLooking_For());
+			stmt.setString(11, inProfile.getDislikes());	
+			stmt.setInt(12 , inProfile.getSeriousness());
+			stmt.setInt(13 , inProfile.getChildren());
+			stmt.setInt(14 , inProfile.getMarried());
+			stmt.setInt(15 , inProfile.getPets());
+			stmt.setInt(16 , inProfile.getRace());
+			stmt.setInt(17 , inProfile.getIncome());
 			stmt.executeUpdate();
 		}
 		catch (Exception e)
@@ -1175,20 +1180,20 @@ public class MysqlDatabase implements IDatabase {
 	}
 
 	@Override
-	public String getDDLLookingFor() throws PersistenceException {
-		String ddl = "<select name='seriousness' style='width:110px'>";
+	public String getDDLRace() throws PersistenceException {
+		String ddl = "<select name='race' style='width:110px'>";
 		java.sql.PreparedStatement stmt = null;
-		String lookingfor;
+		String race;
 		int i = 1;
 		try{ 
 			SQLconnection sqlConn = new SQLconnection();
 			Connection con = sqlConn.createConnection(DB_USERNAME, DB_PASSWORD);
-			stmt = con.prepareStatement("SELECT PInfoLookingFor FROM linkup.pinfolookingfor");
+			stmt = con.prepareStatement("SELECT race FROM linkup.race");
 			stmt.executeQuery();
 			ResultSet result = stmt.getResultSet();
 			while(result.next()){
-				lookingfor = result.getString(1);
-				ddl = ddl + "<option name='seriousness' value = '"+ i +"' size='20'>" + lookingfor +"</option>";
+				race = result.getString(1);
+				ddl = ddl + "<option name='race' value = '"+ i +"' size='20'>" + race +"</option>";
 				i++;
 			}
 
@@ -1380,9 +1385,14 @@ public class MysqlDatabase implements IDatabase {
 			//using con create an entry into the appropriate table to add a user's looking for information
 
 			
+			////////
+			
+			///////////
+			
+			
 
 			stmt = con.prepareStatement("UPDATE linkup.profile_info SET (location = '?', gender ='?', age ='?', religion ='?' "
-					+ "music = '?', books = '?', movies = '?', basic_info = '?', likes = '?', dislikes = '?', looking_for ='?') WHERE user_id = '?'");
+					+ "music = '?', books = '?', movies = '?', basic_info = '?', likes = '?', dislikes = '?', seriousness ='?', children ='?', married ='?', pets ='?', race ='?', income ='?') WHERE user_id = "+inProfile.getUserid());
 			stmt.setInt(1, inProfile.getUserid());
 			stmt.setInt(2, inProfile.getLocation());
 			stmt.setInt(3, inProfile.getGender());
@@ -1394,7 +1404,12 @@ public class MysqlDatabase implements IDatabase {
 			stmt.setString(9, inProfile.getBasic_Info());
 			stmt.setString(10, inProfile.getLikes());
 			stmt.setString(11, inProfile.getDislikes());
-			stmt.setInt(12 , inProfile.getLooking_For());
+			stmt.setInt(12 , inProfile.getSeriousness());
+			stmt.setInt(13 , inProfile.getChildren());
+			stmt.setInt(14 , inProfile.getMarried());
+			stmt.setInt(15 , inProfile.getPets());
+			stmt.setInt(16 , inProfile.getRace());			
+			stmt.setInt(17 , inProfile.getIncome());
 			stmt.executeUpdate();
 		}
 		catch (Exception e)

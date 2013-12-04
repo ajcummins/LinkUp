@@ -4,7 +4,7 @@ public class UserProfile {
 	//private String name;
 	
 	public UserProfile(int userid, int location, int gender, int age, int religion, String books, String movies, String music,
-			String basic_info, String likes, String dislikes, int looking_for ) {
+			String basic_info, String likes, String dislikes, int race, int seriousness, int children, int married, int pets, int income) {
 		this.userid = userid;
 		this.location = location;
 		this.gender = gender;
@@ -16,7 +16,12 @@ public class UserProfile {
 		this.basic_info = basic_info;
 		this.likes = likes;
 		this.dislikes = dislikes;
-		this.looking_for = looking_for;
+		this.race = race;
+		this.seriousness = seriousness;
+		this.children = children;
+		this.married = married;
+		this.pets = pets;
+		this.income = income;
 	
 	}
 	
@@ -34,7 +39,12 @@ public class UserProfile {
 	private String basic_info;
 	private String likes;
 	private String dislikes;
-	private int looking_for;
+	private int race;
+	private int seriousness;
+	private int children;
+	private int married;
+	private int pets;
+	private int income;
 	
 	
 	
@@ -93,11 +103,37 @@ public class UserProfile {
 	{
 		dislikes = inDislikes;
 	}
-	public void setLooking_For(int inLooking_For)
+	public void setRace(int inRace)
 	{
-		looking_for = inLooking_For;
+		race = inRace;
 		//looking_for = Integer.parseInt(inLooking_For);
 	}
+	
+	
+	public void setChidlren(int inChildren)
+	{
+		children = inChildren;
+	}
+	
+	public void setMarried(int inMarried)
+	{
+		married = inMarried;
+	}
+	
+	public void setPets(int inPets)
+	{
+		pets = inPets;
+	}
+	public void setIncome (int inIncome)
+	{
+		income = inIncome;
+	}
+	public void setSeriousness (int inSeriousness)
+	{
+		seriousness = inSeriousness;
+	}
+	
+	
 	
 	
 	public int getUserid()
@@ -152,9 +188,30 @@ public class UserProfile {
 	{
 		return dislikes;
 	}
-	public int getLooking_For()
+	public int getRace()
 	{
-		return looking_for;
+		return race;
 	}
+	public int getChildren()
+	{
+		return children;
+	}
+	public int getMarried()
+	{
+		return married;
+	}
+	public int getPets()
+	{
+		return pets;
+	}
+	public int getIncome()
+	{
+		return income;
+	}
+	public int getSeriousness()
+	{
+		return seriousness;
+	}
+	
 	
 }

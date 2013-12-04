@@ -136,28 +136,116 @@
 				</tr>
 				<tr>
 					<td>
-						What are you looking for?
+						Seriousness: <p id="test1"></p>
 					</td>
 					<td>
-						 <select name = "looking_for">
-                                                 <option value="1" name="looking_for" type="int" size="20">Relationship</option>
-                                                 <option value="2" name="looking_for" type="int" size="20">Friendship</option>
-                                                 <option value="3" name="looking_for" type="int" size="20">Cuddle Buddy</option>
-                                                 <option value="4" name="looking_for" type="int" size="20">Nothing Serious</option>
-                                                 <option value="5" name="looking_for" type="int" size="20">Long Term</option>
-                                                 <option value="6" name="looking_for" type="int" size="20">Short Term</option>
-                                                 <option value="7" name="looking_for" type="int" size="20">Fun</option>
-                                                
-                          </select>
+						<div data-role="content">
+						      <div data-role="fieldcontain">
+						        <input type="range" name="seriousness" id="seriousness" value="5" min="1" max="10">
+						  </div>
+						</div>
+					</td>
+					
+					<td>
+					<table border="1">
+					<tr>
+					<td>Number</td>
+					<td>Definition</td>
+					</tr>
+					<tr>
+					<td>1</td>
+					<td>Someone to hang out with</td>
+					</tr>
+					<tr>
+					<td>5</td>
+					<td>Relationship, someday something more</td>
+					</tr>
+					<tr>
+					<td>10</td>
+					<td>Settle down, hoping to get married</td>
+					</tr>
+					</table>
 					</td>
 				</tr>
 				
 				
 				
+				<tr>
+					<td>
+						Do you have children:
+					</td>
+					<td>
+						<select name="children" style="width:110px">
+							<option name="children" value = "1"' size='20'>Yes</option>
+							<option name="children" value = "2" size='20'>No</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Have you been previously married:
+					</td>
+					<td>
+						<select name="married" style="width:110px">
+							<option name="married" value = "1"' size='20'>Yes</option>
+							<option name="married" value = "2" size='20'>No</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Do you have pets:
+					</td>
+					<td>
+						<select name="pets" style="width:110px">
+							<option name="pets" value = "1"' size='20'>Yes</option>
+							<option name="pets" value = "2" size='20'>No</option>
+						</select>
+					</td>
+				
+				<tr>
+					<td>
+						Race: 
+					</td>
+					<td>
+						${race2}
+					</td>
 				
 				
-				
-				
+					<tr>
+					<td>
+						Income: <p id="test3"></p>
+					</td>
+					<td>
+						<!--${sWeight}-->
+						  <div data-role="content">
+						      <div data-role="fieldcontain">
+						        <input type="range" name="income" id="income" value="5" min="1" max="10">
+						  </div>
+						</div>
+					</td>
+					<td>
+					<table border="1">
+					<tr>
+					<td>Number</td>
+					<td>Definition</td>
+					</tr>
+					<tr>
+					<td>1</td>
+					<td> < $10,000 per year</td>
+					</tr>
+					<tr>
+					<td>5</td>
+					<td> $100,000 per year</td>
+					</tr>
+					<tr>
+					<td>10</td>
+					<td> > $200,000 per year</td>
+					</tr>
+					</table>
+					</td>
+				</tr>
+	
 				<tr>
 					<td></td>
 					<td><input name="submit" type="submit" value="Submit"/></td>

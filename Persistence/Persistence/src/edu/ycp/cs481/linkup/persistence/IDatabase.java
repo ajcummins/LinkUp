@@ -69,7 +69,7 @@ public interface IDatabase {
 
 	public String getDDLLocation()	throws PersistenceException;
 
-	public String getDDLLookingFor()	throws PersistenceException;
+	public String getDDLRace()	throws PersistenceException;
 
 	public String getDDLReligion()	throws PersistenceException;
 

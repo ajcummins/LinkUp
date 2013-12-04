@@ -11,8 +11,8 @@ public class UserProfileJUnitTest extends TestCase {
 	private UserProfile user2;
 	
 	protected void setUp() throws Exception {
-		user = new UserProfile(11, 2, 1, 23, 1, "to kill a mocking bird", "pee wee's big adventure", "led zeppelin", "im super cool", "kittens, long walks on the beach, sunsets", "rainbows", 2);
-		user2 = new UserProfile(12, 1, 2, 54, 2, "the sun also rises", "ferris buellers day off", "britney spears", "i am a college student", "", "people that snore", 4);
+		user = new UserProfile(11, 2, 1, 23, 1, "to kill a mocking bird", "pee wee's big adventure", "led zeppelin", "im super cool", "kittens, long walks on the beach, sunsets", "rainbows", 2, 1, 1, 1, 1, 1);
+		user2 = new UserProfile(12, 1, 2, 54, 2, "the sun also rises", "ferris buellers day off", "britney spears", "i am a college student", "", "people that snore", 4, 1, 1, 1, 1, 1);
 	}
 	
 	public void testGetUserid() throws Exception{
@@ -20,12 +20,7 @@ public class UserProfileJUnitTest extends TestCase {
 		assertEquals(12, user2.getUserid());
 	}
 	
-	/*
-	public void testGetUsername() throws Exception{
-		assertEquals("testing123", user.getUsername());
-		assertEquals("testing456", user2.getUsername());
-	}
-	*/
+
 	
 	public void testGetLocation() throws Exception{
 		assertEquals(2, user.getLocation());
@@ -74,8 +69,8 @@ public class UserProfileJUnitTest extends TestCase {
 		assertEquals("people that snore", user2.getDislikes());
 	}
 	public void testGetLookingFor() throws Exception{
-		assertEquals(2, user.getLooking_For());
-		assertEquals(4, user2.getLooking_For());
+		assertEquals(2, user.getSeriousness());
+		assertEquals(4, user2.getSeriousness());
 	}
 	
 ///////////////////////////// test SETS	
@@ -88,16 +83,7 @@ public class UserProfileJUnitTest extends TestCase {
 		assertEquals(12, user2.getUserid());
 	}
 	
-	/*
-	public void testSetUsername() throws Exception{
-		user.setUsername("testing123");
-		assertEquals("testing123", user.getUsername());
-		
-		user2.setUsername("testing456");
-		assertEquals("testing456", user2.getUsername());
-	
-	}
-	*/
+
 	
 	public void testSetLocation() throws Exception{
 		
@@ -194,11 +180,11 @@ public class UserProfileJUnitTest extends TestCase {
 	}
 	public void testSetLookingFor() throws Exception{
 		
-		user.setLooking_For(2);
-		assertEquals(2, user.getLooking_For());
+		user.setSeriousness(2);
+		assertEquals(2, user.getSeriousness());
 		
-		user2.setLooking_For(4);
-		assertEquals(4, user2.getLooking_For());
+		user2.setSeriousness(4);
+		assertEquals(4, user2.getSeriousness());
 		
 	}
 	

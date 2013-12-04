@@ -59,23 +59,10 @@
 						Location:
 					</td>
 					<td>
-						<select name="location">
-						  <option value="1" name="location" type="int" size="20">PA</option>
-						  <option value="2" name="location" type="int" size="20">DE</option>
-						  <option value="3" name="location" type="int" size="20">MD</option>
-						  <option value="4" name="location" type="int" size="20">NJ</option>
-						  <option value="5" name="location" type="int" size="20">WI</option>
-						  <option value="6" name="location" type="int" size="20">CA</option>
-						  <option value="7" name="location" type="int" size="20">MA</option>
-						  <option value="8" name="location" type="int" size="20">RI</option>
-						  <option value="9" name="location" type="int" size="20">OH</option>
-						  <option value="10" name="location" type="int" size="20">SC</option>
-						  <option value="11" name="location" type="int" size="20">NC</option>
-						  <option value="12" name="location" type="int" size="20">VA</option>
-						  <option value="13" name="location" type="int" size="20">TX</option>
+						${location2}
+					
 						  
-						  
-						</select>
+					
 					</td>
 				</tr>
 				<tr>
@@ -83,10 +70,7 @@
 						Gender:
 					</td>
 					<td>
-						<select name = "gender">
-						  <option value="1" name="gender" type="int" size="20">Male</option>
-						  <option value="2" name="gender" type="int" size="20">Female</option>
-						</select>
+						${gender2}
 					</td>
 				</tr>
 				<!--  <tr>
@@ -102,18 +86,7 @@
 						Religion:
 					</td>
 					<td>
-						<select name = "religion">
-						  <option value="1" name="gender" type="int" size="20">Non-Religious</option>
-						  <option value="2" name="gender" type="int" size="20">Atheist</option>
-						  <option value="3" name="gender" type="int" size="20">Buddhism</option>
-						  <option value="4" name="gender" type="int" size="20">Christian</option>
-						  <option value="5" name="gender" type="int" size="20">Hinduism</option>
-						  <option value="6" name="gender" type="int" size="20">Islam</option>
-						  <option value="7" name="gender" type="int" size="20">Jewish</option>
-						  <option value="8" name="gender" type="int" size="20">Sikhism</option>
-						  <option value="9" name="gender" type="int" size="20">Other</option>
-						  
-						</select>
+						${religion2}
 					</td>
 				</tr>
 				<tr>
@@ -167,21 +140,116 @@
 				</tr>
 				<tr>
 					<td>
-						What are you looking for?
+						Seriousness: <p id="test1"></p>
 					</td>
 					<td>
-						<select name = "looking_for">
-						  <option value="1" name="looking_for" type="int" size="20">Relationship</option>
-						  <option value="2" name="looking_for" type="int" size="20">Friendship</option>
-						  <option value="3" name="looking_for" type="int" size="20">Cuddle Buddy</option>
-						  <option value="4" name="looking_for" type="int" size="20">Nothing Serious</option>
-						  <option value="5" name="looking_for" type="int" size="20">Long Term</option>
-						  <option value="6" name="looking_for" type="int" size="20">Short Term</option>
-						  <option value="7" name="looking_for" type="int" size="20">Fun</option>
-						  
+						<div data-role="content">
+						      <div data-role="fieldcontain">
+						        <input type="range" name="seriousness" id="seriousness" value="5" min="1" max="10">
+						  </div>
+						</div>
+					</td>
+					
+					<td>
+					<table border="1">
+					<tr>
+					<td>Number</td>
+					<td>Definition</td>
+					</tr>
+					<tr>
+					<td>1</td>
+					<td>Someone to hang out with</td>
+					</tr>
+					<tr>
+					<td>5</td>
+					<td>Relationship, someday something more</td>
+					</tr>
+					<tr>
+					<td>10</td>
+					<td>Settle down, hoping to get married</td>
+					</tr>
+					</table>
+					</td>
+				</tr>
+				
+				
+				
+				<tr>
+					<td>
+						Do you have children:
+					</td>
+					<td>
+						<select name="children" style="width:110px">
+							<option name="children" value = "1"' size='20'>Yes</option>
+							<option name="children" value = "2" size='20'>No</option>
 						</select>
 					</td>
 				</tr>
+				<tr>
+					<td>
+						Have you been previously married:
+					</td>
+					<td>
+						<select name="married" style="width:110px">
+							<option name="married" value = "1"' size='20'>Yes</option>
+							<option name="married" value = "2" size='20'>No</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Do you have pets:
+					</td>
+					<td>
+						<select name="pets" style="width:110px">
+							<option name="pets" value = "1"' size='20'>Yes</option>
+							<option name="pets" value = "2" size='20'>No</option>
+						</select>
+					</td>
+				
+				<tr>
+					<td>
+						Race: 
+					</td>
+					<td>
+						${race2}
+					</td>
+				
+				
+					<tr>
+					<td>
+						Income: <p id="test3"></p>
+					</td>
+					<td>
+						<!--${sWeight}-->
+						  <div data-role="content">
+						      <div data-role="fieldcontain">
+						        <input type="range" name="income" id="income" value="5" min="1" max="10">
+						  </div>
+						</div>
+					</td>
+					<td>
+					<table border="1">
+					<tr>
+					<td>Number</td>
+					<td>Definition</td>
+					</tr>
+					<tr>
+					<td>1</td>
+					<td> < $10,000 per year</td>
+					</tr>
+					<tr>
+					<td>5</td>
+					<td> $100,000 per year</td>
+					</tr>
+					<tr>
+					<td>10</td>
+					<td> > $200,000 per year</td>
+					</tr>
+					</table>
+					</td>
+				</tr>
+
 				
 				
 				

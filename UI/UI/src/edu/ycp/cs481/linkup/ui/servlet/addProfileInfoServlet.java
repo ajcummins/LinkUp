@@ -47,13 +47,15 @@ public class addProfileInfoServlet extends HttpServlet{
 		DropDownListController controller = new DropDownListController();
 		String ddlGender = null;
 		String ddlLocation = null;
-		String ddlLooking = null;
+		String ddlRace = null;
 		String ddlReligion = null;
+	
+		
 		
 		try{
 			ddlGender = controller.ddlGender();
 			ddlLocation = controller.ddlLocation();
-			ddlLooking = controller.ddlLookingFor();
+			ddlRace = controller.ddlLookingFor();
 			ddlReligion = controller.ddlReligion();
 		}catch (PersistenceException e){
 			e.printStackTrace();
@@ -62,7 +64,7 @@ public class addProfileInfoServlet extends HttpServlet{
 		req.setAttribute("gender2", ddlGender);
 		req.setAttribute("location2", ddlLocation);
 		req.setAttribute("religion2", ddlReligion);
-		req.setAttribute("lookingfor2", ddlLooking);
+		req.setAttribute("race2", ddlRace);
 		
 		req.getRequestDispatcher("/_view/SetUpProfileInfo.jsp").forward(req, resp);
 
@@ -162,7 +164,12 @@ public class addProfileInfoServlet extends HttpServlet{
 		String basic_info = req.getParameter("basic_info");
 		String likes = req.getParameter("likes");
 		String dislikes = req.getParameter("dislikes");
-		int looking_for = Integer.parseInt(req.getParameter("looking_for"));
+		int race = Integer.parseInt(req.getParameter("race"));
+		int seriousness = Integer.parseInt(req.getParameter("seriousness"));
+		int children = Integer.parseInt(req.getParameter("children"));
+		int married = Integer.parseInt(req.getParameter("married"));
+		int pets = Integer.parseInt(req.getParameter("pets"));
+		int income = Integer.parseInt(req.getParameter("income"));
 		//String picture = req.getParameter("picture"); 
 		
 		//File file = new File(req.getServletContext().getAttribute("FILES_DIR")+File.separator+picture);
@@ -186,10 +193,15 @@ public class addProfileInfoServlet extends HttpServlet{
 					+ "\nbasic info: " + basic_info
 					+ "\nlikes: " + likes
 					+ "\ndislikes: " + dislikes
-					+ "\nlooking for: " + looking_for);
+					+ "\nrace: " + race
+					+ "\nchildren: " + children
+					+ "\nmarried: " + married
+					+ "\npets: " + pets
+					+ "\nincome: " + income
+					+ "\nseriousness: " + seriousness);
 					//+ "\nPICTURE: "+ picture);
 		
-			UserProfile tempProfileInfo = new UserProfile(user_id, location, gender, age, religion, books, movies, music, basic_info, likes, dislikes, looking_for);
+			UserProfile tempProfileInfo = new UserProfile(user_id, location, gender, age, religion, books, movies, music, basic_info, likes, dislikes, seriousness, children, married, pets, race, income);
 			
 			
 			

@@ -58,15 +58,7 @@
 					</td>
 					
 				</tr>
-				<tr>
-					<td>
-						Looking For:
-					</td>
-					<td>
-						${looking_for}
-					</td>
-					
-				</tr>
+				
 				<tr>
 					<td>
 						Religion:

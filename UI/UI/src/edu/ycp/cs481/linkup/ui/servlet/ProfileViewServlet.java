@@ -33,8 +33,14 @@ public class ProfileViewServlet extends HttpServlet {
 		
 		String location1 = null;
 		String gender1 = null;
-		String looking_for1 = null;
+		//String looking_for1 = null;
 		String religion1 = null;
+		String seriousnes1 = null;
+		String children1 = null;
+		String married1 = null;
+		String pets1 = null;
+		String race1 = null;
+		String income1 = null;
 		//String locationR = null;
 		// Forward to a view for rendering
 		//req.getRequestDispatcher("/_view/userProfile.jsp").forward(req, resp);
@@ -66,6 +72,7 @@ public class ProfileViewServlet extends HttpServlet {
 			int location=0; int gender=0;int age=0;int looking_for=0;
 			String first_name = null; String last_name = null;
 			String b_date = null; String MonthName=null; String day = null; String year = null;
+			int seriousness = 0; String children = null; String married = null; int pets = 0; int race =0; int income = 0;
 			
 			
 			try 
@@ -214,20 +221,39 @@ public class ProfileViewServlet extends HttpServlet {
 	            result10.next();
 	            dislikes = result10.getString(1);
 	           
-	            //looking_for
-	            stmt = con.prepareStatement("SELECT looking_for FROM linkup.profile_info WHERE user_id = " + userid);
+	            //married
+	            stmt = con.prepareStatement("SELECT married FROM linkup.profile_info WHERE user_id = " + userid);
 	            stmt.executeQuery();
-	            ResultSet result11 = stmt.getResultSet();
-	            result11.next();
-	            looking_for = result11.getInt(1);
+	            ResultSet result21 = stmt.getResultSet();
+	            result21.next();
+	            married = result21.getString(1);
 	            
-	            stmt = con.prepareStatement("SELECT PInfoLookingFor FROM linkup.pinfolookingfor WHERE PInfoLookingFor_id = " + looking_for);
+	            stmt = con.prepareStatement("SELECT married FROM linkup.married WHERE married_id = " + married);
 	            stmt.executeQuery();
-	            ResultSet result16 = stmt.getResultSet();
-	            result16.next();
-	            looking_for1 = result16.getString(1);
+	            ResultSet result22 = stmt.getResultSet();
+	            result22.next();
+	            married1 = result22.getString(1);
 	            
 	       
+	          /*  // children
+	          //RELIGION
+	            stmt = con.prepareStatement("SELECT children FROM linkup.profile_info WHERE user_id = " + userid);
+	            stmt.executeQuery();
+	            ResultSet result30 = stmt.getResultSet();
+	            result4.next();
+	            children = result30.getString(1);
+	            
+	            
+	            
+	            stmt = con.prepareStatement("SELECT children FROM linkup.children WHERE children_id = " + children);
+	            stmt.executeQuery();
+	            ResultSet result20 = stmt.getResultSet();
+	            result17.next();
+	            children1 = result20.getString(1);
+	      
+	            */
+	            
+	            
 	            System.out.println("Location: " + location);
 	            System.out.println("Location1: " + location1);
 	        	
@@ -259,7 +285,7 @@ public class ProfileViewServlet extends HttpServlet {
 			req.getSession().setAttribute("basic_info", basic_info);
 			req.getSession().setAttribute("likes", likes);
 			req.getSession().setAttribute("dislikes", dislikes);
-			req.getSession().setAttribute("looking_for", looking_for1);
+			//req.getSession().setAttribute("children", children1);
 			
 			req.getSession().setAttribute("month", MonthName);
 			req.getSession().setAttribute("day", day);
