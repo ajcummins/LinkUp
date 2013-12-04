@@ -259,7 +259,7 @@ public class ProfileViewServlet extends HttpServlet {
 
 
 			//picture
-			stmt = con.prepareStatement("SELECT pic FROM linkup.pic WHERE pic_id = " + 2);
+			/*stmt = con.prepareStatement("SELECT pic FROM linkup.pic WHERE pic_id = " + 2);
 			ResultSet rs = stmt.executeQuery();
 			
 
@@ -284,7 +284,7 @@ public class ProfileViewServlet extends HttpServlet {
 			OutputStream o = resp.getOutputStream();
 
 			//o.write(imgData);
-
+*/
 			
 			
 				/*ResultSet result10 = stmt.getResultSet();
