@@ -1276,10 +1276,8 @@ public class MysqlDatabase implements IDatabase {
 					+ "race = ?, income = ?, income_weight = ? WHERE user_id = "+inLooking.getUserid());
 			stmt.setInt(1, inLooking.getAgeLow());
 			stmt.setInt(2, inLooking.getAgeHigh());
-			stmt.setInt(3, inLooking.getGender());
 			stmt.setInt(4, inLooking.getReligionWeight());
 			stmt.setInt(5, inLooking.getseriousnessWeight());
-			stmt.setInt(6, inLooking.getState());
 			stmt.setInt(7, inLooking.getChildern());
 			stmt.setInt(8, inLooking.getMarried());
 			stmt.setInt(9, inLooking.getPets());
@@ -1390,25 +1388,25 @@ public class MysqlDatabase implements IDatabase {
 			
 			
 
-			stmt = con.prepareStatement("UPDATE linkup.profile_info SET (location = '?', gender ='?', age ='?', religion ='?' "
-					+ "music = '?', books = '?', movies = '?', basic_info = '?', likes = '?', dislikes = '?', seriousness ='?', children ='?', married ='?', pets ='?', race ='?', income ='?') WHERE user_id = "+inProfile.getUserid());
-			stmt.setInt(1, inProfile.getUserid());
-			stmt.setInt(2, inProfile.getLocation());
-			stmt.setInt(3, inProfile.getGender());
-			stmt.setInt(4, inProfile.getAge());
-			stmt.setInt(5, inProfile.getReligion());
-			stmt.setString(6, inProfile.getBooks());
-			stmt.setString(7, inProfile.getMovies());
-			stmt.setString(8, inProfile.getMusic());
-			stmt.setString(9, inProfile.getBasic_Info());
-			stmt.setString(10, inProfile.getLikes());
-			stmt.setString(11, inProfile.getDislikes());
-			stmt.setInt(12 , inProfile.getSeriousness());
-			stmt.setInt(13 , inProfile.getChildren());
-			stmt.setInt(14 , inProfile.getMarried());
-			stmt.setInt(15 , inProfile.getPets());
-			stmt.setInt(16 , inProfile.getRace());			
-			stmt.setInt(17 , inProfile.getIncome());
+			stmt = con.prepareStatement("UPDATE linkup.profile_info SET location = ?, gender = ?, age = ?, religion = ? ,"
+					+ "music = ?, books = ?, movies = ?, basic_info = ?, likes = ?, dislikes = ?, seriousness = ?, children = ?, married = ?, pets = ?, race = ?, income = ? WHERE user_id = "+inProfile.getUserid());
+			//stmt.setInt(1, inProfile.getUserid());
+			stmt.setInt(1, inProfile.getLocation());
+			stmt.setInt(2, inProfile.getGender());
+			stmt.setInt(3, inProfile.getAge());
+			stmt.setInt(4, inProfile.getReligion());
+			stmt.setString(5, inProfile.getBooks());
+			stmt.setString(6, inProfile.getMovies());
+			stmt.setString(7, inProfile.getMusic());
+			stmt.setString(8, inProfile.getBasic_Info());
+			stmt.setString(9, inProfile.getLikes());
+			stmt.setString(10, inProfile.getDislikes());
+			stmt.setInt(11 , inProfile.getSeriousness());
+			stmt.setInt(12 , inProfile.getChildren());
+			stmt.setInt(13 , inProfile.getMarried());
+			stmt.setInt(14 , inProfile.getPets());
+			stmt.setInt(15 , inProfile.getRace());			
+			stmt.setInt(16 , inProfile.getIncome());
 			stmt.executeUpdate();
 		}
 		catch (Exception e)

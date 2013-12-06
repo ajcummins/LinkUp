@@ -430,13 +430,13 @@ public class EditProfileInfoServlet extends HttpServlet{
 				+ "\nincome: " + income);
 		//+ "\nPICTURE: "+ picture);
 
-		UserProfile tempProfileInfo = new UserProfile(userid, location, gender, age, religion, books, movies, music, basic_info, likes, dislikes, seriousness, children, married, pets, race, income);
+		UserProfile tempProfileInfo2 = new UserProfile(userid, location, gender, age, religion, books, movies, music, basic_info, likes, dislikes, seriousness, children, married, pets, race, income);
 
 
 
 		EditProfileInfoController controller = new EditProfileInfoController();
 		try {
-			controller.Profile(tempProfileInfo);
+			controller.Profile(tempProfileInfo2);
 		} catch (PersistenceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -444,7 +444,7 @@ public class EditProfileInfoServlet extends HttpServlet{
 
 
 		HttpSession thisSession = req.getSession(true);
-		thisSession.setAttribute("usersProfile",tempProfileInfo);
+		thisSession.setAttribute("usersProfile",tempProfileInfo2);
 
 		
 		resp.sendRedirect("userProfile/");
