@@ -29,9 +29,9 @@
 						<input name="username" type="text" size="20" style="width: 100px; "/>
 					</td>-->
 				</tr>
-				<tr>
+				<tr> 
 			
-				<tr>
+				<!--  <tr>
 					<td>
 						Upload a Picture:
 					</td>
@@ -48,7 +48,7 @@
    
    
     
-					</td>-->
+					</td>--> 
 				</tr>
 				
 			
