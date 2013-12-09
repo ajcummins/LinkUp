@@ -1640,6 +1640,9 @@ public class MysqlDatabase implements IDatabase {
 						System.out.println("\nseriousness range: " + s);
 						System.out.println("income range: " + ic);
 						p = ((p + ic + s) / (p + lookingIncome + lookingSeriousness)) * 100;
+						if(p > 100){
+							p = 100;
+						}
 						matchs[1][i] = Integer.toString((int)p);
 						
 						System.out.println("match is: " + matchs[0][i]);
