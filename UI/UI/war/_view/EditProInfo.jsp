@@ -8,7 +8,8 @@
 	</head>
 	
 	<body>
-		<p> <font face = "Impact" size ="18" >Edit Profile info  </font></p>
+		<p><font color="pink" face="Comic Sans MS" size="15">LinkUp:</font> <font color="blue" face="Comic Sans MS" size="15"> Edit your profile</font></p>
+	<body>		
 		
 		<form action="/EditProInfo" method="POST">
 			<table>

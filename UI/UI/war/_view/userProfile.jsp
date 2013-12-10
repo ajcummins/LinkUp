@@ -31,12 +31,12 @@
 		<form>
 		
 		<br><br><table>
-				<!--  <tr>
+				    <!--  <tr>
 					<td>
 						Image:
 					</td>
 					<td>
-						${image}
+						<img src= "ProfileViewServlet/${inImage}" / >
 					</td>
 					
 				</tr> -->

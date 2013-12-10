@@ -1,5 +1,6 @@
 package edu.ycp.cs481.linkup.ui.servlet;
 
+import java.awt.Image;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.sql.Blob;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.ImageIcon;
 
 import org.eclipse.jetty.client.api.Request;
 
@@ -78,6 +80,7 @@ public class ProfileViewServlet extends HttpServlet {
 		Blob image = null; 
 		byte[ ] imgData = null ; 
 		byte[ ] image2 = null ; 
+		//OutputStream o; 
 
 		try 
 		{   
@@ -259,13 +262,21 @@ public class ProfileViewServlet extends HttpServlet {
 
 
 			//picture
-			/*stmt = con.prepareStatement("SELECT pic FROM linkup.pic WHERE pic_id = " + 2);
+			stmt = con.prepareStatement("SELECT pic FROM linkup.pic WHERE pic_id = " + 2);
 			ResultSet rs = stmt.executeQuery();
 			
 
 			if(rs.next()){
-				// byte[] imagedata = rs.getBytes("pic");
-				//format = new ImageIcon(imagedata);
+			
+			/*Blob bl = rs.getBlob("pic");
+			byte[] pict = bl.getBytes(1,(int)bl.length();
+			resp.setContentType)"image/jpg");
+			OutputStream o = resp.getOutputStream();*/
+			
+				byte[] imagedata = rs.getBytes("pic");
+				ImageIcon format = new ImageIcon(imagedata);
+				Image inImage = format.getImage();
+				
 				image = rs.getBlob(1);
 				imgData = image.getBytes(1, (int)image.length());   
 			}else {
@@ -282,9 +293,10 @@ public class ProfileViewServlet extends HttpServlet {
 			resp.setContentType("image/gif");
 
 			OutputStream o = resp.getOutputStream();
+			//o.write(blob.getBytes(1,int) blob.length());
 
 			//o.write(imgData);
-*/
+
 			
 			
 				/*ResultSet result10 = stmt.getResultSet();
@@ -302,11 +314,14 @@ public class ProfileViewServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 
-
+			
+		
+		
+		
 			//merrr
 			System.out.println("Age: " + age);
 
-			req.getSession().setAttribute("image", imgData);
+			//req.getSession().setAttribute("image", o.write(imgData));
 
 			req.getSession().setAttribute("first_name", first_name);
 			req.getSession().setAttribute("last_name", last_name);

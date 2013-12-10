@@ -8,7 +8,8 @@
 	</head>
 	
 	<body>
-		<p> <font face = "Impact" size ="18" >Set up your Profile!  </font></p>
+		<p><font color="pink" face="Comic Sans MS" size="15">LinkUp:</font> <font color="blue" face="Comic Sans MS" size="15"> Set up your profile</font></p>
+	<body>		
 		
 		<form action="/SetUpProfileInfo" method="POST">
 			<table>
