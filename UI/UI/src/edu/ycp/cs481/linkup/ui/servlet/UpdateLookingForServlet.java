@@ -113,14 +113,14 @@ public class UpdateLookingForServlet extends HttpServlet{
 		
 		
 		// Check if null 
-		if(ageLow >= ageHigh || ageHigh <= ageLow || ageLow < 1 || ageHigh < 1 || user_id < 1 || state < 1 || married < 1){
+		/*if(ageLow >= ageHigh || ageHigh <= ageLow || ageLow < 1 || ageHigh < 1 || user_id < 1 || state < 1 || married < 1){
 			//Some type of error
 			req.setAttribute("error", "You have remaining Empty Fields");
 			//throw new ServletException("You have remaining Empty Fields");
 			req.getRequestDispatcher("/_view/lookinFor.jsp").forward(req, resp);
 		}
 		else
-		{
+		{*/
 			System.out.println("age low: " + ageLow 
 					+ "\nage high: " + ageHigh
 					+ "\ngender: " + gender
@@ -145,7 +145,7 @@ public class UpdateLookingForServlet extends HttpServlet{
 			thisSession.setAttribute("usersLookingFor",tempLooking);
 			
 			resp.sendRedirect("userProfile/");	
-		}
+		
 	}
 }
 

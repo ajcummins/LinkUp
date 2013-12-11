@@ -1276,8 +1276,10 @@ public class MysqlDatabase implements IDatabase {
 					+ "race = ?, income = ?, income_weight = ? WHERE user_id = "+inLooking.getUserid());
 			stmt.setInt(1, inLooking.getAgeLow());
 			stmt.setInt(2, inLooking.getAgeHigh());
+			stmt.setInt(3, inLooking.getGender());
 			stmt.setInt(4, inLooking.getReligionWeight());
 			stmt.setInt(5, inLooking.getseriousnessWeight());
+			stmt.setInt(6, inLooking.getState());
 			stmt.setInt(7, inLooking.getChildern());
 			stmt.setInt(8, inLooking.getMarried());
 			stmt.setInt(9, inLooking.getPets());

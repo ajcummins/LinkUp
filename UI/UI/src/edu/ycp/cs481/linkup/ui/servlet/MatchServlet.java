@@ -45,13 +45,21 @@ public class MatchServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		int l = 0;
+		if(match[1].length > 10){
+			l = 10;
+			
+		}else{
+			l = match[1].length;
+		}
+		
+		
 		String table = "";
 		if(match == null){
 			req.setAttribute("match", "No Matches at this time. :(");
 		}
 		else{
-			for(int i = 0; i < match[1].length; i++){
+			for(int i = 0; i < 1; i++){
 				table = table + "<tr><td>" + (i+1) + ") " + match[0][i] + "      </td><td>"+ (match[1][i]) +" % match </td><td><input name='submit' value='View "+ match[0][i] +" Profile' type='submit'  style='width:200px'/></td></tr>";
 			}
 			req.setAttribute("match", table);
