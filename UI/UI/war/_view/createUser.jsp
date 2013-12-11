@@ -5,7 +5,7 @@
 <html>
 		
 	<body>
-		<p> Create a user account: </p>
+		<p><font color="pink" face="Comic Sans MS" size="15">LinkUp:</font> <font color="blue" face="Comic Sans MS" size="15">Create User</font></p>
 		
 		<form action="/createUser" method="POST">
 			<fieldset>

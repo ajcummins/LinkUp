@@ -6,7 +6,7 @@
 	</head>
 	
 	<body>
-		<p> <font  size ="18" >Rate your Date  </font></p>
+		<p><font color="pink" face="Comic Sans MS" size="15">LinkUp:</font> <font color="blue" face="Comic Sans MS" size="15">Rate Your Date</font></p>
 		
 		<form action="/Rating" method="POST">
 			<table>

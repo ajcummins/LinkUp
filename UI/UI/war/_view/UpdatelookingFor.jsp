@@ -76,7 +76,7 @@
 				</tr>
 				<tr>
 					<td>
-						Seriousness: <p id="test1">5</p>
+						Seriousness of a Relationship: <p id="test1">5</p>
 					</td>
 					<td>
 						 <div data-role="content">
@@ -88,7 +88,7 @@
 				</tr>
 				<tr>
 					<td>
-						How important is Seriousness: <p id="test2">5</p>
+						How important is the Seriousness of Your Relationship: <p id="test2">5</p>
 					</td>
 					<td>
 						  <div data-role="content">
