@@ -29,8 +29,8 @@
 	<classpathentry exported="true" kind="lib" path="lib/jetty-webapp-9.0.5.v20130815.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jetty-xml-9.0.5.v20130815.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/servlet-api-3.0.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Controllers"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Model"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Persistence"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/CS481-Linkup-Controllers"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/CS481-Linkup-Model"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/CS481-Linkup-Persistence"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

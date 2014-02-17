@@ -2,9 +2,9 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/WebServer"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Controllers"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Model"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Persistence"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/CS481-Linkup-WebServer"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/CS481-Linkup-Controllers"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/CS481-Linkup-Model"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/CS481-Linkup-Persistence"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
